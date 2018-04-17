@@ -1,11 +1,7 @@
 # Documentation
 this repository contains a documentation of the Snap ML library. It describes its functionalities and the different APIs.
 
-
-## Build the Documentation
-
-
-### Install Sphinx
+## Install Sphinx
 
 The documentation is built using the Sphinx Python Documentation Generator. 
 To install Sphinx use the following command
@@ -21,26 +17,18 @@ The following built-in Sphinx extensions are required and should be included in 
 *  napoleon
 *  intersphinx
 
-### Build Documentation
+## Build Documentation
 
 To build the ducumentation you need to run
 
 ```
+    $ mkdir build
     $ sphinx-build -b html source build
 ```
 
 To see the display the generated documentation point your browser to *build/index.html*.
 
- accepted
-
-What I usually do for putting alert box (e.g. Note or Warning) in markdown texts (not only when using pandoc but also every where that markdown is supported) is surrounding the content with two horizontal lines:
-
----
-**NOTE**
-
-Note that Sphinx needs to run the code in order to auto-generate the code documentation. Therefore make sure that all git submodules are loaded and libglm is compiled.
-
----
+**Note** that Sphinx needs to run the code in order to auto-generate the code documentation. Therefore make sure that all git submodules are loaded and libglm is compiled.
 
 To load the submodules use
 
@@ -48,6 +36,11 @@ To load the submodules use
     $ cd code/snap-ml-local
     $ git submodule init
     $ git submodule update --recursive
+    $ cd ..
+    $ cd code/snap-ml-spark
+    $ git submodule init
+    $ git submodule update --recursive
+
 ```
 
 To compile libglm
