@@ -7,7 +7,7 @@ The documentation is built using the Sphinx Python Documentation Generator.
 To install Sphinx use the following command
 
 ```
-    $ sodu pip install sphinx
+    $ sudo pip install sphinx
 ```
 
 The following built-in Sphinx extensions are required and should be included in the standard installation:
