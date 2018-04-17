@@ -9,8 +9,10 @@ Here you can find some application examples of Snap ML.
 
 .. _adclickExample:
 
-Example: Ad click Prediction
+Ad click Prediction
 ----------------------------------
+
+:note: add example on kaggle dataset
 
 .. code-block:: python
 

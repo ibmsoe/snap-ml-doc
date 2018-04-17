@@ -22,13 +22,12 @@ The following built-in Sphinx extensions are required and should be included in 
 To build the ducumentation you need to run
 
 ```
-    $ mkdir build
     $ sphinx-build -b html source build
 ```
 
 To see the display the generated documentation point your browser to *build/index.html*.
 
-**Note** that Sphinx needs to run the code in order to auto-generate the code documentation. Therefore make sure that all git submodules are loaded and libglm is compiled.
+**Note:** Sphinx needs to run the code in order to auto-generate the code documentation. Therefore make sure that all git submodules are loaded and libglm is compiled.
 
 To load the submodules use
 
