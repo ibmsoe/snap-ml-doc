@@ -21,7 +21,7 @@ The following built-in Sphinx extensions are required and should be included in 
 *  napoleon
 *  intersphinx
 
-### Compile Documentation
+### Build Documentation
 
 To build the ducumentation you need to run
 
@@ -29,7 +29,18 @@ To build the ducumentation you need to run
     $ sphinx-build -b html source build
 ```
 
-Note that Sphinx needs to run the code in order to auto-generate the code documentation. Therefreo make sure that all git submodules are loaded and libglm is compiled.
+To see the display the generated documentation point your browser to *build/index.html*.
+
+ accepted
+
+What I usually do for putting alert box (e.g. Note or Warning) in markdown texts (not only when using pandoc but also every where that markdown is supported) is surrounding the content with two horizontal lines:
+
+---
+**NOTE**
+
+Note that Sphinx needs to run the code in order to auto-generate the code documentation. Therefore make sure that all git submodules are loaded and libglm is compiled.
+
+---
 
 To load the submodules use
 
