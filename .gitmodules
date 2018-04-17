@@ -1,0 +1,3 @@
+[submodule "code/snap-ml-local"]
+	path = code/snap-ml-local
+	url = git@github.ibm.com:snap-ml/snap-ml-local.git
