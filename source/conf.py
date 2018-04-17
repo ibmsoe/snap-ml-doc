@@ -16,6 +16,7 @@ import os
 import sys
 # sys.path.insert(0, os.path.abspath('../../'))
 sys.path.insert(0, os.path.abspath('../code/snap-ml-local'))
+sys.path.insert(0, os.path.abspath('../code/snap-ml-spark'))
 
 # -- Project information -----------------------------------------------------
 
