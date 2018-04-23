@@ -1,0 +1,211 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Manual &#8212; Snap Machine Learning 0.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation of Snap ML" href="installation.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation of Snap ML"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Manual</a><ul>
+<li><a class="reference internal" href="#linear-regression">Linear Regression</a></li>
+<li><a class="reference internal" href="#support-vector-machines">Support Vector Machines</a></li>
+<li><a class="reference internal" href="#logistic-regression">Logistic Regression</a><ul>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Installation of Snap ML</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="manual">
+<span id="id1"></span><h1>Manual<a class="headerlink" href="#manual" title="Permalink to this headline">¶</a></h1>
+<p>The Snap Machine Learning (Snap ML) Library is designed to offer fast training of generalized linear models.
+It currently supports the following machine learning models:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#linear-regression"><span class="std std-ref">Linear Regression</span></a></li>
+<li><a class="reference internal" href="#svm"><span class="std std-ref">Support Vector Machines</span></a></li>
+<li><a class="reference internal" href="#logistic-regression"><span class="std std-ref">Logistic Regression</span></a></li>
+</ul>
+<div class="section" id="linear-regression">
+<span id="id2"></span><h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="pythonapidocumentation.html#snap_ml.RidgeRegression.RidgeRegression" title="snap_ml.RidgeRegression.RidgeRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeRegression</span></code></a> fits a linear model with coefficients <img class="math" src="_images/math/f60c212171575f3344e6b7731800c9acc740c46f.png" alt="w = (w_1, ..., w_d)"/> to minimize the residual sum
+of squares between the predicted responses <img class="math" src="_images/math/480dcbe70367e5f775ea3004cce070d91315d6a2.png" alt="\hat{y}"/> and the true labels <img class="math" src="_images/math/276f7e256cbddeb81eee42e1efc348f3cb4ab5f8.png" alt="y"/> of the training data.</p>
+<p>In order to prevent the model from overfitting ridge regression imposes an
+<img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> norm penalty on the size of the coefficients. Mathematically Ridge Regression
+solves the following problem:</p>
+<div class="math">
+<p><img src="_images/math/bbf1c6abf21f6d6ea54f520dab93202ae166c4a2.png" alt="\underset{w}{\min\,} \frac 1 {2}|| X^\top w - y||_2^2 + \frac \lambda 2 \|w\|_2^2"/></p>
+</div><p>where <img class="math" src="_images/math/9c0a798752767edaed0c9798c6e730995a8e5b75.png" alt="X=[x_1,...,x_n]"/> is the training data matrix with samples <img class="math" src="_images/math/7f5ec56efd11f6bb4c5619c7576bc3cb7e8635c2.png" alt="\{x_i\}_{i\in [n]}"/> in its columns and <img class="math" src="_images/math/07f6018e00c747406442bb3912e0209766fc9090.png" alt="y_i"/> are the corresponding labels which take values <img class="math" src="_images/math/ae8d06e1763eec4efc248b6bdfe9fecf0398c9e9.png" alt="\pm 1"/>. The regularization strength is controlled by the regularization parameter <img class="math" src="_images/math/78bc838c22c8244e929d7d8967de830757d28252.png" alt="\lambda\geq 0"/>:
+The larger <img class="math" src="_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> the more robust the model becomes to overfitting.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In order to find an appropriate regularization parameter cross validation should be performed</p>
+</div>
+<p><em>Snap ML</em> implements variants of stochastic coordinate descent <a class="reference internal" href="#references">[SCD]</a> and stochastic dual coordinate ascent <a class="reference internal" href="#references">[SDCA]</a> as an algorithm to fit the model parameters <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/>.
+In order to optimally support GPUs for training <em>Snap ML</em> also implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of modern GPUs <a class="reference internal" href="#references">[TPASCD17]</a>.</p>
+<p>To train the model the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method is used; it takes the training data and the labels <img class="math" src="_images/math/0f417d928a87e9f45862c2e4f94686e7dfa9bef6.png" alt="X,y"/> as input and stores the learnt coefficients of the model <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/> in its  <code class="docutils literal notranslate"><span class="pre">coef_</span></code> member function. The trained model can then be used to make predictions by calling the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method on unlabeled data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snap_ml</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">maxIter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">regularizer</span><span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span> <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([ 0.5,  0.5])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="go">array([3, 0.5])</span>
+</pre></div>
+</div>
+<p>A full example of training a <a class="reference internal" href="pythonapidocumentation.html#snap_ml.RidgeRegression.RidgeRegression" title="snap_ml.RidgeRegression.RidgeRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeRegression</span></code></a> model on a real application can be found here <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a> and for more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
+</div>
+<div class="section" id="support-vector-machines">
+<span id="svm"></span><h2>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline">¶</a></h2>
+<p>Support Vector Machine (SVM) is a supervised learning method which can be applied for regression as well as classification.
+Currently <em>Snap ML</em> implements <a class="reference internal" href="pythonapidocumentation.html#snap_ml.SupportVectorMachine.SupportVectorMachine" title="snap_ml.SupportVectorMachine.SupportVectorMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupportVectorMachine</span></code></a> (SVMs) with a linear kernel function and offers
+<img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularization to prevent the model from overfitting.</p>
+<p>Mathematically it solves the following optimization problem:</p>
+<div class="math">
+<p><img src="_images/math/e9aadf78fa6737ce29024abc8d3597335a679e8f.png" alt="\underset{w}{\min\,}  \sum_i [x_i^\top w  - y_i]_+ +\frac \lambda 2 \|w\|_2^2"/></p>
+</div><p>where <img class="math" src="_images/math/07a7ad7bf78ce80c574857ce9a949a157eac470c.png" alt="[u]_+=\max(u,0)"/> denotes the hinge loss with <img class="math" src="_images/math/7f5ec56efd11f6bb4c5619c7576bc3cb7e8635c2.png" alt="\{x_i\}_{i\in [n]}"/> being the training samples and <img class="math" src="_images/math/a76396a3866ed0e4826f4310b8638f722dd0daf0.png" alt="y_i \in \{+1,-1\}"/> the corresponding labels. The regularization strength <img class="math" src="_images/math/5831214b5e489a86ddc202d723eaf7939dddef5e.png" alt="\lambda&gt;0"/>  can be controlled by the user through the <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> parameter.
+The larger <img class="math" src="_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> the more robust the model becomes to overfitting.</p>
+<p><em>Snap ML</em> implements stochastic dual coordinate <a class="reference internal" href="#references">[SDCA]</a> and the GPU optimized <a class="reference internal" href="#references">[TPASCD17]</a> as an algorithm to train the SVM classifier.
+SDCA runs on the equivalent SVM dual problem formulation:</p>
+<div class="math">
+<p><img src="_images/math/10cb07ef2e3ffcb69904108910b981f969853d6f.png" alt="\underset{\alpha}{\min\,}  \sum_i -\alpha_i y_i +\frac 1 {2\lambda} \|X\alpha\|_2^2"/></p>
+</div><p>with <img class="math" src="_images/math/aaa5eeca78a2f0cc50f1abb79b78effab16d13d7.png" alt="\alpha_i y_i\in[0,1]"/>.</p>
+<p>To train the model the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method is used; it takes the training data and the labels <img class="math" src="_images/math/0f417d928a87e9f45862c2e4f94686e7dfa9bef6.png" alt="X,y"/> as input and stores the learnt coefficients of the model <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/> in its  <code class="docutils literal notranslate"><span class="pre">coef_</span></code> member function. The trained model can then be used to make predictions by calling the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method on unlabeled data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snap_ml</span> <span class="kn">import</span> <span class="n">SupportVectorMachine</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span> <span class="o">=</span> <span class="n">SupportVectorMachine</span><span class="p">(</span><span class="n">maxIter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">regularizer</span><span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">fit</span> <span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">coef_</span>
+<span class="go">array([ 0.5,  0.5])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>A full example of training a <a class="reference internal" href="pythonapidocumentation.html#snap_ml.SupportVectorMachine.SupportVectorMachine" title="snap_ml.SupportVectorMachine.SupportVectorMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupportVectorMachine</span></code></a> model in a real application can be found here <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a> and for more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
+</div>
+<div class="section" id="logistic-regression">
+<span id="id3"></span><h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="pythonapidocumentation.html#snap_ml.LogisticRegression.LogisticRegression" title="snap_ml.LogisticRegression.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> is a linear model for classification. A logistic model is used to estimate the probability of an outcome based on the features of the input data.</p>
+<p>In order to prevent the model from overfitting <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularization is implemented. Mathematically Logistic Regression solves the following optimization problem composing of the logistic loss and an <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularizer:</p>
+<div class="math">
+<p><img src="_images/math/bbf1c6abf21f6d6ea54f520dab93202ae166c4a2.png" alt="\underset{w}{\min\,} \frac 1 {2}|| X^\top w - y||_2^2 + \frac \lambda 2 \|w\|_2^2"/></p>
+</div><p>where <img class="math" src="_images/math/9c0a798752767edaed0c9798c6e730995a8e5b75.png" alt="X=[x_1,...,x_n]"/> is the training data matrix with samples <img class="math" src="_images/math/7f5ec56efd11f6bb4c5619c7576bc3cb7e8635c2.png" alt="\{x_i\}_{i\in [n]}"/> in its columns and <img class="math" src="_images/math/a76396a3866ed0e4826f4310b8638f722dd0daf0.png" alt="y_i \in \{+1,-1\}"/> denote the corresponding labels.
+The regularization strength is controlled by the regularization parameter <img class="math" src="_images/math/78bc838c22c8244e929d7d8967de830757d28252.png" alt="\lambda\geq 0"/>: the larger <img class="math" src="_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> the more robust the model becomes to overfitting. <img class="math" src="_images/math/76f1d8ace30435987c01a00ca53a71cba1f40e6c.png" alt="\lambda"/> can be specified by the user through the <code class="docutils literal notranslate"><span class="pre">regularizer</span></code> input parameter.</p>
+<p><em>Snap ML</em> implements stochastic coordinate descent <a class="reference internal" href="#references">[SCD]</a> and stochastic dual coordinate ascent <a class="reference internal" href="#references">[SDCA]</a> as an algorithm to fit the model <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/>. In order to support GPU acceleration <em>Snap ML</em> also implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of moderne GPUs <a class="reference internal" href="#references">[TPASCD17]</a>.</p>
+<p>The model can be trained using the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method which takes the training data and the labels <img class="math" src="_images/math/0f417d928a87e9f45862c2e4f94686e7dfa9bef6.png" alt="X,y"/> as input and stores the coefficients of the learnt model <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/> in its  <code class="docutils literal notranslate"><span class="pre">coef_</span></code> attribute. This model can then be used to make predictions by calling the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method on unlabeled data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snap_ml</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">maxIter</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">regParam</span><span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr</span><span class="o">.</span><span class="n">fit</span> <span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>A full example of training a <a class="reference internal" href="pythonapidocumentation.html#snap_ml.LogisticRegression.LogisticRegression" title="snap_ml.LogisticRegression.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> model in Snap ML can be found here <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a> and for more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">[SCD]:</th><td class="field-body"><em>Y. Nesterov</em>. Efficiency of coordinate descent methods on huge-scale optimization problems. SIAM Journal on Optimization, 2012.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">[SDCA]:</th><td class="field-body"><em>Shai Shalev-Shwartz and Tong Zhang</em>. Stochastic Dual Coordinate Ascent Methods for Regularized Loss Minimization. arXiv stat.ML, 2013.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">[TPASCD17]:</th><td class="field-body"><em>Thomas Parnell, Celestine Dünner, Kubilay Atasu, Manolis Sifalakis, and Haris Pozidis</em>. Large-Scale Stochastic Learning using GPUs. IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW), 2017.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Installation of Snap ML"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
+    </div>
+  </body>
+</html>
