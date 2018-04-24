@@ -1,5 +1,6 @@
 # Documentation
 this repository contains a documentation of the Snap ML library. It describes its functionalities and the different APIs.
+The documentation is published at <https://pages.github.ibm.com/snap-ml/documentation/>.
 
 ## Install Sphinx
 
