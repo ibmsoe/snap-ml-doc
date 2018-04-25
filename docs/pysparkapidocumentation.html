@@ -75,7 +75,7 @@ format for the primal algorithm.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
@@ -91,14 +91,11 @@ the maximum possible memory is used.</li>
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><p class="first last"><strong>coef</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p>
+</td>
+</tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.coef_">
-<code class="descname">coef_</code><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.coef_" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>ndarray, shape (n_features,)</em> – Coefficients of the features in the trained model.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="snap_ml_spark.RidgeRegression.RidgeRegression.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.fit" title="Permalink to this definition">¶</a></dt>
@@ -373,7 +370,7 @@ format for the primal algorithm.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
@@ -389,14 +386,11 @@ the maximum possible memory is used.</li>
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><p class="first last"><strong>coef</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p>
+</td>
+</tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.coef_">
-<code class="descname">coef_</code><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.coef_" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>ndarray, shape (n_features,)</em> – Coefficients of the features in the trained model.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.fit" title="Permalink to this definition">¶</a></dt>
@@ -437,7 +431,7 @@ the maximum possible memory is used.</li>
 </tr>
 </tbody>
 </table>
-<p>of the Ridge Regression algorithm</p>
+<p>of the Logistic Regression algorithm</p>
 </dd></dl>
 
 <dl class="method">
@@ -685,7 +679,7 @@ format for the primal algorithm.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
@@ -701,14 +695,11 @@ the maximum possible memory is used.</li>
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><p class="first last"><strong>coef</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p>
+</td>
+</tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.coef_">
-<code class="descname">coef_</code><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.coef_" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>ndarray, shape (n_features,)</em> – Coefficients of the features in the trained model.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.fit" title="Permalink to this definition">¶</a></dt>
@@ -749,7 +740,7 @@ the maximum possible memory is used.</li>
 </tr>
 </tbody>
 </table>
-<p>of the Ridge Regression algorithm</p>
+<p>of the Support Vector Machine algorithm</p>
 </dd></dl>
 
 <dl class="method">
