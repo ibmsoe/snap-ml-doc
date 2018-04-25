@@ -9,7 +9,7 @@
 Introduction
 ----------------------------------
 
-*Snap Machine Learning (Snap ML)* is a library for training generalized linear models. It is being developped at the IBM Research - Zurich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
+*Snap Machine Learning (Snap ML)* is a library for training generalized linear models. It is being developped at the IBM Research - Zürich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
 Snap ML supports a large number of classical machine learning models and 
 scales gracefully to data sets with billions of examples and/or features.
 It offers distributed training, GPU acceleration and supports sparse data structures.
@@ -20,15 +20,15 @@ It offers distributed training, GPU acceleration and supports sparse data struct
     "With Snap ML you can train your machine learning model faster than you can snap your fingers!"
 
 
-The Snap ML library offers two different packages:
+The *Snap ML* library offers two different packages:
 
-**snap.ml.local**
-    The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. *snal.ml.local* offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
+**snap-ml-local**
+    The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. *snal-ml-local* offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
 
-**snap.ml.distributed**
-    The distributed version of Snap ML offers distributed training of models across a cluster of machines. Thereby we enable training on large scale datasets that exceed the memory capacity of a single machine. For *snap.ml.distributed* a Spark, pySpark and an MPI API are available.
+**snap-ml-distributed**
+    The distributed version of Snap ML offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. For *snap.ml.distributed* a pySpark and an MPI API are available.
 
-for more technical details about the innovations behind Snap ML we refer to
+For more technical details about the innovations behind Snap ML we refer to
 
 * Technical paper: `"Snap Machine Learning"  <https://arxiv.org/abs/1803.06333>`_, *C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, H. Pozidis*, Arxiv, 2018.
 
