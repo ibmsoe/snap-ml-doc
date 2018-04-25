@@ -82,7 +82,7 @@ and CSR format for prediction.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
@@ -95,14 +95,11 @@ Recommendation: if n_samples &gt; n_features use dual=True.</li>
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><p class="first last"><strong>coef</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p>
+</td>
+</tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="snap_ml.RidgeRegression.RidgeRegression.coef_">
-<code class="descname">coef_</code><a class="headerlink" href="#snap_ml.RidgeRegression.RidgeRegression.coef_" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>array-like, shape (n_features,)</em> – Coefficients of the features in the trained model.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="snap_ml.RidgeRegression.RidgeRegression.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>X_train</em>, <em>y_train</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.RidgeRegression.RidgeRegression.fit" title="Permalink to this definition">¶</a></dt>
@@ -170,14 +167,14 @@ to {-1, 1}.</li>
 <dt id="snap_ml.LogisticRegression.LogisticRegression">
 <em class="property">class </em><code class="descclassname">snap_ml.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_id=0</em>, <em>verbose=False</em>, <em>use_gpu=True</em>, <em>class_weight=None</em>, <em>dual=True</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
-<p>This class implements regularized logistic regression using the IBM Snap ML solver.
+<p>This class implements L2 regularized logistic regression using the IBM Snap ML solver.
 It currently handles sparse matrix input. Use CSR or CSC matrix format for training
 and CSR format for prediction.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
@@ -190,14 +187,11 @@ Recommendation: if n_samples &gt; n_features use dual=True.</li>
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><p class="first last"><strong>coef</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p>
+</td>
+</tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="snap_ml.LogisticRegression.LogisticRegression.coef_">
-<code class="descname">coef_</code><a class="headerlink" href="#snap_ml.LogisticRegression.LogisticRegression.coef_" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>array-like, shape (n_features,)</em> – Coefficients of the features in the trained model.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="snap_ml.LogisticRegression.LogisticRegression.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>X_train</em>, <em>y_train</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.LogisticRegression.LogisticRegression.fit" title="Permalink to this definition">¶</a></dt>
@@ -310,7 +304,7 @@ prediction. The training uses the dual formulation.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
@@ -321,14 +315,11 @@ is performed using the GPU. If False, the training is performed using the CPU.</
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><p class="first last"><strong>coef</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p>
+</td>
+</tr>
 </tbody>
 </table>
-<dl class="attribute">
-<dt id="snap_ml.SupportVectorMachine.SupportVectorMachine.coef_">
-<code class="descname">coef_</code><a class="headerlink" href="#snap_ml.SupportVectorMachine.SupportVectorMachine.coef_" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>array-like, shape (n_features,)</em> – Coefficients of the features in the trained model.</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="snap_ml.SupportVectorMachine.SupportVectorMachine.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>X_train</em>, <em>y_train</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.SupportVectorMachine.SupportVectorMachine.fit" title="Permalink to this definition">¶</a></dt>

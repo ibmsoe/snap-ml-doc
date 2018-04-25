@@ -70,21 +70,21 @@
             
   <div class="section" id="introduction">
 <span id="intro"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p><em>Snap Machine Learning (Snap ML)</em> is a library for training generalized linear models. It is being developped at the IBM Research - Zurich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
+<p><em>Snap Machine Learning (Snap ML)</em> is a library for training generalized linear models. It is being developped at the IBM Research - Zürich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
 Snap ML supports a large number of classical machine learning models and
 scales gracefully to data sets with billions of examples and/or features.
 It offers distributed training, GPU acceleration and supports sparse data structures.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;With Snap ML you can train your machine learning model faster than you can snap your fingers!&quot;</span>
 </pre></div>
 </div>
-<p>The Snap ML library offers two different packages:</p>
+<p>The <em>Snap ML</em> library offers two different packages:</p>
 <dl class="docutils">
-<dt><strong>snap.ml.local</strong></dt>
-<dd>The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snal.ml.local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.</dd>
-<dt><strong>snap.ml.distributed</strong></dt>
-<dd>The distributed version of Snap ML offers distributed training of models across a cluster of machines. Thereby we enable training on large scale datasets that exceed the memory capacity of a single machine. For <em>snap.ml.distributed</em> a Spark, pySpark and an MPI API are available.</dd>
+<dt><strong>snap-ml-local</strong></dt>
+<dd>The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snal-ml-local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.</dd>
+<dt><strong>snap-ml-distributed</strong></dt>
+<dd>The distributed version of Snap ML offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. For <em>snap-ml-distributed</em> a pySpark and an MPI API are available.</dd>
 </dl>
-<p>for more technical details about the innovations behind Snap ML we refer to</p>
+<p>For more technical details about the innovations behind Snap ML we refer to</p>
 <ul class="simple">
 <li>Technical paper: <a class="reference external" href="https://arxiv.org/abs/1803.06333">“Snap Machine Learning”</a>, <em>C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, H. Pozidis</em>, Arxiv, 2018.</li>
 <li>Project webpage: <a class="reference external" href="https://www.zurich.ibm.com/snapml/">www.zurich.ibm.com/snapml</a>.</li>
@@ -96,7 +96,7 @@ It offers distributed training, GPU acceleration and supports sparse data struct
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="manual.html#linear-regression">Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manual.html#support-vector-machines">Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual.html#support-vector-machine">Support Vector Machine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="manual.html#logistic-regression">Logistic Regression</a></li>
 </ul>
 </li>
