@@ -5,14 +5,11 @@
 Examples
 ==================================
 
-Here you can find some application examples of Snap ML.
+For more examples of Snap ML we refer to the following two github repositories:
 
-.. _adclickExample:
+*  `snap-ml/snap-ml-local-examples <https://github.ibm.com/snap-ml/snap-ml-local-examples>`_ for examples of snap-ml-local.
 
-Ad click Prediction
-----------------------------------
-
-:note: add example on kaggle dataset
+*  `snap-ml/snap-ml-spark-examples <https://github.ibm.com/snap-ml/snap-ml-spark-examples>`_ for examples of snap-ml-spark.
 
 
 

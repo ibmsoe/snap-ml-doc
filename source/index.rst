@@ -26,7 +26,7 @@ The *Snap ML* library offers two different packages:
     The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. *snal-ml-local* offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
 
 **snap-ml-distributed**
-    The distributed version of Snap ML offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. For *snap.ml.distributed* a pySpark and an MPI API are available.
+    The distributed version of Snap ML offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. For *snap-ml-distributed* a pySpark and an MPI API are available.
 
 For more technical details about the innovations behind Snap ML we refer to
 
