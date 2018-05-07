@@ -100,7 +100,7 @@ It currently supports the following machine learning models:</p>
 </ul>
 <div class="section" id="linear-regression">
 <span id="id2"></span><h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h2>
-<p><code class="xref py py-class docutils literal"><span class="pre">RidgeRegression</span></code> fits a linear model with coefficients <img class="math" src="_images/math/f60c212171575f3344e6b7731800c9acc740c46f.png" alt="w = (w_1, ..., w_d)"/> to minimize the residual sum
+<p><a class="reference internal" href="pythonapidocumentation.html#snap_ml.RidgeRegression.RidgeRegression" title="snap_ml.RidgeRegression.RidgeRegression"><code class="xref py py-class docutils literal"><span class="pre">RidgeRegression</span></code></a> fits a linear model with coefficients <img class="math" src="_images/math/f60c212171575f3344e6b7731800c9acc740c46f.png" alt="w = (w_1, ..., w_d)"/> to minimize the residual sum
 of squares between the predicted responses <img class="math" src="_images/math/480dcbe70367e5f775ea3004cce070d91315d6a2.png" alt="\hat{y}"/> and the true labels <img class="math" src="_images/math/276f7e256cbddeb81eee42e1efc348f3cb4ab5f8.png" alt="y"/> of the training data.</p>
 <p>In order to prevent the model from overfitting ridge regression imposes an
 <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> norm penalty on the size of the coefficients. Mathematically Ridge Regression
@@ -115,7 +115,7 @@ the larger <img class="math" src="_images/math/76f1d8ace30435987c01a00ca53a71cba
 </div>
 <p><em>Snap ML</em> implements different variants of stochastic coordinate descent <a class="reference internal" href="#references">[SCD]</a> and stochastic dual coordinate ascent <a class="reference internal" href="#references">[SDCA]</a> as an algorithm to fit the model parameters <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/>.
 In order to optimally support GPUs for training <em>Snap ML</em> implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of modern GPUs <a class="reference internal" href="#references">[TPASCD17]</a>.</p>
-<p>To train the <code class="xref py py-class docutils literal"><span class="pre">RidgeRegression</span></code> model the <code class="docutils literal"><span class="pre">fit</span></code> method is used; it takes the training data and the labels <img class="math" src="_images/math/0f417d928a87e9f45862c2e4f94686e7dfa9bef6.png" alt="X,y"/> as input and stores the learnt coefficients of the model <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/> in its  <code class="docutils literal"><span class="pre">coef_</span></code> member function. The trained model can then be used to make predictions by calling the <code class="docutils literal"><span class="pre">predict</span></code> method on unlabeled data.</p>
+<p>To train the <a class="reference internal" href="pythonapidocumentation.html#snap_ml.RidgeRegression.RidgeRegression" title="snap_ml.RidgeRegression.RidgeRegression"><code class="xref py py-class docutils literal"><span class="pre">RidgeRegression</span></code></a> model the <code class="docutils literal"><span class="pre">fit</span></code> method is used; it takes the training data and the labels <img class="math" src="_images/math/0f417d928a87e9f45862c2e4f94686e7dfa9bef6.png" alt="X,y"/> as input and stores the learnt coefficients of the model <img class="math" src="_images/math/ecd1ee2a1cd226b40c37e079aca62398d4b774f5.png" alt="w"/> in its  <code class="docutils literal"><span class="pre">coef_</span></code> member function. The trained model can then be used to make predictions by calling the <code class="docutils literal"><span class="pre">predict</span></code> method on unlabeled data.</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snap_ml</span> <span class="kn">import</span> <span class="n">RidgeRegression</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
@@ -135,7 +135,7 @@ In order to optimally support GPUs for training <em>Snap ML</em> implements a pa
 <div class="section" id="support-vector-machine">
 <span id="svm"></span><h2>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">¶</a></h2>
 <p>Support Vector Machine (SVM) is a supervised learning method which can be applied for regression as well as classification.
-Currently <em>Snap ML</em> implements <code class="xref py py-class docutils literal"><span class="pre">SupportVectorMachine</span></code> (SVMs) with a linear kernel function and offers
+Currently <em>Snap ML</em> implements <a class="reference internal" href="pythonapidocumentation.html#snap_ml.SupportVectorMachine.SupportVectorMachine" title="snap_ml.SupportVectorMachine.SupportVectorMachine"><code class="xref py py-class docutils literal"><span class="pre">SupportVectorMachine</span></code></a> (SVMs) with a linear kernel function and offers
 <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularization to prevent the model from overfitting.</p>
 <p>Mathematically it solves the following optimization problem:</p>
 <div class="math">
@@ -162,11 +162,11 @@ SDCA runs on the equivalent SVM dual problem formulation:</p>
 <span class="go">[1,-1]</span>
 </pre></div>
 </div>
-<p>A full example of training a <code class="xref py py-class docutils literal"><span class="pre">SupportVectorMachine</span></code> model in a real application can be found under <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a> and for more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
+<p>A full example of training a <a class="reference internal" href="pythonapidocumentation.html#snap_ml.SupportVectorMachine.SupportVectorMachine" title="snap_ml.SupportVectorMachine.SupportVectorMachine"><code class="xref py py-class docutils literal"><span class="pre">SupportVectorMachine</span></code></a> model in a real application can be found under <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a> and for more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
 </div>
 <div class="section" id="logistic-regression">
 <span id="id3"></span><h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
-<p><code class="xref py py-class docutils literal"><span class="pre">LogisticRegression</span></code> is a linear model for classification. A logistic model is used to estimate the probability of an outcome based on the features of the input data. In order to prevent the model from overfitting <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularization is implemented.</p>
+<p><a class="reference internal" href="pythonapidocumentation.html#snap_ml.LogisticRegression.LogisticRegression" title="snap_ml.LogisticRegression.LogisticRegression"><code class="xref py py-class docutils literal"><span class="pre">LogisticRegression</span></code></a> is a linear model for classification. A logistic model is used to estimate the probability of an outcome based on the features of the input data. In order to prevent the model from overfitting <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularization is implemented.</p>
 <p>Mathematically Logistic Regression solves the following optimization problem composing of the logistic loss and an <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularizer:</p>
 <div class="math">
 <p><img src="_images/math/bbf1c6abf21f6d6ea54f520dab93202ae166c4a2.png" alt="\underset{w}{\min\,} \frac 1 {2}|| X^\top w - y||_2^2 + \frac \lambda 2 \|w\|_2^2"/></p>
@@ -191,7 +191,7 @@ The regularization strength is controlled by the regularization parameter <img c
 <span class="go"> [0.536, 0.464]]</span>
 </pre></div>
 </div>
-<p>A full example of training a <code class="xref py py-class docutils literal"><span class="pre">LogisticRegression</span></code> model in Snap ML can be found here <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a> and for more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
+<p>A full example of training a <a class="reference internal" href="pythonapidocumentation.html#snap_ml.LogisticRegression.LogisticRegression" title="snap_ml.LogisticRegression.LogisticRegression"><code class="xref py py-class docutils literal"><span class="pre">LogisticRegression</span></code></a> model in Snap ML can be found here <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a> and for more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
 <div class="section" id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 <table class="docutils field-list" frame="void" rules="none">
