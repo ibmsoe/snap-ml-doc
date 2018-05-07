@@ -16,7 +16,8 @@ import os
 import sys
 # sys.path.insert(0, os.path.abspath('../../'))
 sys.path.insert(0, os.path.abspath('../code/snap-ml-local'))
-sys.path.insert(0, os.path.abspath('../code/snap-ml-spark'))
+sys.path.insert(0, os.path.abspath('../code/snap-ml-spark/src/main/python'))
+sys.path.insert(0, os.path.abspath('../code/snap-ml-mpi'))
 
 # -- Project information -----------------------------------------------------
 
@@ -27,7 +28,7 @@ author = 'cdu'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '0.0'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------

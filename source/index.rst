@@ -49,5 +49,5 @@ Content
     examples
     pythonapidocumentation
     pysparkapidocumentation
-
+    mpiapidocumentation
 

@@ -4,3 +4,6 @@
 [submodule "code/snap-ml-spark"]
 	path = code/snap-ml-spark
 	url = git@github.ibm.com:snap-ml/snap-ml-spark.git
+[submodule "code/snap-ml-mpi"]
+	path = code/snap-ml-mpi
+	url = git@github.ibm.com:snap-ml/snap-ml-mpi.git
