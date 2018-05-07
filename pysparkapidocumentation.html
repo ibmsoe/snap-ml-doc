@@ -39,6 +39,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="mpiapidocumentation.html" title="MPI API Documentation"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -968,7 +971,151 @@ be computed and printed at each epoch.</p>
 
 </dd></dl>
 
-</div>
+<dl class="class">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader">
+<em class="property">class </em><code class="descclassname">snap_ml_spark.DatasetReader.</code><code class="descname">DatasetReader</code><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load distributed dataset from file.</p>
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load training data in memory</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a>) – filename</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.setFormat">
+<code class="descname">setFormat</code><span class="sig-paren">(</span><em>format</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.setFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the dataformat of the file.  Format values: “snap” or “libsvm” or “csv”</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a>) – data format</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.setNumFt">
+<code class="descname">setNumFt</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.setNumFt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of features</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – index</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.takeRange">
+<code class="descname">takeRange</code><span class="sig-paren">(</span><em>idx_start</em>, <em>idx_end</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.takeRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>If not the whole dataset should be loaded specify start and end index.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>idx_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – first sample to load</li>
+<li><strong>idx_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – last sample to load</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-snap_ml_spark.Metrics"></span><dl class="function">
+<dt id="snap_ml_spark.Metrics.accuracy">
+<code class="descclassname">snap_ml_spark.Metrics.</code><code class="descname">accuracy</code><span class="sig-paren">(</span><em>dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">double –</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.f1score">
+<code class="descclassname">snap_ml_spark.Metrics.</code><code class="descname">f1score</code><span class="sig-paren">(</span><em>dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.f1score" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">double –</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.logisticLoss">
+<code class="descclassname">snap_ml_spark.Metrics.</code><code class="descname">logisticLoss</code><span class="sig-paren">(</span><em>dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.logisticLoss" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">double –</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.meanSquaredError">
+<code class="descclassname">snap_ml_spark.Metrics.</code><code class="descname">meanSquaredError</code><span class="sig-paren">(</span><em>dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.meanSquaredError" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">double –</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.precision">
+<code class="descclassname">snap_ml_spark.Metrics.</code><code class="descname">precision</code><span class="sig-paren">(</span><em>dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.precision" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">double –</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.recall">
+<code class="descclassname">snap_ml_spark.Metrics.</code><code class="descname">recall</code><span class="sig-paren">(</span><em>dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.recall" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">double –</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-snap_ml_spark.Utils"></span></div>
 
 
           </div>
@@ -982,6 +1129,9 @@ be computed and printed at each epoch.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="mpiapidocumentation.html" title="MPI API Documentation"
              >next</a> |</li>

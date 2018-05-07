@@ -18,3 +18,24 @@ MPI API Documentation
 .. autoclass:: SupportVectorMachine
     :members:
 
+.. currentmodule:: snap_ml_mpi.Partition
+.. autoclass:: SparsePartition
+    :members:
+
+.. currentmodule:: snap_ml_mpi.Partition
+.. autoclass:: DensePartition
+    :members:
+
+.. currentmodule:: snap_ml_mpi.Partition
+.. autoclass:: L2SparsePartition
+    :members:
+
+
+.. automodule:: snap_ml_mpi.Loaders
+    :members:
+
+.. automodule:: snap_ml_mpi.Metrics
+    :members:
+
+.. automodule:: snap_ml_mpi.Utils
+    :members:

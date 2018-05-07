@@ -18,3 +18,12 @@ pySpark API Documentation
 .. autoclass:: SupportVectorMachine
     :members:
 
+.. currentmodule:: snap_ml_spark.DatasetReader
+.. autoclass:: DatasetReader
+    :members:
+
+.. automodule:: snap_ml_spark.Metrics
+    :members:
+
+.. automodule:: snap_ml_spark.Utils
+    :members:
