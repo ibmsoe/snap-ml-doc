@@ -124,7 +124,7 @@ the maximum possible memory is used.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/array.html#module-array" title="(in Python v3.6)"><em>array</em></a>) – data to fit model</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to to a memory address where the actual data is stored. The data cannot be accessed by python as a python array.</em>) – data to fit model</td>
 </tr>
 </tbody>
 </table>
@@ -252,7 +252,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer to an address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id2"><span class="problematic" id="id3">pred_array_</span></a> field which is a python array.</td>
 </tr>
@@ -420,7 +420,7 @@ the maximum possible memory is used.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/array.html#module-array" title="(in Python v3.6)"><em>array</em></a>) – data to fit model</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to to a memory address where the actual data is stored. The data cannot be accessed by python as a python array.</em>) – data to fit model</td>
 </tr>
 </tbody>
 </table>
@@ -548,7 +548,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer to an address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id4"><span class="problematic" id="id5">pred_array_</span></a> field which is a python array.</td>
 </tr>
@@ -564,7 +564,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer to an address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id6"><span class="problematic" id="id7">proba_array_</span></a> field which is a python array.</td>
 </tr>
@@ -733,7 +733,7 @@ the maximum possible memory is used.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/array.html#module-array" title="(in Python v3.6)"><em>array</em></a>) – data to fit model</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to to a memory address where the actual data is stored. The data cannot be accessed by python as a python array.</em>) – data to fit model</td>
 </tr>
 </tbody>
 </table>
@@ -861,7 +861,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer to an address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id8"><span class="problematic" id="id9">pred_array_</span></a> field which is a python array.</td>
 </tr>
