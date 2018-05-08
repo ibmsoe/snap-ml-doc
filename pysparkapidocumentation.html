@@ -85,9 +85,7 @@
 <dt id="snap_ml_spark.RidgeRegression.RidgeRegression">
 <em class="property">class </em><code class="descclassname">snap_ml_spark.RidgeRegression.</code><code class="descname">RidgeRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ridge Regression classifier</p>
-<p>This class implements regularized ridge regression using the IBM Snap ML distributed solver.
-It currently handles sparse matrix input. Use libsvm or snap format for the Dual algorithm, or snap.t (transposed)
-format for the primal algorithm.</p>
+<p>This class implements Regularized Ridge regression using the IBM Snap ML distributed solver.  It can handle sparse and dense dataset formats. Please use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -95,13 +93,13 @@ format for the primal algorithm.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
-Recommendation: if n_samples &gt; n_features use dual=True.</li>
+Recommendation: if n_samples &gt; n_features use dual=True, else dual=False.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
 <li><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag for indicating if the training loss will be printed at each epoch.</li>
 <li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.</li>
-<li><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
+<li><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight = 1.</li>
 <li><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
 the maximum possible memory is used.</li>
 <li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=32 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
@@ -110,7 +108,7 @@ the maximum possible memory is used.</li>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
 <li><strong>coef</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</li>
-<li><strong>pred_array</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – linear predictions written by the predict() function</li>
+<li><strong>pred_array</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – linear predictions written by the predict() function of this class</li>
 </ul>
 </td>
 </tr>
@@ -125,6 +123,8 @@ the maximum possible memory is used.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to to a memory address where the actual data is stored. The data cannot be accessed by python as a python array.</em>) – data to fit model</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">double – final training loss of the last epoch</td>
 </tr>
 </tbody>
 </table>
@@ -175,8 +175,7 @@ the maximum possible memory is used.</li>
 <dl class="method">
 <dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getMaxIter">
 <code class="descname">getMaxIter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get maximum number of rounds/epochs to do be performed by
-the distributed algorithm</p>
+<dd><p>Get maximum number of rounds/epochs to do be performed by the distributed algorithm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -237,8 +236,7 @@ the distributed algorithm</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all
-the training loss history for each epoch</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all the training loss history for each epoch</td>
 </tr>
 </tbody>
 </table>
@@ -268,7 +266,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights None or False to disable the class weights</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights, None or False to disable the class weights</td>
 </tr>
 </tbody>
 </table>
@@ -296,8 +294,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – gpu memory limit, use 0 to set
-it to the maximum possible</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – gpu memory limit, use 0 to set it to the maximum possible</td>
 </tr>
 </tbody>
 </table>
@@ -306,12 +303,12 @@ it to the maximum possible</td>
 <dl class="method">
 <dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setMaxIter">
 <code class="descname">setMaxIter</code><span class="sig-paren">(</span><em>max_iter</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set maximum number of rounds to do be performed by the distributed algorithm</p>
+<dd><p>Set maximum number of epochs to be performed by the distributed algorithm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – maximum number of optimization rounds</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – maximum number of optimization epochs</td>
 </tr>
 </tbody>
 </table>
@@ -339,9 +336,7 @@ it to the maximum possible</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization
-improves the conditioning of the problem and reduces the variance of
-the estimates. Larger values specify stronger regularization.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization improves the conditioning of the problem and reduces the variance of the estimates. Larger values specify stronger regularization.</td>
 </tr>
 </tbody>
 </table>
@@ -382,7 +377,7 @@ be computed and printed at each epoch.</p>
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression">
 <em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
-<p>This class implements regularized Logistic Regression using the IBM Snap ML solver. It can hangle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
+<p>This class implements regularized Logistic Regression using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -448,7 +443,7 @@ the maximum possible memory is used.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – apply dual or primal formulation of the Logistic Regression algorithm</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – apply dual or primal formulation of the Ridge Regression algorithm</td>
 </tr>
 </tbody>
 </table>
@@ -471,8 +466,7 @@ the maximum possible memory is used.</li>
 <dl class="method">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getMaxIter">
 <code class="descname">getMaxIter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get maximum number of rounds/epochs to do be performed by
-the distributed algorithm</p>
+<dd><p>Get maximum number of rounds/epochs to do be performed by the distributed algorithm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -533,8 +527,7 @@ the distributed algorithm</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all
-the training loss history for each epoch</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all the training loss history for each epoch</td>
 </tr>
 </tbody>
 </table>
@@ -580,7 +573,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights None or False to disable the class weights</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights, None or False to disable the class weights</td>
 </tr>
 </tbody>
 </table>
@@ -608,8 +601,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – gpu memory limit, use 0 to set
-it to the maximum possible</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – gpu memory limit, use 0 to set it to the maximum possible</td>
 </tr>
 </tbody>
 </table>
@@ -618,12 +610,12 @@ it to the maximum possible</td>
 <dl class="method">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setMaxIter">
 <code class="descname">setMaxIter</code><span class="sig-paren">(</span><em>max_iter</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set maximum number of rounds to do be performed by the distributed algorithm</p>
+<dd><p>Set maximum number of epochs to be performed by the distributed algorithm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – maximum number of optimization rounds</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – maximum number of optimization epochs</td>
 </tr>
 </tbody>
 </table>
@@ -651,9 +643,7 @@ it to the maximum possible</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization
-improves the conditioning of the problem and reduces the variance of
-the estimates. Larger values specify stronger regularization.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization improves the conditioning of the problem and reduces the variance of the estimates. Larger values specify stronger regularization.</td>
 </tr>
 </tbody>
 </table>
@@ -694,9 +684,7 @@ be computed and printed at each epoch.</p>
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine">
 <em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
-<p>This class implements regularized support vector machine using the IBM Snap ML solver.
-It currently handles sparse matrix input. Use libsvm or snap format for the Dual algorithm, or snap.t (transposed)
-format for the primal algorithm.</p>
+<p>This class implements regularized support vector machine using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -761,7 +749,7 @@ the maximum possible memory is used.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – apply dual or primal formulation of the Support Vector Machine algorithm</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – apply dual or primal formulation of the Ridge Regression algorithm</td>
 </tr>
 </tbody>
 </table>
@@ -784,8 +772,7 @@ the maximum possible memory is used.</li>
 <dl class="method">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getMaxIter">
 <code class="descname">getMaxIter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get maximum number of rounds/epochs to do be performed by
-the distributed algorithm</p>
+<dd><p>Get maximum number of rounds/epochs to do be performed by the distributed algorithm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -846,8 +833,7 @@ the distributed algorithm</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all
-the training loss history for each epoch</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all the training loss history for each epoch</td>
 </tr>
 </tbody>
 </table>
@@ -877,7 +863,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights None or False to disable the class weights</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights, None or False to disable the class weights</td>
 </tr>
 </tbody>
 </table>
@@ -905,8 +891,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – gpu memory limit, use 0 to set
-it to the maximum possible</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – gpu memory limit, use 0 to set it to the maximum possible</td>
 </tr>
 </tbody>
 </table>
@@ -915,12 +900,12 @@ it to the maximum possible</td>
 <dl class="method">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setMaxIter">
 <code class="descname">setMaxIter</code><span class="sig-paren">(</span><em>max_iter</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set maximum number of rounds to do be performed by the distributed algorithm</p>
+<dd><p>Set maximum number of epochs to be performed by the distributed algorithm</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – maximum number of optimization rounds</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a>) – maximum number of optimization epochs</td>
 </tr>
 </tbody>
 </table>
@@ -948,9 +933,7 @@ it to the maximum possible</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization
-improves the conditioning of the problem and reduces the variance of
-the estimates. Larger values specify stronger regularization.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization improves the conditioning of the problem and reduces the variance of the estimates. Larger values specify stronger regularization.</td>
 </tr>
 </tbody>
 </table>
