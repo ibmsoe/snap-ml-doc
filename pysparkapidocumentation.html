@@ -83,7 +83,7 @@
 <span id="id1"></span><h1>pySpark API Documentation<a class="headerlink" href="#pyspark-api-documentation" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="snap_ml_spark.RidgeRegression.RidgeRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.RidgeRegression.</code><code class="descname">RidgeRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.RidgeRegression.</code><code class="descname">RidgeRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ridge Regression classifier</p>
 <p>This class implements regularized ridge regression using the IBM Snap ML distributed solver.
 It currently handles sparse matrix input. Use libsvm or snap format for the Dual algorithm, or snap.t (transposed)
@@ -377,16 +377,14 @@ be computed and printed at each epoch.</p>
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression">
 <em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
-<p>This class implements regularized logistic regression using the IBM Snap ML solver.
-It currently handles sparse matrix input. Use libsvm or snap format for the Dual algorithm, or snap.t (transposed)
-format for the primal algorithm.</p>
+<p>This class implements regularized Logistic Regression using the IBM Snap ML solver. It can hangle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
-<li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
+<li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or Primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
@@ -400,7 +398,11 @@ the maximum possible memory is used.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><p class="first last"><strong>coef</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>coef</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</li>
+<li><strong>pred_array</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – binary predictions written by the predict() function</li>
+<li><strong>proba_array</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – predicted probabilities written by the predict_proba() function</li>
+</ul>
 </td>
 </tr>
 </tbody>
@@ -541,7 +543,7 @@ the training loss history for each epoch</td>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/array.html#module-array" title="(in Python v3.6)"><em>array</em></a>) – data to make predictions for</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em>) – data to make predictions</td>
 </tr>
 </tbody>
 </table>
@@ -681,7 +683,7 @@ be computed and printed at each epoch.</p>
 
 <dl class="class">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
 <p>This class implements regularized support vector machine using the IBM Snap ML solver.
 It currently handles sparse matrix input. Use libsvm or snap format for the Dual algorithm, or snap.t (transposed)
