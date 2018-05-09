@@ -1,0 +1,25 @@
+.. _api-documentation:
+
+====================================
+Snap ML APIs
+====================================
+
+We currently provide three different APIs
+
+Python API
+----------------
+The python API to *snap-ml-local* offers a *sklearn* compatible interface for training on a single machine.
+
+:math:`\rightarrow` See :ref:`python-api-documentation` for more details.
+
+pySpark API
+--------------
+The pySpark API offers an API to *snap-ml-distributed* exposed via a *spark.ml*-like interface and can be used for distributed training.
+
+:math:`\rightarrow` See :ref:`pyspark-api-documentation` for more details.
+
+MPI API
+---------------
+The MPI API to *snap-ml-distributed* is exposed via a *sklearn*-like interface.
+
+:math:`\rightarrow` See :ref:`mpi-api-documentation` for more details.

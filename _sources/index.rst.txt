@@ -42,12 +42,12 @@ Content
 ----------------------------------
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     manual
     installation
     examples
-    pythonapidocumentation
-    pysparkapidocumentation
-    mpiapidocumentation
+    frequentlyaskedquestions
+    apidocumentation
+
 

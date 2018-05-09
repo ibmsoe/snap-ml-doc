@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Installation of Snap ML &#8212; Snap Machine Learning 1.0 documentation</title>
+    <title>Snap ML APIs &#8212; Snap Machine Learning 1.0 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="_static/documentation_options.js"></script>
@@ -15,8 +15,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Examples" href="examples.html" />
-    <link rel="prev" title="Manual" href="manual.html" /> 
+    <link rel="prev" title="FAQ" href="frequentlyaskedquestions.html" /> 
   </head><body>
 
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
@@ -33,10 +32,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="examples.html" title="Examples"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="manual.html" title="Manual"
+          <a href="frequentlyaskedquestions.html" title="FAQ"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">home</a>|&nbsp;</li>
         <li><a href="search.html">search</a>|&nbsp;</li>
@@ -46,12 +42,19 @@
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Snap ML APIs</a><ul>
+<li><a class="reference internal" href="#python-api">Python API</a></li>
+<li><a class="reference internal" href="#pyspark-api">pySpark API</a></li>
+<li><a class="reference internal" href="#mpi-api">MPI API</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="manual.html"
-                        title="previous chapter">Manual</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="examples.html"
-                        title="next chapter">Examples</a></p>
+  <p class="topless"><a href="frequentlyaskedquestions.html"
+                        title="previous chapter">FAQ</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -72,12 +75,24 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="installation-of-snap-ml">
-<h1>Installation of Snap ML<a class="headerlink" href="#installation-of-snap-ml" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li>for installation of <em>snap-ml-local</em> see: <a class="reference external" href="https://github.ibm.com/snap-ml/snap-ml-local-examples">https://github.ibm.com/snap-ml/snap-ml-local-examples</a>.</li>
-<li>for installation of <em>snap-ml-spark</em> see: <a class="reference external" href="https://github.ibm.com/snap-ml/snap-ml-spark-examples">https://github.ibm.com/snap-ml/snap-ml-spark-examples</a>.</li>
-</ul>
+  <div class="section" id="snap-ml-apis">
+<span id="api-documentation"></span><h1>Snap ML APIs<a class="headerlink" href="#snap-ml-apis" title="Permalink to this headline">¶</a></h1>
+<p>We currently provide three different APIs</p>
+<div class="section" id="python-api">
+<h2>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h2>
+<p>The python API to <em>snap-ml-local</em> offers a <em>sklearn</em> compatible interface for training on a single machine.</p>
+<p><img class="math" src="_images/math/db2555e54bec0d091b2124dccd645c2d7ddaae68.png" alt="\rightarrow"/> See <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">Python API Documentation</span></a> for more details.</p>
+</div>
+<div class="section" id="pyspark-api">
+<h2>pySpark API<a class="headerlink" href="#pyspark-api" title="Permalink to this headline">¶</a></h2>
+<p>The pySpark API offers an API to <em>snap-ml-distributed</em> exposed via a <em>spark.ml</em>-like interface and can be used for distributed training.</p>
+<p><img class="math" src="_images/math/db2555e54bec0d091b2124dccd645c2d7ddaae68.png" alt="\rightarrow"/> See <a class="reference internal" href="pysparkapidocumentation.html#pyspark-api-documentation"><span class="std std-ref">pySpark API Documentation</span></a> for more details.</p>
+</div>
+<div class="section" id="mpi-api">
+<h2>MPI API<a class="headerlink" href="#mpi-api" title="Permalink to this headline">¶</a></h2>
+<p>The MPI API to <em>snap-ml-distributed</em> is exposed via a <em>sklearn</em>-like interface.</p>
+<p><img class="math" src="_images/math/db2555e54bec0d091b2124dccd645c2d7ddaae68.png" alt="\rightarrow"/> See <a class="reference internal" href="mpiapidocumentation.html#mpi-api-documentation"><span class="std std-ref">MPI API Documentation</span></a> for more details.</p>
+</div>
 </div>
 
 
@@ -96,10 +111,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="examples.html" title="Examples"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="manual.html" title="Manual"
+          <a href="frequentlyaskedquestions.html" title="FAQ"
              >previous</a> |</li>
         <li><a href="index.html">home</a>|&nbsp;</li>
         <li><a href="search.html">search</a>|&nbsp;</li>
