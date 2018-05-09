@@ -1,7 +1,7 @@
 .. _pyspark-api-documentation:
 
 ====================================
-pySpark API Documentation
+snap-ml-spark API 
 ====================================
 
 .. currentmodule:: snap_ml_spark.RidgeRegression

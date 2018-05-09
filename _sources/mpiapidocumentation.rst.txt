@@ -1,7 +1,7 @@
 .. _mpi-api-documentation:
 
 ====================================
-MPI API Documentation
+snap-ml-mpi API
 ====================================
 
 .. currentmodule:: snap_ml_mpi.RidgeRegression

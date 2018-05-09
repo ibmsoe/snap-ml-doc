@@ -1,7 +1,7 @@
 .. _python-api-documentation:
 
 ====================================
-Python API Documentation
+snap-ml-local API 
 ====================================
 
 .. currentmodule:: snap_ml.RidgeRegression
