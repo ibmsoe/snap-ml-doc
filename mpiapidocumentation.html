@@ -91,8 +91,10 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 32</em>) – The number of threads used for running the GPU training. The value of this parameter
-should be a power of 2. This parameter will be ignored when running training on CPU.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
+multi-threaded CPU training is currently an experimental feature and convergence
+is not guaranteed.</li>
 </ul>
 </td>
 </tr>
@@ -182,8 +184,10 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 32</em>) – The number of threads used for running the GPU training. The value of this parameter
-should be a power of 2. This parameter will be ignored when running training on CPU.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
+CPU multi-threaded training is currently an experimental feature and convergence
+is not guaranteed.</li>
 </ul>
 </td>
 </tr>
@@ -309,8 +313,10 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 <li><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the traiing time.
 For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 32</em>) – The number of threads used for running the GPU training. The value of this parameter
-should be a power of 2. This parameter will be ignored when running training on CPU.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
+CPU multi-threaded training is currently an experimental feature and convergence
+is not guaranteed.</li>
 </ul>
 </td>
 </tr>
@@ -319,6 +325,25 @@ should be a power of 2. This parameter will be ignored when running training on 
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.decision_function">
+<code class="descname">decision_function</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.decision_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts confidence scores.</p>
+<p>The confidence score of a sample is the signed distance of that sample to the decision boundary.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting distances to the decision boundary.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the distance to the decision boundary of the sample (for this partition)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.fit">
 <code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.fit" title="Permalink to this definition">¶</a></dt>
@@ -367,25 +392,6 @@ should be a power of 2. This parameter will be ignored when running training on 
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the predicted class of the sample (for this partition)</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.predict_decision_function">
-<code class="descname">predict_decision_function</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.predict_decision_function" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log of probability estimates</p>
-<p>The returned log-probability estimates for the two classes.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting log probability estimates.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the log-probability of the sample for each of the two classes (for this partition)</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples, 2)</td>
 </tr>
 </tbody>
 </table>
