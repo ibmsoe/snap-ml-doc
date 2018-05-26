@@ -69,7 +69,7 @@
 <span id="python-api-documentation"></span><h1>snap-ml-local API<a class="headerlink" href="#snap-ml-local-api" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="snap_ml.RidgeRegression.RidgeRegression">
-<em class="property">class </em><code class="descclassname">snap_ml.RidgeRegression.</code><code class="descname">RidgeRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>dual=True</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.RidgeRegression.RidgeRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml.RidgeRegression.</code><code class="descname">RidgeRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>dual=True</em>, <em>num_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.RidgeRegression.RidgeRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ridge Regression classifier</p>
 <p>This class implements regularized ridge regression using the IBM Snap ML solver.
 It handles both dense and sparse matrix inputs. Use csr, csc or ndarray matrix format
@@ -91,10 +91,8 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
-should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
-multi-threaded CPU training is currently an experimental feature and convergence
-is not guaranteed.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 32</em>) – The number of threads used for running the GPU training. The value of this parameter
+should be a power of 2. This parameter will be ignored when running training on CPU.</li>
 </ul>
 </td>
 </tr>
@@ -168,7 +166,7 @@ to {-1, 1}.</li>
 
 <dl class="class">
 <dt id="snap_ml.LogisticRegression.LogisticRegression">
-<em class="property">class </em><code class="descclassname">snap_ml.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>dual=True</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>dual=True</em>, <em>num_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
 <p>This class implements regularized logistic regression using the IBM Snap ML solver.
 It handles both dense and sparse matrix inputs. Use csr, csc or ndarray matrix format
@@ -192,10 +190,8 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
-should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
-CPU multi-threaded training is currently an experimental feature and convergence
-is not guaranteed.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 32</em>) – The number of threads used for running the GPU training. The value of this parameter
+should be a power of 2. This parameter will be ignored when running training on CPU.</li>
 </ul>
 </td>
 </tr>
@@ -307,7 +303,7 @@ to {-1, 1}.</li>
 
 <dl class="class">
 <dt id="snap_ml.SupportVectorMachine.SupportVectorMachine">
-<em class="property">class </em><code class="descclassname">snap_ml.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>num_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
 <p>This class implements regularized support vector machine using the IBM Snap ML solver.
 It handles both dense and sparse matrix inputs. Use csr or ndarray matrix format
@@ -329,10 +325,8 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 <li><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the traiing time.
 For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
-should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
-CPU multi-threaded training is currently an experimental feature and convergence
-is not guaranteed.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 32</em>) – The number of threads used for running the GPU training. The value of this parameter
+should be a power of 2. This parameter will be ignored when running training on CPU.</li>
 </ul>
 </td>
 </tr>
@@ -447,7 +441,7 @@ to {-1, 1}.</li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

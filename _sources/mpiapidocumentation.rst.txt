@@ -4,6 +4,7 @@
 snap-ml-mpi API
 ====================================
 
+
 .. currentmodule:: snap_ml_mpi.RidgeRegression
 .. autoclass:: RidgeRegression
     :members:
@@ -25,11 +26,6 @@ snap-ml-mpi API
 .. currentmodule:: snap_ml_mpi.Partition
 .. autoclass:: DensePartition
     :members:
-
-.. currentmodule:: snap_ml_mpi.Partition
-.. autoclass:: L2SparsePartition
-    :members:
-
 
 .. automodule:: snap_ml_mpi.Loaders
     :members:
