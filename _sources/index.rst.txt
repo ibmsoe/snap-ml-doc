@@ -20,16 +20,13 @@ It offers distributed training, GPU acceleration and supports sparse data struct
     "With Snap ML you can train your machine learning model faster than you can snap your fingers!"
 
 
-The *Snap ML* library offers three different packages:
+The *Snap ML* library offers two different packages:
 
 **snap-ml-local**
     The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. *snap-ml-local* offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
 
 **snap-ml-mpi**
     *snap-ml-mpi* offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a *sklearn*-like python interface. 
-
-**snap-ml-spark**
-    similar to *snap-ml-mpi*, the *snap-ml-spark* package offers distributed training of models across a cluster of machines. The library is exposed to the user via a spak.ml-like interface and can seamslessly be integrated into existing pySpark application. 
 
 
 For more technical details about the innovations behind Snap ML we refer to
@@ -48,10 +45,8 @@ Content
 .. toctree::
     :maxdepth: 1
 
-    manual
-    installation
-    examples
     apidocumentation
+    manual
     frequentlyaskedquestions
 
     

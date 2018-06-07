@@ -19,26 +19,26 @@ Linear Regression
 ---------------------------
 .. currentmodule:: snap_ml.RidgeRegression
 
-:class:`RidgeRegression` fits a linear model with coefficients :math:`w = (w_1, ..., w_d)` to minimize the residual sum
-of squares between the predicted responses :math:`\hat{y}` and the true labels :math:`y` of the training data. 
+:class:`RidgeRegression` fits a linear model with coefficients :math:`{\bf w} = (w_1, ..., w_d)` to minimize the residual sum
+of squares between the predicted responses :math:`\bf \hat{y}` and the true labels :math:`\bf y` of the training data. 
 
 In order to prevent the model from overfitting ridge regression imposes an 
 :math:`L_2` norm penalty on the size of the coefficients. Mathematically Ridge Regression
 solves the following optimization problem:
 
-.. math:: \underset{w}{\min\,} \frac 1 {2}|| X^\top w - y||_2^2 + \frac \lambda 2 \|w\|_2^2
+.. math:: \underset{{\bf w}}{\min\,} \frac 1 {2}|| X^\top {\bf w} - {\bf y}||_2^2 + \frac \lambda 2 \|{\bf w}\|_2^2
 
-where :math:`X=[x_1,...,x_n]` is the training data matrix with samples :math:`\{x_i\}_{i\in [n]}` in its columns and :math:`y_i` are the corresponding labels. The regularization strength is controlled by the regularization parameter :math:`\lambda\geq 0`; 
+where :math:`X=[{\bf x}_1,...,{\bf x}_n]` is the training data matrix with samples :math:`\{{\bf x}_i\}_{i\in [n]}` in its columns and :math:`y_i` are the corresponding labels. The regularization strength is controlled by the regularization parameter :math:`\lambda\geq 0`; 
 the larger :math:`\lambda` the more robust the model becomes to overfitting.
 
 
 .. note::
 	In order to find an appropriate regularization parameter we recommend to perform cross validation.
 
-*Snap ML* implements different variants of stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`w`. 
+*Snap ML* implements different variants of stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`\bf w`. 
 In order to optimally support GPUs for training *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of modern GPUs `[TPASCD17] <References_>`_. 
 
-To train the :class:`RidgeRegression` model the ``fit`` method is used; it takes the training data and the labels :math:`X,y` as input and stores the learnt coefficients of the model :math:`w` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+To train the :class:`RidgeRegression` model the ``fit`` method is used; it takes the training data and the labels :math:`X,\bf y` as input and stores the learnt coefficients of the model :math:`\bf w` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
 
 .. code-block:: python
 
@@ -73,7 +73,7 @@ Currently *Snap ML* implements :class:`SupportVectorMachine` (SVMs) with a linea
 
 Mathematically it solves the following optimization problem:
 
-.. math:: \underset{w}{\min\,}  \sum_i [x_i^\top w  - y_i]_+ +\frac \lambda 2 \|w\|_2^2
+.. math:: \underset{{\bf w}}{\min\,}  \sum_i [{\bf x}_i^\top {\bf w}  - y_i]_+ +\frac \lambda 2 \|{\bf w}\|_2^2
 
 where :math:`[u]_+=\max(u,0)` denotes the hinge loss with :math:`\{x_i\}_{i\in [n]}` being the training samples and :math:`y_i \in \{\pm 1\}` the corresponding labels. The regularization strength :math:`\lambda>0`  can be controlled by the user through the ``regularizer`` parameter.
 The larger :math:`\lambda` the more robust the model becomes to overfitting.
@@ -81,11 +81,11 @@ The larger :math:`\lambda` the more robust the model becomes to overfitting.
 *Snap ML* implements stochastic dual coordinate `[SDCA] <References_>`_ and the GPU optimized `[TPASCD17] <References_>`_ as an algorithm to train the SVM classifier. 
 SDCA runs on the equivalent SVM dual problem formulation: 
 
-.. math:: \underset{\alpha}{\min\,}  \sum_i -\alpha_i y_i +\frac 1 {2\lambda} \|X\alpha\|_2^2
+.. math:: \underset{\boldsymbol \alpha}{\min\,}  \sum_i -\alpha_i y_i +\frac 1 {2\lambda} \|X \boldsymbol \alpha\|_2^2
 
 with the constraint :math:`\alpha_i y_i\in[0,1]`.
 
-To train the model the ``fit`` method is used; it takes the training data and the labels :math:`X,y` as input and stores the learnt coefficients of the model :math:`w` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+To train the model the ``fit`` method is used; it takes the training data and the labels :math:`X,{\bf y}` as input and stores the learnt coefficients of the model :math:`{\bf w}` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
 
 .. code-block:: python
 
@@ -119,14 +119,14 @@ Logistic Regression
 
 Mathematically Logistic Regression solves the following optimization problem composing of the logistic loss and an :math:`L_2` regularizer:
 
-.. math:: \underset{w}{\min\,} \frac 1 {2}|| X^\top w - y||_2^2 + \frac \lambda 2 \|w\|_2^2
+.. math:: \underset{{\bf w}}{\min\,} \sum_i \log(1+\exp(-y_i {\bf x}_i^\top {\bf w})) + \frac \lambda 2 \|{\bf w}\|_2^2
 
-where :math:`X=[x_1,...,x_n]` is the training data matrix with samples :math:`\{x_i\}_{i\in [n]}` in its columns and :math:`y_i \in \{\pm 1\}` denote the corresponding labels. 
+where :math:`X=[{\bf x}_1,...,{\bf x}_n]` is the training data matrix with samples :math:`\{{\bf x}_i\}_{i\in [n]}` in its columns and :math:`y_i \in \{\pm 1\}` denote the corresponding labels. 
 The regularization strength is controlled by the regularization parameter :math:`\lambda\geq 0`; the larger :math:`\lambda` the more robust the model becomes to overfitting. :math:`\lambda` can be specified by the user through the ``regularizer`` input parameter.
 
-*Snap ML* implements stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`w`. In order to support GPU acceleration *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of moderne GPUs `[TPASCD17] <References_>`_. 
+*Snap ML* implements stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`{\bf w}`. In order to support GPU acceleration *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of moderne GPUs `[TPASCD17] <References_>`_. 
 
-The model can be trained using the ``fit`` method which takes the training data and the labels :math:`X,y` as input and stores the coefficients of the learnt model :math:`w` in its  ``coef_`` attribute. This model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+The model can be trained using the ``fit`` method which takes the training data and the labels :math:`X,\bf y` as input and stores the coefficients of the learnt model :math:`{\bf w}` in its  ``coef_`` attribute. This model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
 
 .. code-block:: python
 
