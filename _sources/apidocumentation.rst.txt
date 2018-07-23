@@ -7,5 +7,8 @@ API Documentation
 We currently provide three different APIs
 
 * :ref:`python-api-documentation` 
+
 * :ref:`mpi-api-documentation`
+
+* :ref:`pyspark-api-documentation` 
 

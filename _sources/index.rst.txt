@@ -28,6 +28,8 @@ The *Snap ML* library offers two different packages:
 **snap-ml-mpi**
     *snap-ml-mpi* offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a *sklearn*-like python interface. 
 
+**snap-ml-spark**
+    similar to *snap-ml-mpi*, the *snap-ml-spark* package offers distributed training of models across a cluster of machines. The library is exposed to the user via a spak.ml-like interface and can seamslessly be integrated into existing pySpark application.
 
 For more technical details about the innovations behind Snap ML we refer to
 

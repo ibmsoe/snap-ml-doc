@@ -79,19 +79,19 @@ for training and csr or ndarray format for prediction.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
-<li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
 For multi-GPU training, set device_ids to a list of GPU IDs to be used for training, e.g., [0, 1].</li>
-<li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
+<li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
-<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
 multi-threaded CPU training is currently an experimental feature and convergence
 is not guaranteed.</li>
@@ -115,7 +115,7 @@ is not guaranteed.</li>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>self</strong></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)">object</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></td>
 </tr>
 </tbody>
 </table>
@@ -131,7 +131,7 @@ is not guaranteed.</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>params</strong></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
 </tr>
 </tbody>
 </table>
@@ -171,20 +171,20 @@ We recommend the user to first normalize the input values.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
-<li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single-GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
 For multi-GPU training, set device_ids to a list of GPU IDs to be used for training, e.g., [0, 1].</li>
-<li><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
-<li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
+<li><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
+<li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
-<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
 CPU multi-threaded training is currently an experimental feature and convergence
 is not guaranteed.</li>
@@ -208,7 +208,7 @@ is not guaranteed.</li>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>self</strong></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)">object</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></td>
 </tr>
 </tbody>
 </table>
@@ -224,7 +224,7 @@ is not guaranteed.</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>params</strong></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
 </tr>
 </tbody>
 </table>
@@ -302,18 +302,18 @@ the user to normalize the input values.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
-<li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
 For multi-GPU training, set device_ids to a list of GPU IDs to be used for training, e.g., [0, 1].</li>
-<li><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.6)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
-<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.6)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the traiing time.
+<li><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the traiing time.
 For performance evaluation, use verbose=False.</li>
-<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.6)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
 CPU multi-threaded training is currently an experimental feature and convergence
 is not guaranteed.</li>
@@ -356,7 +356,7 @@ is not guaranteed.</li>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>self</strong></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)">object</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></td>
 </tr>
 </tbody>
 </table>
@@ -372,7 +372,7 @@ is not guaranteed.</li>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>params</strong></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.6)">dict</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></td>
 </tr>
 </tbody>
 </table>
