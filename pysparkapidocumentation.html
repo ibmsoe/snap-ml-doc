@@ -68,10 +68,10 @@
   <div class="section" id="snap-ml-spark-api">
 <span id="pyspark-api-documentation"></span><h1>snap-ml-spark API<a class="headerlink" href="#snap-ml-spark-api" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.RidgeRegression.</code><code class="descname">RidgeRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ridge Regression classifier</p>
-<p>This class implements Regularized Ridge regression using the IBM Snap ML distributed solver.  It can handle sparse and dense dataset formats. Please use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
+<dt id="snap_ml_spark.LinearRegression.LinearRegression">
+<em class="property">class </em><code class="descclassname">snap_ml_spark.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear Regression classifier</p>
+<p>This class implements Regularized Linear regression using the IBM Snap ML distributed solver.  It can handle sparse and dense dataset formats. Please use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -89,6 +89,9 @@ is performed using the GPU. If False, the training is performed using the CPU.</
 <li><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
 the maximum possible memory is used.</li>
 <li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=32 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
+<li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (RidgeRegression)
+or “l1” for L1 regularization (LassoRegression). L1 regularization is possible only for the primal
+optimization problem (dual=False).</li>
 </ul>
 </td>
 </tr>
@@ -101,8 +104,8 @@ the maximum possible memory is used.</li>
 </tbody>
 </table>
 <dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.fit" title="Permalink to this definition">¶</a></dt>
+<dt id="snap_ml_spark.LinearRegression.LinearRegression.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>learn model</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -117,120 +120,21 @@ the maximum possible memory is used.</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getBalanced">
-<code class="descname">getBalanced</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getBalanced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get class weights value</p>
-<table class="docutils field-list" frame="void" rules="none">
+<dt id="snap_ml_spark.LinearRegression.LinearRegression.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – use or not use the class weights</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all the initialized parameters of the Linear Regression model as a python dictionary</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getDual">
-<code class="descname">getDual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getDual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get dual value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – apply dual or primal formulation of the Ridge Regression algorithm</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getGpuMemLimit">
-<code class="descname">getGpuMemLimit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getGpuMemLimit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the GPU memory limit</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – GPU memory limit</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getMaxIter">
-<code class="descname">getMaxIter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get maximum number of rounds/epochs to do be performed by the distributed algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – max number of rounds</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getNThreads">
-<code class="descname">getNThreads</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getNThreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the number of threads</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – number of threads</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getRegParam">
-<code class="descname">getRegParam</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getRegParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get regularization parameter</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">float –  regularization parameter</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getUseGpu">
-<code class="descname">getUseGpu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getUseGpu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get UseGpu value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – use or not use the GPUs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.getVerbose">
-<code class="descname">getVerbose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.getVerbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get verbose value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all the training loss history for each epoch</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.predict" title="Permalink to this definition">¶</a></dt>
+<dt id="snap_ml_spark.LinearRegression.LinearRegression.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict regression values</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -244,124 +148,11 @@ the maximum possible memory is used.</li>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setBalanced">
-<code class="descname">setBalanced</code><span class="sig-paren">(</span><em>class_weights</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setBalanced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set if the class weights will be used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights, None or False to disable the class weights</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setDual">
-<code class="descname">setDual</code><span class="sig-paren">(</span><em>dual</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setDual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set if the Dual formulation will be used instead of the Primal</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – True to enable Dual formulation or False to disable Dual formulation</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setGpuMemLimit">
-<code class="descname">setGpuMemLimit</code><span class="sig-paren">(</span><em>gpu_mem_limit</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setGpuMemLimit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the GPU memory</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – gpu memory limit, use 0 to set it to the maximum possible</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setMaxIter">
-<code class="descname">setMaxIter</code><span class="sig-paren">(</span><em>max_iter</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set maximum number of epochs to be performed by the distributed algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – maximum number of optimization epochs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setNThreads">
-<code class="descname">setNThreads</code><span class="sig-paren">(</span><em>n_threads</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setNThreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the number of CPU threads</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of CPU threads</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setRegParam">
-<code class="descname">setRegParam</code><span class="sig-paren">(</span><em>lam</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setRegParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set regularization strength</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization improves the conditioning of the problem and reduces the variance of the estimates. Larger values specify stronger regularization.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setUseGpu">
-<code class="descname">setUseGpu</code><span class="sig-paren">(</span><em>use_gpu</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setUseGpu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicate whether the GPUs will be used or not</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – use_gpu = True to train the model on GPUs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.RidgeRegression.RidgeRegression.setVerbose">
-<code class="descname">setVerbose</code><span class="sig-paren">(</span><em>verbose</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.RidgeRegression.RidgeRegression.setVerbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the verbose parameter to indicate if the training loss will
-be computed and printed at each epoch.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> – verbose = True to compute and print the training loss at each iteration</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
 <p>This class implements regularized Logistic Regression using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -381,6 +172,9 @@ is performed using the GPU. If False, the training is performed using the CPU.</
 <li><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
 the maximum possible memory is used.</li>
 <li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=32 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
+<li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization
+or “l1” for L1 regularization. L1 regularization is possible only for the primal
+optimization problem (dual=False).</li>
 </ul>
 </td>
 </tr>
@@ -410,112 +204,13 @@ the maximum possible memory is used.</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getBalanced">
-<code class="descname">getBalanced</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getBalanced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get class weights value</p>
-<table class="docutils field-list" frame="void" rules="none">
+<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – use or not use the class weights</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getDual">
-<code class="descname">getDual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getDual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get dual value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – apply dual or primal formulation of the Ridge Regression algorithm</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getGpuMemLimit">
-<code class="descname">getGpuMemLimit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getGpuMemLimit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the GPU memory limit</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – GPU memory limit</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getMaxIter">
-<code class="descname">getMaxIter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get maximum number of rounds/epochs to do be performed by the distributed algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – max number of rounds</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getNThreads">
-<code class="descname">getNThreads</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getNThreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the number of threads</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – number of threads</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getRegParam">
-<code class="descname">getRegParam</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getRegParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get regularization parameter</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">float –  regularization parameter</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getUseGpu">
-<code class="descname">getUseGpu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getUseGpu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get UseGpu value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – use or not use the GPUs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.getVerbose">
-<code class="descname">getVerbose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.getVerbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get verbose value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all the training loss history for each epoch</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all the initialized parameters of the Logistic Regression model as a python dictionary</td>
 </tr>
 </tbody>
 </table>
@@ -553,124 +248,11 @@ the maximum possible memory is used.</li>
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setBalanced">
-<code class="descname">setBalanced</code><span class="sig-paren">(</span><em>class_weights</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setBalanced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set if the class weights will be used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights, None or False to disable the class weights</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setDual">
-<code class="descname">setDual</code><span class="sig-paren">(</span><em>dual</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setDual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set if the Dual formulation will be used instead of the Primal</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – True to enable Dual formulation or False to disable Dual formulation</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setGpuMemLimit">
-<code class="descname">setGpuMemLimit</code><span class="sig-paren">(</span><em>gpu_mem_limit</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setGpuMemLimit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the GPU memory</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – gpu memory limit, use 0 to set it to the maximum possible</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setMaxIter">
-<code class="descname">setMaxIter</code><span class="sig-paren">(</span><em>max_iter</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set maximum number of epochs to be performed by the distributed algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – maximum number of optimization epochs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setNThreads">
-<code class="descname">setNThreads</code><span class="sig-paren">(</span><em>n_threads</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setNThreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the number of CPU threads</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of CPU threads</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setRegParam">
-<code class="descname">setRegParam</code><span class="sig-paren">(</span><em>lam</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setRegParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set regularization strength</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization improves the conditioning of the problem and reduces the variance of the estimates. Larger values specify stronger regularization.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setUseGpu">
-<code class="descname">setUseGpu</code><span class="sig-paren">(</span><em>use_gpu</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setUseGpu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicate whether the GPUs will be used or not</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – use_gpu = True to train the model on GPUs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.setVerbose">
-<code class="descname">setVerbose</code><span class="sig-paren">(</span><em>verbose</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.setVerbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the verbose parameter to indicate if the training loss will
-be computed and printed at each epoch.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> – verbose = True to compute and print the training loss at each iteration</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
 <p>This class implements regularized support vector machine using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -679,8 +261,6 @@ be computed and printed at each epoch.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
-<li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
-Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
 <li><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag for indicating if the training loss will be printed at each epoch.</li>
@@ -718,112 +298,13 @@ the maximum possible memory is used.</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getBalanced">
-<code class="descname">getBalanced</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getBalanced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get class weights value</p>
-<table class="docutils field-list" frame="void" rules="none">
+<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – use or not use the class weights</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getDual">
-<code class="descname">getDual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getDual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get dual value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – apply dual or primal formulation of the Ridge Regression algorithm</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getGpuMemLimit">
-<code class="descname">getGpuMemLimit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getGpuMemLimit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the GPU memory limit</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – GPU memory limit</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getMaxIter">
-<code class="descname">getMaxIter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get maximum number of rounds/epochs to do be performed by the distributed algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – max number of rounds</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getNThreads">
-<code class="descname">getNThreads</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getNThreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the number of threads</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">int – number of threads</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getRegParam">
-<code class="descname">getRegParam</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getRegParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get regularization parameter</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">float –  regularization parameter</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getUseGpu">
-<code class="descname">getUseGpu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getUseGpu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get UseGpu value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – use or not use the GPUs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getVerbose">
-<code class="descname">getVerbose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.getVerbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get verbose value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">bool – set verbose to True to compute and print all the training loss history for each epoch</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all the initialized parameters of the Support Vector Machine Model as a python dictionary</td>
 </tr>
 </tbody>
 </table>
@@ -840,119 +321,6 @@ the maximum possible memory is used.</li>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id7"><span class="problematic" id="id8">pred_array_</span></a> field which is a python array.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setBalanced">
-<code class="descname">setBalanced</code><span class="sig-paren">(</span><em>class_weights</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setBalanced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set if the class weights will be used.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>class_weights</strong> (<em>string/bool</em>) – ‘balanced’ or True to enable the class weights, None or False to disable the class weights</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setDual">
-<code class="descname">setDual</code><span class="sig-paren">(</span><em>dual</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setDual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set if the Dual formulation will be used instead of the Primal</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – True to enable Dual formulation or False to disable Dual formulation</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setGpuMemLimit">
-<code class="descname">setGpuMemLimit</code><span class="sig-paren">(</span><em>gpu_mem_limit</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setGpuMemLimit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the GPU memory</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – gpu memory limit, use 0 to set it to the maximum possible</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setMaxIter">
-<code class="descname">setMaxIter</code><span class="sig-paren">(</span><em>max_iter</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setMaxIter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set maximum number of epochs to be performed by the distributed algorithm</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – maximum number of optimization epochs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setNThreads">
-<code class="descname">setNThreads</code><span class="sig-paren">(</span><em>n_threads</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setNThreads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the number of CPU threads</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – number of CPU threads</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setRegParam">
-<code class="descname">setRegParam</code><span class="sig-paren">(</span><em>lam</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setRegParam" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set regularization strength</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lam</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Regularization strength; must be a positive float. Regularization improves the conditioning of the problem and reduces the variance of the estimates. Larger values specify stronger regularization.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setUseGpu">
-<code class="descname">setUseGpu</code><span class="sig-paren">(</span><em>use_gpu</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setUseGpu" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicate whether the GPUs will be used or not</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – use_gpu = True to train the model on GPUs</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setVerbose">
-<code class="descname">setVerbose</code><span class="sig-paren">(</span><em>verbose</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.setVerbose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the verbose parameter to indicate if the training loss will
-be computed and printed at each epoch.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>verbose</strong> – verbose = True to compute and print the training loss at each iteration</td>
 </tr>
 </tbody>
 </table>

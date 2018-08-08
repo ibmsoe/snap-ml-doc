@@ -17,9 +17,9 @@ It currently supports the following machine learning models:
 ---------------------------
 Linear Regression
 ---------------------------
-.. currentmodule:: snap_ml.RidgeRegression
+.. currentmodule:: snap_ml.LinearRegression
 
-:class:`RidgeRegression` fits a linear model with coefficients :math:`{\bf w} = (w_1, ..., w_d)` to minimize the residual sum
+:class:`LinearRegression` fits a linear model with coefficients :math:`{\bf w} = (w_1, ..., w_d)` to minimize the residual sum
 of squares between the predicted responses :math:`\bf \hat{y}` and the true labels :math:`\bf y` of the training data. 
 
 In order to prevent the model from overfitting ridge regression imposes an 
@@ -38,14 +38,14 @@ the larger :math:`\lambda` the more robust the model becomes to overfitting.
 *Snap ML* implements different variants of stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`\bf w`. 
 In order to optimally support GPUs for training *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of modern GPUs `[TPASCD17] <References_>`_. 
 
-To train the :class:`RidgeRegression` model the ``fit`` method is used; it takes the training data and the labels :math:`X,\bf y` as input and stores the learnt coefficients of the model :math:`\bf w` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+To train the :class:`LinearRegression` model the ``fit`` method is used; it takes the training data and the labels :math:`X,\bf y` as input and stores the learnt coefficients of the model :math:`\bf w` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
 
 .. code-block:: python
 
-    >>> from snap_ml import RidgeRegression
+    >>> from snap_ml import LinearRegression
     >>> import numpy as np
 
-    >>> reg = RidgeRegression(max_iter = 100, regularizer= 0.1)
+    >>> reg = LinearRegression(max_iter = 100, regularizer= 0.1)
     >>> X_train = np.array([[0, 0], [1, 1], [2, 2]])
     >>> y_train = np.array([0, 1, 2])
     >>> reg.fit (X_train, y_train)
