@@ -68,10 +68,10 @@
   <div class="section" id="snap-ml-mpi-api">
 <span id="mpi-api-documentation"></span><h1>snap-ml-mpi API<a class="headerlink" href="#snap-ml-mpi-api" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="snap_ml_mpi.RidgeRegression.RidgeRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_mpi.RidgeRegression.</code><code class="descname">RidgeRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>dual=True</em>, <em>num_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.RidgeRegression.RidgeRegression" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ridge Regression classifier</p>
-<p>This class implements regularized ridge regression using the IBM Snap ML solver.
+<dt id="snap_ml_mpi.LinearRegression.LinearRegression">
+<em class="property">class </em><code class="descclassname">snap_ml_mpi.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>dual=True</em>, <em>num_threads=1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear Regression</p>
+<p>This class implements regularized linear regression using the IBM Snap ML solver.
 It handles both dense and sparse matrix inputs. Use csr, csc or ndarray matrix format
 for training and csr or ndarray format for prediction.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -95,6 +95,9 @@ training time. For performance evaluation, use verbose=False.</li>
 should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
 multi-threaded CPU training is currently an experimental feature and convergence
 is not guaranteed.</li>
+<li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (RidgeRegression)
+or “l1” for L1 regularization (LassoRegression). L1 regularization is possible only for the primal
+optimization problem (dual=False).</li>
 </ul>
 </td>
 </tr>
@@ -104,8 +107,8 @@ is not guaranteed.</li>
 </tbody>
 </table>
 <dl class="method">
-<dt id="snap_ml_mpi.RidgeRegression.RidgeRegression.fit">
-<code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.RidgeRegression.RidgeRegression.fit" title="Permalink to this definition">¶</a></dt>
+<dt id="snap_ml_mpi.LinearRegression.LinearRegression.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit the model according to the given train data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -122,8 +125,8 @@ is not guaranteed.</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_ml_mpi.RidgeRegression.RidgeRegression.get_params">
-<code class="descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.RidgeRegression.RidgeRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<dt id="snap_ml_mpi.LinearRegression.LinearRegression.get_params">
+<code class="descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression.get_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the values of the model parameters.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -138,8 +141,8 @@ is not guaranteed.</li>
 </dd></dl>
 
 <dl class="method">
-<dt id="snap_ml_mpi.RidgeRegression.RidgeRegression.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.RidgeRegression.RidgeRegression.predict" title="Permalink to this definition">¶</a></dt>
+<dt id="snap_ml_mpi.LinearRegression.LinearRegression.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class predictions</p>
 <p>The returned class estimates for the two classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -160,7 +163,7 @@ is not guaranteed.</li>
 
 <dl class="class">
 <dt id="snap_ml_mpi.LogisticRegression.LogisticRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_mpi.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>dual=True</em>, <em>num_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_mpi.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>dual=True</em>, <em>num_threads=1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
 <p>This class implements distributed regularized logistic regression using the IBM Snap
 ML MPI solver. It handles both dense and sparse matrix inputs. Use csr, csc or ndarray
@@ -188,6 +191,9 @@ training time. For performance evaluation, use verbose=False.</li>
 should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
 CPU multi-threaded training is currently an experimental feature and convergence
 is not guaranteed.</li>
+<li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (LogisticRegression)
+or “l1” for L1 regularization (SparseLogisticRegression). L1 regularization is possible only for the primal
+optimization problem (dual=False).</li>
 </ul>
 </td>
 </tr>
@@ -291,7 +297,7 @@ is not guaranteed.</li>
 
 <dl class="class">
 <dt id="snap_ml_mpi.SupportVectorMachine.SupportVectorMachine">
-<em class="property">class </em><code class="descclassname">snap_ml_mpi.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>num_threads=32</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_mpi.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
 <p>This class implements regularized support vector machine using the IBM Snap ML solver.
 It handles both dense and sparse matrix inputs. Use csr or ndarray matrix format
@@ -402,14 +408,195 @@ is not guaranteed.</li>
 <dl class="class">
 <dt id="snap_ml_mpi.Partition.SparsePartition">
 <em class="property">class </em><code class="descclassname">snap_ml_mpi.Partition.</code><code class="descname">SparsePartition</code><span class="sig-paren">(</span><em>ptr</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Partition.SparsePartition" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Data partition in sparse format used for distributed snap_ml_mpi training and inference.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ptr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – String representation of the value of the pointer to where the partition resides in memory.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="class">
 <dt id="snap_ml_mpi.Partition.DensePartition">
 <em class="property">class </em><code class="descclassname">snap_ml_mpi.Partition.</code><code class="descname">DensePartition</code><span class="sig-paren">(</span><em>ptr</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Partition.DensePartition" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Data partition in dense format used for distributed snap_ml_mpi training and inference.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>ptr</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – String representation of the value of the pointer to where the partition resides in memory.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
-<span class="target" id="module-snap_ml_mpi.Loaders"></span><span class="target" id="module-snap_ml_mpi.Metrics"></span><span class="target" id="module-snap_ml_mpi.Utils"></span></div>
+<span class="target" id="module-snap_ml_mpi.Loaders"></span><dl class="function">
+<dt id="snap_ml_mpi.Loaders.load_from_snap_format">
+<code class="descclassname">snap_ml_mpi.Loaders.</code><code class="descname">load_from_snap_format</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Loaders.load_from_snap_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributed data loading from snap format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The file where the data resides in snap format.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>data partition</strong> – Returns a data partition in sparse, dense or compressed sparse
+format which will be used for distributed snap_ml_mpi training and
+inference. The type of data format (sparse, dense, compressed) is
+automatically detected from the input file header. To dump data in
+snap format, one should use the dump_to_snap_format function
+from snap_ml_mpi.Utils.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">snap_ml_mpi.Partition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_mpi.Loaders.load_from_svmlight_format">
+<code class="descclassname">snap_ml_mpi.Loaders.</code><code class="descname">load_from_svmlight_format</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Loaders.load_from_svmlight_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributed data loading from svmlight format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The file where the data resides.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>data partition</strong> – Returns a data partition in sparse format which will be used for
+distributed snap_ml_mpi training and inference.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#snap_ml_mpi.Partition.SparsePartition" title="snap_ml_mpi.Partition.SparsePartition">snap_ml_mpi.Partition.SparsePartition</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-snap_ml_mpi.Metrics"></span><dl class="function">
+<dt id="snap_ml_mpi.Metrics.accuracy_score">
+<code class="descclassname">snap_ml_mpi.Metrics.</code><code class="descname">accuracy_score</code><span class="sig-paren">(</span><em>data</em>, <em>pred</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Metrics.accuracy_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributed accuracy classification score.</p>
+<p>This metric is often used in multi-class classification to compute the
+class prediction accuracy. It currently supports binary classification only.
+The metric is implemented in a distributed manner using MPI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting class estimates.
+The dataset includes also the true labels.</li>
+<li><strong>pred</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> (</em><em>n_samples</em><em>,</em><em>)</em>) – Predicted classes (for this partition).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>accuracy_value</strong> – Returns the accuracy score of the predicted classes (pred)
+when compared with the true labels (data).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_mpi.Metrics.hinge_loss">
+<code class="descclassname">snap_ml_mpi.Metrics.</code><code class="descname">hinge_loss</code><span class="sig-paren">(</span><em>data</em>, <em>pred_decision</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Metrics.hinge_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributed average hinge loss metric.</p>
+<p>It supports only binary classification. If the true labels are encoded with
++1 and -1, then the hinge loss of a sample is computed as 1 - true_label * predicted_decision.
+The predicted_decision is the output of the decision_function predict function (the distance
+of the samples in data to the separating hyperplane). The average hinge loss is the average of
+(1 - true_label * predicted_decision) across samples.
+The metric is implemented in a distributed manner using MPI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting class estimates.
+The dataset includes also the true target labels.</li>
+<li><strong>pred_decision</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> (</em><em>n_samples</em><em>,</em><em>)</em>) – Predicted values of the decision function (for this partition).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>hinge_loss_value</strong> – Returns the average hinge loss of the samples in data.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_mpi.Metrics.log_loss">
+<code class="descclassname">snap_ml_mpi.Metrics.</code><code class="descname">log_loss</code><span class="sig-paren">(</span><em>data</em>, <em>proba</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Metrics.log_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributed logistic loss or cross-entropy loss metric.</p>
+<p>This metric is a loss function often used in logistic regression.
+It is defined as the negative log-likelihood of the true labels
+given the probabilities predicted by a classifier. In the current
+version it is defined for two labels only. The metric is implemented
+in a distributed manner using MPI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting probability estimates.
+The dataset includes also the true labels.</li>
+<li><strong>proba</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> (</em><em>n_samples</em><em>, </em><em>2</em><em>)</em>) – Predicted probabilities of the two classes (for this partition).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>loss_value</strong> – Returns the log loss of the predicted probabilities (proba) when
+compared with the true labels (data)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_mpi.Metrics.mean_squared_error">
+<code class="descclassname">snap_ml_mpi.Metrics.</code><code class="descname">mean_squared_error</code><span class="sig-paren">(</span><em>data</em>, <em>pred</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.Metrics.mean_squared_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributed mean squared error regression loss.</p>
+<p>This metric is often used in multi-class classification to compute the
+mean squared error of the predicted target values when compared with the
+true labels. It currently supports binary classification only.
+The metric is implemented in a distributed manner using MPI.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting target value estimates.
+The dataset includes also the true target values (labels).</li>
+<li><strong>pred</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> (</em><em>n_samples</em><em>,</em><em>)</em>) – Predicted target values (for this partition).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>mean_squared_error_value</strong> – Returns the mean squared error of the predicted target values (pred)
+when compared with the true values (data).</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-snap_ml_mpi.Utils"></span></div>
 
 
           </div>

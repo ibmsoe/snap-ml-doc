@@ -4,8 +4,8 @@
 snap-ml-spark API 
 ====================================
 
-.. currentmodule:: snap_ml_spark.RidgeRegression
-.. autoclass:: RidgeRegression
+.. currentmodule:: snap_ml_spark.LinearRegression
+.. autoclass:: LinearRegression
     :members:
 
 

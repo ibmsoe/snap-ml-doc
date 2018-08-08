@@ -5,8 +5,8 @@ snap-ml-mpi API
 ====================================
 
 
-.. currentmodule:: snap_ml_mpi.RidgeRegression
-.. autoclass:: RidgeRegression
+.. currentmodule:: snap_ml_mpi.LinearRegression
+.. autoclass:: LinearRegression
     :members:
 
 
