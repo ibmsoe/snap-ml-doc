@@ -22,30 +22,46 @@ Linear Regression
 :class:`LinearRegression` fits a linear model with coefficients :math:`{\bf w} = (w_1, ..., w_d)` to minimize the residual sum
 of squares between the predicted responses :math:`\bf \hat{y}` and the true labels :math:`\bf y` of the training data. 
 
-In order to prevent the model from overfitting ridge regression imposes an 
-:math:`L_2` norm penalty on the size of the coefficients. Mathematically Ridge Regression
-solves the following optimization problem:
-
-.. math:: \underset{{\bf w}}{\min\,} \frac 1 {2}|| X^\top {\bf w} - {\bf y}||_2^2 + \frac \lambda 2 \|{\bf w}\|_2^2
-
-where :math:`X=[{\bf x}_1,...,{\bf x}_n]` is the training data matrix with samples :math:`\{{\bf x}_i\}_{i\in [n]}` in its columns and :math:`y_i` are the corresponding labels. The regularization strength is controlled by the regularization parameter :math:`\lambda\geq 0`; 
-the larger :math:`\lambda` the more robust the model becomes to overfitting.
+In order to prevent the model from overfitting you have the option to impose an 
+:math:`L_1` or an :math:`L_2` norm penalty on the size of the coefficients. 
 
 
-.. note::
-	In order to find an appropriate regularization parameter we recommend to perform cross validation.
+* **Ridge Regression** adds an :math:`L_2`-regularization term to the least-squares loss.
+  Mathematically it solves the following optimization problem:
+
+  .. math:: \underset{{\bf w}}{\min\,} \frac 1 {2}|| X^\top {\bf w} - {\bf y}||_2^2 + \frac{\lambda} 2 \|\bf w\|_2^2
+
+
+* **Lasso** adds an :math:`L_1`-regularization term to the least-squares loss.
+  Mathematically it solves the following optimization problem:
+
+  .. math:: \underset{{\bf w}}{\min\,} \frac 1 {2}|| X^\top {\bf w} - {\bf y}||_2^2 + {\lambda} \|\bf w\|_1
+
+
+In both cases :math:`X=[{\bf x}_1,...,{\bf x}_n]` denotes the training data matrix with samples :math:`\{{\bf x}_i\}_{i\in [n]}` in its columns and :math:`y_i` are the corresponding labels. 
+The regularization strength is controlled by the regularization parameter :math:`\lambda\geq 0`; the larger :math:`\lambda` the more robust the model becomes to overfitting. 
+
+
+.. note:: *(Regularization Parameter)*
+    In order to find an appropriate regularization parameter we recommend to perform cross validation.
+
+.. note:: *(Feature Selection)*
+    As Lasso regression yields sparse models it can be used to perform feature selection. The sparsity can be controled by :math:`\lambda` - a larger regularization parameter encourages more sparsity.
+
 
 *Snap ML* implements different variants of stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`\bf w`. 
-In order to optimally support GPUs for training *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of modern GPUs `[TPASCD17] <References_>`_. 
+In order to optimally support GPUs for training *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of modern GPUs `[TPASCD] <References_>`_. 
 
-To train the :class:`LinearRegression` model the ``fit`` method is used; it takes the training data and the labels :math:`X,\bf y` as input and stores the learnt coefficients of the model :math:`\bf w` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+To train the :class:`LinearRegression` model the ``fit`` method is used; it takes the training data and the labels :math:`X,\bf y` as input and stores the learnt coefficients of the model :math:`\bf w` in its  ``coef_`` member function. 
+The regularization type can be specified during initialization using the ``penalty`` argument.
+The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
 
 .. code-block:: python
 
     >>> from snap_ml import LinearRegression
     >>> import numpy as np
 
-    >>> reg = LinearRegression(max_iter = 100, regularizer= 0.1)
+    >>> reg = LinearRegression(max_iter = 100, regularizer = 0.1, penalty = 'l2')
     >>> X_train = np.array([[0, 0], [1, 1], [2, 2]])
     >>> y_train = np.array([0, 1, 2])
     >>> reg.fit (X_train, y_train)
@@ -55,7 +71,7 @@ To train the :class:`LinearRegression` model the ``fit`` method is used; it take
     >>> reg.predict(X_test)
     [2.97, 0.495]
 
-	
+    
 For more details about the API we refer to the :ref:`python-api-documentation`. 
  
 
@@ -78,7 +94,7 @@ Mathematically it solves the following optimization problem:
 where :math:`[u]_+=\max(u,0)` denotes the hinge loss with :math:`\{x_i\}_{i\in [n]}` being the training samples and :math:`y_i \in \{\pm 1\}` the corresponding labels. The regularization strength :math:`\lambda>0`  can be controlled by the user through the ``regularizer`` parameter.
 The larger :math:`\lambda` the more robust the model becomes to overfitting.
  
-*Snap ML* implements stochastic dual coordinate `[SDCA] <References_>`_ and the GPU optimized `[TPASCD17] <References_>`_ as an algorithm to train the SVM classifier. 
+*Snap ML* implements stochastic dual coordinate `[SDCA] <References_>`_ and the GPU optimized `[TPASCD] <References_>`_ as an algorithm to train the SVM classifier. 
 SDCA runs on the equivalent SVM dual problem formulation: 
 
 .. math:: \underset{\boldsymbol \alpha}{\min\,}  \sum_i -\alpha_i y_i +\frac 1 {2\lambda} \|X \boldsymbol \alpha\|_2^2
@@ -92,7 +108,7 @@ To train the model the ``fit`` method is used; it takes the training data and th
     >>> from snap_ml import SupportVectorMachine
     >>> import numpy as np
 
-    >>> reg = SupportVectorMachine(max_iter = 100, regularizer= 1.0)
+    >>> reg = SupportVectorMachine(max_iter = 100, regularizer = 1.0)
     >>> X_train = np.array([[0, 0], [1, 1], [2, 2]])
     >>> y_train = np.array([-1,-1,1])
     >>> reg.fit (X_train, y_train)
@@ -103,7 +119,7 @@ To train the model the ``fit`` method is used; it takes the training data and th
     [1,-1]
 
 
-A full example of training a :class:`SupportVectorMachine` model in a real application can be found under :ref:`examples` and for more details about the API we refer to the :ref:`python-api-documentation`. 
+A full example of training a :class:`SupportVectorMachine` model in a real application can be found in the PowerAI distribution under */opt/DL/snap-ml-local/examples*. For more details about the API we refer to the :ref:`python-api-documentation`. 
 
     
 
@@ -115,25 +131,30 @@ Logistic Regression
 
 .. currentmodule:: snap_ml.LogisticRegression
 
-:class:`LogisticRegression` is a linear model for classification. A logistic model is used to estimate the probability of an outcome based on the features of the input data. In order to prevent the model from overfitting :math:`L_2` regularization is implemented. 
+:class:`LogisticRegression` is a linear model for classification. A logistic model is used to estimate the probability of an outcome based on the features of the input data. In order to prevent the model from overfitting :math:`L_2` or :math:`L_1` regularization can be used.
 
-Mathematically Logistic Regression solves the following optimization problem composing of the logistic loss and an :math:`L_2` regularizer:
+Mathematically :math:`L_2`-regularized Logistic Regression solves the following optimization problem composing of the logistic loss and an :math:`L_2` regularization term:
 
 .. math:: \underset{{\bf w}}{\min\,} \sum_i \log(1+\exp(-y_i {\bf x}_i^\top {\bf w})) + \frac \lambda 2 \|{\bf w}\|_2^2
 
+Similarly, :math:`L_1`-regularized Logistic Regression solves the following optimization problem:
+
+.. math:: \underset{{\bf w}}{\min\,} \sum_i \log(1+\exp(-y_i {\bf x}_i^\top {\bf w})) +  \lambda \|{\bf w}\|_1
+
 where :math:`X=[{\bf x}_1,...,{\bf x}_n]` is the training data matrix with samples :math:`\{{\bf x}_i\}_{i\in [n]}` in its columns and :math:`y_i \in \{\pm 1\}` denote the corresponding labels. 
+
 The regularization strength is controlled by the regularization parameter :math:`\lambda\geq 0`; the larger :math:`\lambda` the more robust the model becomes to overfitting. :math:`\lambda` can be specified by the user through the ``regularizer`` input parameter.
 
-*Snap ML* implements stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`{\bf w}`. In order to support GPU acceleration *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of moderne GPUs `[TPASCD17] <References_>`_. 
+*Snap ML* implements stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`{\bf w}`. In order to support GPU acceleration *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of moderne GPUs `[TPASCD] <References_>`_. 
 
-The model can be trained using the ``fit`` method which takes the training data and the labels :math:`X,\bf y` as input and stores the coefficients of the learnt model :math:`{\bf w}` in its  ``coef_`` attribute. This model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+The model can be trained using the ``fit`` method which takes the training data and the labels :math:`X,\bf y` as input and stores the coefficients of the learnt model :math:`{\bf w}` in its  ``coef_`` attribute. This model can then be used to make predictions by calling the ``predict`` method on unlabeled data. The regularization type can be specified at initialization using the ``penalty`` argument.
 
 .. code-block:: python
 
     >>> from snap_ml import LogisticRegression
     >>> import numpy as np
 
-    >>> lr = LogisticRegression(max_iter = 100, regularizer= 0.01)
+    >>> lr = LogisticRegression(max_iter = 100, regularizer = 0.01, penalty = 'l2')
     >>> X_train = np.array([[0, 0], [1, 1], [2, 2]])
     >>> y_train = np.array([-1,-1,1])
     >>> lr.fit (X_train, y_train)
@@ -143,11 +164,11 @@ The model can be trained using the ``fit`` method which takes the training data 
     >>> lr.predict(X_test)
     [1,-1]
     >>> lr.predict_proba(X_test)
-    [[0.295,0.705]
+    [[0.295, 0.705]
      [0.536, 0.464]]
 
 
-A full example of training a :class:`LogisticRegression` model in Snap ML can be found here :ref:`examples` and for more details about the API we refer to the :ref:`python-api-documentation`. 
+A full example of training a :class:`LogisticRegression` model in Snap ML can be found in the PowerAI distribution under */opt/DL/snap-ml-local/examples*. For more details about the API we refer to the :ref:`python-api-documentation`. 
 
 =======================
 References
@@ -157,6 +178,5 @@ References
 
 :[SDCA]: *Shai Shalev-Shwartz and Tong Zhang*. Stochastic Dual Coordinate Ascent Methods for Regularized Loss Minimization. Journal of Machine Learning Research, 2013.
 
-:[TPASCD17]: *Thomas Parnell, Celestine Dünner, Kubilay Atasu, Manolis Sifalakis, and Haris Pozidis*. Large-Scale Stochastic Learning using GPUs. IEEE International Parallel and Distributed Processing Symposium Workshops (IPDPSW), 2017.
-
+:[TPASCD]: *Thomas Parnell, Celestine Dünner, Kubilay Atasu, Manolis Sifalakis and Haris Pozidis*. Tera-Scale Coordinate Descent on GPUs. Journal on Future Generation Computer Systems, 2018.
 
