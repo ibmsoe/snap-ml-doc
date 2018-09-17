@@ -33,7 +33,7 @@ The *Snap ML* library offers two different packages:
 
 For more technical details about the innovations behind Snap ML we refer to
 
-* Technical paper: `"Snap Machine Learning"  <https://arxiv.org/abs/1803.06333>`_, *C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, H. Pozidis*, Arxiv, 2018.
+* Technical paper: `"Snap Machine Learning"  <https://arxiv.org/abs/1803.06333>`_, *C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, A. Anghel, H. Pozidis*, Arxiv, 2018.
 
 * Project webpage: `www.zurich.ibm.com/snapml <https://www.zurich.ibm.com/snapml/>`_.
 
