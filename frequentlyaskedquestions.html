@@ -50,6 +50,8 @@
 <li><a class="reference internal" href="#should-i-use-the-same-number-of-iterations-with-or-without-gpus">Should I use the same number of iterations with or without GPUs?</a></li>
 <li><a class="reference internal" href="#how-should-i-choose-the-number-of-threads-in-the-gpu-implementation">How should I choose the number of threads in the GPU implementation?</a></li>
 <li><a class="reference internal" href="#should-i-use-the-primal-or-the-dual-solver">Should I use the primal or the dual solver?</a></li>
+<li><a class="reference internal" href="#how-do-i-compare-to-sklearn">How do I compare to sklearn?</a></li>
+<li><a class="reference internal" href="#why-is-it-not-possible-to-use-the-dual-solver-for-lasso">Why is it not possible to use the dual solver for Lasso?</a></li>
 </ul>
 </li>
 </ul>
@@ -103,6 +105,14 @@
 <div class="section" id="should-i-use-the-primal-or-the-dual-solver">
 <h2>Should I use the primal or the dual solver?<a class="headerlink" href="#should-i-use-the-primal-or-the-dual-solver" title="Permalink to this headline">¶</a></h2>
 <p>For models where both solvers are available the optimal choice of the solver depends of the dimensionality of the training dataset. In general, we recommend to use the dual solver if the number of examples in your training dataset is larger than the number of features and other wise use the primal solver. However you need to be aware that when using the primal solver you need to transpose the data first.</p>
+</div>
+<div class="section" id="how-do-i-compare-to-sklearn">
+<h2>How do I compare to sklearn?<a class="headerlink" href="#how-do-i-compare-to-sklearn" title="Permalink to this headline">¶</a></h2>
+<p>The user needs to be aware that the regularization parameter in sklearn is defined differently for the individual models – the mapping can be derived from the equations of the objective which are stated in the Snap ML manual and <a class="reference external" href="http://scikit-learn.org/stable/user_guide.html">here</a> for sklearn. For most classification tasks a regularization parameter <img class="math" src="_images/math/afce44aa7c55836ca9345404c22fc7b599d2ed84.png" alt="C"/> is used in sklearn which is equivalent to <img class="math" src="_images/math/7519f7f0b44eba4133b4226e57c23de8d56fde96.png" alt="\lambda = C^{-1}"/> used in Snap ML. For most regression tasks sklearn uses an <img class="math" src="_images/math/877d234f4cec6974ce218fc2e975a486a7972dfd.png" alt="\alpha"/> regularization parameter which is equivalent to using <img class="math" src="_images/math/c8642ce9c7e015b762ba15154bdcb5bd7795fd60.png" alt="\lambda = \alpha"/> for Ridge Regression and scaled as <img class="math" src="_images/math/a8d47c89df9bf9eb6d8f76f424caeea032b89a8f.png" alt="\lambda = n \alpha"/> for Lasso.</p>
+</div>
+<div class="section" id="why-is-it-not-possible-to-use-the-dual-solver-for-lasso">
+<h2>Why is it not possible to use the dual solver for Lasso?<a class="headerlink" href="#why-is-it-not-possible-to-use-the-dual-solver-for-lasso" title="Permalink to this headline">¶</a></h2>
+<p>The regularization term in Lasso objective is non-smooth. Thus the primal-dual mapping is not well defined for this problem.</p>
 </div>
 </div>
 
