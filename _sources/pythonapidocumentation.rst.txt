@@ -4,16 +4,16 @@
 snap-ml-local API 
 ====================================
 
-.. currentmodule:: snap_ml.LinearRegression
+.. currentmodule:: pai4sk
 .. autoclass:: LinearRegression
     :members:
 
 
-.. currentmodule:: snap_ml.LogisticRegression
+.. currentmodule:: pai4sk
 .. autoclass:: LogisticRegression
     :members:
 
 
-.. currentmodule:: snap_ml.SupportVectorMachine
+.. currentmodule:: pai4sk
 .. autoclass:: SupportVectorMachine
     :members:

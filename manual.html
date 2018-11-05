@@ -96,7 +96,7 @@ It currently supports the following machine learning models:</p>
 </ul>
 <div class="section" id="linear-regression">
 <span id="id2"></span><h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="pythonapidocumentation.html#snap_ml.LinearRegression.LinearRegression" title="snap_ml.LinearRegression.LinearRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code></a> fits a linear model with coefficients <img class="math" src="_images/math/3a9389c304659d99ca69cbc2d2e3b81d82dd2509.png" alt="{\bf w} = (w_1, ..., w_d)"/> to minimize the residual sum
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code> fits a linear model with coefficients <img class="math" src="_images/math/3a9389c304659d99ca69cbc2d2e3b81d82dd2509.png" alt="{\bf w} = (w_1, ..., w_d)"/> to minimize the residual sum
 of squares between the predicted responses <img class="math" src="_images/math/9a594ed1e3d9f589e0f4d626f83686f11b408899.png" alt="\bf \hat{y}"/> and the true labels <img class="math" src="_images/math/1c4a42645c5957e44407faa18fcbc95ec3aad3e7.png" alt="\bf y"/> of the training data.</p>
 <p>In order to prevent the model from overfitting you have the option to impose an
 <img class="math" src="_images/math/86233e6ab8aa6565d22ae73dc8a75da12dde7476.png" alt="L_1"/> or an <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> norm penalty on the size of the coefficients.</p>
@@ -126,7 +126,7 @@ As Lasso regression yields sparse models it can be used to perform feature selec
 </div>
 <p><em>Snap ML</em> implements different variants of stochastic coordinate descent <a class="reference internal" href="#references">[SCD]</a> and stochastic dual coordinate ascent <a class="reference internal" href="#references">[SDCA]</a> as an algorithm to fit the model parameters <img class="math" src="_images/math/8760a10242fd9b6c3fd1dc5a0712e7de51953c79.png" alt="\bf w"/>.
 In order to optimally support GPUs for training <em>Snap ML</em> implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of modern GPUs <a class="reference internal" href="#references">[TPASCD]</a>.</p>
-<p>To train the <a class="reference internal" href="pythonapidocumentation.html#snap_ml.LinearRegression.LinearRegression" title="snap_ml.LinearRegression.LinearRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code></a> model the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method is used; it takes the training data and the labels <img class="math" src="_images/math/40e5819f6e7c5bd244e0e0058bb5fbabec1c7a7d.png" alt="X,\bf y"/> as input and stores the learnt coefficients of the model <img class="math" src="_images/math/8760a10242fd9b6c3fd1dc5a0712e7de51953c79.png" alt="\bf w"/> in its  <code class="docutils literal notranslate"><span class="pre">coef_</span></code> member function.
+<p>To train the <code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code> model the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method is used; it takes the training data and the labels <img class="math" src="_images/math/40e5819f6e7c5bd244e0e0058bb5fbabec1c7a7d.png" alt="X,\bf y"/> as input and stores the learnt coefficients of the model <img class="math" src="_images/math/8760a10242fd9b6c3fd1dc5a0712e7de51953c79.png" alt="\bf w"/> in its  <code class="docutils literal notranslate"><span class="pre">coef_</span></code> member function.
 The regularization type can be specified during initialization using the <code class="docutils literal notranslate"><span class="pre">penalty</span></code> argument.
 The trained model can then be used to make predictions by calling the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method on unlabeled data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">snap_ml</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
@@ -148,7 +148,7 @@ The trained model can then be used to make predictions by calling the <code clas
 <div class="section" id="support-vector-machine">
 <span id="svm"></span><h2>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">¶</a></h2>
 <p>Support Vector Machine (SVM) is a supervised learning method which can be applied for regression as well as classification.
-Currently <em>Snap ML</em> implements <a class="reference internal" href="pythonapidocumentation.html#snap_ml.SupportVectorMachine.SupportVectorMachine" title="snap_ml.SupportVectorMachine.SupportVectorMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupportVectorMachine</span></code></a> (SVMs) with a linear kernel function and offers
+Currently <em>Snap ML</em> implements <code class="xref py py-class docutils literal notranslate"><span class="pre">SupportVectorMachine</span></code> (SVMs) with a linear kernel function and offers
 <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularization to prevent the model from overfitting.</p>
 <p>Mathematically it solves the following optimization problem:</p>
 <div class="math">
@@ -175,11 +175,11 @@ SDCA runs on the equivalent SVM dual problem formulation:</p>
 <span class="go">[1,-1]</span>
 </pre></div>
 </div>
-<p>A full example of training a <a class="reference internal" href="pythonapidocumentation.html#snap_ml.SupportVectorMachine.SupportVectorMachine" title="snap_ml.SupportVectorMachine.SupportVectorMachine"><code class="xref py py-class docutils literal notranslate"><span class="pre">SupportVectorMachine</span></code></a> model in a real application can be found in the PowerAI distribution under <em>/opt/DL/snap-ml-local/examples</em>. For more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml-local API</span></a>.</p>
+<p>A full example of training a <code class="xref py py-class docutils literal notranslate"><span class="pre">SupportVectorMachine</span></code> model in a real application can be found in the PowerAI distribution under <em>/opt/DL/snap-ml-local/examples</em>. For more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml-local API</span></a>.</p>
 </div>
 <div class="section" id="logistic-regression">
 <span id="id3"></span><h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="pythonapidocumentation.html#snap_ml.LogisticRegression.LogisticRegression" title="snap_ml.LogisticRegression.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> is a linear model for classification. A logistic model is used to estimate the probability of an outcome based on the features of the input data. In order to prevent the model from overfitting <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> or <img class="math" src="_images/math/86233e6ab8aa6565d22ae73dc8a75da12dde7476.png" alt="L_1"/> regularization can be used.</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code> is a linear model for classification. A logistic model is used to estimate the probability of an outcome based on the features of the input data. In order to prevent the model from overfitting <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> or <img class="math" src="_images/math/86233e6ab8aa6565d22ae73dc8a75da12dde7476.png" alt="L_1"/> regularization can be used.</p>
 <p>Mathematically <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/>-regularized Logistic Regression solves the following optimization problem composing of the logistic loss and an <img class="math" src="_images/math/cce73c20b14f5d57454e0ad66f02dd004d949e0c.png" alt="L_2"/> regularization term:</p>
 <div class="math">
 <p><img src="_images/math/d351555f098316dadc6adcf99ddaab9d753236ca.png" alt="\underset{{\bf w}}{\min\,} \sum_i \log(1+\exp(-y_i {\bf x}_i^\top {\bf w})) + \frac \lambda 2 \|{\bf w}\|_2^2"/></p>
@@ -207,7 +207,7 @@ SDCA runs on the equivalent SVM dual problem formulation:</p>
 <span class="go"> [0.536, 0.464]]</span>
 </pre></div>
 </div>
-<p>A full example of training a <a class="reference internal" href="pythonapidocumentation.html#snap_ml.LogisticRegression.LogisticRegression" title="snap_ml.LogisticRegression.LogisticRegression"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code></a> model in Snap ML can be found in the PowerAI distribution under <em>/opt/DL/snap-ml-local/examples</em>. For more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml-local API</span></a>.</p>
+<p>A full example of training a <code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code> model in Snap ML can be found in the PowerAI distribution under <em>/opt/DL/snap-ml-local/examples</em>. For more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml-local API</span></a>.</p>
 <div class="section" id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 <table class="docutils field-list" frame="void" rules="none">
@@ -254,7 +254,7 @@ SDCA runs on the equivalent SVM dual problem formulation:</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
     </div>
   </body>
 </html>

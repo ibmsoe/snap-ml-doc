@@ -62,7 +62,7 @@
 <span id="pyspark-api-documentation"></span><h1>snap-ml-spark API<a class="headerlink" href="#snap-ml-spark-api" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="snap_ml_spark.LinearRegression.LinearRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Regression classifier</p>
 <p>This class implements Regularized Linear regression using the IBM Snap ML distributed solver.  It can handle sparse and dense dataset formats. Please use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -70,7 +70,7 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True, else dual=False.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
@@ -81,10 +81,15 @@ is performed using the GPU. If False, the training is performed using the CPU.</
 <li><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight = 1.</li>
 <li><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
 the maximum possible memory is used.</li>
-<li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=32 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
+<li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
 <li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (RidgeRegression)
 or “l1” for L1 regularization (LassoRegression). L1 regularization is possible only for the primal
 optimization problem (dual=False).</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</li>
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</li>
 </ul>
 </td>
 </tr>
@@ -127,15 +132,20 @@ optimization problem (dual=False).</li>
 
 <dl class="method">
 <dt id="snap_ml_spark.LinearRegression.LinearRegression.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict regression values</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id1"><span class="problematic" id="id2">pred_array_</span></a> field which is a python array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id1"><span class="problematic" id="id2">pred_array_</span></a> field which is a python array.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -145,7 +155,7 @@ optimization problem (dual=False).</li>
 
 <dl class="class">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
 <p>This class implements regularized Logistic Regression using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -153,7 +163,7 @@ optimization problem (dual=False).</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or Primal formulation.
 Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
@@ -164,10 +174,15 @@ is performed using the GPU. If False, the training is performed using the CPU.</
 <li><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
 <li><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
 the maximum possible memory is used.</li>
-<li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=32 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
+<li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
 <li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization
 or “l1” for L1 regularization. L1 regularization is possible only for the primal
 optimization problem (dual=False).</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</li>
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</li>
 </ul>
 </td>
 </tr>
@@ -211,15 +226,20 @@ optimization problem (dual=False).</li>
 
 <dl class="method">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict label</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id3"><span class="problematic" id="id4">pred_array_</span></a> field which is a python array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id3"><span class="problematic" id="id4">pred_array_</span></a> field which is a python array.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -227,15 +247,20 @@ optimization problem (dual=False).</li>
 
 <dl class="method">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression.predict_proba">
-<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.predict_proba" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict probabilities</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id5"><span class="problematic" id="id6">proba_array_</span></a> field which is a python array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id5"><span class="problematic" id="id6">proba_array_</span></a> field which is a python array.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -245,7 +270,7 @@ optimization problem (dual=False).</li>
 
 <dl class="class">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>tol=0.001</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
 <p>This class implements regularized support vector machine using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -253,7 +278,7 @@ optimization problem (dual=False).</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
 <li><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag for indicating if the training loss will be printed at each epoch.</li>
@@ -262,7 +287,12 @@ is performed using the GPU. If False, the training is performed using the CPU.</
 <li><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</li>
 <li><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
 the maximum possible memory is used.</li>
-<li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=32 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
+<li><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</li>
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</li>
 </ul>
 </td>
 </tr>
@@ -305,15 +335,20 @@ the maximum possible memory is used.</li>
 
 <dl class="method">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predict label</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id7"><span class="problematic" id="id8">pred_array_</span></a> field which is a python array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id7"><span class="problematic" id="id8">pred_array_</span></a> field which is a python array.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -553,7 +588,7 @@ y : the labels of the samples in X.</td>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
     </div>
   </body>
 </html>
