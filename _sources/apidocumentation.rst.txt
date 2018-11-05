@@ -4,11 +4,14 @@
 API Documentation
 ====================================
 
-We currently provide three different APIs
+We currently provide four python modules. Check out the APIs exposed by these modules in the relevant links,
 
-* :ref:`python-api-documentation` 
+
+* :ref:`pai4sk-api-documentation`
+
+* :ref:`python-api-documentation`
 
 * :ref:`mpi-api-documentation`
 
-* :ref:`pyspark-api-documentation` 
+* :ref:`pyspark-api-documentation`
 

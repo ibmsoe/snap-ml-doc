@@ -62,7 +62,7 @@
 <span id="mpi-api-documentation"></span><h1>snap-ml-mpi API<a class="headerlink" href="#snap-ml-mpi-api" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="snap_ml_mpi.LinearRegression.LinearRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_mpi.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>dual=True</em>, <em>num_threads=1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_mpi.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>dual=True</em>, <em>num_threads=1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em>, <em>fit_intercept=False</em>, <em>intercept_scaling=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Regression</p>
 <p>This class implements regularized linear regression using the IBM Snap ML solver.
 It handles both dense and sparse matrix inputs. Use csr, csc or ndarray matrix format
@@ -72,7 +72,7 @@ for training and csr or ndarray format for prediction.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
 <li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
@@ -85,12 +85,18 @@ Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
-should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
-multi-threaded CPU training is currently an experimental feature and convergence
-is not guaranteed.</li>
+should be a multiple of 32 if the training is performed on GPU (use_gpu=True).</li>
 <li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (RidgeRegression)
 or “l1” for L1 regularization (LassoRegression). L1 regularization is possible only for the primal
 optimization problem (dual=False).</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</li>
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</li>
+<li><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Add bias term – note, may affect speed of convergence, especially for sparse datasets.</li>
+<li><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Scaling of bias term. The inclusion of a bias term is implemented by appending an additional feature to the
+dataset. This feature has a constant value, that can be set using this parameter.</li>
 </ul>
 </td>
 </tr>
@@ -135,18 +141,25 @@ optimization problem (dual=False).</li>
 
 <dl class="method">
 <dt id="snap_ml_mpi.LinearRegression.LinearRegression.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LinearRegression.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class predictions</p>
 <p>The returned class estimates for the two classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting classes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting classes</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the predicted class of the sample (for this partition)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>proba</strong> – Returns the predicted class of the sample (for this partition)</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape = (n_samples,)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -156,7 +169,7 @@ optimization problem (dual=False).</li>
 
 <dl class="class">
 <dt id="snap_ml_mpi.LogisticRegression.LogisticRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_mpi.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>dual=True</em>, <em>num_threads=1</em>, <em>penalty='l2'</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_mpi.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>dual=True</em>, <em>num_threads=1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em>, <em>fit_intercept=False</em>, <em>intercept_scaling=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
 <p>This class implements distributed regularized logistic regression using the IBM Snap
 ML MPI solver. It handles both dense and sparse matrix inputs. Use csr, csc or ndarray
@@ -167,7 +180,7 @@ We recommend the user to first normalize the input values.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
 <li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
@@ -181,12 +194,18 @@ Recommendation: if n_samples &gt; n_features use dual=True.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
-should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
-CPU multi-threaded training is currently an experimental feature and convergence
-is not guaranteed.</li>
+should be a multiple of 32 if the training is performed on GPU (use_gpu=True).</li>
 <li><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (LogisticRegression)
 or “l1” for L1 regularization (SparseLogisticRegression). L1 regularization is possible only for the primal
 optimization problem (dual=False).</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</li>
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</li>
+<li><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Add bias term – note, may affect speed of convergence, especially for sparse datasets.</li>
+<li><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Scaling of bias term. The inclusion of a bias term is implemented by appending an additional feature to the
+dataset. This feature has a constant value, that can be set using this parameter.</li>
 </ul>
 </td>
 </tr>
@@ -231,18 +250,25 @@ optimization problem (dual=False).</li>
 
 <dl class="method">
 <dt id="snap_ml_mpi.LogisticRegression.LogisticRegression.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class predictions</p>
 <p>The returned class estimates for the two classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting classes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting classes</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the predicted class of the sample (for this partition)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>proba</strong> – Returns the predicted class of the sample (for this partition)</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape = (n_samples,)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -250,18 +276,25 @@ optimization problem (dual=False).</li>
 
 <dl class="method">
 <dt id="snap_ml_mpi.LogisticRegression.LogisticRegression.predict_log_proba">
-<code class="descname">predict_log_proba</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression.predict_log_proba" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict_log_proba</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression.predict_log_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log of probability estimates</p>
 <p>The returned log-probability estimates for the two classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting log probability estimates.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting log probability estimates.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the log-probability of the sample for each of the two classes (for this partition)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>proba</strong> – Returns the log-probability of the sample to be a positive example (for this partition)</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples, 2)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape = (n_samples,)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -269,18 +302,25 @@ optimization problem (dual=False).</li>
 
 <dl class="method">
 <dt id="snap_ml_mpi.LogisticRegression.LogisticRegression.predict_proba">
-<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression.predict_proba" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict_proba</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.LogisticRegression.LogisticRegression.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd><p>Probability estimates</p>
 <p>The returned probability estimates for the two classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting probability estimates.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting probability estimates.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the probability of the sample of each of the two classes (for this partition)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>proba</strong> – Returns the probability of the sample to be a positive example (for this partition)</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples, 2)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape = (n_samples,)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -290,7 +330,7 @@ optimization problem (dual=False).</li>
 
 <dl class="class">
 <dt id="snap_ml_mpi.SupportVectorMachine.SupportVectorMachine">
-<em class="property">class </em><code class="descclassname">snap_ml_mpi.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=50</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_mpi.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>regularizer=1.0</em>, <em>device_ids=[]</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weight=None</em>, <em>num_threads=1</em>, <em>tol=0.001</em>, <em>return_training_history=None</em>, <em>fit_intercept=False</em>, <em>intercept_scaling=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
 <p>This class implements regularized support vector machine using the IBM Snap ML solver.
 It handles both dense and sparse matrix inputs. Use csr or ndarray matrix format
@@ -301,7 +341,7 @@ the user to normalize the input values.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 50</em>) – Maximum number of iterations used by the solver to converge.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
 <li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
@@ -313,9 +353,15 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the traiing time.
 For performance evaluation, use verbose=False.</li>
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
-should be a power of 2 if the training is performed on GPU (use_gpu=True). Running
-CPU multi-threaded training is currently an experimental feature and convergence
-is not guaranteed.</li>
+should be a multiple of 32 if the training is performed on GPU (use_gpu=True).</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</li>
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</li>
+<li><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Add bias term – note, may affect speed of convergence, especially for sparse datasets.</li>
+<li><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Scaling of bias term. The inclusion of a bias term is implemented by appending an additional feature to the
+dataset. This feature has a constant value, that can be set using this parameter.</li>
 </ul>
 </td>
 </tr>
@@ -326,18 +372,25 @@ is not guaranteed.</li>
 </table>
 <dl class="method">
 <dt id="snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.decision_function">
-<code class="descname">decision_function</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.decision_function" title="Permalink to this definition">¶</a></dt>
+<code class="descname">decision_function</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.decision_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Predicts confidence scores.</p>
 <p>The confidence score of a sample is the signed distance of that sample to the decision boundary.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting distances to the decision boundary.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting distances to the decision boundary.</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the distance to the decision boundary of the sample (for this partition)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>proba</strong> – Returns the distance to the decision boundary of the sample (for this partition)</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape = (n_samples,)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -379,18 +432,25 @@ is not guaranteed.</li>
 
 <dl class="method">
 <dt id="snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.predict">
-<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.predict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">predict</code><span class="sig-paren">(</span><em>data</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_mpi.SupportVectorMachine.SupportVectorMachine.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class predictions</p>
 <p>The returned class estimates for the two classes.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting classes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> (<em>distributed dataset</em><em> (</em><em>Partition</em><em>)</em>) – Dataset used for predicting classes</li>
+<li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the predicted class of the sample (for this partition)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>proba</strong> – Returns the predicted class of the sample (for this partition)</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape = (n_samples,)</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -613,7 +673,7 @@ when compared with the true values (data).</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.2.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
     </div>
   </body>
 </html>
