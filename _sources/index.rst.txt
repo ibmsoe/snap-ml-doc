@@ -50,7 +50,9 @@ Content
 
     apidocumentation
     manual
+    tutorials
     frequentlyaskedquestions
+
 
     
 

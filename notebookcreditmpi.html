@@ -1,0 +1,285 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Click-Through Rate Prediction Prediction at large scale &#8212; Snap Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Click-Through Rate Prediction Prediction at large scale</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#getting-the-data">Getting the data</a></li>
+<li><a class="reference internal" href="#data-preprocessing">Data Preprocessing</a></li>
+<li><a class="reference internal" href="#training-and-evaluation-a-logistic-regression-model">Training and Evaluation a Logistic Regression Model</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="click-through-rate-prediction-prediction-at-large-scale">
+<span id="notebook-criteo-mpi"></span><h1>Click-Through Rate Prediction Prediction at large scale<a class="headerlink" href="#click-through-rate-prediction-prediction-at-large-scale" title="Permalink to this headline">¶</a></h1>
+<p>In this example we will showcase how <code class="docutils literal notranslate"><span class="pre">snap-ml-mpi</span></code> can be used to train a logistic regression classifier for the task of click through rate prediction. For this purpose we use the publicly available criteo-kaggle dataset which can be downloaded from the <a class="reference external" href="https://www.kaggle.com/c/criteo-display-ad-challenge">Display Advertising Challenge</a>.</p>
+<p>The task is described as follows:</p>
+<blockquote>
+<div>Display advertising is a billion dollar effort and one of the central uses of machine learning on the Internet. However, its data and methods are usually kept under lock and key. In this research competition, CriteoLabs is sharing a week’s worth of data for you to develop models predicting ad click-through rate (CTR). Given a user and the page he is visiting, what is the probability that he will click on a given ad?</div></blockquote>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>To run the example across multiple nodes in a cluster you must have</p>
+<ul class="simple">
+<li>MPI configured</li>
+<li>snap-ml-mpi installed</li>
+<li>password-less ssh enabled between hosts</li>
+</ul>
+</div>
+<div class="section" id="getting-the-data">
+<h2>Getting the data<a class="headerlink" href="#getting-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Download and decompress the data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">data</span>
+<span class="n">cd</span> <span class="n">data</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">s3</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mf">2.</span><span class="n">amazonaws</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">criteo</span><span class="o">-</span><span class="n">public</span><span class="o">-</span><span class="n">svm</span><span class="o">-</span><span class="n">data</span><span class="o">/</span><span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">svm</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="n">xzf</span> <span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">svm</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="o">../</span>
+</pre></div>
+</div>
+<p>Now one should see a file named criteo.kaggle2014.svm in the data/ directory.</p>
+</div>
+<div class="section" id="data-preprocessing">
+<h2>Data Preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>Before performing the training we show how to split the data into a train and a test set, how to perform data preprocessing and how to dump the data to <em>snap</em> format for fast data loading.</p>
+<p>Therefore you should create a script called <code class="docutils literal notranslate"><span class="pre">my-preprocessing.py</span></code> containing the preprocessing functionalities you want to have. An example of different preprocessing functions is given below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Load the data</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Loading CRITEO dataset...&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_svmlight_file</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data/criteo.kaggle2014.train.svm&quot;</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_svmlight_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Splitting data...&#39;</span><span class="p">)</span>
+<span class="c1"># Make the train-test split</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Saving data in sklearn format...&#39;</span><span class="p">)</span>
+<span class="c1"># Save train and test datasets for fast sklearn data loading</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sp</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">save_npz</span><span class="p">(</span><span class="s2">&quot;data/criteo.kaggle2014.X_train&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">compressed</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">save_npz</span><span class="p">(</span><span class="s2">&quot;data/criteo.kaggle2014.X_test&quot;</span><span class="p">,</span>  <span class="n">X_test</span><span class="p">,</span>  <span class="n">compressed</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># Save train and test datasets for fast sklearn data loading</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;data/criteo.kaggle2014.y_train&quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;data/criteo.kaggle2014.y_test&quot;</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="c1"># Convert to numpy arrays</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Converting to dense format...&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+<span class="n">X_test</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+
+<span class="c1"># Normalize the training data</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Normalizing data...&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">normalize</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+<span class="n">X_test</span>  <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span>  <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Saving data in distributed snap.ml format...&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">snap_ml_mpi.Utils</span> <span class="kn">import</span> <span class="n">dump_to_snap_format</span>
+<span class="n">dump_to_snap_format</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;data/criteo.kaggle2014.train.snap&quot;</span><span class="p">)</span>
+<span class="n">dump_to_snap_format</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="s2">&quot;data/criteo.kaggle2014.test.snap&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To run the pre-processing you need to call:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span> <span class="n">python</span> <span class="n">my</span><span class="o">-</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>this creates the following files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">data</span><span class="o">/</span>
+<span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">snap</span>
+<span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">snap</span>
+<span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">svm</span>
+<span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">X_test</span><span class="o">.</span><span class="n">npz</span>
+<span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">X_train</span><span class="o">.</span><span class="n">npz</span>
+<span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">y_test</span><span class="o">.</span><span class="n">npy</span>
+<span class="n">criteo</span><span class="o">.</span><span class="n">kaggle2014</span><span class="o">.</span><span class="n">y_train</span><span class="o">.</span><span class="n">npy</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="training-and-evaluation-a-logistic-regression-model">
+<h2>Training and Evaluation a Logistic Regression Model<a class="headerlink" href="#training-and-evaluation-a-logistic-regression-model" title="Permalink to this headline">¶</a></h2>
+<p>After running the data pre-processing steps above, we are ready to train a Logistic Regression classifier using the IBM <code class="docutils literal notranslate"><span class="pre">snap-ml-mpi</span></code> library. Note that you need to have access to the data from all the connected machines that will be used (by replicating the data or by providing a distributed file system).</p>
+<p>To perform the training we create a script <code class="docutils literal notranslate"><span class="pre">my-training.py</span></code> where we specify the parameters and function calls. For an example see below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="c1"># Load Data from snap format</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[Snap.ML] Data loading...&quot;</span><span class="p">)</span>
+
+<span class="n">train_filename_snap</span> <span class="o">=</span> <span class="s2">&quot;data/criteo.kaggle2014.train.snap&quot;</span>
+<span class="n">test_filename_snap</span> <span class="o">=</span> <span class="s2">&quot;data/criteo.kaggle2014.test.snap&quot;</span>
+
+<span class="kn">from</span> <span class="nn">snap_ml_mpi.Loaders</span> <span class="kn">import</span> <span class="n">load_from_snap_format</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">load_from_snap_format</span><span class="p">(</span><span class="n">train_filename_snap</span><span class="p">)</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">load_from_snap_format</span><span class="p">(</span><span class="n">test_filename_snap</span><span class="p">)</span>
+
+
+<span class="c1"># specify whether to use GPUs for training or not</span>
+<span class="n">use_gpu</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">device_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">if</span> <span class="n">use_gpu</span><span class="p">:</span>
+    <span class="n">num_threads</span> <span class="o">=</span> <span class="mi">256</span>
+    <span class="n">cpu_gpu</span> <span class="o">=</span> <span class="s2">&quot;GPU&quot;</span>
+    <span class="c1"># specify how many and which GPUs to use per node</span>
+    <span class="n">device_ids</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">num_threads</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">cpu_gpu</span> <span class="o">=</span> <span class="s2">&quot;CPU&quot;</span>
+
+
+<span class="c1"># specify whether to balance class weights</span>
+<span class="n">use_balanced_class_weights</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="k">if</span> <span class="n">use_balanced_class_weights</span><span class="p">:</span>
+    <span class="n">class_weight</span> <span class="o">=</span> <span class="s2">&quot;balanced&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">class_weight</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># Create snapML Logistic Regression classifier</span>
+<span class="kn">from</span> <span class="nn">snap_ml_mpi</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">snapmlLR</span>
+<span class="n">snapml_lr</span> <span class="o">=</span> <span class="n">snapmlLR</span><span class="p">(</span><span class="n">dual</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_gpu</span><span class="o">=</span><span class="n">use_gpu</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="n">device_ids</span><span class="p">,</span>
+                    <span class="n">num_threads</span><span class="o">=</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="n">class_weight</span><span class="p">)</span>
+
+
+<span class="c1"># Fit the model</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[Snap.ML] Training model...&quot;</span><span class="p">)</span>
+<span class="n">snapml_t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">snapml_lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+<span class="n">snapml_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">snapml_t0</span>
+
+<span class="c1"># Perform inference on test data</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[Snap.ML] Running prediction...&quot;</span><span class="p">)</span>
+
+<span class="n">pred</span> <span class="o">=</span> <span class="n">snapml_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="n">proba</span> <span class="o">=</span> <span class="n">snapml_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">snap_ml_mpi.Metrics</span> <span class="kn">import</span> <span class="n">log_loss</span> <span class="k">as</span> <span class="n">snapLOGLOSS</span>
+<span class="kn">from</span> <span class="nn">snap_ml_mpi.Metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span> <span class="k">as</span> <span class="n">snapACC</span>
+
+<span class="c1"># Compute accuracy</span>
+<span class="n">snapml_accuracy</span> <span class="o">=</span> <span class="n">snapACC</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+<span class="n">snapml_logloss</span> <span class="o">=</span> <span class="n">snapLOGLOSS</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">proba</span><span class="p">)</span>
+
+<span class="c1"># Print off SnapML result</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[Snap.ML] [</span><span class="si">%s</span><span class="s2"> Training] Accuracy = </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cpu_gpu</span><span class="p">,</span> <span class="n">snapml_accuracy</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[Snap.ML] [</span><span class="si">%s</span><span class="s2"> Training] LogLoss = </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cpu_gpu</span><span class="p">,</span> <span class="n">snapml_logloss</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[Snap.ML] [</span><span class="si">%s</span><span class="s2"> Training] Training time = </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cpu_gpu</span><span class="p">,</span> <span class="n">snapml_time</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>to run the training script call:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">2</span> <span class="o">--</span><span class="n">host</span> <span class="n">machine1</span><span class="p">,</span><span class="n">machine2</span> <span class="o">-</span><span class="n">x</span> <span class="n">PATH</span> <span class="o">-</span><span class="n">x</span> <span class="n">PYTHONPATH</span> <span class="o">-</span><span class="n">x</span> <span class="n">LD_LIBRARY_PATH</span> <span class="n">python</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">DL</span><span class="o">/</span><span class="n">snap</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">mpi</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">example</span><span class="o">-</span><span class="n">criteo</span><span class="o">/</span><span class="n">example</span><span class="o">-</span><span class="n">criteo</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The user can also run multiple MPI processes per machine, but, in that case, the MPI processes on one machine will share the same hardware resources during training. Namely, if the user trains the model on GPUs, the MPI processes on one machine will share the same GPUs as defined in the device_ids parameter. Therefore, we recommend the user to run 1 MPI process per machine in order to achieve the maximum performance.</p>
+</div>
+<p>As a reference we show the expected output for running the script on 2 P9 machines using one V100 GPU on each machine. We ran the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mpirun -np 2 --host node1,node2 -x PATH=$PATH -x PYHONPATH=$PYTHONPATH -x LD_LIBRARY_PATH=$LD_LIBRARY_PATH python /opt/DL/snap-ml-mpi/examples/example-criteo/example-criteo.py
+</pre></div>
+</div>
+<p>and this yields the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Snap</span><span class="o">.</span><span class="n">ML</span><span class="p">]</span> <span class="p">[</span><span class="n">GPU</span> <span class="n">Training</span><span class="p">]</span> <span class="n">Accuracy</span> <span class="o">=</span> <span class="mf">0.7877</span>
+<span class="p">[</span><span class="n">Snap</span><span class="o">.</span><span class="n">ML</span><span class="p">]</span> <span class="p">[</span><span class="n">GPU</span> <span class="n">Training</span><span class="p">]</span> <span class="n">LogLoss</span> <span class="o">=</span> <span class="mf">0.4558</span>
+<span class="p">[</span><span class="n">Snap</span><span class="o">.</span><span class="n">ML</span><span class="p">]</span> <span class="p">[</span><span class="n">GPU</span> <span class="n">Training</span><span class="p">]</span> <span class="n">Training</span> <span class="n">time</span> <span class="o">=</span> <span class="mf">21.9170</span>
+</pre></div>
+</div>
+<p>Please note that the reported times can vary depending on the system architecture.</p>
+<p>© Copyright IBM Corporation 2018</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+    </div>
+  </body>
+</html>
