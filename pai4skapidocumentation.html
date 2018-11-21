@@ -93,7 +93,7 @@ to false, no intercept will be used in calculations
 If True, the regressors X will be normalized before regression by
 subtracting the mean and dividing by the l2-norm.
 If you wish to standardize, please use
-<code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
 on an estimator with <code class="docutils literal notranslate"><span class="pre">normalize=False</span></code>.</li>
 <li><strong>copy_X</strong> (<em>boolean</em><em>, </em><em>optional</em><em>, </em><em>default True</em>) – If True, X will be copied; else, it may be overwritten.</li>
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of iterations for conjugate gradient solver.
@@ -138,7 +138,7 @@ iterative procedure, and are often faster than other solvers when
 both n_samples and n_features are large. Note that ‘sag’ and
 ‘saga’ fast convergence is only guaranteed on features with
 approximately the same scale. You can preprocess the data with a
-scaler from pai4sk.preprocessing.</li>
+scaler from sklearn.preprocessing.</li>
 </ul>
 <p>All last five solvers support both dense and sparse data. However,
 only ‘sag’ and ‘saga’ supports sparse input when <cite>fit_intercept</cite> is
@@ -171,15 +171,8 @@ instance used by <cite>np.random</cite>. Used when <code class="docutils literal
 <li><strong>coef</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>) or </em><em>(</em><em>n_targets</em><em>, </em><em>n_features</em><em>)</em>) – Weight vector(s).</li>
 <li><strong>intercept</strong> (<em>float | array</em><em>, </em><em>shape =</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – Independent term in decision function. Set to 0.0 if
 <code class="docutils literal notranslate"><span class="pre">fit_intercept</span> <span class="pre">=</span> <span class="pre">False</span></code>.</li>
-<li><strong>n_iter</strong> (<em>array</em><em> or </em><em>None</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – Actual number of iterations for each target. Available only for
-sag and lsqr solvers. Other solvers will return None.</li>
-<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – <p>It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
-If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
-epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
-If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
-that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
-‘train_obj’ is the training loss.
-Applicable only for snapml solver.</p>
+<li><strong>n_iter</strong> (<em>array</em><em> or </em><em>None</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – <p>Actual number of iterations for each target. Available only for
+sag and lsqr solvers. Other solvers will return None.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 0.17.</span></p>
 </div>
@@ -196,12 +189,12 @@ Applicable only for snapml solver.</p>
 <dd>Ridge classifier</dd>
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeCV</span></code></dt>
 <dd>Ridge regression with built-in cross validation</dd>
-<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.kernel_ridge.KernelRidge</span></code></dt>
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.kernel_ridge.KernelRidge</span></code></dt>
 <dd>Kernel ridge regression combines ridge regression with the kernel trick</dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.linear_model</span> <span class="k">import</span> <span class="n">Ridge</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">Ridge</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -293,7 +286,7 @@ to False, no intercept will be used in calculations
 If True, the regressors X will be normalized before regression by
 subtracting the mean and dividing by the l2-norm.
 If you wish to standardize, please use
-<code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
 on an estimator with <code class="docutils literal notranslate"><span class="pre">normalize=False</span></code>.</li>
 <li><strong>precompute</strong> (<em>True | False | array-like</em><em>, </em><em>default=False</em>) – Whether to use a precomputed Gram matrix to speed up
 calculations. If set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> let us decide. The Gram
@@ -349,22 +342,13 @@ Applicable only for snapml solver</li>
 <li><strong>intercept</strong> (<em>float | array</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – independent term in decision function.</li>
 <li><strong>n_iter</strong> (<em>int | array-like</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – number of iterations run by the coordinate descent solver to reach
 the specified tolerance.</li>
-<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
-If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
-epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
-If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
-that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
-‘train_obj’ is the training loss.
-Applicable only for snapml solver.</li>
-<li><strong>support</strong> (<em>array-like</em>) – Indices of the features that lie in the support ond contribute to the decision.</li>
-<li><strong>model_sparsity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Fraction of non-zeros in the model parameters.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk</span> <span class="k">import</span> <span class="n">linear_model</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">linear_model</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="go">Lasso(alpha=0.1, copy_X=True, fit_intercept=True, max_iter=1000,</span>
@@ -378,7 +362,7 @@ Applicable only for snapml solver.</li>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><code class="xref py py-class docutils literal notranslate"><span class="pre">lars_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">lasso_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLars</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.decomposition.sparse_encode</span></code></p>
+<p class="last"><code class="xref py py-class docutils literal notranslate"><span class="pre">lars_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">lasso_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLars</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.decomposition.sparse_encode</span></code></p>
 </div>
 <p class="rubric">Notes</p>
 <p>The algorithm used to fit the model is coordinate descent.</p>
@@ -516,7 +500,7 @@ schemes.</li>
 </ul>
 <p>Note that ‘sag’ and ‘saga’ fast convergence is only guaranteed on
 features with approximately the same scale. You can
-preprocess the data with a scaler from pai4sk.preprocessing.</p>
+preprocess the data with a scaler from sklearn.preprocessing.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 0.17: </span>Stochastic Average Gradient descent solver.</p>
 </div>
@@ -593,18 +577,9 @@ In particular, when <cite>multi_class=’multinomial’</cite>, <cite>intercept_
 corresponds to outcome 1 (True) and <cite>-intercept_</cite> corresponds to
 outcome 0 (False).</p>
 </li>
-<li><strong>n_iter</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – Actual number of iterations for all classes. If binary or multinomial,
+<li><strong>n_iter</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – <p>Actual number of iterations for all classes. If binary or multinomial,
 it returns only 1 element. For liblinear solver, only the maximum
-number of iteration across all classes is given.</li>
-<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
-If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
-epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
-If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
-that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
-‘train_obj’ is the training loss.
-Applicable only for snapml solver.</li>
-<li><strong>support</strong> (<em>array-like</em>) – Indices of the features that contribute to the decision. (only available for L1)</li>
-<li><strong>model_sparsity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – <p>Fraction of non-zeros in the model parameters. (only available for L1)</p>
+number of iteration across all classes is given.</p>
 <div class="versionchanged">
 <p><span class="versionmodified">Changed in version 0.20: </span>In SciPy &lt;= 1.0.0 the number of lbfgs iterations may exceed
 <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>. <code class="docutils literal notranslate"><span class="pre">n_iter_</span></code> will now report at most <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>.</p>
@@ -616,8 +591,8 @@ Applicable only for snapml solver.</li>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.datasets</span> <span class="k">import</span> <span class="n">load_iris</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">load_iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span>
 <span class="gp">... </span>                         <span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -861,25 +836,14 @@ problem). This is only available in the case of a linear kernel.</p>
 follows the internal memory layout of liblinear.</p>
 </li>
 <li><strong>intercept</strong> (<em>array</em><em>, </em><em>shape =</em><em> [</em><em>1</em><em>] </em><em>if n_classes == 2 else</em><em> [</em><em>n_classes</em><em>]</em>) – Constants in decision function.</li>
-<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
-If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
-epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
-If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
-that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
-‘train_obj’ is the training loss.
-Applicable only for snapml solver.</li>
-<li><strong>support</strong> (<em>array-like</em><em>,  </em><em>shape</em><em> (</em><em>n_SV</em><em>)</em>) – indices of the support vectors.</li>
-<li><strong>n_support</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of support vectors.</li>
-<li><strong>n_iter</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – Actual number of iterations for all classes to reach the specified tolerance.
-If binary or multinomial, it returns only 1 element.`</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.svm</span> <span class="k">import</span> <span class="n">LinearSVC</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.datasets</span> <span class="k">import</span> <span class="n">make_classification</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">LinearSVC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">make_classification</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -910,8 +874,8 @@ in the narrative documentation.</p>
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">SVC</span></code></dt>
-<dd>Implementation of Support Vector Machine classifier using libsvm: the kernel can be non-linear but its SMO algorithm does not scale to large number of samples as LinearSVC does. Furthermore SVC multi-class mode is implemented using one vs one scheme while LinearSVC uses one vs the rest. It is possible to implement one vs the rest with SVC by using the <code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.multiclass.OneVsRestClassifier</span></code> wrapper. Finally SVC can fit dense data without memory copy if the input is C-contiguous. Sparse data will still incur memory copy though.</dd>
-<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.linear_model.SGDClassifier</span></code></dt>
+<dd>Implementation of Support Vector Machine classifier using libsvm: the kernel can be non-linear but its SMO algorithm does not scale to large number of samples as LinearSVC does. Furthermore SVC multi-class mode is implemented using one vs one scheme while LinearSVC uses one vs the rest. It is possible to implement one vs the rest with SVC by using the <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.multiclass.OneVsRestClassifier</span></code> wrapper. Finally SVC can fit dense data without memory copy if the input is C-contiguous. Sparse data will still incur memory copy though.</dd>
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.linear_model.SGDClassifier</span></code></dt>
 <dd>SGDClassifier can optimize the same cost function as LinearSVC by adjusting the penalty and loss parameters. In addition it requires less memory, allows incremental (online) learning, and implements various loss functions and regularization regimes.</dd>
 </dl>
 </div>
