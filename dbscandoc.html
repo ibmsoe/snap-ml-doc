@@ -1,0 +1,186 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cluster.DBSCAN &#8212; Snap Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cluster-dbscan">
+<span id="dbscan-doc"></span><h1>cluster.DBSCAN<a class="headerlink" href="#cluster-dbscan" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.cluster.DBSCAN">
+<em class="property">class </em><code class="descclassname">pai4sk.cluster.</code><code class="descname">DBSCAN</code><span class="sig-paren">(</span><em>eps=0.5</em>, <em>min_samples=5</em>, <em>metric='euclidean'</em>, <em>metric_params=None</em>, <em>algorithm='auto'</em>, <em>leaf_size=30</em>, <em>p=None</em>, <em>n_jobs=None</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform DBSCAN clustering from vector array or distance matrix.</p>
+<p>DBSCAN - Density-Based Spatial Clustering of Applications with Noise. Finds
+core samples of high density and expands clusters from them. Good for data
+which contains clusters of similar density.</p>
+<p>If cuml is installed and if possible, then accelerated DBSCAN algorithm
+from cuML will be used. Otherwise, scikit-learn DBSCAN algorithm will be used.</p>
+<dl class="docutils">
+<dt>eps <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+<dd>The maximum distance between two samples for them to be considered as
+in the same neighborhood.</dd>
+<dt>min_samples <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd>The number of samples (or total weight) in a neighborhood for a point
+to be considered as a core point. This includes the point itself.</dd>
+<dt>metric <span class="classifier-delimiter">:</span> <span class="classifier">string, or callable</span></dt>
+<dd>The metric to use when calculating distance between instances in a
+feature array. If metric is a string or callable, it must be one of
+the options allowed by sklearn.metrics.pairwise_distances for its
+metric parameter. If metric is ‘precomputed’, X is assumed to be a
+distance matrix and must be square. X may be a sparse matrix, in which
+case only nonzero elements may be considered neighbors for DBSCAN.
+New in version 0.17: metric precomputed to accept precomputed sparse matrix.</dd>
+<dt>metric_params <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
+<dd>Additional keyword arguments for the metric function.
+New in version 0.19.</dd>
+<dt>algorithm <span class="classifier-delimiter">:</span> <span class="classifier">{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’, ‘cuml’}, optional</span></dt>
+<dd><p class="first">The algorithm to be used by the NearestNeighbors module to compute
+pointwise distances and find nearest neighbors. See NearestNeighbors
+module documentation for details.</p>
+<p class="last">If cuml is installed and if either (1) algorithm is set to “cuml” or
+(2) algorithm is “auto”, then pai4sk will try to use DBSCAN algorithm
+from RAPIDS cuML if possible. cuML in pai4sk is currently supported
+only (a) with python 3.6 and (b) without MPI.</p>
+</dd>
+<dt>leaf_size <span class="classifier-delimiter">:</span> <span class="classifier">int, optional (default = 30)</span></dt>
+<dd>Leaf size passed to BallTree or cKDTree. This can affect the speed of
+the construction and query, as well as the memory required to store the
+tree. The optimal value depends on the nature of the problem.</dd>
+<dt>p <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+<dd>The power of the Minkowski metric to be used to calculate distance between points.</dd>
+<dt>n_jobs <span class="classifier-delimiter">:</span> <span class="classifier">int or None, optional (default=None)</span></dt>
+<dd>The number of parallel jobs to run. None means 1 unless in a
+joblib.parallel_backend context. -1 means using all processors.
+See Glossary for more details.</dd>
+<dt>use_gpu <span class="classifier-delimiter">:</span> <span class="classifier">boolean, Default is True</span></dt>
+<dd>If True, cuML will use GPU 0. Applicable only for cuML.</dd>
+</dl>
+<p>Attributes:
+<a href="#id1"><span class="problematic" id="id2">core_sample_indices_</span></a> : array, shape = [n_core_samples]</p>
+<blockquote>
+<div>Indices of core samples.</div></blockquote>
+<dl class="docutils">
+<dt><a href="#id3"><span class="problematic" id="id4">components_</span></a> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape = [n_core_samples, n_features]</span></dt>
+<dd>Copy of each core sample found by training.</dd>
+<dt><a href="#id5"><span class="problematic" id="id6">labels_</span></a> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape = [n_samples]</span></dt>
+<dd>Cluster labels for each point in the dataset given to fit(). Noisy
+samples are given the label -1.</dd>
+</dl>
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform DBSCAN clustering from features or distance matrix.
+Parameters:
+———-
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
+<blockquote>
+<div>cuDF dataframe if cuml is installed.
+A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
+<dl class="docutils">
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
+<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
+</dl>
+<p>y : Ignored</p>
+<p>self : object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit_predict">
+<code class="descname">fit_predict</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit_predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs clustering on X and returns cluster labels.</p>
+<p>Parameters:
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
+<blockquote>
+<div>A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
+<dl class="docutils">
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
+<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
+</dl>
+<p>y : Ignored</p>
+<p>y : ndarray, shape (n_samples,)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

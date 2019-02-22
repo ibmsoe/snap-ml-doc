@@ -1,0 +1,8 @@
+.. _sk-hinge-doc:
+
+====================================
+hinge_loss
+====================================
+
+.. automodule:: pai4sk.metrics.hinge_loss
+    :members:

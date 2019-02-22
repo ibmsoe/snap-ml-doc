@@ -1,0 +1,158 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>log_loss &#8212; Snap Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pai4sk.metrics.log_loss">
+<span id="log-loss"></span><span id="sk-log-doc"></span><h1>log_loss<a class="headerlink" href="#module-pai4sk.metrics.log_loss" title="Permalink to this headline">¶</a></h1>
+<p>Log loss, aka logistic loss or cross-entropy loss.</p>
+<p>This is the loss function used in (multinomial) logistic regression
+and extensions of it such as neural networks, defined as the negative
+log-likelihood of the true labels given a probabilistic classifier’s
+predictions. The log loss is only defined for two or more labels.
+For a single sample with true label yt in {0,1} and
+estimated probability yp that yt = 1, the log loss is</p>
+<blockquote>
+<div>-log P(yt|yp) = -(yt log(yp) + (1 - yt) log(1 - yp))</div></blockquote>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param y_true:</th><td class="field-body">Ground truth (correct) labels for n_samples samples.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type y_true:</th><td class="field-body">array-like or label indicator matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param y_pred:</th><td class="field-body">Predicted probabilities, as returned by a classifier’s
+predict_proba method. If <code class="docutils literal notranslate"><span class="pre">y_pred.shape</span> <span class="pre">=</span> <span class="pre">(n_samples,)</span></code>
+the probabilities provided are assumed to be that of the
+positive class. The labels in <code class="docutils literal notranslate"><span class="pre">y_pred</span></code> are assumed to be
+ordered alphabetically, as done by
+<code class="xref py py-class docutils literal notranslate"><span class="pre">preprocessing.LabelBinarizer</span></code>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type y_pred:</th><td class="field-body">array-like of float, shape = (n_samples, n_classes) or (n_samples,)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param eps:</th><td class="field-body">Log loss is undefined for p=0 or p=1, so probabilities are
+clipped to max(eps, min(1 - eps, p)).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type eps:</th><td class="field-body">float</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param normalize:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">If true, return the mean loss per sample.
+Otherwise, return the sum of the per-sample losses.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type normalize:</th><td class="field-body">bool, optional (default=True)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param sample_weight:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Sample weights.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type sample_weight:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">array-like of shape = [n_samples], optional</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param labels:</th><td class="field-body">If not provided, labels will be inferred from y_true. If <code class="docutils literal notranslate"><span class="pre">labels</span></code>
+is <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">y_pred</span></code> has shape (n_samples,) the labels are
+assumed to be binary and are inferred from <code class="docutils literal notranslate"><span class="pre">y_true</span></code>.
+.. versionadded:: 0.18</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type labels:</th><td class="field-body">array-like, optional (default=None)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body"><strong>loss</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">rtype:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">log_loss</span><span class="p">([</span><span class="s2">&quot;spam&quot;</span><span class="p">,</span> <span class="s2">&quot;ham&quot;</span><span class="p">,</span> <span class="s2">&quot;ham&quot;</span><span class="p">,</span> <span class="s2">&quot;spam&quot;</span><span class="p">],</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="gp">... </span>         <span class="p">[[</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="o">.</span><span class="mi">9</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">.</span><span class="mi">8</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">.</span><span class="mi">35</span><span class="p">,</span> <span class="o">.</span><span class="mi">65</span><span class="p">]])</span>
+<span class="go">0.21616...</span>
+</pre></div>
+</div>
+<p class="rubric">References</p>
+<p>C.M. Bishop (2006). Pattern Recognition and Machine Learning. Springer,
+p. 209.</p>
+<p class="rubric">Notes</p>
+<p>The logarithm used is the natural logarithm (base-e).</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

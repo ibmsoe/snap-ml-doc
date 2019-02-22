@@ -6,12 +6,44 @@ API Documentation
 
 We currently provide four python modules. Check out the APIs exposed by these modules in the relevant links,
 
+- pai4sk APIs
+	- Machine Learning
+		- :ref:`ridge-doc`
+		- :ref:`lasso-doc`
+		- :ref:`sk-logreg-doc`
+		- :ref:`svc-doc`
+		- :ref:`kmeans-doc`
+		- :ref:`dbscan-doc`
+		- :ref:`pca-doc`
+		- :ref:`svd-doc`
 
-* :ref:`pai4sk-api-documentation`
+	- Loaders 
+		- :ref:`sk-svmloader-file-doc`
 
-* :ref:`python-api-documentation`
+	- Metrics
+		- :ref:`sk-log-doc`
+		- :ref:`sk-acc-doc`
+		- :ref:`sk-hinge-doc`
+		- :ref:`sk-mse-doc`
 
-* :ref:`mpi-api-documentation`
+- SnapML APIs
+	- :ref:`linreg-api-doc`
+	- :ref:`logreg-api-doc`
+	- :ref:`svm-api-doc`
+	- :ref:`dectree-api-doc`
+	- :ref:`ranfor-api-doc`
 
-* :ref:`pyspark-api-documentation`
+- SnapML Loaders APIs
+	- :ref:`svmloader-doc`
+	- :ref:`snaploader-doc`
+	- :ref:`snaploader-file-doc`
+	- :ref:`snapwrite-doc`
+
+- SnapML Spark APIs
+	- :ref:`sp-lin-reg-doc`
+	- :ref:`sp-log-reg-doc`
+	- :ref:`sp-svm-doc`
+	- :ref:`sp-read-doc`
+	- :ref:`sp-met-doc`
+	- :ref:`sp-util-doc`
 

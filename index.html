@@ -9,7 +9,7 @@
     <title>Introduction &#8212; Snap Machine Learning 1.0 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -42,7 +42,7 @@
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
+  <h3><a href="#">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Introduction</a></li>
 <li><a class="reference internal" href="#content">Content</a></li>
@@ -82,11 +82,11 @@ It offers distributed training, GPU acceleration and supports sparse data struct
 </div>
 <p>The <em>Snap ML</em> library offers two different packages:</p>
 <dl class="docutils">
-<dt><strong>snap-ml-local</strong></dt>
-<dd>The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snap-ml-local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
-With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named <em>pai4sk</em>. This module is build upon scikit-learn 0.20.0 APIs and can be used as a replacement for scikit-learn. This module will automatically fall back to CPU algorithms when snap-ml-local doesn’t support an API. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by <em>pai4sk</em>.</dd>
-<dt><strong>snap-ml-mpi</strong></dt>
-<dd><em>snap-ml-mpi</em> offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a <em>sklearn</em>-like python interface.</dd>
+<dt><strong>pai4sk-snapml</strong></dt>
+<dd><p class="first">The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snap-ml-local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
+With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named <em>pai4sk</em>. This module is build upon scikit-learn 0.20.0 APIs and can be used as a replacement for scikit-learn. This module will automatically fall back to CPU algorithms when snap-ml-local doesn’t support an API. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by <em>pai4sk</em>.</p>
+<p class="last">It also offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a <em>sklearn</em>-like python interface.</p>
+</dd>
 <dt><strong>snap-ml-spark</strong></dt>
 <dd>similar to <em>snap-ml-mpi</em>, the <em>snap-ml-spark</em> package offers distributed training of models across a cluster of machines. The library is exposed to the user via a spak.ml-like interface and can seamslessly be integrated into existing pySpark application.</dd>
 </dl>
@@ -133,7 +133,7 @@ With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named <em>p
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
     </div>
   </body>
 </html>

@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>decomposition.TruncatedSVD &#8212; Snap Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="decomposition-truncatedsvd">
+<span id="svd-doc"></span><h1>decomposition.TruncatedSVD<a class="headerlink" href="#decomposition-truncatedsvd" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.decomposition.TruncatedSVD">
+<em class="property">class </em><code class="descclassname">pai4sk.decomposition.</code><code class="descname">TruncatedSVD</code><span class="sig-paren">(</span><em>n_components=2</em>, <em>algorithm='auto'</em>, <em>n_iter=5</em>, <em>random_state=None</em>, <em>tol=0.0</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dimensionality reduction using truncated SVD (aka LSA).</p>
+<p>This transformer performs linear dimensionality reduction by means of
+truncated singular value decomposition (SVD). Contrary to PCA, this
+estimator does not center the data before computing the singular value
+decomposition. This means it can work with scipy.sparse matrices
+efficiently.</p>
+<p>In particular, truncated SVD works on term count/tf-idf matrices as
+returned by the vectorizers in sklearn.feature_extraction.text. In that
+context, it is known as latent semantic analysis (LSA).</p>
+<p>This estimator supports two algorithms: a fast randomized SVD solver, and
+a “naive” algorithm that uses ARPACK as an eigensolver on (X * X.T) or
+(X.T * X), whichever is more efficient.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default = 2</em>) – Desired dimensionality of output data.
+Must be strictly less than the number of features.
+The default value is useful for visualisation. For LSA, a value of
+100 is recommended.</li>
+<li><strong>algorithm</strong> (<em>string</em><em>, </em><em>&quot;arpack&quot;</em><em>, </em><em>&quot;randomized&quot;</em><em>, </em><em>&quot;cuml&quot;</em><em>, </em><em>&quot;auto&quot;</em><em>, </em><em>&quot;full&quot;</em><em> or </em><em>&quot;jacobi&quot;. default = &quot;auto&quot;.</em>) – SVD solver to use. Either “arpack” for the ARPACK wrapper in SciPy
+(scipy.sparse.linalg.svds), or “randomized” for the randomized
+algorithm due to Halko (2009) if cuml can’t be used.
+“auto” will become “full” if cuml is installed and the arguments satisfy
+some validations. “auto” will become “randomized” if cuml is not used.
+algorithm should be one of “auto”, “cuml”, “full” and “jacobi”.</li>
+<li><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default 5</em><em>)</em>) – Number of iterations for randomized SVD solver. Not used by ARPACK.
+The default is larger than the default in <cite>randomized_svd</cite> to handle
+sparse matrices that may have large slowly decaying spectrum.</li>
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default = None</em>) – If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by <cite>np.random</cite>.</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – Tolerance for ARPACK. 0 means machine precision. Ignored by randomized
+SVD solver.</li>
+<li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use GPU 0. Applicable only for cuML.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>components</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>)</em>) – </li>
+<li><strong>explained_variance</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The variance of the training samples transformed by a projection to
+each component.</li>
+<li><strong>explained_variance_ratio</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – Percentage of variance explained by each of the selected components.</li>
+<li><strong>singular_values</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The singular values corresponding to each of the selected components.
+The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
+variables in the lower-dimensional space.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">TruncatedSVD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.random_projection</span> <span class="k">import</span> <span class="n">sparse_random_matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">sparse_random_matrix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svd</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># doctest: +NORMALIZE_WHITESPACE</span>
+<span class="go">TruncatedSVD(algorithm=&#39;randomized&#39;, n_components=5, n_iter=7,</span>
+<span class="go">        random_state=42, tol=0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[0.0606... 0.0584... 0.0497... 0.0434... 0.0372...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">0.249...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[2.5841... 2.5245... 2.3201... 2.1753... 2.0443...]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="pcadoc.html#pai4sk.decomposition.PCA" title="pai4sk.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<p>Finding structure with randomness: Stochastic algorithms for constructing
+approximate matrix decompositions
+Halko, et al., 2009 (arXiv:909) https://arxiv.org/pdf/0909.4061.pdf</p>
+<p class="rubric">Notes</p>
+<p>SVD suffers from a problem called “sign indeterminacy”, which means the
+sign of the <code class="docutils literal notranslate"><span class="pre">components_</span></code> and the output from transform depend on the
+algorithm and random state. To work around this, fit instances of this
+class to data once, then keep the instance around to do transformations.</p>
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit LSI model on training data X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>y</strong> (<em>Ignored</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the transformer object.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit LSI model to X and perform dimensionality reduction on X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>y</strong> (<em>Ignored</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array, shape (n_samples, n_components)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.inverse_transform">
+<code class="descname">inverse_transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform X back to its original space.</p>
+<p>Returns an array X_original whose transform would be X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>)</em>) – New data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – Note that this is always a dense array.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_features)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform dimensionality reduction on X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_components)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

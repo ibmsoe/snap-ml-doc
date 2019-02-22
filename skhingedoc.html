@@ -1,0 +1,190 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>hinge_loss &#8212; Snap Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pai4sk.metrics.hinge_loss">
+<span id="hinge-loss"></span><span id="sk-hinge-doc"></span><h1>hinge_loss<a class="headerlink" href="#module-pai4sk.metrics.hinge_loss" title="Permalink to this headline">¶</a></h1>
+<p>Average hinge loss (non-regularized)</p>
+<p>In binary class case, assuming labels in y_true are encoded with +1 and -1,
+when a prediction mistake is made, <code class="docutils literal notranslate"><span class="pre">margin</span> <span class="pre">=</span> <span class="pre">y_true</span> <span class="pre">*</span> <span class="pre">pred_decision</span></code> is
+always negative (since the signs disagree), implying <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">margin</span></code> is
+always greater than 1.  The cumulated hinge loss is therefore an upper
+bound of the number of mistakes made by the classifier.</p>
+<p>In multiclass case, the function expects that either all the labels are
+included in y_true or an optional labels argument is provided which
+contains all the labels. The multilabel margin is calculated according
+to Crammer-Singer’s method. As in the binary case, the cumulated hinge loss
+is an upper bound of the number of mistakes made by the classifier.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param y_true:</th><td class="field-body">True target, consisting of integers of two values. The positive label
+must be greater than the negative label.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type y_true:</th><td class="field-body">array, shape = [n_samples]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param pred_decision:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Predicted decisions, as output by decision_function (floats).</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type pred_decision:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">array, shape = [n_samples] or [n_samples, n_classes]</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param labels:</th><td class="field-body">Contains all the labels for the problem. Used in multiclass hinge loss.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type labels:</th><td class="field-body">array, optional, default None</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param sample_weight:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Sample weights.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type sample_weight:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">array-like of shape = [n_samples], optional</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body"><strong>loss</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">rtype:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<table class="docutils footnote" frame="void" id="id1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[1]</td><td><a class="reference external" href="https://en.wikipedia.org/wiki/Hinge_loss">Wikipedia entry on the Hinge loss</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>Koby Crammer, Yoram Singer. On the Algorithmic
+Implementation of Multiclass Kernel-based Vector
+Machines. Journal of Machine Learning Research 2,
+(2001), 265-292</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><a class="reference external" href="http://www.ttic.edu/sigml/symposium2011/papers/Moore+DeNero_Regularization.pdf">L1 AND L2 Regularization for Multiclass Hinge Loss Models
+by Robert C. Moore, John DeNero.</a></td></tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">svm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">hinge_loss</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">LinearSVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,</span>
+<span class="go">     intercept_scaling=1, loss=&#39;squared_hinge&#39;, max_iter=1000,</span>
+<span class="go">     multi_class=&#39;ovr&#39;, penalty=&#39;l2&#39;, random_state=0, tol=0.0001,</span>
+<span class="go">     verbose=0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pred_decision</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">decision_function</span><span class="p">([[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pred_decision</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">array([-2.18...,  2.36...,  0.09...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hinge_loss</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">pred_decision</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">0.30...</span>
+</pre></div>
+</div>
+<p>In the multiclass case:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">LinearSVC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="go">LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,</span>
+<span class="go">     intercept_scaling=1, loss=&#39;squared_hinge&#39;, max_iter=1000,</span>
+<span class="go">     multi_class=&#39;ovr&#39;, penalty=&#39;l2&#39;, random_state=None, tol=0.0001,</span>
+<span class="go">     verbose=0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pred_decision</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">decision_function</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hinge_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">pred_decision</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>  <span class="c1">#doctest: +ELLIPSIS</span>
+<span class="go">0.56...</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+.. _sk-mse-doc:
+
+====================================
+mean_squared_error
+====================================
+
+.. automodule:: pai4sk.metrics.mean_squared_error
+    :members:

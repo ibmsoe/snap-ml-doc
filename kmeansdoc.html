@@ -1,0 +1,207 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cluster.KMeans &#8212; Snap Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cluster-kmeans">
+<span id="kmeans-doc"></span><h1>cluster.KMeans<a class="headerlink" href="#cluster-kmeans" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.cluster.KMeans">
+<em class="property">class </em><code class="descclassname">pai4sk.cluster.</code><code class="descname">KMeans</code><span class="sig-paren">(</span><em>n_clusters=8</em>, <em>max_iter=300</em>, <em>tol=0.0001</em>, <em>verbose=0</em>, <em>random_state=1</em>, <em>precompute_distances='auto'</em>, <em>init='k-means++'</em>, <em>n_init=1</em>, <em>algorithm='auto'</em>, <em>copy_x=True</em>, <em>n_jobs=None</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans" title="Permalink to this definition">¶</a></dt>
+<dd><p>K-Means clustering.
+If cuml is installed and if possible, then accelerated KMeans algorithm
+from cuML will be used. Otherwise, scikit-learn KMeans algorithm will be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n_clusters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>default: 8</em>) – The number of clusters to form as well as the number of
+centroids to generate.</li>
+<li><strong>init</strong> (<em>{'k-means++'</em><em>, </em><em>'random'</em><em> or </em><em>an ndarray}</em>) – <p>Method for initialization, defaults to ‘k-means++’:</p>
+<p>’k-means++’ : selects initial cluster centers for k-mean
+clustering in a smart way to speed up convergence. See section
+Notes in k_init for more details.</p>
+<p>’random’: choose k observations (rows) at random from data for
+the initial centroids.</p>
+<p>If an ndarray is passed, it should be of shape (n_clusters, n_features)
+and gives the initial centers.</p>
+</li>
+<li><strong>n_init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 10</em>) – Number of time the k-means algorithm will be run with different
+centroid seeds. The final results will be the best output of
+n_init consecutive runs in terms of inertia.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 300</em>) – Maximum number of iterations of the k-means algorithm for a
+single run.</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1e-4</em>) – Relative tolerance with regards to inertia to declare convergence</li>
+<li><strong>precompute_distances</strong> (<em>{'auto'</em><em>, </em><em>True</em><em>, </em><em>False}</em>) – <p>Precompute distances (faster but takes more memory).</p>
+<p>’auto’ : do not precompute distances if n_samples * n_clusters &gt; 12
+million. This corresponds to about 100MB overhead per job using
+double precision.</p>
+<p>True : always precompute distances</p>
+<p>False : never precompute distances</p>
+</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default 0</em>) – Verbosity mode.</li>
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> (</em><em>default</em><em>)</em>) – Determines random number generation for centroid initialization. Use
+an int to make the randomness deterministic.
+See <span class="xref std std-term">Glossary</span>.</li>
+<li><strong>copy_x</strong> (<em>boolean</em><em>, </em><em>optional</em>) – When pre-computing distances it is more numerically accurate to center
+the data first.  If copy_x is True (default), then the original data is
+not modified, ensuring X is C-contiguous.  If False, the original data
+is modified, and put back before the function returns, but small
+numerical differences may be introduced by subtracting and then adding
+the data mean, in this case it will also not ensure that data is
+C-contiguous which may cause a significant slowdown.</li>
+<li><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – <p>The number of jobs to use for the computation. This works by computing
+each of the n_init runs in parallel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context.
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors. See <span class="xref std std-term">Glossary</span>
+for more details.</p>
+</li>
+<li><strong>algorithm</strong> (<em>&quot;auto&quot;</em><em>, </em><em>&quot;full&quot;</em><em> or </em><em>&quot;elkan&quot;</em><em>, </em><em>&quot;cuml&quot;</em><em>, </em><em>default=&quot;auto&quot;</em>) – <p>K-means algorithm to use. The classical EM-style algorithm is “full”.
+The “elkan” variation is more efficient by using the triangle
+inequality, but currently doesn’t support sparse data. “auto” chooses
+“elkan” for dense data and “full” for sparse data.</p>
+<p>If cuml is installed and if either (1) algorithm is set to “cuml” or
+(2) algorithm is “auto”, then pai4sk will try to use kmeans algorithm
+from RAPIDS cuML if possible. cuML in pai4sk is currently supported
+only (a) with python 3.6 and (b) without MPI.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_centers</strong> (<em>array</em><em>, </em><em>[</em><em>n_clusters</em><em>, </em><em>n_features</em><em>]</em>) – Coordinates of cluster centers. If the algorithm stops before fully
+converging (see <code class="docutils literal notranslate"><span class="pre">tol</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), these will not be
+consistent with <code class="docutils literal notranslate"><span class="pre">labels_</span></code>.</li>
+<li><strong>labels</strong> – Labels of each point</li>
+<li><strong>inertia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Sum of squared distances of samples to their closest cluster center.</li>
+<li><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of iterations run.</li>
+<li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use all GPUs. Applicable only for cuML.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+<span class="go">array([0, 0, 0, 1, 1, 1], dtype=int32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="go">array([0, 1], dtype=int32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="go">array([[1., 2.],</span>
+<span class="go">       [4., 2.]])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">MiniBatchKMeans</span></code></dt>
+<dd>Alternative online implementation that does incremental updates of the centers positions using mini-batches. For large scale learning (say n_samples &gt; 10k) MiniBatchKMeans is probably much faster than the default batch implementation.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The k-means problem is solved using either Lloyd’s or Elkan’s algorithm.</p>
+<p>The average complexity is given by O(k n T), were n is the number of
+samples and T is the number of iteration.</p>
+<p>The worst case complexity is given by O(n^(k+2/p)) with
+n = n_samples, p = n_features. (D. Arthur and S. Vassilvitskii,
+‘How slow is the k-means method?’ SoCG2006)</p>
+<p>In practice, the k-means algorithm is very fast (one of the fastest
+clustering algorithms available), but it falls in local minima. That’s why
+it can be useful to restart it several times.</p>
+<p>If the algorithm stops before fully converging (because of <code class="docutils literal notranslate"><span class="pre">tol</span></code> or
+<code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), <code class="docutils literal notranslate"><span class="pre">labels_</span></code> and <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code> will not be consistent,
+i.e. the <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code> will not be the means of the points in each
+cluster. Also, the estimator will reassign <code class="docutils literal notranslate"><span class="pre">labels_</span></code> after the last
+iteration to make <code class="docutils literal notranslate"><span class="pre">labels_</span></code> consistent with <code class="docutils literal notranslate"><span class="pre">predict</span></code> on the training
+set.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>
