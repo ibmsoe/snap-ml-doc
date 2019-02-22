@@ -1,0 +1,9 @@
+.. _ridge-doc:
+
+====================================
+linear_model.Ridge
+====================================
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: Ridge
+    :members:

@@ -1,7 +1,7 @@
 .. _python-api-documentation:
 
 ====================================
-snap-ml-local API 
+snap-ml API 
 ====================================
 
 .. currentmodule:: pai4sk
@@ -16,4 +16,14 @@ snap-ml-local API
 
 .. currentmodule:: pai4sk
 .. autoclass:: SupportVectorMachine
+    :members:
+
+
+.. currentmodule:: pai4sk
+.. autoclass:: DecisionTreeClassifier
+    :members:
+
+
+.. currentmodule:: pai4sk
+.. autoclass:: RandomForestClassifier
     :members:

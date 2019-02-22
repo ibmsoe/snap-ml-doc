@@ -1,0 +1,226 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>load_svmlight_file &#8212; Snap Machine Learning 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><h1 style="font-size: 3em;">Snap Machine Learning</h1></a>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pai4sk.datasets.load_svmlight_file">
+<span id="load-svmlight-file"></span><span id="sk-svmloader-file-doc"></span><h1>load_svmlight_file<a class="headerlink" href="#module-pai4sk.datasets.load_svmlight_file" title="Permalink to this headline">¶</a></h1>
+<p>Load datasets in the svmlight / libsvm format into sparse CSR matrix</p>
+<p>This format is a text-based format, with one sample per line. It does
+not store zero valued features hence is suitable for sparse dataset.</p>
+<p>The first element of each line can be used to store a target variable
+to predict.</p>
+<p>This format is used as the default format for both svmlight and the
+libsvm command line programs.</p>
+<p>Parsing a text based source can be expensive. When working on
+repeatedly on the same dataset, it is recommended to wrap this
+loader with joblib.Memory.cache to store a memmapped backup of the
+CSR results of the first call and benefit from the near instantaneous
+loading of memmapped structures for the subsequent calls.</p>
+<p>In case the file contains a pairwise preference constraint (known
+as “qid” in the svmlight format) these are ignored unless the
+query_id parameter is set to True. These pairwise preference
+constraints can be used to constraint the combination of samples
+when using pairwise loss functions (as is the case in some
+learning to rank problems) so that only pairs with the same
+query_id value are considered.</p>
+<p>This implementation is written in Cython and is reasonably fast.
+However, a faster API-compatible loader is also available at:</p>
+<blockquote>
+<div><a class="reference external" href="https://github.com/mblondel/svmlight-loader">https://github.com/mblondel/svmlight-loader</a></div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param f:</th><td class="field-body"><p class="first">(Path to) a file to load. If a path ends in “.gz” or “.bz2”, it will
+be uncompressed on the fly. If an integer is passed, it is assumed to
+be a file descriptor. A file-like or file descriptor will not be closed
+by this function. A file-like object must be opened in binary mode.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type f:</th><td class="field-body"><p class="first">{str, file-like, int}</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param n_features:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first">The number of features to use. If None, it will be inferred. This
+argument is useful to load several files that are subsets of a
+bigger sliced dataset: each subset might not have examples of
+every feature, hence the inferred shape might vary from one
+slice to another.
+n_features is only required if <code class="docutils literal notranslate"><span class="pre">offset</span></code> or <code class="docutils literal notranslate"><span class="pre">length</span></code> are passed a
+non-default value.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type n_features:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first">int or None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param dtype:</th><td class="field-body"><p class="first">Data type of dataset to be loaded. This will be the data type of the
+output numpy arrays <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type dtype:</th><td class="field-body"><p class="first">numpy data type, default np.float64</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param multilabel:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first">Samples may have several labels each (see
+<a class="reference external" href="https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multilabel.html">https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multilabel.html</a>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type multilabel:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first">boolean, optional, default False</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param zero_based:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"><p class="first">Whether column indices in f are zero-based (True) or one-based
+(False). If column indices are one-based, they are transformed to
+zero-based to match Python/NumPy conventions.
+If set to “auto”, a heuristic check is applied to determine this from
+the file contents. Both kinds of files occur “in the wild”, but they
+are unfortunately not self-identifying. Using “auto” or True should
+always be safe when no <code class="docutils literal notranslate"><span class="pre">offset</span></code> or <code class="docutils literal notranslate"><span class="pre">length</span></code> is passed.
+If <code class="docutils literal notranslate"><span class="pre">offset</span></code> or <code class="docutils literal notranslate"><span class="pre">length</span></code> are passed, the “auto” mode falls back
+to <code class="docutils literal notranslate"><span class="pre">zero_based=True</span></code> to avoid having the heuristic check yield
+inconsistent results on different segments of the file.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">type zero_based:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first">boolean or “auto”, optional, default “auto”</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param query_id:</th><td class="field-body"><p class="first">If True, will return the query_id array for each file.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type query_id:</th><td class="field-body"><p class="first">boolean, default False</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param offset:</th><td class="field-body"><p class="first">Ignore the offset first bytes by seeking forward, then
+discarding the following bytes up until the next new line
+character.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type offset:</th><td class="field-body"><p class="first">integer, optional, default 0</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param length:</th><td class="field-body"><p class="first">If strictly positive, stop reading any new line of data once the
+position in the file has reached the (offset + length) bytes threshold.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">type length:</th><td class="field-body"><p class="first">integer, optional, default -1</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">returns:</th><td class="field-body"><ul class="first last simple">
+<li><strong>X</strong> (<em>scipy.sparse matrix of shape (n_samples, n_features)</em>)</li>
+<li><strong>y</strong> (<em>ndarray of shape (n_samples,), or, in the multilabel a list of</em>) – tuples of length n_samples.</li>
+<li><strong>query_id</strong> (<em>array of shape (n_samples,)</em>) – query_id for each sample. Only returned when query_id is set to
+True.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="docutils">
+<dt><code class="xref py py-mod docutils literal notranslate"><span class="pre">load_svmlight_files</span></code></dt>
+<dd>similar function for loading multiple files in this</dd>
+</dl>
+<p class="last"><code class="xref py py-mod docutils literal notranslate"><span class="pre">format</span></code>, <code class="xref py py-mod docutils literal notranslate"><span class="pre">enforcing</span></code></p>
+</div>
+<p class="rubric">Examples</p>
+<p>To use joblib.Memory to cache the svmlight file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">joblib</span> <span class="k">import</span> <span class="n">Memory</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">load_svmlight_file</span>
+<span class="n">mem</span> <span class="o">=</span> <span class="n">Memory</span><span class="p">(</span><span class="s2">&quot;./mycache&quot;</span><span class="p">)</span>
+
+<span class="nd">@mem</span><span class="o">.</span><span class="n">cache</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">load_svmlight_file</span><span class="p">(</span><span class="s2">&quot;mysvmlightfile&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="search.html">search</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, cdu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

@@ -7,10 +7,10 @@ Tutorials
 
 We provide tutorials that illustrate the deployment of Snap ML for different use-cases 
 
-*  Application of snap-ml-local for credit card fraud detection :ref:`[notebook] <notebook-credit-local>`
+*  Application of pai4sk-snapml for credit card fraud detection :ref:`[notebook] <notebook-credit-local>`
 
-*  Application of snap-ml-local for multi-class classificaiton on MNIST :ref:`[notebook] <notebook-mnist-local>`
+*  Application of pai4sk-snapml for multi-class classificaiton on MNIST :ref:`[notebook] <notebook-mnist-local>`
 
-*  Application of snap-ml-mpi for credit fraud detection at large scale :ref:`[notebook] <notebook-criteo-mpi>`
+*  Application of pai4sk-snapml for credit fraud detection at large scale :ref:`[notebook] <notebook-criteo-mpi>`
 
 

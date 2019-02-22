@@ -9,7 +9,7 @@
     <title>pai4sk API &#8212; Snap Machine Learning 1.0 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -65,7 +65,7 @@
 <em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Ridge</code><span class="sig-paren">(</span><em>alpha=1.0</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>copy_X=True</em>, <em>max_iter=None</em>, <em>tol=0.001</em>, <em>solver='auto'</em>, <em>random_state=None</em>, <em>dual=False</em>, <em>verbose=0</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>return_training_history=None</em>, <em>privacy=False</em>, <em>eta=0.3</em>, <em>batch_size=100</em>, <em>privacy_epsilon=10</em>, <em>grad_clip=1</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Ridge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear least squares with l2 regularization.</p>
 <p>Minimizes the objective function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2</span><span class="n">_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||^</span><span class="mi">2</span><span class="n">_2</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||^</span><span class="mi">2_2</span>
 </pre></div>
 </div>
 <p>This model solves a regression model where the loss function is
@@ -74,6 +74,7 @@ the l2-norm. Also known as Ridge Regression or Tikhonov regularization.
 This estimator has built-in support for multi-variate regression
 (i.e., when y is a 2d-array of shape [n_samples, n_targets]).</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<p>For SnapML solver this supports both local and distributed(MPI) method of execution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -93,7 +94,7 @@ to false, no intercept will be used in calculations
 If True, the regressors X will be normalized before regression by
 subtracting the mean and dividing by the l2-norm.
 If you wish to standardize, please use
-<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
 on an estimator with <code class="docutils literal notranslate"><span class="pre">normalize=False</span></code>.</li>
 <li><strong>copy_X</strong> (<em>boolean</em><em>, </em><em>optional</em><em>, </em><em>default True</em>) – If True, X will be copied; else, it may be overwritten.</li>
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of iterations for conjugate gradient solver.
@@ -112,7 +113,7 @@ Applicable only for snapml solver</li>
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
 (default value for GPU is 256). Applicable only for snapml solver</li>
-<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
@@ -138,7 +139,7 @@ iterative procedure, and are often faster than other solvers when
 both n_samples and n_features are large. Note that ‘sag’ and
 ‘saga’ fast convergence is only guaranteed on features with
 approximately the same scale. You can preprocess the data with a
-scaler from sklearn.preprocessing.</li>
+scaler from pai4sk.preprocessing.</li>
 </ul>
 <p>All last five solvers support both dense and sparse data. However,
 only ‘sag’ and ‘saga’ supports sparse input when <cite>fit_intercept</cite> is
@@ -150,7 +151,7 @@ True.</p>
 <p><span class="versionmodified">New in version 0.19: </span>SAGA solver.</p>
 </div>
 </li>
-<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em><em>, </em><em>default None</em>) – <p>The seed of the pseudo random number generator to use when shuffling
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default None</em>) – <p>The seed of the pseudo random number generator to use when shuffling
 the data.  If int, random_state is the seed used by the random number
 generator; If RandomState instance, random_state is the random number
 generator; If None, the random number generator is the RandomState
@@ -171,8 +172,15 @@ instance used by <cite>np.random</cite>. Used when <code class="docutils literal
 <li><strong>coef</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>) or </em><em>(</em><em>n_targets</em><em>, </em><em>n_features</em><em>)</em>) – Weight vector(s).</li>
 <li><strong>intercept</strong> (<em>float | array</em><em>, </em><em>shape =</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – Independent term in decision function. Set to 0.0 if
 <code class="docutils literal notranslate"><span class="pre">fit_intercept</span> <span class="pre">=</span> <span class="pre">False</span></code>.</li>
-<li><strong>n_iter</strong> (<em>array</em><em> or </em><em>None</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – <p>Actual number of iterations for each target. Available only for
-sag and lsqr solvers. Other solvers will return None.</p>
+<li><strong>n_iter</strong> (<em>array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – Actual number of iterations for each target. Available only for
+sag and lsqr solvers. Other solvers will return None.</li>
+<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – <p>It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
+epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
+If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
+that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
+‘train_obj’ is the training loss.
+Applicable only for snapml solver.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 0.17.</span></p>
 </div>
@@ -189,19 +197,19 @@ sag and lsqr solvers. Other solvers will return None.</p>
 <dd>Ridge classifier</dd>
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">RidgeCV</span></code></dt>
 <dd>Ridge regression with built-in cross validation</dd>
-<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.kernel_ridge.KernelRidge</span></code></dt>
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.kernel_ridge.KernelRidge</span></code></dt>
 <dd>Kernel ridge regression combines ridge regression with the kernel trick</dd>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">Ridge</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.linear_model</span> <span class="k">import</span> <span class="n">Ridge</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># doctest: +NORMALIZE_WHITESPACE</span>
 <span class="go">Ridge(alpha=1.0, copy_X=True, fit_intercept=True, max_iter=None,</span>
 <span class="go">      normalize=False, random_state=None, solver=&#39;auto&#39;, tol=0.001)</span>
 </pre></div>
@@ -215,7 +223,8 @@ sag and lsqr solvers. Other solvers will return None.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em>) – Training data</li>
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em>) – Training data
+For SnapML solver it also supports input of types SnapML data partition and DeviceNDArray.</li>
 <li><strong>y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>] or </em><em>[</em><em>n_samples</em><em>, </em><em>n_targets</em><em>]</em>) – Target values</li>
 <li><strong>sample_weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><em>numpy array of shape</em><em> [</em><em>n_samples</em><em>]</em>) – Individual weights for each sample</li>
 </ul>
@@ -241,7 +250,8 @@ Parameters
 ———-
 X : sparse matrix (csr_matrix) or dense matrix (ndarray)</p>
 <blockquote>
-<div>Dataset used for predicting class estimates.</div></blockquote>
+<div>Dataset used for predicting class estimates.
+For SnapML solver it also supports input of type SnapML data partition.</div></blockquote>
 </div></blockquote>
 <dl class="docutils">
 <dt>num_threads <span class="classifier-delimiter">:</span> <span class="classifier">int, default</span> <span class="classifier-delimiter">:</span> <span class="classifier">0</span></dt>
@@ -263,12 +273,13 @@ By default inference runs with maximum number of available threads.</div></block
 <em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Lasso</code><span class="sig-paren">(</span><em>alpha=1.0</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>precompute=False</em>, <em>copy_X=True</em>, <em>max_iter=1000</em>, <em>tol=0.0001</em>, <em>warm_start=False</em>, <em>positive=False</em>, <em>random_state=None</em>, <em>selection='cyclic'</em>, <em>verbose=0</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>return_training_history=None</em>, <em>privacy=False</em>, <em>eta=0.3</em>, <em>batch_size=100</em>, <em>privacy_epsilon=10</em>, <em>grad_clip=1</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Lasso" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Model trained with L1 prior as regularizer (aka the Lasso)</p>
 <p>The optimization objective for Lasso is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_samples</span><span class="p">))</span> <span class="o">*</span> <span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2</span><span class="n">_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||</span><span class="n">_1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_samples</span><span class="p">))</span> <span class="o">*</span> <span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||</span><span class="n">_1</span>
 </pre></div>
 </div>
 <p>Technically the Lasso model is optimizing the same objective function as
 the Elastic Net with <code class="docutils literal notranslate"><span class="pre">l1_ratio=1.0</span></code> (no L2 penalty).</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<p>For SnapML solver this supports both local and distributed(MPI) method of execution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -286,7 +297,7 @@ to False, no intercept will be used in calculations
 If True, the regressors X will be normalized before regression by
 subtracting the mean and dividing by the l2-norm.
 If you wish to standardize, please use
-<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
 on an estimator with <code class="docutils literal notranslate"><span class="pre">normalize=False</span></code>.</li>
 <li><strong>precompute</strong> (<em>True | False | array-like</em><em>, </em><em>default=False</em>) – Whether to use a precomputed Gram matrix to speed up
 calculations. If set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> let us decide. The Gram
@@ -302,7 +313,7 @@ than <code class="docutils literal notranslate"><span class="pre">tol</span></co
 initialization, otherwise, just erase the previous solution.
 See <span class="xref std std-term">the Glossary</span>.</li>
 <li><strong>positive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – When set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, forces the coefficients to be positive.</li>
-<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em><em>, </em><em>default None</em>) – The seed of the pseudo random number generator that selects a random
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default None</em>) – The seed of the pseudo random number generator that selects a random
 feature to update.  If int, random_state is the seed used by the random
 number generator; If RandomState instance, random_state is the random
 number generator; If None, the random number generator is the
@@ -323,7 +334,7 @@ For multi-GPU training, set device_ids to a list of GPU IDs to be used for train
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
 (default value for GPU is 256). Applicable only for snapml solver</li>
-<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
@@ -342,13 +353,22 @@ Applicable only for snapml solver</li>
 <li><strong>intercept</strong> (<em>float | array</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – independent term in decision function.</li>
 <li><strong>n_iter</strong> (<em>int | array-like</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – number of iterations run by the coordinate descent solver to reach
 the specified tolerance.</li>
+<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
+epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
+If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
+that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
+‘train_obj’ is the training loss.
+Applicable only for snapml solver.</li>
+<li><strong>support</strong> (<em>array-like</em>) – Indices of the features that lie in the support ond contribute to the decision.</li>
+<li><strong>model_sparsity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Fraction of non-zeros in the model parameters.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">linear_model</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk</span> <span class="k">import</span> <span class="n">linear_model</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="go">Lasso(alpha=0.1, copy_X=True, fit_intercept=True, max_iter=1000,</span>
@@ -356,13 +376,13 @@ the specified tolerance.</li>
 <span class="go">   selection=&#39;cyclic&#39;, tol=0.0001, warm_start=False)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 <span class="go">[0.85 0.  ]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
 <span class="go">0.15...</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><code class="xref py py-class docutils literal notranslate"><span class="pre">lars_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">lasso_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLars</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.decomposition.sparse_encode</span></code></p>
+<p class="last"><code class="xref py py-class docutils literal notranslate"><span class="pre">lars_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">lasso_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLars</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.decomposition.sparse_encode</span></code></p>
 </div>
 <p class="rubric">Notes</p>
 <p>The algorithm used to fit the model is coordinate descent.</p>
@@ -377,7 +397,8 @@ should be directly passed as a Fortran-contiguous numpy array.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>X</strong> (<em>ndarray</em><em> or </em><em>scipy.sparse matrix</em><em>, </em><em>(</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Data</li>
+<li><strong>X</strong> (<em>ndarray</em><em> or </em><em>scipy.sparse matrix</em><em>, </em><em>(</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Data
+For SnapML solver it also supports input of types SnapML data partition and DeviceNDArray.</li>
 <li><strong>y</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) or </em><em>(</em><em>n_samples</em><em>, </em><em>n_targets</em><em>)</em>) – Target. Will be cast to X’s dtype if necessary</li>
 <li><strong>check_input</strong> (<em>boolean</em><em>, </em><em>(</em><em>default=True</em><em>)</em>) – Allow to bypass several input checking.
 Don’t use this parameter unless you know what you do.</li>
@@ -404,7 +425,8 @@ Parameters
 ———-
 X : sparse matrix (csr_matrix) or dense matrix (ndarray)</p>
 <blockquote>
-<div>Dataset used for predicting class estimates.</div></blockquote>
+<div>Dataset used for predicting class estimates.
+For SnapML solver it also supports input of type SnapML data partition.</div></blockquote>
 </div></blockquote>
 <dl class="docutils">
 <dt>num_threads <span class="classifier-delimiter">:</span> <span class="classifier">int, default</span> <span class="classifier-delimiter">:</span> <span class="classifier">0</span></dt>
@@ -439,6 +461,7 @@ will be converted (and copied).</p>
 with primal formulation. The ‘liblinear’ solver supports both L1 and L2
 regularization, with a dual formulation only for the L2 penalty.</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<p>For SnapML solver this supports both local and distributed(MPI) method of execution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -481,7 +504,7 @@ through the fit method) if sample_weight is specified.</p>
 <p><span class="versionmodified">New in version 0.17: </span><em>class_weight=’balanced’</em></p>
 </div>
 </li>
-<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em><em>, </em><em>default: None</em>) – The seed of the pseudo random number generator to use when shuffling
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default: None</em>) – The seed of the pseudo random number generator to use when shuffling
 the data.  If int, random_state is the seed used by the random number
 generator; If RandomState instance, random_state is the random number
 generator; If None, the random number generator is the RandomState
@@ -500,7 +523,7 @@ schemes.</li>
 </ul>
 <p>Note that ‘sag’ and ‘saga’ fast convergence is only guaranteed on
 features with approximately the same scale. You can
-preprocess the data with a scaler from sklearn.preprocessing.</p>
+preprocess the data with a scaler from pai4sk.preprocessing.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 0.17: </span>Stochastic Average Gradient descent solver.</p>
 </div>
@@ -535,7 +558,7 @@ Useless for liblinear solver. See <span class="xref std std-term">the Glossary</
 <p><span class="versionmodified">New in version 0.17: </span><em>warm_start</em> to support <em>lbfgs</em>, <em>newton-cg</em>, <em>sag</em>, <em>saga</em> solvers.</p>
 </div>
 </li>
-<li><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><em>None</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Number of CPU cores used when parallelizing over classes if
+<li><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Number of CPU cores used when parallelizing over classes if
 multi_class=’ovr’”. This parameter is ignored when the <code class="docutils literal notranslate"><span class="pre">solver</span></code> is
 set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or
 not. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code>
@@ -551,7 +574,7 @@ Applicable only for snapml solver</li>
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
 (default value for GPU is 256). Applicable only for snapml solver</li>
-<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
@@ -577,9 +600,18 @@ In particular, when <cite>multi_class=’multinomial’</cite>, <cite>intercept_
 corresponds to outcome 1 (True) and <cite>-intercept_</cite> corresponds to
 outcome 0 (False).</p>
 </li>
-<li><strong>n_iter</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – <p>Actual number of iterations for all classes. If binary or multinomial,
+<li><strong>n_iter</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – Actual number of iterations for all classes. If binary or multinomial,
 it returns only 1 element. For liblinear solver, only the maximum
-number of iteration across all classes is given.</p>
+number of iteration across all classes is given.</li>
+<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
+epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
+If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
+that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
+‘train_obj’ is the training loss.
+Applicable only for snapml solver.</li>
+<li><strong>support</strong> (<em>array-like</em>) – Indices of the features that contribute to the decision. (only available for L1)</li>
+<li><strong>model_sparsity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – <p>Fraction of non-zeros in the model parameters. (only available for L1)</p>
 <div class="versionchanged">
 <p><span class="versionmodified">Changed in version 0.20: </span>In SciPy &lt;= 1.0.0 the number of lbfgs iterations may exceed
 <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>. <code class="docutils literal notranslate"><span class="pre">n_iter_</span></code> will now report at most <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>.</p>
@@ -591,14 +623,14 @@ number of iteration across all classes is given.</p>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">load_iris</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.datasets</span> <span class="k">import</span> <span class="n">load_iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span>
 <span class="gp">... </span>                         <span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;multinomial&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span>
 <span class="go">array([0, 0])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:])</span> <span class="c1"># doctest: +ELLIPSIS</span>
 <span class="go">array([[9.8...e-01, 1.8...e-02, 1.4...e-08],</span>
 <span class="go">       [9.7...e-01, 2.8...e-02, ...e-08]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -644,7 +676,8 @@ Machine Learning 85(1-2):41-75.
 <dd><p>Fit the model according to the given training data.
 :param X: Training vector, where n_samples is the number of samples and</p>
 <blockquote>
-<div>n_features is the number of features.</div></blockquote>
+<div>n_features is the number of features.
+For SnapML solver it also supports input of types SnapML data partition and DeviceNDArray.</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -675,18 +708,19 @@ If not provided, then each sample is given unit weight.
 <code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.LogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class predictions
 The returned class estimates.
-:param X: Dataset used for predicting class estimates.
-:type X: sparse matrix (csr_matrix) or dense matrix (ndarray)
-:param num_threads: Number of threads used to run inference.</p>
+:param X: Dataset used for predicting class estimates.</p>
 <blockquote>
-<div>By default inference runs with maximum number of available threads.</div></blockquote>
+<div>For SnapML solver it also supports input of type SnapML data partition.</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the predicted class of the sample.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>proba</strong> – Returns the predicted class of the sample.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape = (n_samples,)</td>
 </tr>
 </tbody>
 </table>
@@ -698,7 +732,7 @@ The returned class estimates.
 <dd><p>Log of probability estimates.
 The returned estimates for all classes are ordered by the
 label of classes.
-:param X:
+:param X: For SnapML solver it also supports input of type SnapML data partition.
 :type X: array-like, shape = [n_samples, n_features]</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -725,7 +759,7 @@ each class.
 Else use a one-vs-rest approach, i.e calculate the probability
 of each class assuming it to be positive using the logistic function.
 and normalize these values across all the classes.
-:param X:
+:param X: For SnapML solver it also supports input of type SnapML data partition.
 :type X: array-like, shape = [n_samples, n_features]
 :param num_threads: Number of threads used to run inference.</p>
 <blockquote>
@@ -756,6 +790,7 @@ samples.</p>
 <p>This class supports both dense and sparse input and the multiclass support
 is handled according to a one-vs-the-rest scheme.</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<p>For SnapML solver this supports both local and distributed(MPI) method of execution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -801,9 +836,9 @@ as <code class="docutils literal notranslate"><span class="pre">n_samples</span>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>(</em><em>default=0</em><em>)</em>) – Enable verbose output. Note that this setting takes advantage of a
 per-process runtime setting in liblinear that, if enabled, may not work
 properly in a multithreaded context.</li>
-<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The seed of the pseudo random number generator to use when shuffling
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The seed of the pseudo random number generator to use when shuffling
 the data for the dual coordinate descent (if <code class="docutils literal notranslate"><span class="pre">dual=True</span></code>). When
-<code class="docutils literal notranslate"><span class="pre">dual=False</span></code> the underlying implementation of <a class="reference internal" href="#pai4sk.svm.LinearSVC" title="pai4sk.svm.LinearSVC"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearSVC</span></code></a>
+<code class="docutils literal notranslate"><span class="pre">dual=False</span></code> the underlying implementation of <a class="reference internal" href="svcdoc.html#pai4sk.svm.LinearSVC" title="pai4sk.svm.LinearSVC"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearSVC</span></code></a>
 is not random and <code class="docutils literal notranslate"><span class="pre">random_state</span></code> has no effect on the results. If
 int, random_state is the seed used by the random number generator; If
 RandomState instance, random_state is the random number generator; If
@@ -821,7 +856,7 @@ Applicable only for snapml solver</li>
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
 (default value for GPU is 256). Applicable only for snapml solver</li>
-<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><em>None</em><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
@@ -836,14 +871,25 @@ problem). This is only available in the case of a linear kernel.</p>
 follows the internal memory layout of liblinear.</p>
 </li>
 <li><strong>intercept</strong> (<em>array</em><em>, </em><em>shape =</em><em> [</em><em>1</em><em>] </em><em>if n_classes == 2 else</em><em> [</em><em>n_classes</em><em>]</em>) – Constants in decision function.</li>
+<li><strong>training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
+epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
+If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
+that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
+‘train_obj’ is the training loss.
+Applicable only for snapml solver.</li>
+<li><strong>support</strong> (<em>array-like</em><em>,  </em><em>shape</em><em> (</em><em>n_SV</em><em>)</em>) – indices of the support vectors.</li>
+<li><strong>n_support</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of support vectors.</li>
+<li><strong>n_iter</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – Actual number of iterations for all classes to reach the specified tolerance.
+If binary or multinomial, it returns only 1 element.</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="k">import</span> <span class="n">LinearSVC</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="k">import</span> <span class="n">make_classification</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.svm</span> <span class="k">import</span> <span class="n">LinearSVC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.datasets</span> <span class="k">import</span> <span class="n">make_classification</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -874,8 +920,8 @@ in the narrative documentation.</p>
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
 <dt><code class="xref py py-class docutils literal notranslate"><span class="pre">SVC</span></code></dt>
-<dd>Implementation of Support Vector Machine classifier using libsvm: the kernel can be non-linear but its SMO algorithm does not scale to large number of samples as LinearSVC does. Furthermore SVC multi-class mode is implemented using one vs one scheme while LinearSVC uses one vs the rest. It is possible to implement one vs the rest with SVC by using the <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.multiclass.OneVsRestClassifier</span></code> wrapper. Finally SVC can fit dense data without memory copy if the input is C-contiguous. Sparse data will still incur memory copy though.</dd>
-<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.linear_model.SGDClassifier</span></code></dt>
+<dd>Implementation of Support Vector Machine classifier using libsvm: the kernel can be non-linear but its SMO algorithm does not scale to large number of samples as LinearSVC does. Furthermore SVC multi-class mode is implemented using one vs one scheme while LinearSVC uses one vs the rest. It is possible to implement one vs the rest with SVC by using the <code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.multiclass.OneVsRestClassifier</span></code> wrapper. Finally SVC can fit dense data without memory copy if the input is C-contiguous. Sparse data will still incur memory copy though.</dd>
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.linear_model.SGDClassifier</span></code></dt>
 <dd>SGDClassifier can optimize the same cost function as LinearSVC by adjusting the penalty and loss parameters. In addition it requires less memory, allows incremental (online) learning, and implements various loss functions and regularization regimes.</dd>
 </dl>
 </div>
@@ -889,7 +935,8 @@ in the narrative documentation.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>sparse matrix</em><em> (</em><em>csr_matrix</em><em>) or </em><em>dense matrix</em><em> (</em><em>ndarray</em><em>)</em>) – Dataset used for predicting distances to the decision boundary.</li>
+<li><strong>X</strong> (<em>sparse matrix</em><em> (</em><em>csr_matrix</em><em>) or </em><em>dense matrix</em><em> (</em><em>ndarray</em><em>)</em>) – Dataset used for predicting distances to the decision boundary.
+For SnapML solver it also supports input of type SnapML data partition.</li>
 <li><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
 By default inference runs with maximum number of available threads.</li>
 </ul>
@@ -911,7 +958,8 @@ By default inference runs with maximum number of available threads.</li>
 <dd><p>Fit the model according to the given training data.
 :param X: Training vector, where n_samples in the number of samples and</p>
 <blockquote>
-<div>n_features is the number of features.</div></blockquote>
+<div>n_features is the number of features.
+For SnapML solver it also supports input of types SnapML data partition and DeviceNDArray.</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -944,7 +992,8 @@ Parameters
 ———-
 X : sparse matrix (csr_matrix) or dense matrix (ndarray)</p>
 <blockquote>
-<div>Dataset used for predicting class estimates.</div></blockquote>
+<div>Dataset used for predicting class estimates.
+For SnapML solver it also supports input of type SnapML data partition.</div></blockquote>
 </div></blockquote>
 <dl class="docutils">
 <dt>num_threads <span class="classifier-delimiter">:</span> <span class="classifier">int, default</span> <span class="classifier-delimiter">:</span> <span class="classifier">0</span></dt>
@@ -957,6 +1006,839 @@ By default inference runs with maximum number of available threads.</div></block
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pai4sk.cluster.KMeans">
+<em class="property">class </em><code class="descclassname">pai4sk.cluster.</code><code class="descname">KMeans</code><span class="sig-paren">(</span><em>n_clusters=8</em>, <em>max_iter=300</em>, <em>tol=0.0001</em>, <em>verbose=0</em>, <em>random_state=1</em>, <em>precompute_distances='auto'</em>, <em>init='k-means++'</em>, <em>n_init=1</em>, <em>algorithm='auto'</em>, <em>copy_x=True</em>, <em>n_jobs=None</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans" title="Permalink to this definition">¶</a></dt>
+<dd><p>K-Means clustering.
+If cuml is installed and if possible, then accelerated KMeans algorithm
+from cuML will be used. Otherwise, scikit-learn KMeans algorithm will be used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n_clusters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>default: 8</em>) – The number of clusters to form as well as the number of
+centroids to generate.</li>
+<li><strong>init</strong> (<em>{'k-means++'</em><em>, </em><em>'random'</em><em> or </em><em>an ndarray}</em>) – <p>Method for initialization, defaults to ‘k-means++’:</p>
+<p>’k-means++’ : selects initial cluster centers for k-mean
+clustering in a smart way to speed up convergence. See section
+Notes in k_init for more details.</p>
+<p>’random’: choose k observations (rows) at random from data for
+the initial centroids.</p>
+<p>If an ndarray is passed, it should be of shape (n_clusters, n_features)
+and gives the initial centers.</p>
+</li>
+<li><strong>n_init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 10</em>) – Number of time the k-means algorithm will be run with different
+centroid seeds. The final results will be the best output of
+n_init consecutive runs in terms of inertia.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 300</em>) – Maximum number of iterations of the k-means algorithm for a
+single run.</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1e-4</em>) – Relative tolerance with regards to inertia to declare convergence</li>
+<li><strong>precompute_distances</strong> (<em>{'auto'</em><em>, </em><em>True</em><em>, </em><em>False}</em>) – <p>Precompute distances (faster but takes more memory).</p>
+<p>’auto’ : do not precompute distances if n_samples * n_clusters &gt; 12
+million. This corresponds to about 100MB overhead per job using
+double precision.</p>
+<p>True : always precompute distances</p>
+<p>False : never precompute distances</p>
+</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default 0</em>) – Verbosity mode.</li>
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> (</em><em>default</em><em>)</em>) – Determines random number generation for centroid initialization. Use
+an int to make the randomness deterministic.
+See <span class="xref std std-term">Glossary</span>.</li>
+<li><strong>copy_x</strong> (<em>boolean</em><em>, </em><em>optional</em>) – When pre-computing distances it is more numerically accurate to center
+the data first.  If copy_x is True (default), then the original data is
+not modified, ensuring X is C-contiguous.  If False, the original data
+is modified, and put back before the function returns, but small
+numerical differences may be introduced by subtracting and then adding
+the data mean, in this case it will also not ensure that data is
+C-contiguous which may cause a significant slowdown.</li>
+<li><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – <p>The number of jobs to use for the computation. This works by computing
+each of the n_init runs in parallel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context.
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors. See <span class="xref std std-term">Glossary</span>
+for more details.</p>
+</li>
+<li><strong>algorithm</strong> (<em>&quot;auto&quot;</em><em>, </em><em>&quot;full&quot;</em><em> or </em><em>&quot;elkan&quot;</em><em>, </em><em>&quot;cuml&quot;</em><em>, </em><em>default=&quot;auto&quot;</em>) – <p>K-means algorithm to use. The classical EM-style algorithm is “full”.
+The “elkan” variation is more efficient by using the triangle
+inequality, but currently doesn’t support sparse data. “auto” chooses
+“elkan” for dense data and “full” for sparse data.</p>
+<p>If cuml is installed and if either (1) algorithm is set to “cuml” or
+(2) algorithm is “auto”, then pai4sk will try to use kmeans algorithm
+from RAPIDS cuML if possible. cuML in pai4sk is currently supported
+only (a) with python 3.6 and (b) without MPI.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_centers</strong> (<em>array</em><em>, </em><em>[</em><em>n_clusters</em><em>, </em><em>n_features</em><em>]</em>) – Coordinates of cluster centers. If the algorithm stops before fully
+converging (see <code class="docutils literal notranslate"><span class="pre">tol</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), these will not be
+consistent with <code class="docutils literal notranslate"><span class="pre">labels_</span></code>.</li>
+<li><strong>labels</strong> – Labels of each point</li>
+<li><strong>inertia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Sum of squared distances of samples to their closest cluster center.</li>
+<li><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of iterations run.</li>
+<li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use all GPUs. Applicable only for cuML.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+<span class="go">array([0, 0, 0, 1, 1, 1], dtype=int32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="go">array([0, 1], dtype=int32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="go">array([[1., 2.],</span>
+<span class="go">       [4., 2.]])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">MiniBatchKMeans</span></code></dt>
+<dd>Alternative online implementation that does incremental updates of the centers positions using mini-batches. For large scale learning (say n_samples &gt; 10k) MiniBatchKMeans is probably much faster than the default batch implementation.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The k-means problem is solved using either Lloyd’s or Elkan’s algorithm.</p>
+<p>The average complexity is given by O(k n T), were n is the number of
+samples and T is the number of iteration.</p>
+<p>The worst case complexity is given by O(n^(k+2/p)) with
+n = n_samples, p = n_features. (D. Arthur and S. Vassilvitskii,
+‘How slow is the k-means method?’ SoCG2006)</p>
+<p>In practice, the k-means algorithm is very fast (one of the fastest
+clustering algorithms available), but it falls in local minima. That’s why
+it can be useful to restart it several times.</p>
+<p>If the algorithm stops before fully converging (because of <code class="docutils literal notranslate"><span class="pre">tol</span></code> or
+<code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), <code class="docutils literal notranslate"><span class="pre">labels_</span></code> and <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code> will not be consistent,
+i.e. the <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code> will not be the means of the points in each
+cluster. Also, the estimator will reassign <code class="docutils literal notranslate"><span class="pre">labels_</span></code> after the last
+iteration to make <code class="docutils literal notranslate"><span class="pre">labels_</span></code> consistent with <code class="docutils literal notranslate"><span class="pre">predict</span></code> on the training
+set.</p>
+<dl class="method">
+<dt id="pai4sk.cluster.KMeans.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model according to the given training data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training vector, where n_samples is the number of samples and
+n_features is the number of features.
+cuDF dataframe if cuml is installed.</li>
+<li><strong>y</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) or </em><em>(</em><em>n_samples</em><em>, </em><em>n_targets</em><em>)</em>) – Target vector relative to X.</li>
+<li><strong>sample_weight</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) </em><em>optional</em>) – <p>Array of weights that are assigned to individual samples.
+If not provided, then each sample is given unit weight.
+.. versionadded:: 0.17</p>
+<blockquote>
+<div><em>sample_weight</em> support to KMeans.</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.KMeans.fit_predict">
+<code class="descname">fit_predict</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans.fit_predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute cluster centers and predict cluster index for each sample.</p>
+<p>Convenience method; equivalent to calling fit(X) followed by predict(X).
+Parameters:</p>
+<dl class="docutils">
+<dt>X <span class="classifier-delimiter">:</span> <span class="classifier">{array-like, sparse matrix}, shape = [n_samples, n_features]</span></dt>
+<dd>cuDF dataframe if cuml is installed.
+New data to transform.</dd>
+<dt>y <span class="classifier-delimiter">:</span> <span class="classifier">Ignored</span></dt>
+<dd>not used, present here for API consistency by convention.</dd>
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples,), optional</span></dt>
+<dd>The weights for each observation in X. If None, all
+observations are assigned equal weight (default: None)</dd>
+</dl>
+<p>Returns:
+labels : array, shape [n_samples,]</p>
+<blockquote>
+<div>Index of the cluster each sample belongs to.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.KMeans.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute clustering and transform X to cluster-distance space.</p>
+<p>Equivalent to fit(X).transform(X), but more efficiently implemented.
+Parameters:</p>
+<dl class="docutils">
+<dt>X <span class="classifier-delimiter">:</span> <span class="classifier">{array-like, sparse matrix}, shape = [n_samples, n_features]</span></dt>
+<dd>cuDF dataframe if cuml is installed.
+New data to transform.</dd>
+<dt>y <span class="classifier-delimiter">:</span> <span class="classifier">Ignored</span></dt>
+<dd>not used, present here for API consistency by convention.</dd>
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array-like, shape (n_samples,), optional</span></dt>
+<dd>The weights for each observation in X. If None, all
+observations are assigned equal weight (default: None)</dd>
+</dl>
+<p>Returns:
+X_new : array, shape [n_samples, k]</p>
+<blockquote>
+<div>X transformed in the new space.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.KMeans.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>X</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict the closest cluster each sample in X belongs to.</p>
+<p>In the vector quantization literature, <a href="#id3"><span class="problematic" id="id4">cluster_centers_</span></a> is called
+the code book and each value returned by predict is the index of
+the closest code in the code book.
+:param X: cuDF dataframe if cuml is installed.</p>
+<blockquote>
+<div>New data to predict.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample_weight</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – The weights for each observation in X. If None, all
+observations are assigned equal weight (default: None)</li>
+<li><strong>Returns</strong> – </li>
+<li><strong>labels</strong> (<em>array</em><em>, </em><em>shape</em><em> [</em><em>n_samples</em><em>,</em><em>]</em>) – Index of the cluster each sample belongs to.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.KMeans.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform X to a cluster-distance space.</p>
+<p>In the new space, each dimension is the distance to the cluster
+centers.  Note that even if X is sparse, the array returned by
+<cite>transform</cite> will typically be dense.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em>) – cuDF dataframe if cuml is installed.
+New data to transform.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – X transformed in the new space.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape [n_samples, k]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pai4sk.cluster.DBSCAN">
+<em class="property">class </em><code class="descclassname">pai4sk.cluster.</code><code class="descname">DBSCAN</code><span class="sig-paren">(</span><em>eps=0.5</em>, <em>min_samples=5</em>, <em>metric='euclidean'</em>, <em>metric_params=None</em>, <em>algorithm='auto'</em>, <em>leaf_size=30</em>, <em>p=None</em>, <em>n_jobs=None</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform DBSCAN clustering from vector array or distance matrix.</p>
+<p>DBSCAN - Density-Based Spatial Clustering of Applications with Noise. Finds
+core samples of high density and expands clusters from them. Good for data
+which contains clusters of similar density.</p>
+<p>If cuml is installed and if possible, then accelerated DBSCAN algorithm
+from cuML will be used. Otherwise, scikit-learn DBSCAN algorithm will be used.</p>
+<dl class="docutils">
+<dt>eps <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+<dd>The maximum distance between two samples for them to be considered as
+in the same neighborhood.</dd>
+<dt>min_samples <span class="classifier-delimiter">:</span> <span class="classifier">int, optional</span></dt>
+<dd>The number of samples (or total weight) in a neighborhood for a point
+to be considered as a core point. This includes the point itself.</dd>
+<dt>metric <span class="classifier-delimiter">:</span> <span class="classifier">string, or callable</span></dt>
+<dd>The metric to use when calculating distance between instances in a
+feature array. If metric is a string or callable, it must be one of
+the options allowed by sklearn.metrics.pairwise_distances for its
+metric parameter. If metric is ‘precomputed’, X is assumed to be a
+distance matrix and must be square. X may be a sparse matrix, in which
+case only nonzero elements may be considered neighbors for DBSCAN.
+New in version 0.17: metric precomputed to accept precomputed sparse matrix.</dd>
+<dt>metric_params <span class="classifier-delimiter">:</span> <span class="classifier">dict, optional</span></dt>
+<dd>Additional keyword arguments for the metric function.
+New in version 0.19.</dd>
+<dt>algorithm <span class="classifier-delimiter">:</span> <span class="classifier">{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’, ‘cuml’}, optional</span></dt>
+<dd><p class="first">The algorithm to be used by the NearestNeighbors module to compute
+pointwise distances and find nearest neighbors. See NearestNeighbors
+module documentation for details.</p>
+<p class="last">If cuml is installed and if either (1) algorithm is set to “cuml” or
+(2) algorithm is “auto”, then pai4sk will try to use DBSCAN algorithm
+from RAPIDS cuML if possible. cuML in pai4sk is currently supported
+only (a) with python 3.6 and (b) without MPI.</p>
+</dd>
+<dt>leaf_size <span class="classifier-delimiter">:</span> <span class="classifier">int, optional (default = 30)</span></dt>
+<dd>Leaf size passed to BallTree or cKDTree. This can affect the speed of
+the construction and query, as well as the memory required to store the
+tree. The optimal value depends on the nature of the problem.</dd>
+<dt>p <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
+<dd>The power of the Minkowski metric to be used to calculate distance between points.</dd>
+<dt>n_jobs <span class="classifier-delimiter">:</span> <span class="classifier">int or None, optional (default=None)</span></dt>
+<dd>The number of parallel jobs to run. None means 1 unless in a
+joblib.parallel_backend context. -1 means using all processors.
+See Glossary for more details.</dd>
+<dt>use_gpu <span class="classifier-delimiter">:</span> <span class="classifier">boolean, Default is True</span></dt>
+<dd>If True, cuML will use GPU 0. Applicable only for cuML.</dd>
+</dl>
+<p>Attributes:
+<a href="#id5"><span class="problematic" id="id6">core_sample_indices_</span></a> : array, shape = [n_core_samples]</p>
+<blockquote>
+<div>Indices of core samples.</div></blockquote>
+<dl class="docutils">
+<dt><a href="#id7"><span class="problematic" id="id8">components_</span></a> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape = [n_core_samples, n_features]</span></dt>
+<dd>Copy of each core sample found by training.</dd>
+<dt><a href="#id9"><span class="problematic" id="id10">labels_</span></a> <span class="classifier-delimiter">:</span> <span class="classifier">array, shape = [n_samples]</span></dt>
+<dd>Cluster labels for each point in the dataset given to fit(). Noisy
+samples are given the label -1.</dd>
+</dl>
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform DBSCAN clustering from features or distance matrix.
+Parameters:
+———-
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
+<blockquote>
+<div>cuDF dataframe if cuml is installed.
+A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
+<dl class="docutils">
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
+<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
+</dl>
+<p>y : Ignored</p>
+<p>self : object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit_predict">
+<code class="descname">fit_predict</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit_predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs clustering on X and returns cluster labels.</p>
+<p>Parameters:
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
+<blockquote>
+<div>A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
+<dl class="docutils">
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
+<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
+</dl>
+<p>y : Ignored</p>
+<p>y : ndarray, shape (n_samples,)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pai4sk.decomposition.PCA">
+<em class="property">class </em><code class="descclassname">pai4sk.decomposition.</code><code class="descname">PCA</code><span class="sig-paren">(</span><em>n_components=None</em>, <em>copy=True</em>, <em>whiten=False</em>, <em>svd_solver='auto'</em>, <em>tol=0.0</em>, <em>iterated_power='auto'</em>, <em>random_state=None</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Principal component analysis (PCA)</p>
+<p>Linear dimensionality reduction using Singular Value Decomposition of the
+data to project it to a lower dimensional space.</p>
+<p>It uses the LAPACK implementation of the full SVD or a randomized truncated
+SVD by the method of Halko et al. 2009, depending on the shape of the input
+data and the number of components to extract.</p>
+<p>It can also use the scipy.sparse.linalg ARPACK implementation of the
+truncated SVD.</p>
+<p>Notice that this class does not support sparse input. See
+<a class="reference internal" href="svddoc.html#pai4sk.decomposition.TruncatedSVD" title="pai4sk.decomposition.TruncatedSVD"><code class="xref py py-class docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></a> for an alternative with sparse data.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> or </em><em>string</em>) – <p>Number of components to keep.
+if n_components is not set all components are kept:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_components</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">n_components</span> <span class="pre">==</span> <span class="pre">'mle'</span></code> and <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'full'</span></code>, Minka’s
+MLE is used to guess the dimension. Use of <code class="docutils literal notranslate"><span class="pre">n_components</span> <span class="pre">==</span> <span class="pre">'mle'</span></code>
+will interpret <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'auto'</span></code> as <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'full'</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">n_components</span> <span class="pre">&lt;</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'full'</span></code>, select the
+number of components such that the amount of variance that needs to be
+explained is greater than the percentage specified by n_components.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'arpack'</span></code>, the number of components must be
+strictly less than the minimum of n_features and n_samples.</p>
+<p>Hence, the None case results in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_components</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</li>
+<li><strong>copy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>default True</em><em>)</em>) – If False, data passed to fit are overwritten and running
+fit(X).transform(X) will not yield the expected results,
+use fit_transform(X) instead.</li>
+<li><strong>whiten</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default False</em><em>)</em>) – <p>When True (False by default) the <cite>components_</cite> vectors are multiplied
+by the square root of n_samples and then divided by the singular values
+to ensure uncorrelated outputs with unit component-wise variances.</p>
+<p>Whitening will remove some information from the transformed signal
+(the relative variance scales of the components) but can sometime
+improve the predictive accuracy of the downstream estimators by
+making their data respect some hard-wired assumptions.</p>
+</li>
+<li><strong>svd_solver</strong> (<em>string {'auto'</em><em>, </em><em>'full'</em><em>, </em><em>'arpack'</em><em>, </em><em>'randomized'</em><em>, </em><em>'cuml'</em><em>, </em><em>'jacobi'}</em>) – <dl class="docutils">
+<dt>auto :</dt>
+<dd>when cuml is not used, the solver is selected by a default policy based
+on <cite>X.shape</cite> and <cite>n_components</cite>: if the input data is larger than 500x500 and the
+number of components to extract is lower than 80% of the smallest
+dimension of the data, then the more efficient ‘randomized’
+method is enabled. Otherwise the exact full SVD is computed and
+optionally truncated afterwards. If cuml is used, then the default
+algorithm ‘full’ will be used when the svd_solver is ‘auto’ or ‘cuml’.</dd>
+<dt>full :</dt>
+<dd>run exact full SVD calling the standard LAPACK solver via
+<cite>scipy.linalg.svd</cite> and select the components by postprocessing</dd>
+<dt>arpack :</dt>
+<dd>run SVD truncated to n_components calling ARPACK solver via
+<cite>scipy.sparse.linalg.svds</cite>. It requires strictly
+0 &lt; n_components &lt; min(X.shape)</dd>
+<dt>randomized :</dt>
+<dd>run randomized SVD by the method of Halko et al.</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.18.0.</span></p>
+</div>
+</li>
+<li><strong>tol</strong> (<em>float &gt;= 0</em><em>, </em><em>optional</em><em> (</em><em>default .0</em><em>)</em>) – <p>Tolerance for singular values computed by svd_solver == ‘arpack’.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.18.0.</span></p>
+</div>
+</li>
+<li><strong>iterated_power</strong> (<em>int &gt;= 0</em><em>, or </em><em>'auto'</em><em>, </em><em>(</em><em>default 'auto'</em><em>)</em>) – <p>Number of iterations for the power method computed by
+svd_solver == ‘randomized’.
+Note : cuML for pai4sk only supports integer values for this parameter.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.18.0.</span></p>
+</div>
+</li>
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default None</em><em>)</em>) – <p>If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by <cite>np.random</cite>. Used when <code class="docutils literal notranslate"><span class="pre">svd_solver</span></code> == ‘arpack’ or ‘randomized’.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.18.0.</span></p>
+</div>
+</li>
+<li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use GPU 0. Applicable only for cuML.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>components</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>)</em>) – Principal axes in feature space, representing the directions of
+maximum variance in the data. The components are sorted by
+<code class="docutils literal notranslate"><span class="pre">explained_variance_</span></code>.</li>
+<li><strong>explained_variance</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – <p>The amount of variance explained by each of the selected components.</p>
+<p>Equal to n_components largest eigenvalues
+of the covariance matrix of X.</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 0.18.</span></p>
+</div>
+</li>
+<li><strong>explained_variance_ratio</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – <p>Percentage of variance explained by each of the selected components.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">n_components</span></code> is not set then all components are stored and the
+sum of the ratios is equal to 1.0.</p>
+</li>
+<li><strong>singular_values</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The singular values corresponding to each of the selected components.
+The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
+variables in the lower-dimensional space.</li>
+<li><strong>mean</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – <p>Per-feature empirical mean, estimated from the training set.</p>
+<p>Equal to <cite>X.mean(axis=0)</cite>.</p>
+</li>
+<li><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The estimated number of components. When n_components is set
+to ‘mle’ or a number between 0 and 1 (with svd_solver == ‘full’) this
+number is estimated from input data. Otherwise it equals the parameter
+n_components, or the lesser value of n_features and n_samples
+if n_components is None.</li>
+<li><strong>noise_variance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – <p>The estimated noise covariance following the Probabilistic PCA model
+from Tipping and Bishop 1999. See “Pattern Recognition and
+Machine Learning” by C. Bishop, 12.2.1 p. 574 or
+<a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a>. It is required to
+compute the estimated data covariance and score samples.</p>
+<p>Equal to the average of (min(n_features, n_samples) - n_components)
+smallest eigenvalues of the covariance matrix of X.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<p>For n_components == ‘mle’, this class uses the method of <cite>Minka, T. P.
+“Automatic choice of dimensionality for PCA”. In NIPS, pp. 598-604</cite></p>
+<p>Implements the probabilistic PCA model from:
+<a href="#id1"><span class="problematic" id="id2">`</span></a>Tipping, M. E., and Bishop, C. M. (1999). “Probabilistic principal
+component analysis”. Journal of the Royal Statistical Society:
+Series B (Statistical Methodology), 61(3), 611-622.
+via the score and score_samples methods.
+See <a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a></p>
+<p>For svd_solver == ‘arpack’, refer to <cite>scipy.sparse.linalg.svds</cite>.</p>
+<p>For svd_solver == ‘randomized’, see:
+<cite>Halko, N., Martinsson, P. G., and Tropp, J. A. (2011).
+“Finding structure with randomness: Probabilistic algorithms for
+constructing approximate matrix decompositions”.
+SIAM review, 53(2), 217-288.</cite> and also
+<cite>Martinsson, P. G., Rokhlin, V., and Tygert, M. (2011).
+“A randomized algorithm for the decomposition of matrices”.
+Applied and Computational Harmonic Analysis, 30(1), 47-68.</cite></p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=2, random_state=None,</span>
+<span class="go">  svd_solver=&#39;auto&#39;, tol=0.0, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[0.9924... 0.0075...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[6.30061... 0.54980...]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>                 <span class="c1"># doctest: +ELLIPSIS +NORMALIZE_WHITESPACE</span>
+<span class="go">PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=2, random_state=None,</span>
+<span class="go">  svd_solver=&#39;full&#39;, tol=0.0, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[0.9924... 0.00755...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[6.30061... 0.54980...]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=1, random_state=None,</span>
+<span class="go">  svd_solver=&#39;arpack&#39;, tol=0.0, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[0.99244...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[6.30061...]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-class docutils literal notranslate"><span class="pre">KernelPCA</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SparsePCA</span></code>, <a class="reference internal" href="svddoc.html#pai4sk.decomposition.TruncatedSVD" title="pai4sk.decomposition.TruncatedSVD"><code class="xref py py-class docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalPCA</span></code></p>
+</div>
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>_transform=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model with X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data, where n_samples is the number of samples
+and n_features is the number of features.</li>
+<li><strong>y</strong> (<em>Ignored</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the instance itself.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model with X and apply the dimensionality reduction on X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data, where n_samples is the number of samples
+and n_features is the number of features.</li>
+<li><strong>y</strong> (<em>Ignored</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape (n_samples, n_components)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.inverse_transform">
+<code class="descname">inverse_transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform data back to its original space.</p>
+<p>In other words, return an input X_original whose transform would be X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>)</em>) – New data, where n_samples is the number of samples
+and n_components is the number of components.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">X_original array-like, shape (n_samples, n_features)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>If whitening is enabled, inverse_transform will compute the
+exact inverse operation, which includes reversing whitening.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.score">
+<code class="descname">score</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the average log-likelihood of all samples.</p>
+<p>See. “Pattern Recognition and Machine Learning”
+by C. Bishop, 12.2.1 p. 574
+or <a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>array</em><em>, </em><em>shape</em><em>(</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – The data.</li>
+<li><strong>y</strong> (<em>Ignored</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ll</strong> – Average log-likelihood of the samples under the current model</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply dimensionality reduction to X.</p>
+<p>X is projected on the first principal components previously extracted
+from a training set.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data, where n_samples is the number of samples
+and n_features is the number of features.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape (n_samples, n_components)</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">IncrementalPCA</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ipca</span> <span class="o">=</span> <span class="n">IncrementalPCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ipca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">IncrementalPCA(batch_size=3, copy=True, n_components=2, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ipca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># doctest: +SKIP</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pai4sk.decomposition.TruncatedSVD">
+<em class="property">class </em><code class="descclassname">pai4sk.decomposition.</code><code class="descname">TruncatedSVD</code><span class="sig-paren">(</span><em>n_components=2</em>, <em>algorithm='auto'</em>, <em>n_iter=5</em>, <em>random_state=None</em>, <em>tol=0.0</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dimensionality reduction using truncated SVD (aka LSA).</p>
+<p>This transformer performs linear dimensionality reduction by means of
+truncated singular value decomposition (SVD). Contrary to PCA, this
+estimator does not center the data before computing the singular value
+decomposition. This means it can work with scipy.sparse matrices
+efficiently.</p>
+<p>In particular, truncated SVD works on term count/tf-idf matrices as
+returned by the vectorizers in sklearn.feature_extraction.text. In that
+context, it is known as latent semantic analysis (LSA).</p>
+<p>This estimator supports two algorithms: a fast randomized SVD solver, and
+a “naive” algorithm that uses ARPACK as an eigensolver on (X * X.T) or
+(X.T * X), whichever is more efficient.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default = 2</em>) – Desired dimensionality of output data.
+Must be strictly less than the number of features.
+The default value is useful for visualisation. For LSA, a value of
+100 is recommended.</li>
+<li><strong>algorithm</strong> (<em>string</em><em>, </em><em>&quot;arpack&quot;</em><em>, </em><em>&quot;randomized&quot;</em><em>, </em><em>&quot;cuml&quot;</em><em>, </em><em>&quot;auto&quot;</em><em>, </em><em>&quot;full&quot;</em><em> or </em><em>&quot;jacobi&quot;. default = &quot;auto&quot;.</em>) – SVD solver to use. Either “arpack” for the ARPACK wrapper in SciPy
+(scipy.sparse.linalg.svds), or “randomized” for the randomized
+algorithm due to Halko (2009) if cuml can’t be used.
+“auto” will become “full” if cuml is installed and the arguments satisfy
+some validations. “auto” will become “randomized” if cuml is not used.
+algorithm should be one of “auto”, “cuml”, “full” and “jacobi”.</li>
+<li><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default 5</em><em>)</em>) – Number of iterations for randomized SVD solver. Not used by ARPACK.
+The default is larger than the default in <cite>randomized_svd</cite> to handle
+sparse matrices that may have large slowly decaying spectrum.</li>
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default = None</em>) – If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by <cite>np.random</cite>.</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – Tolerance for ARPACK. 0 means machine precision. Ignored by randomized
+SVD solver.</li>
+<li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use GPU 0. Applicable only for cuML.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>components</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>)</em>) – </li>
+<li><strong>explained_variance</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The variance of the training samples transformed by a projection to
+each component.</li>
+<li><strong>explained_variance_ratio</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – Percentage of variance explained by each of the selected components.</li>
+<li><strong>singular_values</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The singular values corresponding to each of the selected components.
+The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
+variables in the lower-dimensional space.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">TruncatedSVD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.random_projection</span> <span class="k">import</span> <span class="n">sparse_random_matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">sparse_random_matrix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svd</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># doctest: +NORMALIZE_WHITESPACE</span>
+<span class="go">TruncatedSVD(algorithm=&#39;randomized&#39;, n_components=5, n_iter=7,</span>
+<span class="go">        random_state=42, tol=0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[0.0606... 0.0584... 0.0497... 0.0434... 0.0372...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">0.249...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  <span class="c1"># doctest: +ELLIPSIS</span>
+<span class="go">[2.5841... 2.5245... 2.3201... 2.1753... 2.0443...]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="pcadoc.html#pai4sk.decomposition.PCA" title="pai4sk.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<p>Finding structure with randomness: Stochastic algorithms for constructing
+approximate matrix decompositions
+Halko, et al., 2009 (arXiv:909) https://arxiv.org/pdf/0909.4061.pdf</p>
+<p class="rubric">Notes</p>
+<p>SVD suffers from a problem called “sign indeterminacy”, which means the
+sign of the <code class="docutils literal notranslate"><span class="pre">components_</span></code> and the output from transform depend on the
+algorithm and random state. To work around this, fit instances of this
+class to data once, then keep the instance around to do transformations.</p>
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit LSI model on training data X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>y</strong> (<em>Ignored</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the transformer object.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.fit_transform">
+<code class="descname">fit_transform</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit LSI model to X and perform dimensionality reduction on X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>y</strong> (<em>Ignored</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array, shape (n_samples, n_components)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.inverse_transform">
+<code class="descname">inverse_transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform X back to its original space.</p>
+<p>Returns an array X_original whose transform would be X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>)</em>) – New data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – Note that this is always a dense array.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_features)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.transform">
+<code class="descname">transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform dimensionality reduction on X.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_components)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -985,7 +1867,7 @@ By default inference runs with maximum number of available threads.</div></block
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
     </div>
   </body>
 </html>

@@ -22,12 +22,11 @@ It offers distributed training, GPU acceleration and supports sparse data struct
 
 The *Snap ML* library offers two different packages:
 
-**snap-ml-local**
+**pai4sk-snapml**
     The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. *snap-ml-local* offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
     With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named *pai4sk*. This module is build upon scikit-learn 0.20.0 APIs and can be used as a replacement for scikit-learn. This module will automatically fall back to CPU algorithms when snap-ml-local doesn't support an API. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by *pai4sk*.
 
-**snap-ml-mpi**
-    *snap-ml-mpi* offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a *sklearn*-like python interface. 
+    It also offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a *sklearn*-like python interface. 
 
 **snap-ml-spark**
     similar to *snap-ml-mpi*, the *snap-ml-spark* package offers distributed training of models across a cluster of machines. The library is exposed to the user via a spak.ml-like interface and can seamslessly be integrated into existing pySpark application.

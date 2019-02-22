@@ -1,0 +1,8 @@
+.. _sk-log-doc:
+
+====================================
+log_loss
+====================================
+
+.. automodule:: pai4sk.metrics.log_loss
+    :members:

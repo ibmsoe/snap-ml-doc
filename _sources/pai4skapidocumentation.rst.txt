@@ -22,3 +22,23 @@ pai4sk API
 .. currentmodule:: pai4sk.svm
 .. autoclass:: LinearSVC
     :members:
+
+
+.. currentmodule:: pai4sk.cluster
+.. autoclass:: KMeans
+    :members:
+
+
+.. currentmodule:: pai4sk.cluster
+.. autoclass:: DBSCAN
+    :members:
+
+
+.. currentmodule:: pai4sk.decomposition
+.. autoclass:: PCA
+    :members:
+
+
+.. currentmodule:: pai4sk.decomposition
+.. autoclass:: TruncatedSVD
+    :members:

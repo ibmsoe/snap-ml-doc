@@ -9,7 +9,7 @@
     <title>API Documentation &#8212; Snap Machine Learning 1.0 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -76,10 +76,83 @@
 <span id="id1"></span><h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
 <p>We currently provide four python modules. Check out the APIs exposed by these modules in the relevant links,</p>
 <ul class="simple">
-<li><a class="reference internal" href="pai4skapidocumentation.html#pai4sk-api-documentation"><span class="std std-ref">pai4sk API</span></a></li>
-<li><a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml-local API</span></a></li>
-<li><a class="reference internal" href="mpiapidocumentation.html#mpi-api-documentation"><span class="std std-ref">snap-ml-mpi API</span></a></li>
-<li><a class="reference internal" href="pysparkapidocumentation.html#pyspark-api-documentation"><span class="std std-ref">snap-ml-spark API</span></a></li>
+<li><dl class="first docutils">
+<dt>pai4sk APIs</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Machine Learning</dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="ridgedoc.html#ridge-doc"><span class="std std-ref">linear_model.Ridge</span></a></li>
+<li><a class="reference internal" href="lassodoc.html#lasso-doc"><span class="std std-ref">linear_model.Lasso</span></a></li>
+<li><a class="reference internal" href="sklogregdoc.html#sk-logreg-doc"><span class="std std-ref">linear_model.LogisticRegression</span></a></li>
+<li><a class="reference internal" href="svcdoc.html#svc-doc"><span class="std std-ref">svm.LinearSVC</span></a></li>
+<li><a class="reference internal" href="kmeansdoc.html#kmeans-doc"><span class="std std-ref">cluster.KMeans</span></a></li>
+<li><a class="reference internal" href="dbscandoc.html#dbscan-doc"><span class="std std-ref">cluster.DBSCAN</span></a></li>
+<li><a class="reference internal" href="pcadoc.html#pca-doc"><span class="std std-ref">decomposition.PCA</span></a></li>
+<li><a class="reference internal" href="svddoc.html#svd-doc"><span class="std std-ref">decomposition.TruncatedSVD</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Loaders</dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="sksvmloaderfiledoc.html#sk-svmloader-file-doc"><span class="std std-ref">load_svmlight_file</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Metrics</dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="sklogdoc.html#sk-log-doc"><span class="std std-ref">log_loss</span></a></li>
+<li><a class="reference internal" href="skaccdoc.html#sk-acc-doc"><span class="std std-ref">accuracy_score</span></a></li>
+<li><a class="reference internal" href="skhingedoc.html#sk-hinge-doc"><span class="std std-ref">hinge_loss</span></a></li>
+<li><a class="reference internal" href="skmsedoc.html#sk-mse-doc"><span class="std std-ref">mean_squared_error</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SnapML APIs</dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="linregapidoc.html#linreg-api-doc"><span class="std std-ref">LinearRegression</span></a></li>
+<li><a class="reference internal" href="logregapidoc.html#logreg-api-doc"><span class="std std-ref">LogisticRegression</span></a></li>
+<li><a class="reference internal" href="svmapidoc.html#svm-api-doc"><span class="std std-ref">SVM</span></a></li>
+<li><a class="reference internal" href="dectreeapidoc.html#dectree-api-doc"><span class="std std-ref">DecisionTreeClassifier</span></a></li>
+<li><a class="reference internal" href="ranforapidoc.html#ranfor-api-doc"><span class="std std-ref">RandomForestClassifier</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SnapML Loaders APIs</dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="svmloaderdoc.html#svmloader-doc"><span class="std std-ref">load_from_svmlight_format</span></a></li>
+<li><a class="reference internal" href="snaploaderdoc.html#snaploader-doc"><span class="std std-ref">load_from_snap_format</span></a></li>
+<li><a class="reference internal" href="snaploaderfiledoc.html#snaploader-file-doc"><span class="std std-ref">load_snap_file</span></a></li>
+<li><a class="reference internal" href="snapwritedoc.html#snapwrite-doc"><span class="std std-ref">write_to_snap_format</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SnapML Spark APIs</dt>
+<dd><ul class="first last">
+<li><a class="reference internal" href="splinregdoc.html#sp-lin-reg-doc"><span class="std std-ref">LinearRegression</span></a></li>
+<li><a class="reference internal" href="splogregdoc.html#sp-log-reg-doc"><span class="std std-ref">LogisticRegression</span></a></li>
+<li><a class="reference internal" href="spsvmdoc.html#sp-svm-doc"><span class="std std-ref">SupportVectorMachine</span></a></li>
+<li><a class="reference internal" href="spreaddoc.html#sp-read-doc"><span class="std std-ref">DatasetReader</span></a></li>
+<li><a class="reference internal" href="spmetdoc.html#sp-met-doc"><span class="std std-ref">Metrics</span></a></li>
+<li><a class="reference internal" href="sputildoc.html#sp-util-doc"><span class="std std-ref">Utils</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 
@@ -111,7 +184,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
     </div>
   </body>
 </html>

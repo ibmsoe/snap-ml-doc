@@ -9,7 +9,7 @@
     <title>Click-Through Rate Prediction Prediction at large scale &#8212; Snap Machine Learning 1.0 documentation</title>
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -38,7 +38,7 @@
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Click-Through Rate Prediction Prediction at large scale</a><ul>
 <li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
@@ -71,7 +71,7 @@
             
   <div class="section" id="click-through-rate-prediction-prediction-at-large-scale">
 <span id="notebook-criteo-mpi"></span><h1>Click-Through Rate Prediction Prediction at large scale<a class="headerlink" href="#click-through-rate-prediction-prediction-at-large-scale" title="Permalink to this headline">¶</a></h1>
-<p>In this example we will showcase how <code class="docutils literal notranslate"><span class="pre">snap-ml-mpi</span></code> can be used to train a logistic regression classifier for the task of click through rate prediction. For this purpose we use the publicly available criteo-kaggle dataset which can be downloaded from the <a class="reference external" href="https://www.kaggle.com/c/criteo-display-ad-challenge">Display Advertising Challenge</a>.</p>
+<p>In this example we will showcase how <code class="docutils literal notranslate"><span class="pre">pai4sk-snapml</span></code> can be used to train a logistic regression classifier for the task of click through rate prediction. For this purpose we use the publicly available criteo-kaggle dataset which can be downloaded from the <a class="reference external" href="https://www.kaggle.com/c/criteo-display-ad-challenge">Display Advertising Challenge</a>.</p>
 <p>The task is described as follows:</p>
 <blockquote>
 <div>Display advertising is a billion dollar effort and one of the central uses of machine learning on the Internet. However, its data and methods are usually kept under lock and key. In this research competition, CriteoLabs is sharing a week’s worth of data for you to develop models predicting ad click-through rate (CTR). Given a user and the page he is visiting, what is the probability that he will click on a given ad?</div></blockquote>
@@ -80,7 +80,7 @@
 <p>To run the example across multiple nodes in a cluster you must have</p>
 <ul class="simple">
 <li>MPI configured</li>
-<li>snap-ml-mpi installed</li>
+<li>pai4sk conda package installed</li>
 <li>password-less ssh enabled between hosts</li>
 </ul>
 </div>
@@ -138,7 +138,7 @@
 <span class="n">X_test</span>  <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span>  <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Saving data in distributed snap.ml format...&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">snap_ml_mpi.Utils</span> <span class="kn">import</span> <span class="n">dump_to_snap_format</span>
+<span class="kn">from</span> <span class="nn">paisk.sml_io</span> <span class="kn">import</span> <span class="n">dump_to_snap_format</span>
 <span class="n">dump_to_snap_format</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="s2">&quot;data/criteo.kaggle2014.train.snap&quot;</span><span class="p">)</span>
 <span class="n">dump_to_snap_format</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="s2">&quot;data/criteo.kaggle2014.test.snap&quot;</span><span class="p">)</span>
 </pre></div>
@@ -161,7 +161,7 @@
 </div>
 <div class="section" id="training-and-evaluation-a-logistic-regression-model">
 <h2>Training and Evaluation a Logistic Regression Model<a class="headerlink" href="#training-and-evaluation-a-logistic-regression-model" title="Permalink to this headline">¶</a></h2>
-<p>After running the data pre-processing steps above, we are ready to train a Logistic Regression classifier using the IBM <code class="docutils literal notranslate"><span class="pre">snap-ml-mpi</span></code> library. Note that you need to have access to the data from all the connected machines that will be used (by replicating the data or by providing a distributed file system).</p>
+<p>After running the data pre-processing steps above, we are ready to train a Logistic Regression classifier using the IBM <code class="docutils literal notranslate"><span class="pre">pai4sk-snapml</span></code> library. Note that you need to have access to the data from all the connected machines that will be used (by replicating the data or by providing a distributed file system).</p>
 <p>To perform the training we create a script <code class="docutils literal notranslate"><span class="pre">my-training.py</span></code> where we specify the parameters and function calls. For an example see below:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -174,7 +174,7 @@
 <span class="n">train_filename_snap</span> <span class="o">=</span> <span class="s2">&quot;data/criteo.kaggle2014.train.snap&quot;</span>
 <span class="n">test_filename_snap</span> <span class="o">=</span> <span class="s2">&quot;data/criteo.kaggle2014.test.snap&quot;</span>
 
-<span class="kn">from</span> <span class="nn">snap_ml_mpi.Loaders</span> <span class="kn">import</span> <span class="n">load_from_snap_format</span>
+<span class="kn">from</span> <span class="nn">pai4sk.sml_io</span> <span class="kn">import</span> <span class="n">load_from_snap_format</span>
 <span class="n">train_data</span> <span class="o">=</span> <span class="n">load_from_snap_format</span><span class="p">(</span><span class="n">train_filename_snap</span><span class="p">)</span>
 <span class="n">test_data</span> <span class="o">=</span> <span class="n">load_from_snap_format</span><span class="p">(</span><span class="n">test_filename_snap</span><span class="p">)</span>
 
@@ -203,7 +203,7 @@
     <span class="n">class_weight</span> <span class="o">=</span> <span class="bp">None</span>
 
 <span class="c1"># Create snapML Logistic Regression classifier</span>
-<span class="kn">from</span> <span class="nn">snap_ml_mpi</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">snapmlLR</span>
+<span class="kn">from</span> <span class="nn">pai4sk</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">snapmlLR</span>
 <span class="n">snapml_lr</span> <span class="o">=</span> <span class="n">snapmlLR</span><span class="p">(</span><span class="n">dual</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_gpu</span><span class="o">=</span><span class="n">use_gpu</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="n">device_ids</span><span class="p">,</span>
                     <span class="n">num_threads</span><span class="o">=</span><span class="n">num_threads</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="n">class_weight</span><span class="p">)</span>
 
@@ -220,8 +220,8 @@
 <span class="n">pred</span> <span class="o">=</span> <span class="n">snapml_lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
 <span class="n">proba</span> <span class="o">=</span> <span class="n">snapml_lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">snap_ml_mpi.Metrics</span> <span class="kn">import</span> <span class="n">log_loss</span> <span class="k">as</span> <span class="n">snapLOGLOSS</span>
-<span class="kn">from</span> <span class="nn">snap_ml_mpi.Metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span> <span class="k">as</span> <span class="n">snapACC</span>
+<span class="kn">from</span> <span class="nn">pai4sk.sml_metrics</span> <span class="kn">import</span> <span class="n">log_loss</span> <span class="k">as</span> <span class="n">snapLOGLOSS</span>
+<span class="kn">from</span> <span class="nn">pai4sk.sml_metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span> <span class="k">as</span> <span class="n">snapACC</span>
 
 <span class="c1"># Compute accuracy</span>
 <span class="n">snapml_accuracy</span> <span class="o">=</span> <span class="n">snapACC</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
@@ -235,7 +235,7 @@
 </pre></div>
 </div>
 <p>to run the training script call:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpirun</span> <span class="o">-</span><span class="n">np</span> <span class="mi">2</span> <span class="o">--</span><span class="n">host</span> <span class="n">machine1</span><span class="p">,</span><span class="n">machine2</span> <span class="o">-</span><span class="n">x</span> <span class="n">PATH</span> <span class="o">-</span><span class="n">x</span> <span class="n">PYTHONPATH</span> <span class="o">-</span><span class="n">x</span> <span class="n">LD_LIBRARY_PATH</span> <span class="n">python</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">DL</span><span class="o">/</span><span class="n">snap</span><span class="o">-</span><span class="n">ml</span><span class="o">-</span><span class="n">mpi</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">example</span><span class="o">-</span><span class="n">criteo</span><span class="o">/</span><span class="n">example</span><span class="o">-</span><span class="n">criteo</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>snaprun -H machine1,machine2 python ${CONDA_PREFIX}/pai4sk/mpi-examples/example-criteo/example-criteo.py
 </pre></div>
 </div>
 <div class="admonition note">
@@ -243,7 +243,7 @@
 <p class="last">The user can also run multiple MPI processes per machine, but, in that case, the MPI processes on one machine will share the same hardware resources during training. Namely, if the user trains the model on GPUs, the MPI processes on one machine will share the same GPUs as defined in the device_ids parameter. Therefore, we recommend the user to run 1 MPI process per machine in order to achieve the maximum performance.</p>
 </div>
 <p>As a reference we show the expected output for running the script on 2 P9 machines using one V100 GPU on each machine. We ran the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mpirun -np 2 --host node1,node2 -x PATH=$PATH -x PYHONPATH=$PYTHONPATH -x LD_LIBRARY_PATH=$LD_LIBRARY_PATH python /opt/DL/snap-ml-mpi/examples/example-criteo/example-criteo.py
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>snaprun -H node1,node2 python ${CONDA_PREFIX}/pai4sk/mpi-examples/example-criteo/example-criteo.py
 </pre></div>
 </div>
 <p>and this yields the following output:</p>
@@ -279,7 +279,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, cdu.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
     </div>
   </body>
 </html>

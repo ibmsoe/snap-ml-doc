@@ -4,7 +4,7 @@
 Click-Through Rate Prediction Prediction at large scale
 ====================================================================================
 
-In this example we will showcase how ``snap-ml-mpi`` can be used to train a logistic regression classifier for the task of click through rate prediction. For this purpose we use the publicly available criteo-kaggle dataset which can be downloaded from the `Display Advertising Challenge <https://www.kaggle.com/c/criteo-display-ad-challenge>`_.
+In this example we will showcase how ``pai4sk-snapml`` can be used to train a logistic regression classifier for the task of click through rate prediction. For this purpose we use the publicly available criteo-kaggle dataset which can be downloaded from the `Display Advertising Challenge <https://www.kaggle.com/c/criteo-display-ad-challenge>`_.
 
 The task is described as follows:
 
@@ -17,7 +17,7 @@ Prerequisites
 To run the example across multiple nodes in a cluster you must have
 
 * MPI configured
-* snap-ml-mpi installed
+* pai4sk conda package installed
 * password-less ssh enabled between hosts
 
 
@@ -82,7 +82,7 @@ Therefore you should create a script called ``my-preprocessing.py`` containing t
     X_test  = normalize(X_test,  axis=1, norm='l1')
 
     print('Saving data in distributed snap.ml format...')
-    from snap_ml_mpi.Utils import dump_to_snap_format
+    from paisk.sml_io import dump_to_snap_format
     dump_to_snap_format(X_train, y_train, "data/criteo.kaggle2014.train.snap")
     dump_to_snap_format(X_test, y_test, "data/criteo.kaggle2014.test.snap")
 
@@ -106,7 +106,7 @@ this creates the following files::
 Training and Evaluation a Logistic Regression Model
 ========================================================
 
-After running the data pre-processing steps above, we are ready to train a Logistic Regression classifier using the IBM ``snap-ml-mpi`` library. Note that you need to have access to the data from all the connected machines that will be used (by replicating the data or by providing a distributed file system).
+After running the data pre-processing steps above, we are ready to train a Logistic Regression classifier using the IBM ``pai4sk-snapml`` library. Note that you need to have access to the data from all the connected machines that will be used (by replicating the data or by providing a distributed file system).
 
 To perform the training we create a script ``my-training.py`` where we specify the parameters and function calls. For an example see below:
 
@@ -123,7 +123,7 @@ To perform the training we create a script ``my-training.py`` where we specify t
     train_filename_snap = "data/criteo.kaggle2014.train.snap"
     test_filename_snap = "data/criteo.kaggle2014.test.snap"
 
-    from snap_ml_mpi.Loaders import load_from_snap_format
+    from pai4sk.sml_io import load_from_snap_format
     train_data = load_from_snap_format(train_filename_snap)
     test_data = load_from_snap_format(test_filename_snap)
 
@@ -152,7 +152,7 @@ To perform the training we create a script ``my-training.py`` where we specify t
         class_weight = None
 
     # Create snapML Logistic Regression classifier
-    from snap_ml_mpi import LogisticRegression as snapmlLR
+    from pai4sk import LogisticRegression as snapmlLR
     snapml_lr = snapmlLR(dual=True, use_gpu=use_gpu, device_ids=device_ids,
                         num_threads=num_threads, class_weight=class_weight)
 
@@ -169,8 +169,8 @@ To perform the training we create a script ``my-training.py`` where we specify t
     pred = snapml_lr.predict(test_data)
     proba = snapml_lr.predict_proba(test_data)
 
-    from snap_ml_mpi.Metrics import log_loss as snapLOGLOSS
-    from snap_ml_mpi.Metrics import accuracy_score as snapACC
+    from pai4sk.sml_metrics import log_loss as snapLOGLOSS
+    from pai4sk.sml_metrics import accuracy_score as snapACC
 
     # Compute accuracy
     snapml_accuracy = snapACC(test_data, pred)
@@ -185,13 +185,13 @@ To perform the training we create a script ``my-training.py`` where we specify t
     
 to run the training script call::
 
-    mpirun -np 2 --host machine1,machine2 -x PATH -x PYTHONPATH -x LD_LIBRARY_PATH python /opt/DL/snap-ml-mpi/examples/example-criteo/example-criteo.py
+    snaprun -H machine1,machine2 python ${CONDA_PREFIX}/pai4sk/mpi-examples/example-criteo/example-criteo.py
 
 .. note:: The user can also run multiple MPI processes per machine, but, in that case, the MPI processes on one machine will share the same hardware resources during training. Namely, if the user trains the model on GPUs, the MPI processes on one machine will share the same GPUs as defined in the device_ids parameter. Therefore, we recommend the user to run 1 MPI process per machine in order to achieve the maximum performance.
 
 As a reference we show the expected output for running the script on 2 P9 machines using one V100 GPU on each machine. We ran the following command::
 
-    mpirun -np 2 --host node1,node2 -x PATH=$PATH -x PYHONPATH=$PYTHONPATH -x LD_LIBRARY_PATH=$LD_LIBRARY_PATH python /opt/DL/snap-ml-mpi/examples/example-criteo/example-criteo.py 
+    snaprun -H node1,node2 python ${CONDA_PREFIX}/pai4sk/mpi-examples/example-criteo/example-criteo.py
 
 and this yields the following output::
 

@@ -23,7 +23,7 @@ FAQ
 * :ref:`q16` 
 
 
-.. note:: The discussions and explanations on this page apply to the original Snap ML APIs: :ref:`python-api-documentation` , :ref:`mpi-api-documentation` and :ref:`pyspark-api-documentation` but only partially to :ref:`pai4sk-api-documentation`.
+.. note:: The discussions and explanations on this page apply to the original Snap ML APIs: :ref:`python-api-documentation` and :ref:`pyspark-api-documentation` but only partially to :ref:`pai4sk-api-documentation`.
 
 
 .. _q1:

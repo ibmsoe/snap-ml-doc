@@ -1,0 +1,9 @@
+.. _pca-doc:
+
+====================================
+decomposition.PCA
+====================================
+
+.. currentmodule:: pai4sk.decomposition
+.. autoclass:: PCA
+    :members:
