@@ -1,7 +1,7 @@
 .. _notebook-criteo-mpi:
 
 ====================================================================================
-Click-Through Rate Prediction Prediction at large scale
+Click-Through Rate Prediction at large scale
 ====================================================================================
 
 In this example we will showcase how ``pai4sk-snapml`` can be used to train a logistic regression classifier for the task of click through rate prediction. For this purpose we use the publicly available criteo-kaggle dataset which can be downloaded from the `Display Advertising Challenge <https://www.kaggle.com/c/criteo-display-ad-challenge>`_.

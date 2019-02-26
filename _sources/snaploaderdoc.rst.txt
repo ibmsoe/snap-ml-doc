@@ -3,5 +3,5 @@
 ====================================
 load_from_snap_format
 ====================================
-.. automodule:: pai4sk.sml_io.load_from_snap_format
-    :members:
+.. autofunction:: pai4sk.sml_io.load_from_snap_format
+

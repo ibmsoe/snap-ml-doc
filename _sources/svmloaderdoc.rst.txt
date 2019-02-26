@@ -4,5 +4,5 @@
 load_from_svmlight_format
 ====================================
 
-.. automodule:: pai4sk.sml_io.load_from_svmlight_format
-    :members:
+.. autofunction:: pai4sk.sml_io.load_from_svmlight_format
+

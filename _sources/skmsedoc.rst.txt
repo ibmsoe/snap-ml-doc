@@ -4,5 +4,5 @@
 mean_squared_error
 ====================================
 
-.. automodule:: pai4sk.metrics.mean_squared_error
-    :members:
+.. autofunction:: pai4sk.metrics.mean_squared_error
+

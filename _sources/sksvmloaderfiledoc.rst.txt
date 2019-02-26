@@ -4,5 +4,5 @@
 load_svmlight_file
 ====================================
 
-.. automodule:: pai4sk.datasets.load_svmlight_file
-    :members:
+.. autofunction:: pai4sk.datasets.load_svmlight_file
+

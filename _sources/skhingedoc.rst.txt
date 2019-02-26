@@ -4,5 +4,5 @@
 hinge_loss
 ====================================
 
-.. automodule:: pai4sk.metrics.hinge_loss
-    :members:
+.. autofunction:: pai4sk.metrics.hinge_loss
+
