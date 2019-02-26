@@ -4,5 +4,5 @@
 load_snap_file
 ====================================
 
-.. automodule:: pai4sk.sml_io.load_snap_file
-    :members:
+.. autofunction:: pai4sk.sml_io.load_snap_file
+

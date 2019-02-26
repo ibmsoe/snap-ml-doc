@@ -1,58 +1,72 @@
-.. Snap Machine Learning documentation master file, created by
-   sphinx-quickstart on Wed Apr 11 12:01:07 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-.. _intro:
-
-----------------------------------
-Introduction
-----------------------------------
-
-*Snap Machine Learning (Snap ML)* is a library for training generalized linear models. It is being developped at the IBM Research - Zürich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
-Snap ML supports a large number of classical machine learning models and 
-scales gracefully to data sets with billions of examples and/or features.
-It offers distributed training, GPU acceleration and supports sparse data structures.
-
-
-.. code-block:: python
-
-    "With Snap ML you can train your machine learning model faster than you can snap your fingers!"
-
-
-The *Snap ML* library offers two different packages:
-
-**pai4sk-snapml**
-    The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. *snap-ml-local* offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
-    With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named *pai4sk*. This module is build upon scikit-learn 0.20.0 APIs and can be used as a replacement for scikit-learn. This module will automatically fall back to CPU algorithms when snap-ml-local doesn't support an API. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by *pai4sk*.
-
-    It also offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a *sklearn*-like python interface. 
-
-**snap-ml-spark**
-    similar to *snap-ml-mpi*, the *snap-ml-spark* package offers distributed training of models across a cluster of machines. The library is exposed to the user via a spak.ml-like interface and can seamslessly be integrated into existing pySpark application.
-
-For more technical details about the innovations behind Snap ML we refer to
-
-* Technical paper: `"Snap Machine Learning"  <https://arxiv.org/abs/1803.06333>`_, *C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, A. Anghel, H. Pozidis*, Arxiv, 2018.
-
-* Project webpage: `www.zurich.ibm.com/snapml <https://www.zurich.ibm.com/snapml/>`_.
-
-
-.. _content:
-
-----------------------------------
-Content
-----------------------------------
+.. include:: ./main.rst
 
 .. toctree::
-    :maxdepth: 1
+   :caption: Overview
+   :maxdepth: 1
 
-    apidocumentation
-    manual
-    tutorials
-    frequentlyaskedquestions
+   manual
+   tutorials
+   frequentlyaskedquestions
 
+.. toctree::
+   :caption: pai4sk ML APIs
+   :maxdepth: 1
+   
+   ridgedoc
+   lassodoc
+   sklogregdoc
+   svcdoc
+   kmeansdoc
+   dbscandoc
+   pcadoc
+   svddoc
 
-    
+.. toctree::
+   :caption: pai4sk Loaders APIs
+   :maxdepth: 1
+   
+   sksvmloaderfiledoc
 
+.. toctree::
+   :caption: pai4sk Metrics APIs
+   :maxdepth: 1
+   
+   sklogdoc
+   skaccdoc
+   skhingedoc
+   skmsedoc
+
+.. toctree::
+   :caption: snapML APIs
+   :maxdepth: 1
+   
+   linregapidoc
+   logregapidoc
+   svmapidoc
+   dectreeapidoc
+   ranforapidoc
+   logdoc
+   accdoc
+   hingedoc
+   msedoc
+
+.. toctree::
+   :caption: snapML Loaders APIs
+   :maxdepth: 1
+   
+   svmloaderdoc
+   snaploaderdoc
+   snaploaderfiledoc
+   snapwritedoc
+
+.. toctree::
+   :caption: snapML Spark APIs
+   :maxdepth: 1
+   
+   splinregdoc
+   splogregdoc
+   spsvmdoc
+   spreaddoc
+   spmetdoc
+   sputildoc
 

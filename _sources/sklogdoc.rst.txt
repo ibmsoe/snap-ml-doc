@@ -4,5 +4,5 @@
 log_loss
 ====================================
 
-.. automodule:: pai4sk.metrics.log_loss
-    :members:
+.. autofunction:: pai4sk.metrics.log_loss
+

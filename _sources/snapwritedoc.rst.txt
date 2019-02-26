@@ -4,6 +4,5 @@
 write_to_snap_format
 ====================================
 
-.. automodule:: pai4sk.sml_io.write_to_snap_format
-    :members:
+.. autofunction:: pai4sk.sml_io.write_to_snap_format
 

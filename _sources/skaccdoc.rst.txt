@@ -4,5 +4,5 @@
 accuracy_score
 ====================================
 
-.. automodule:: pai4sk.metrics.accuracy_score
-    :members:
+.. autofunction:: pai4sk.metrics.accuracy_score
+
