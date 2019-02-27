@@ -140,7 +140,7 @@ Similarly, for the SVM classifier the attribute ``support`` returns a list of in
 What does privacy mean?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In Snap ML we offer the functionality for training differentially private machine learning models. Differential privacy is emerging as a standard to quantify risk when training a machine learning model using sensitive/private information, when the resulting model is then exposed to potentially adversarial users. A differntially private model protects the individual elements of the dataset it is trained on. This means by having access to the model an adversary can not deduce any information about the training data. 
+In Snap ML we offer the functionality for training differentially private machine learning models. Differential privacy is emerging as a standard to quantify risk when training a machine learning model using sensitive/private information, when the resulting model is then exposed to potentially adversarial users. A differentially private model protects the individual elements of the dataset it is trained on. This means by having access to the model an adversary can not deduce any information about the training data. 
 
 
 To enable this functionality a user of Snap ML has to set the ``privacy`` parameter, which is disabled by default, to True. Snap ML can train a model with any desired level of privacy which can be steared with the ``privacy_epsilon`` parameter.

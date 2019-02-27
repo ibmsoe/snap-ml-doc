@@ -203,7 +203,7 @@
             
   <div class="section" id="introduction">
 <span id="intro"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p><em>Snap Machine Learning (Snap ML)</em> is a library for training generalized linear models. It is being developped at the IBM Research - Zürich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
+<p><em>Snap Machine Learning (Snap ML)</em> is a library for training generalized linear models. It is being developed at the IBM Research - Zürich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
 Snap ML supports a large number of classical machine learning models and
 scales gracefully to data sets with billions of examples and/or features.
 It offers distributed training, GPU acceleration and supports sparse data structures.</p>
@@ -213,7 +213,7 @@ It offers distributed training, GPU acceleration and supports sparse data struct
 <p>The <em>Snap ML</em> library offers two different packages:</p>
 <dl class="docutils">
 <dt><strong>pai4sk-snapml</strong></dt>
-<dd><p class="first">The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snap-ml-local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamslessly be integrated into existing Python application.
+<dd><p class="first">The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snap-ml-local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamlessly be integrated into existing Python application.
 With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named <em>pai4sk</em>. In PowerAI 1.6.0, this module is built upon scikit-learn 0.20.1 APIs and can be used as a replacement for scikit-learn. This module will automatically fall back to CPU algorithms when snap-ml-local doesn’t support an API. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by <em>pai4sk</em>.</p>
 <p class="last">It also offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a <em>sklearn</em>-like python interface.</p>
 </dd>

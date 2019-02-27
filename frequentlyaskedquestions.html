@@ -138,6 +138,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -305,7 +309,7 @@
 </div>
 <div class="section" id="what-does-privacy-mean">
 <span id="q12"></span><h2>What does privacy mean?<a class="headerlink" href="#what-does-privacy-mean" title="Permalink to this headline">¶</a></h2>
-<p>In Snap ML we offer the functionality for training differentially private machine learning models. Differential privacy is emerging as a standard to quantify risk when training a machine learning model using sensitive/private information, when the resulting model is then exposed to potentially adversarial users. A differntially private model protects the individual elements of the dataset it is trained on. This means by having access to the model an adversary can not deduce any information about the training data.</p>
+<p>In Snap ML we offer the functionality for training differentially private machine learning models. Differential privacy is emerging as a standard to quantify risk when training a machine learning model using sensitive/private information, when the resulting model is then exposed to potentially adversarial users. A differentially private model protects the individual elements of the dataset it is trained on. This means by having access to the model an adversary can not deduce any information about the training data.</p>
 <p>To enable this functionality a user of Snap ML has to set the <code class="docutils literal notranslate"><span class="pre">privacy</span></code> parameter, which is disabled by default, to True. Snap ML can train a model with any desired level of privacy which can be steared with the <code class="docutils literal notranslate"><span class="pre">privacy_epsilon</span></code> parameter.
 For a user that is not confident about which privacy level to choose, the Snap ML default values are chosen to provide a reasonable level of privacy.</p>
 </div>
