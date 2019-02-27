@@ -46,7 +46,7 @@ The regularization strength is controlled by the regularization parameter :math:
     In order to find an appropriate regularization parameter we recommend to perform cross validation.
 
 .. note:: *(Feature Selection)*
-    As Lasso regression yields sparse models it can be used to perform feature selection. The sparsity can be controled by :math:`\lambda` - a larger regularization parameter encourages more sparsity.
+    As Lasso regression yields sparse models it can be used to perform feature selection. The sparsity can be controlled by :math:`\lambda` - a larger regularization parameter encourages more sparsity.
 
 
 *Snap ML* implements different variants of stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`\bf w`. 
@@ -54,11 +54,11 @@ In order to optimally support GPUs for training *Snap ML* implements a parallel 
 
 To train the :class:`LinearRegression` model the ``fit`` method is used; it takes the training data and the labels :math:`X,\bf y` as input and stores the learnt coefficients of the model :math:`\bf w` in its  ``coef_`` member function. 
 The regularization type can be specified during initialization using the ``penalty`` argument.
-The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+The trained model can then be used to make predictions by calling the ``predict`` method on unlabelled data. 
 
 .. code-block:: python
 
-    >>> from snap_ml import LinearRegression
+    >>> from pai4sk import LinearRegression
     >>> import numpy as np
 
     >>> reg = LinearRegression(max_iter = 100, regularizer = 0.1, penalty = 'l2')
@@ -101,11 +101,11 @@ SDCA runs on the equivalent SVM dual problem formulation:
 
 with the constraint :math:`\alpha_i y_i\in[0,1]`.
 
-To train the model the ``fit`` method is used; it takes the training data and the labels :math:`X,{\bf y}` as input and stores the learnt coefficients of the model :math:`{\bf w}` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabeled data. 
+To train the model the ``fit`` method is used; it takes the training data and the labels :math:`X,{\bf y}` as input and stores the learnt coefficients of the model :math:`{\bf w}` in its  ``coef_`` member function. The trained model can then be used to make predictions by calling the ``predict`` method on unlabelled data. 
 
 .. code-block:: python
 
-    >>> from snap_ml import SupportVectorMachine
+    >>> from pai4sk import SupportVectorMachine
     >>> import numpy as np
 
     >>> reg = SupportVectorMachine(max_iter = 100, regularizer = 1.0)
@@ -147,11 +147,11 @@ The regularization strength is controlled by the regularization parameter :math:
 
 *Snap ML* implements stochastic coordinate descent `[SCD] <References_>`_ and stochastic dual coordinate ascent `[SDCA] <References_>`_ as an algorithm to fit the model parameters :math:`{\bf w}`. In order to support GPU acceleration *Snap ML* implements a parallel asynchronous version of these solvers especially designed to leverage the massive parallelism of moderne GPUs `[TPASCD] <References_>`_. 
 
-The model can be trained using the ``fit`` method which takes the training data and the labels :math:`X,\bf y` as input and stores the coefficients of the learnt model :math:`{\bf w}` in its  ``coef_`` attribute. This model can then be used to make predictions by calling the ``predict`` method on unlabeled data. The regularization type can be specified at initialization using the ``penalty`` argument.
+The model can be trained using the ``fit`` method which takes the training data and the labels :math:`X,\bf y` as input and stores the coefficients of the learnt model :math:`{\bf w}` in its  ``coef_`` attribute. This model can then be used to make predictions by calling the ``predict`` method on unlabelled data. The regularization type can be specified at initialization using the ``penalty`` argument.
 
 .. code-block:: python
 
-    >>> from snap_ml import LogisticRegression
+    >>> from pai4sk import LogisticRegression
     >>> import numpy as np
 
     >>> lr = LogisticRegression(max_iter = 100, regularizer = 0.01, penalty = 'l2')
