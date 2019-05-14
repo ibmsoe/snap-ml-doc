@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -212,18 +213,21 @@ It offers distributed training, GPU acceleration and supports sparse data struct
 <p>The <em>Snap ML</em> library offers two different packages:</p>
 <dl class="docutils">
 <dt><strong>pai4sk-snapml</strong></dt>
-<dd><p class="first">The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snap-ml-local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamlessly be integrated into existing Python application.
+<dd><p class="first">This package offers local, single-node as well as MPI-based distributed training. The library is exposed to the user via a <em>sklearn</em>-like python interface.</p>
+<p>The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snap-ml-local</em> offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamlessly be integrated into existing Python application.
 With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named <em>pai4sk</em>. In PowerAI 1.6.0, this module is built upon scikit-learn 0.20.1 APIs and can be used as a replacement for scikit-learn. This module will automatically fall back to CPU algorithms when snap-ml-local doesn’t support an API. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by <em>pai4sk</em>.</p>
 <p class="last">It also offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a <em>sklearn</em>-like python interface.</p>
 </dd>
 <dt><strong>snap-ml-spark</strong></dt>
 <dd>Similar to distributed <em>pai4sk-snapml</em>, the <em>snap-ml-spark</em> package offers distributed training of models across a cluster of machines. The library is exposed to the user via a <em>spark.ml</em> like interface and can seamlessly be integrated into existing pySpark application.</dd>
 </dl>
-<p>For more technical details about the innovations behind Snap ML please refer to</p>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Technical paper: <a class="reference external" href="https://arxiv.org/abs/1803.06333">“Snap Machine Learning”</a>, <em>C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, A. Anghel, H. Pozidis</em>, Arxiv, 2018.</li>
-<li>Project webpage: <a class="reference external" href="https://www.zurich.ibm.com/snapml/">www.zurich.ibm.com/snapml</a>.</li>
+<li><a class="reference external" href="https://papers.nips.cc/paper/7309-snap-ml-a-hierarchical-framework-for-machine-learning.pdf">“Snap ML: A Hierarchical Framework for Machine Learning”</a>, C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, A. Anghel, G. Ravi, M. Kandasamy and H. Pozidis, in <em>Advances of Neural Information Processing Systems (NeurIPS)</em>, 2018. <a class="reference external" href="https://papers.nips.cc/paper/7309-snap-ml-a-hierarchical-framework-for-machine-learning/bibtex">[bibtex]</a></li>
+<li><a class="reference external" href="https://www.zurich.ibm.com/snapml/">www.zurich.ibm.com/snapml</a>.</li>
 </ul>
+</div>
 </div>
 
 

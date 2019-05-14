@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -90,7 +91,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Manual</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#linear-regression">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#support-vector-machine">Support Vector Machine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#logistic-regression">Logistic Regression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#logistic-regression">Logistic Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#decision-tree">Decision Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#random-forest">Random Forest</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
@@ -212,12 +215,13 @@
             
   <div class="section" id="manual">
 <span id="id1"></span><h1>Manual<a class="headerlink" href="#manual" title="Permalink to this headline">¶</a></h1>
-<p>The Snap Machine Learning (Snap ML) Library is designed to offer fast training of generalized linear models.
-It currently supports the following machine learning models:</p>
+<p>The Snap Machine Learning (Snap ML) Library is designed to offer fast training of generalized linear models and tree based models. The library is under development and currently supports the following machine learning models:</p>
 <ul class="simple">
 <li><a class="reference internal" href="#linear-regression"><span class="std std-ref">Linear Regression</span></a></li>
 <li><a class="reference internal" href="#svm"><span class="std std-ref">Support Vector Machine</span></a></li>
 <li><a class="reference internal" href="#logistic-regression"><span class="std std-ref">Logistic Regression</span></a></li>
+<li><a class="reference internal" href="#decision-tree"><span class="std std-ref">Decision Tree</span></a></li>
+<li><a class="reference internal" href="#random-forest"><span class="std std-ref">Random Forest</span></a></li>
 </ul>
 <div class="section" id="linear-regression">
 <span id="id2"></span><h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h2>
@@ -333,6 +337,14 @@ SDCA runs on the equivalent SVM dual problem formulation:</p>
 </pre></div>
 </div>
 <p>A full example of training a <code class="xref py py-class docutils literal notranslate"><span class="pre">LogisticRegression</span></code> model in Snap ML can be found in the PowerAI distribution under <em>/opt/DL/snap-ml-local/examples</em>. For more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a>.</p>
+</div>
+<div class="section" id="decision-tree">
+<span id="id4"></span><h2>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h2>
+<p>Snap ML offers a <code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> for training a binary decision tree. The training routine is single-threaded and executed on the CPU. Check the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a> for details about the available options or check out the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> for an application example.</p>
+</div>
+<div class="section" id="random-forest">
+<span id="id5"></span><h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h2>
+<p>With the <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> you can train an ensemble of trees. This is usually preferred over a single decision tree as it improves the generalization performance of the model. Snap ML implements a multi-threaded training routine that is executed on the CPU. Check the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a> for details about the available options or check out the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> for an application example.</p>
 <div class="section" id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 <table class="docutils field-list" frame="void" rules="none">

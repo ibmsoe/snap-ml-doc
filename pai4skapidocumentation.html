@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -118,6 +119,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -200,7 +205,7 @@
 <span id="pai4sk-api-documentation"></span><h1>pai4sk API<a class="headerlink" href="#pai4sk-api" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.linear_model.Ridge">
-<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Ridge</code><span class="sig-paren">(</span><em>alpha=1.0</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>copy_X=True</em>, <em>max_iter=None</em>, <em>tol=0.001</em>, <em>solver='auto'</em>, <em>random_state=None</em>, <em>dual=False</em>, <em>verbose=0</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>return_training_history=None</em>, <em>privacy=False</em>, <em>eta=0.3</em>, <em>batch_size=100</em>, <em>privacy_epsilon=10</em>, <em>grad_clip=1</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Ridge" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Ridge</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Ridge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear least squares with l2 regularization.</p>
 <p>Minimizes the objective function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||^</span><span class="mi">2_2</span>
@@ -241,8 +246,9 @@ by scipy.sparse.linalg. For ‘sag’ solver, the default value is 1000.</li>
 <li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Precision of the solution.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
+The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
@@ -408,7 +414,7 @@ By default inference runs with maximum number of available threads.</div></block
 
 <dl class="class">
 <dt id="pai4sk.linear_model.Lasso">
-<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Lasso</code><span class="sig-paren">(</span><em>alpha=1.0</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>precompute=False</em>, <em>copy_X=True</em>, <em>max_iter=1000</em>, <em>tol=0.0001</em>, <em>warm_start=False</em>, <em>positive=False</em>, <em>random_state=None</em>, <em>selection='cyclic'</em>, <em>verbose=0</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>return_training_history=None</em>, <em>privacy=False</em>, <em>eta=0.3</em>, <em>batch_size=100</em>, <em>privacy_epsilon=10</em>, <em>grad_clip=1</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Lasso" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Lasso</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Lasso" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Model trained with L1 prior as regularizer (aka the Lasso)</p>
 <p>The optimization objective for Lasso is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_samples</span><span class="p">))</span> <span class="o">*</span> <span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||</span><span class="n">_1</span>
@@ -463,8 +469,9 @@ rather than looping over features sequentially by default. This
 especially when tol is higher than 1e-4.</li>
 <li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
 training time. For performance evaluation, use verbose=False.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
+The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
@@ -583,7 +590,7 @@ By default inference runs with maximum number of available threads.</div></block
 
 <dl class="class">
 <dt id="pai4sk.linear_model.LogisticRegression">
-<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>penalty='l2'</em>, <em>dual=False</em>, <em>tol=0.0001</em>, <em>C=1.0</em>, <em>fit_intercept=True</em>, <em>intercept_scaling=1</em>, <em>class_weight=None</em>, <em>random_state=None</em>, <em>solver='warn'</em>, <em>max_iter=100</em>, <em>multi_class='warn'</em>, <em>verbose=0</em>, <em>warm_start=False</em>, <em>n_jobs=None</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>return_training_history=None</em>, <em>privacy=False</em>, <em>eta=0.3</em>, <em>batch_size=100</em>, <em>privacy_epsilon=10</em>, <em>grad_clip=1</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression (aka logit, MaxEnt) classifier.</p>
 <p>In the multiclass case, the training algorithm uses the one-vs-rest (OvR)
 scheme if the ‘multi_class’ option is set to ‘ovr’, and uses the cross-
@@ -702,8 +709,9 @@ set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or
 not. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code>
 context. <code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.
 See <span class="xref std std-term">Glossary</span> for more details.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
+The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single-GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
@@ -919,7 +927,7 @@ where classes are ordered as they are in <code class="docutils literal notransla
 
 <dl class="class">
 <dt id="pai4sk.svm.LinearSVC">
-<em class="property">class </em><code class="descclassname">pai4sk.svm.</code><code class="descname">LinearSVC</code><span class="sig-paren">(</span><em>penalty='l2'</em>, <em>loss='squared_hinge'</em>, <em>dual=True</em>, <em>tol=0.0001</em>, <em>C=1.0</em>, <em>multi_class='ovr'</em>, <em>fit_intercept=True</em>, <em>intercept_scaling=1</em>, <em>class_weight=None</em>, <em>verbose=0</em>, <em>random_state=None</em>, <em>max_iter=1000</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>num_threads=1</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.svm.</code><code class="descname">LinearSVC</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Support Vector Classification.</p>
 <p>Similar to SVC with parameter kernel=’linear’, but implemented in terms of
 liblinear rather than libsvm, so it has more flexibility in the choice of
@@ -983,8 +991,9 @@ RandomState instance, random_state is the random number generator; If
 None, the random number generator is the RandomState instance used by
 <cite>np.random</cite>.</li>
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>(</em><em>default=1000</em><em>)</em>) – The maximum number of iterations to be run.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
+The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training,
@@ -1151,9 +1160,16 @@ By default inference runs with maximum number of available threads.</div></block
 <dl class="class">
 <dt id="pai4sk.cluster.KMeans">
 <em class="property">class </em><code class="descclassname">pai4sk.cluster.</code><code class="descname">KMeans</code><span class="sig-paren">(</span><em>n_clusters=8</em>, <em>max_iter=300</em>, <em>tol=0.0001</em>, <em>verbose=0</em>, <em>random_state=1</em>, <em>precompute_distances='auto'</em>, <em>init='k-means++'</em>, <em>n_init=1</em>, <em>algorithm='auto'</em>, <em>copy_x=True</em>, <em>n_jobs=None</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans" title="Permalink to this definition">¶</a></dt>
-<dd><p>K-Means clustering.
-If cuml is installed and if possible, then accelerated KMeans algorithm
-from cuML will be used. Otherwise, scikit-learn KMeans algorithm will be used.</p>
+<dd><p>K-Means clustering.</p>
+<p>If cuml is installed and cudf dataframe is passed as input, then pai4sk
+will try to use the accelerated KMeans algorithm from cuML. Otherwise,
+scikit-learn’s KMeans algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If KMeans from cuML is run, then the return values from the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -1204,19 +1220,27 @@ for more details.</p>
 The “elkan” variation is more efficient by using the triangle
 inequality, but currently doesn’t support sparse data. “auto” chooses
 “elkan” for dense data and “full” for sparse data.</p>
-<p>If cuml is installed and if either (1) algorithm is set to “cuml” or
-(2) algorithm is “auto”, then pai4sk will try to use kmeans algorithm
-from RAPIDS cuML if possible. cuML in pai4sk is currently supported
-only (a) with python 3.6 and (b) without MPI.</p>
+<p>If cuml is installed and cudf dataframe is passed as input, then if either
+|  (1) algorithm is set to “cuml” or
+|  (2) algorithm is “auto”,
+|  then pai4sk will try to use kmeans algorithm from RAPIDS cuML.
+cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If KMeans from cuML is run, then the return values of the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
 </li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>cluster_centers</strong> (<em>array</em><em>, </em><em>[</em><em>n_clusters</em><em>, </em><em>n_features</em><em>]</em>) – Coordinates of cluster centers. If the algorithm stops before fully
+<li><strong>cluster_centers</strong> (<em>array</em><em>, </em><em>[</em><em>n_clusters</em><em>, </em><em>n_features</em><em>] or </em><em>cudf dataframe</em>) – Coordinates of cluster centers. If the algorithm stops before fully
 converging (see <code class="docutils literal notranslate"><span class="pre">tol</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), these will not be
-consistent with <code class="docutils literal notranslate"><span class="pre">labels_</span></code>.</li>
-<li><strong>labels</strong> – Labels of each point</li>
+consistent with <code class="docutils literal notranslate"><span class="pre">labels_</span></code>. If KMeans from cuML is run, then the
+return values of some of the APIs will be cudf dataframe and
+cudf Series objects instead of the return types of scikit-learn API.</li>
+<li><strong>labels</strong> (<em>array</em><em> or </em><em>cudf Series</em>) – Labels of each point</li>
 <li><strong>inertia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Sum of squared distances of samples to their closest cluster center.</li>
 <li><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of iterations run.</li>
 <li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use all GPUs. Applicable only for cuML.</li>
@@ -1272,9 +1296,8 @@ set.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training vector, where n_samples is the number of samples and
-n_features is the number of features.
-cuDF dataframe if cuml is installed.</li>
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training vector, where n_samples is the number of samples and
+n_features is the number of features.</li>
 <li><strong>y</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) or </em><em>(</em><em>n_samples</em><em>, </em><em>n_targets</em><em>)</em>) – Target vector relative to X.</li>
 <li><strong>sample_weight</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) </em><em>optional</em>) – <p>Array of weights that are assigned to individual samples.
 If not provided, then each sample is given unit weight.
@@ -1285,7 +1308,9 @@ If not provided, then each sample is given unit weight.
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – If KMeans from cuML is run then this fit method saves the cluster
+centers and labels as cudf dataframe and cudf Series objects
+instead of the return types of scikit-learn API.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
@@ -1312,9 +1337,13 @@ New data to transform.</dd>
 observations are assigned equal weight (default: None)</dd>
 </dl>
 <p>Returns:
-labels : array, shape [n_samples,]</p>
+labels : array, shape [n_samples,] or cudf Series object</p>
 <blockquote>
-<div>Index of the cluster each sample belongs to.</div></blockquote>
+<div>Index of the cluster each sample belongs to.
+If KMeans from cuML is run, then this method saves the cluster
+centers and labels as cudf dataframe and cudf Series objects
+instead of the return types of scikit-learn API. Returns cudf
+Series object.</div></blockquote>
 </dd></dl>
 
 <dl class="method">
@@ -1334,9 +1363,12 @@ New data to transform.</dd>
 observations are assigned equal weight (default: None)</dd>
 </dl>
 <p>Returns:
-X_new : array, shape [n_samples, k]</p>
+X_new : array, shape [n_samples, k] or cudf dataframe</p>
 <blockquote>
-<div>X transformed in the new space.</div></blockquote>
+<div>X transformed in the new space.
+If KMeans from cuML is run, then this method saves the cluster
+centers and labels as cudf dataframe and cudf Series objects
+instead of the return types of scikit-learn API.</div></blockquote>
 </dd></dl>
 
 <dl class="method">
@@ -1357,7 +1389,10 @@ the closest code in the code book.
 <li><strong>sample_weight</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em><em>, </em><em>optional</em>) – The weights for each observation in X. If None, all
 observations are assigned equal weight (default: None)</li>
 <li><strong>Returns</strong> – </li>
-<li><strong>labels</strong> (<em>array</em><em>, </em><em>shape</em><em> [</em><em>n_samples</em><em>,</em><em>]</em>) – Index of the cluster each sample belongs to.</li>
+<li><strong>labels</strong> (<em>array</em><em>, </em><em>shape</em><em> [</em><em>n_samples</em><em>,</em><em>] or </em><em>cudf Series object</em>) – Index of the cluster each sample belongs to.
+If KMeans from cuML is run, then this method returns
+cudf Series object instead of the return types of
+scikit-learn API.</li>
 </ul>
 </td>
 </tr>
@@ -1377,11 +1412,15 @@ centers.  Note that even if X is sparse, the array returned by
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em>) – cuDF dataframe if cuml is installed.
-New data to transform.</td>
+New data to transform.
+If KMeans from cuML is run and if the input data is a cudf dataframe,
+then this method returns cudf dataframe instead of array.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – X transformed in the new space.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – X transformed in the new space.
+If KMeans from cuML is run, then this method returns cudf
+dataframe instead of the return types of scikit-learn API.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape [n_samples, k]</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape [n_samples, k] or cudf dataframe</td>
 </tr>
 </tbody>
 </table>
@@ -1396,8 +1435,15 @@ New data to transform.</td>
 <p>DBSCAN - Density-Based Spatial Clustering of Applications with Noise. Finds
 core samples of high density and expands clusters from them. Good for data
 which contains clusters of similar density.</p>
-<p>If cuml is installed and if possible, then accelerated DBSCAN algorithm
-from cuML will be used. Otherwise, scikit-learn DBSCAN algorithm will be used.</p>
+<p>If cuml is installed and if the input data is cudf dataframe and if possible,
+then the accelerated DBSCAN algorithm from cuML will be used. Otherwise,
+scikit-learn’s DBSCAN algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If DBSCAN from cuML is run, then the return values from the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
 <dl class="docutils">
 <dt>eps <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
 <dd>The maximum distance between two samples for them to be considered as
@@ -1420,7 +1466,8 @@ New in version 0.19.</dd>
 <dd><p class="first">The algorithm to be used by the NearestNeighbors module to compute
 pointwise distances and find nearest neighbors. See NearestNeighbors
 module documentation for details.</p>
-<p class="last">If cuml is installed and if either (1) algorithm is set to “cuml” or
+<p class="last">If cuml is installed and if cudf dataframe is given as input, if either
+(1) algorithm is set to “cuml” or
 (2) algorithm is “auto”, then pai4sk will try to use DBSCAN algorithm
 from RAPIDS cuML if possible. cuML in pai4sk is currently supported
 only (a) with python 3.6 and (b) without MPI.</p>
@@ -1455,24 +1502,7 @@ samples are given the label -1.</dd>
 <dd><p>Perform DBSCAN clustering from features or distance matrix.
 Parameters:
 ———-
-X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
-<blockquote>
-<div>cuDF dataframe if cuml is installed.
-A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
-<dl class="docutils">
-<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
-<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
-</dl>
-<p>y : Ignored</p>
-<p>self : object</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pai4sk.cluster.DBSCAN.fit_predict">
-<code class="descname">fit_predict</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit_predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Performs clustering on X and returns cluster labels.</p>
-<p>Parameters:
-X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples) or cuDF dataframe</p>
 <blockquote>
 <div>A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
 <dl class="docutils">
@@ -1480,7 +1510,31 @@ X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of s
 <dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
 </dl>
 <p>y : Ignored</p>
-<p>y : ndarray, shape (n_samples,)</p>
+<dl class="docutils">
+<dt>self <span class="classifier-delimiter">:</span> <span class="classifier">object</span></dt>
+<dd>If DBSCAN from cuML is run, then this fit method saves the computed
+labels as cudf Series object instead of array.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit_predict">
+<code class="descname">fit_predict</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit_predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs clustering on X and returns cluster labels.</p>
+<p>Parameters:
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples) or cudf dataframe</p>
+<blockquote>
+<div>A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
+<dl class="docutils">
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
+<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
+</dl>
+<p>y : Ignored</p>
+<dl class="docutils">
+<dt>y <span class="classifier-delimiter">:</span> <span class="classifier">ndarray, shape (n_samples,) or cudf Series</span></dt>
+<dd>If DBSCAN from cuML is run, then this fit method returns the computed
+labels as cudf Series object instead of ndarray.</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1496,6 +1550,15 @@ SVD by the method of Halko et al. 2009, depending on the shape of the input
 data and the number of components to extract.</p>
 <p>It can also use the scipy.sparse.linalg ARPACK implementation of the
 truncated SVD.</p>
+<p>If cuml is installed and input data is cudf dataframe, then pai4sk will try
+to use the accelerated PCA algorithm from cuML. Otherwise, scikit-learn’s
+PCA algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If PCA from cuML is run, then the return values from the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
 <p>Notice that this class does not support sparse input. See
 <a class="reference internal" href="svddoc.html#pai4sk.decomposition.TruncatedSVD" title="pai4sk.decomposition.TruncatedSVD"><code class="xref py py-class docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></a> for an alternative with sparse data.</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
@@ -1581,21 +1644,21 @@ by <cite>np.random</cite>. Used when <code class="docutils literal notranslate">
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>components</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>)</em>) – Principal axes in feature space, representing the directions of
+<li><strong>components</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Principal axes in feature space, representing the directions of
 maximum variance in the data. The components are sorted by
 <code class="docutils literal notranslate"><span class="pre">explained_variance_</span></code>.</li>
-<li><strong>explained_variance</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – <p>The amount of variance explained by each of the selected components.</p>
+<li><strong>explained_variance</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – <p>The amount of variance explained by each of the selected components.</p>
 <p>Equal to n_components largest eigenvalues
 of the covariance matrix of X.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 0.18.</span></p>
 </div>
 </li>
-<li><strong>explained_variance_ratio</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – <p>Percentage of variance explained by each of the selected components.</p>
+<li><strong>explained_variance_ratio</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – <p>Percentage of variance explained by each of the selected components.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">n_components</span></code> is not set then all components are stored and the
 sum of the ratios is equal to 1.0.</p>
 </li>
-<li><strong>singular_values</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The singular values corresponding to each of the selected components.
+<li><strong>singular_values</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – The singular values corresponding to each of the selected components.
 The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
 variables in the lower-dimensional space.</li>
 <li><strong>mean</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – <p>Per-feature empirical mean, estimated from the training set.</p>
@@ -1606,7 +1669,7 @@ to ‘mle’ or a number between 0 and 1 (with svd_solver == ‘full’) this
 number is estimated from input data. Otherwise it equals the parameter
 n_components, or the lesser value of n_features and n_samples
 if n_components is None.</li>
-<li><strong>noise_variance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – <p>The estimated noise covariance following the Probabilistic PCA model
+<li><strong>noise_variance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><em>cudf Series</em>) – <p>The estimated noise covariance following the Probabilistic PCA model
 from Tipping and Bishop 1999. See “Pattern Recognition and
 Machine Learning” by C. Bishop, 12.2.1 p. 574 or
 <a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a>. It is required to
@@ -1684,13 +1747,16 @@ Applied and Computational Harmonic Analysis, 30(1), 47-68.</cite></p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data, where n_samples is the number of samples
+<li><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data, where n_samples is the number of samples
 and n_features is the number of features.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the instance itself.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the instance itself.
+If PCA from cuML is run, then this fit method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit method.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
@@ -1709,16 +1775,18 @@ and n_features is the number of features.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data, where n_samples is the number of samples
+<li><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data, where n_samples is the number of samples
 and n_features is the number of features.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong> – If PCA from cuML is run, then this method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit_transform method.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape (n_samples, n_components)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like of shape (n_samples, n_components) or cudf dataframe</p>
 </td>
 </tr>
 </tbody>
@@ -1734,12 +1802,14 @@ and n_features is the number of features.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>)</em>) – New data, where n_samples is the number of samples
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>) or </em><em>cudf dataframe</em>) – New data, where n_samples is the number of samples
 and n_components is the number of components.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – If PCA from cuML is run, then this method returns cudf dataframe
+instead of the results’ types seen from scikit-learn’s
+inverse_transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">X_original array-like, shape (n_samples, n_features)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like of shape (n_samples, n_features) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>
@@ -1785,12 +1855,14 @@ from a training set.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data, where n_samples is the number of samples
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – New data, where n_samples is the number of samples
 and n_features is the number of features.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – If PCA from cuML is run, then this method saves the computed
+values as cudf dataframe instead of the results’ types seen from
+scikit-learn’s transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape (n_samples, n_components)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like of shape (n_samples, n_components) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>
@@ -1823,6 +1895,15 @@ context, it is known as latent semantic analysis (LSA).</p>
 <p>This estimator supports two algorithms: a fast randomized SVD solver, and
 a “naive” algorithm that uses ARPACK as an eigensolver on (X * X.T) or
 (X.T * X), whichever is more efficient.</p>
+<p>If cuml is installed and if input data is cudf dataframe and if possible, then
+the accelerated TruncatedSVD algorithm from cuML will be used. Otherwise,
+scikit-learn’s TruncatedSVD algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If TruncatedSVD from cuML is run, then the return values from the APIs
+will be cudf dataframe and cudf Series objects instead of the return types
+of scikit-learn API.</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -1853,11 +1934,11 @@ SVD solver.</li>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>components</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>)</em>) – </li>
-<li><strong>explained_variance</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The variance of the training samples transformed by a projection to
+<li><strong>components</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – </li>
+<li><strong>explained_variance</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – The variance of the training samples transformed by a projection to
 each component.</li>
-<li><strong>explained_variance_ratio</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – Percentage of variance explained by each of the selected components.</li>
-<li><strong>singular_values</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The singular values corresponding to each of the selected components.
+<li><strong>explained_variance_ratio</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – Percentage of variance explained by each of the selected components.</li>
+<li><strong>singular_values</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – The singular values corresponding to each of the selected components.
 The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
 variables in the lower-dimensional space.</li>
 </ul>
@@ -1903,12 +1984,15 @@ class to data once, then keep the instance around to do transformations.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the transformer object.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the transformer object.
+If TruncatedSVD from cuML is run, then this fit method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit method.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
@@ -1927,7 +2011,10 @@ class to data once, then keep the instance around to do transformations.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data.
+If TruncatedSVD from cuML is run, then this method saves the computed values
+as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s API.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
@@ -1935,7 +2022,7 @@ class to data once, then keep the instance around to do transformations.</p>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array, shape (n_samples, n_components)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array of shape (n_samples, n_components) or cudf dataframe</p>
 </td>
 </tr>
 </tbody>
@@ -1946,16 +2033,19 @@ class to data once, then keep the instance around to do transformations.</p>
 <dt id="pai4sk.decomposition.TruncatedSVD.inverse_transform">
 <code class="descname">inverse_transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.inverse_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform X back to its original space.</p>
-<p>Returns an array X_original whose transform would be X.</p>
+<p>Returns an array or cudf dataframe X_original whose transform would be X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>)</em>) – New data.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>) or </em><em>cudf dataframe</em>) – New data.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – Note that this is always a dense array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – Note that this is always dense.
+If TruncatedSVD from cuML is run, then this method returns cudf
+dataframe instead of the results’ types seen from scikit-learn’s
+transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_features)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array of shape (n_samples, n_features) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>
@@ -1969,11 +2059,14 @@ class to data once, then keep the instance around to do transformations.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – New data.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – Reduced version of X. This will always be dense.
+If TruncatedSVD from cuML is run, then this method returns cudf
+dataframe instead of the results’ types seen from scikit-learn’s
+transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_components)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array of shape (n_samples, n_components) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>

@@ -7,10 +7,14 @@ Tutorials
 
 We provide tutorials that illustrate the deployment of Snap ML for different use-cases 
 
-*  Application of pai4sk-snapml for credit card fraud detection :ref:`[notebook] <notebook-credit-local>`
+*  Application of pai4sk-snapml (Logistic Regression) for credit card fraud detection :ref:`[notebook] <notebook-credit-local>`
 
-*  Application of pai4sk-snapml for multi-class classificaiton on MNIST :ref:`[notebook] <notebook-mnist-local>`
+*  Application of pai4sk-snapml (Multi-class Logistic Regression) classification on MNIST :ref:`[notebook] <notebook-mnist-local>`
 
-*  Application of pai4sk-snapml for click-through rate prediction at large scale :ref:`[notebook] <notebook-criteo-mpi>`
+*  Application of pai4sk-snapml (Random Forest) for signal detection on Susy :ref:`[notebook] <notebook-susy-local>`
+
+*  Application of pai4sk-snapml (Decision Tree) for prediction on HIGGS :ref:`[notebook] <notebook-higgs-local>`
+
+*  Application of pai4sk-snapml (Logistic Regression) for click-through rate prediction at large scale :ref:`[notebook] <notebook-criteo-mpi>`
 
 

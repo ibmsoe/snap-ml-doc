@@ -1,0 +1,142 @@
+.. _notebook-higgs-local
+
+=================================================
+Training HIGGS using IBM Snap ML
+=================================================
+
+In this example we will train a Decision Tree model on the HIGGS dataset, using both ``scikit-learn`` and ``snap-ml-local``.
+
+Getting the Data
+=================================================
+Download and decompress the data from the LIBSVM repository::
+
+    mkdir data
+    cd data
+    wget https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/HIGGS.bz2
+    bunzip2 HIGGS.bz2
+    cd ../
+
+
+Data Preprocessing
+=================================================
+
+The data is in SvmLight format which is not very efficient since this dataset is dense. Therefore, we suggest to perform the following pre-processing, which converts it to dense format, performs normalization and then dumps it to numpy binary format for fast loading. Note that ``snapml`` is compatible with ``scikit-learn``. Thus we can use the broad functionality of scikit-learn to perform preprocessing as needed.
+
+.. code-block:: python
+
+    import numpy as np
+
+    # import preprocessing functions from scikit-learn
+    from sklearn.datasets import load_svmlight_file
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import normalize
+
+    # load data from libsvm format
+    X,y = load_svmlight_file("data/HIGGS")
+
+    # Make the train-test split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+    # Convert to numpy ararys
+    X_train = np.array(X_train.todense())
+    X_test  = np.array(X_test.todense())
+
+    # Normalize the training data
+    X_train = normalize(X_train, axis=1, norm='l1')
+    X_test  = normalize(X_test,  axis=1, norm='l1')
+
+    # Save the dense matrices
+    np.save("data/HIGGS.X_train", X_train)
+    np.save("data/HIGGS.X_test",  X_test)
+
+    # Save the labels
+    np.save("data/HIGGS.y_train", y_train)
+    np.save("data/HIGGS.y_test", y_test)
+
+
+Training and Evaluating a Decision Tree 
+=====================================================
+In the following we will show how to train a decision tree classifier using ``snapml`` on the HIGGS dataset.
+Therefore we first load the preprocessed data for numpy binary format
+
+.. code-block:: python
+
+    import time
+    import numpy as np
+    from scipy import sparse
+
+    # load the data 
+    t0 = time.time()
+    X_train = np.load("data/HIGGS.X_train.npy")
+    X_test  = np.load("data/HIGGS.X_test.npy")
+    y_train = np.load("data/HIGGS.y_train.npy")
+    y_test  = np.load("data/HIGGS.y_test.npy")
+    print("Data load time (s):  {0:.2f}".format(time.time()-t0))
+
+Then we specify the model parameters and initialize the decision tree classifier
+
+.. code-block:: python
+
+    # specify model parameters
+    max_depth = None
+
+    # import Snap ML DecisionTreeClassifier from pai4sk module directly
+    from pai4sk import DecisionTreeClassifier as SnapTree
+
+    # initialize classifier
+    dt = SnapTree(random_state=0, max_depth=max_depth)
+
+In the next step we train our classifier on the training dataset. We will introduce a parameter ``num_ex_used`` for the user to specify how many examples should be used for training. This serves for reducing runtimes for testing.
+
+.. code-block:: python
+
+    # specify how many examples should be used for training
+    num_ex_used = X_train.shape[0]  # use the full training set
+
+    # Training 
+    t0 = time.time()
+    dt.fit(X_train[0:num_ex_used], y_train[0:num_ex_used])
+    print("[snap] Training time (s):  {0:.2f}".format(time.time()-t0))
+
+After the training has finished, we can validate the predictive performance of our model on the hold-out test set. Again, we have the option to reuse evaluation metrics implemented in scikit-learn to evaluate our model.
+
+.. code-block:: python
+
+    # Inference
+    pred_test = dt.predict(X_test)
+
+    # Evaluate accuracy_score on test set
+    from sklearn.metrics import accuracy_score
+    acc_snap = accuracy_score(y_test, pred_test)
+    print("[snap] Accuracy score:   {0:.4f}".format(acc_snap))
+
+
+For the user interested in the performance comparison of ``snapml`` to the standard ``scikit-learn`` library, we will show how the same classifier can be trained using ``scikit-learn``. This only requires minimal changes to the above code:
+
+.. code-block:: python
+
+    # load data and specify parameters as in the example above
+    # [...]
+
+    # Import DecisionTreeClassifier from sklearn
+    from sklearn.tree import DecisionTreeClassifier as skTree
+    dt = skTree(random_state=0, presort=False, max_depth=max_depth)
+    
+    # Training time
+    t0 = time.time()
+    dt.fit(X_train[0:n_ex], y_train[0:n_ex])
+    print("[sklearn] Training time (s):  {0:.2f}".format(time.time()-t0))
+
+    # Inference
+    pred_test = dt.predict(X_test)
+
+    # Evaluate accuracy_score on test set
+    from sklearn.metrics import accuracy_score
+    acc_sklearn = accuracy_score(y_test, pred_test)
+    print("[sklearn] Accuracy score:   {0:.4f}".format(acc_sklearn))
+
+
+
+© Copyright IBM Corporation 2018
+
+

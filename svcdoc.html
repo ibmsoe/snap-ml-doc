@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -120,6 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -202,7 +207,7 @@
 <span id="svc-doc"></span><h1>svm.LinearSVC<a class="headerlink" href="#svm-linearsvc" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.svm.LinearSVC">
-<em class="property">class </em><code class="descclassname">pai4sk.svm.</code><code class="descname">LinearSVC</code><span class="sig-paren">(</span><em>penalty='l2'</em>, <em>loss='squared_hinge'</em>, <em>dual=True</em>, <em>tol=0.0001</em>, <em>C=1.0</em>, <em>multi_class='ovr'</em>, <em>fit_intercept=True</em>, <em>intercept_scaling=1</em>, <em>class_weight=None</em>, <em>verbose=0</em>, <em>random_state=None</em>, <em>max_iter=1000</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>num_threads=1</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.svm.</code><code class="descname">LinearSVC</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Support Vector Classification.</p>
 <p>Similar to SVC with parameter kernel=’linear’, but implemented in terms of
 liblinear rather than libsvm, so it has more flexibility in the choice of
@@ -266,8 +271,9 @@ RandomState instance, random_state is the random number generator; If
 None, the random number generator is the RandomState instance used by
 <cite>np.random</cite>.</li>
 <li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>(</em><em>default=1000</em><em>)</em>) – The maximum number of iterations to be run.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
+The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training,

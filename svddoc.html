@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -120,6 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -215,6 +220,15 @@ context, it is known as latent semantic analysis (LSA).</p>
 <p>This estimator supports two algorithms: a fast randomized SVD solver, and
 a “naive” algorithm that uses ARPACK as an eigensolver on (X * X.T) or
 (X.T * X), whichever is more efficient.</p>
+<p>If cuml is installed and if input data is cudf dataframe and if possible, then
+the accelerated TruncatedSVD algorithm from cuML will be used. Otherwise,
+scikit-learn’s TruncatedSVD algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If TruncatedSVD from cuML is run, then the return values from the APIs
+will be cudf dataframe and cudf Series objects instead of the return types
+of scikit-learn API.</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -245,11 +259,11 @@ SVD solver.</li>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>components</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>)</em>) – </li>
-<li><strong>explained_variance</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The variance of the training samples transformed by a projection to
+<li><strong>components</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – </li>
+<li><strong>explained_variance</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – The variance of the training samples transformed by a projection to
 each component.</li>
-<li><strong>explained_variance_ratio</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – Percentage of variance explained by each of the selected components.</li>
-<li><strong>singular_values</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The singular values corresponding to each of the selected components.
+<li><strong>explained_variance_ratio</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – Percentage of variance explained by each of the selected components.</li>
+<li><strong>singular_values</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – The singular values corresponding to each of the selected components.
 The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
 variables in the lower-dimensional space.</li>
 </ul>
@@ -295,12 +309,15 @@ class to data once, then keep the instance around to do transformations.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the transformer object.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the transformer object.
+If TruncatedSVD from cuML is run, then this fit method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit method.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
@@ -319,7 +336,10 @@ class to data once, then keep the instance around to do transformations.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data.</li>
+<li><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data.
+If TruncatedSVD from cuML is run, then this method saves the computed values
+as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s API.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
@@ -327,7 +347,7 @@ class to data once, then keep the instance around to do transformations.</p>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array, shape (n_samples, n_components)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array of shape (n_samples, n_components) or cudf dataframe</p>
 </td>
 </tr>
 </tbody>
@@ -338,16 +358,19 @@ class to data once, then keep the instance around to do transformations.</p>
 <dt id="pai4sk.decomposition.TruncatedSVD.inverse_transform">
 <code class="descname">inverse_transform</code><span class="sig-paren">(</span><em>X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.inverse_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform X back to its original space.</p>
-<p>Returns an array X_original whose transform would be X.</p>
+<p>Returns an array or cudf dataframe X_original whose transform would be X.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>)</em>) – New data.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>) or </em><em>cudf dataframe</em>) – New data.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – Note that this is always a dense array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – Note that this is always dense.
+If TruncatedSVD from cuML is run, then this method returns cudf
+dataframe instead of the results’ types seen from scikit-learn’s
+transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_features)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array of shape (n_samples, n_features) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>
@@ -361,11 +384,14 @@ class to data once, then keep the instance around to do transformations.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – New data.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – Reduced version of X. This will always be dense.
+If TruncatedSVD from cuML is run, then this method returns cudf
+dataframe instead of the results’ types seen from scikit-learn’s
+transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array, shape (n_samples, n_components)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array of shape (n_samples, n_components) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>

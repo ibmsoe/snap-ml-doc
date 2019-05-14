@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -120,6 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -207,8 +212,15 @@
 <p>DBSCAN - Density-Based Spatial Clustering of Applications with Noise. Finds
 core samples of high density and expands clusters from them. Good for data
 which contains clusters of similar density.</p>
-<p>If cuml is installed and if possible, then accelerated DBSCAN algorithm
-from cuML will be used. Otherwise, scikit-learn DBSCAN algorithm will be used.</p>
+<p>If cuml is installed and if the input data is cudf dataframe and if possible,
+then the accelerated DBSCAN algorithm from cuML will be used. Otherwise,
+scikit-learn’s DBSCAN algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If DBSCAN from cuML is run, then the return values from the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
 <dl class="docutils">
 <dt>eps <span class="classifier-delimiter">:</span> <span class="classifier">float, optional</span></dt>
 <dd>The maximum distance between two samples for them to be considered as
@@ -231,7 +243,8 @@ New in version 0.19.</dd>
 <dd><p class="first">The algorithm to be used by the NearestNeighbors module to compute
 pointwise distances and find nearest neighbors. See NearestNeighbors
 module documentation for details.</p>
-<p class="last">If cuml is installed and if either (1) algorithm is set to “cuml” or
+<p class="last">If cuml is installed and if cudf dataframe is given as input, if either
+(1) algorithm is set to “cuml” or
 (2) algorithm is “auto”, then pai4sk will try to use DBSCAN algorithm
 from RAPIDS cuML if possible. cuML in pai4sk is currently supported
 only (a) with python 3.6 and (b) without MPI.</p>
@@ -266,24 +279,7 @@ samples are given the label -1.</dd>
 <dd><p>Perform DBSCAN clustering from features or distance matrix.
 Parameters:
 ———-
-X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
-<blockquote>
-<div>cuDF dataframe if cuml is installed.
-A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
-<dl class="docutils">
-<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
-<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
-</dl>
-<p>y : Ignored</p>
-<p>self : object</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pai4sk.cluster.DBSCAN.fit_predict">
-<code class="descname">fit_predict</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit_predict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Performs clustering on X and returns cluster labels.</p>
-<p>Parameters:
-X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples)</p>
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples) or cuDF dataframe</p>
 <blockquote>
 <div>A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
 <dl class="docutils">
@@ -291,7 +287,31 @@ X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of s
 <dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
 </dl>
 <p>y : Ignored</p>
-<p>y : ndarray, shape (n_samples,)</p>
+<dl class="docutils">
+<dt>self <span class="classifier-delimiter">:</span> <span class="classifier">object</span></dt>
+<dd>If DBSCAN from cuML is run, then this fit method saves the computed
+labels as cudf Series object instead of array.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit_predict">
+<code class="descname">fit_predict</code><span class="sig-paren">(</span><em>X</em>, <em>y=None</em>, <em>sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit_predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs clustering on X and returns cluster labels.</p>
+<p>Parameters:
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples) or cudf dataframe</p>
+<blockquote>
+<div>A feature array, or array of distances between samples if metric=’precomputed’.</div></blockquote>
+<dl class="docutils">
+<dt>sample_weight <span class="classifier-delimiter">:</span> <span class="classifier">array, shape (n_samples,), optional</span></dt>
+<dd>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</dd>
+</dl>
+<p>y : Ignored</p>
+<dl class="docutils">
+<dt>y <span class="classifier-delimiter">:</span> <span class="classifier">ndarray, shape (n_samples,) or cudf Series</span></dt>
+<dd>If DBSCAN from cuML is run, then this fit method returns the computed
+labels as cudf Series object instead of ndarray.</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

@@ -4,13 +4,13 @@
 Manual
 ==================================
 
-The Snap Machine Learning (Snap ML) Library is designed to offer fast training of generalized linear models.
-It currently supports the following machine learning models:
+The Snap Machine Learning (Snap ML) Library is designed to offer fast training of generalized linear models and tree based models. The library is under development and currently supports the following machine learning models:
 
 * :ref:`linear-regression`
 * :ref:`svm`
 * :ref:`logistic-regression`
-
+* :ref:`decision-tree`
+* :ref:`random-forest`
 
 .. _linear-regression:
 
@@ -169,6 +169,31 @@ The model can be trained using the ``fit`` method which takes the training data 
 
 
 A full example of training a :class:`LogisticRegression` model in Snap ML can be found in the PowerAI distribution under */opt/DL/snap-ml-local/examples*. For more details about the API we refer to the :ref:`python-api-documentation`. 
+
+
+.. _decision-tree:
+
+--------------------------
+Decision Tree
+--------------------------
+
+.. currentmodule:: snap_ml.DecisionTreeClassifier
+
+Snap ML offers a :class:`DecisionTreeClassifier` for training a binary decision tree. The training routine is single-threaded and executed on the CPU. Check the :ref:`python-api-documentation` for details about the available options or check out the :ref:`tutorials` for an application example.
+
+
+.. _random-forest:
+
+--------------------------
+Random Forest
+--------------------------
+
+.. currentmodule:: snap_ml.RandomForestClassifier
+
+
+With the :class:`RandomForestClassifier` you can train an ensemble of trees. This is usually preferred over a single decision tree as it improves the generalization performance of the model. Snap ML implements a multi-threaded training routine that is executed on the CPU. Check the :ref:`python-api-documentation` for details about the available options or check out the :ref:`tutorials` for an application example.
+
+
 
 =======================
 References

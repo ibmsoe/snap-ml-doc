@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,7 +37,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="load_from_svmlight_format" href="svmloaderdoc.html" />
+    <link rel="next" title="log_loss" href="logdoc.html" />
     <link rel="prev" title="DecisionTreeClassifier" href="dectreeapidoc.html" /> 
 </head>
 
@@ -120,6 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -202,7 +207,7 @@
 <span id="ranfor-api-doc"></span><h1>RandomForestClassifier<a class="headerlink" href="#randomforestclassifier" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.RandomForestClassifier">
-<em class="property">class </em><code class="descclassname">pai4sk.</code><code class="descname">RandomForestClassifier</code><span class="sig-paren">(</span><em>n_estimators=10</em>, <em>criterion='gini'</em>, <em>max_depth=None</em>, <em>min_samples_leaf=1</em>, <em>max_features='auto'</em>, <em>bootstrap=True</em>, <em>n_jobs=None</em>, <em>random_state=None</em>, <em>verbose=False</em>, <em>use_gpu=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.RandomForestClassifier" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.</code><code class="descname">RandomForestClassifier</code><span class="sig-paren">(</span><em>n_estimators=10</em>, <em>criterion='gini'</em>, <em>max_depth=None</em>, <em>min_samples_leaf=1</em>, <em>max_features='auto'</em>, <em>bootstrap=True</em>, <em>n_jobs=None</em>, <em>random_state=None</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>hist_type=None</em>, <em>hist_nbins=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.RandomForestClassifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Random Forest Classifier</p>
 <p>This class implements a random forest classifier using the IBM Snap ML library.
 It can be used for binary classification problems. It handles both dense and
@@ -250,6 +255,10 @@ Warning: this will increase the training time. For performance evaluation, use v
 <li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag that indicates the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU. Currently
 only CPU training is supported.</li>
+<li><strong>hist_type</strong> (<em>string</em><em>, or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default : None</em>) – Indicates whether to use histograms or not. Default is None and does not use histograms.
+- If ‘Auto’ or ‘Quantiles’ it will use histograms with Quantiles</li>
+<li><strong>hist_nbins</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default : None</em>) – Indicates the number of bins to be used in histogram mode.
+Only valid if hist_type is not None. Default value if hist_type is not None is 64.</li>
 </ul>
 </td>
 </tr>
@@ -387,7 +396,7 @@ By default inference runs with maximum number of available threads.</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="svmloaderdoc.html" class="btn btn-neutral float-right" title="load_from_svmlight_format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="logdoc.html" class="btn btn-neutral float-right" title="log_loss" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="dectreeapidoc.html" class="btn btn-neutral float-left" title="DecisionTreeClassifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
