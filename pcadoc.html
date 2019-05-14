@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -120,6 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -211,6 +216,15 @@ SVD by the method of Halko et al. 2009, depending on the shape of the input
 data and the number of components to extract.</p>
 <p>It can also use the scipy.sparse.linalg ARPACK implementation of the
 truncated SVD.</p>
+<p>If cuml is installed and input data is cudf dataframe, then pai4sk will try
+to use the accelerated PCA algorithm from cuML. Otherwise, scikit-learn’s
+PCA algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If PCA from cuML is run, then the return values from the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
 <p>Notice that this class does not support sparse input. See
 <a class="reference internal" href="svddoc.html#pai4sk.decomposition.TruncatedSVD" title="pai4sk.decomposition.TruncatedSVD"><code class="xref py py-class docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></a> for an alternative with sparse data.</p>
 <p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
@@ -296,21 +310,21 @@ by <cite>np.random</cite>. Used when <code class="docutils literal notranslate">
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><strong>components</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>)</em>) – Principal axes in feature space, representing the directions of
+<li><strong>components</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Principal axes in feature space, representing the directions of
 maximum variance in the data. The components are sorted by
 <code class="docutils literal notranslate"><span class="pre">explained_variance_</span></code>.</li>
-<li><strong>explained_variance</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – <p>The amount of variance explained by each of the selected components.</p>
+<li><strong>explained_variance</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – <p>The amount of variance explained by each of the selected components.</p>
 <p>Equal to n_components largest eigenvalues
 of the covariance matrix of X.</p>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 0.18.</span></p>
 </div>
 </li>
-<li><strong>explained_variance_ratio</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – <p>Percentage of variance explained by each of the selected components.</p>
+<li><strong>explained_variance_ratio</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – <p>Percentage of variance explained by each of the selected components.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">n_components</span></code> is not set then all components are stored and the
 sum of the ratios is equal to 1.0.</p>
 </li>
-<li><strong>singular_values</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_components</em><em>,</em><em>)</em>) – The singular values corresponding to each of the selected components.
+<li><strong>singular_values</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – The singular values corresponding to each of the selected components.
 The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
 variables in the lower-dimensional space.</li>
 <li><strong>mean</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – <p>Per-feature empirical mean, estimated from the training set.</p>
@@ -321,7 +335,7 @@ to ‘mle’ or a number between 0 and 1 (with svd_solver == ‘full’) this
 number is estimated from input data. Otherwise it equals the parameter
 n_components, or the lesser value of n_features and n_samples
 if n_components is None.</li>
-<li><strong>noise_variance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – <p>The estimated noise covariance following the Probabilistic PCA model
+<li><strong>noise_variance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><em>cudf Series</em>) – <p>The estimated noise covariance following the Probabilistic PCA model
 from Tipping and Bishop 1999. See “Pattern Recognition and
 Machine Learning” by C. Bishop, 12.2.1 p. 574 or
 <a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a>. It is required to
@@ -399,13 +413,16 @@ Applied and Computational Harmonic Analysis, 30(1), 47-68.</cite></p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data, where n_samples is the number of samples
+<li><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data, where n_samples is the number of samples
 and n_features is the number of features.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the instance itself.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>self</strong> – Returns the instance itself.
+If PCA from cuML is run, then this fit method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit method.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
@@ -424,16 +441,18 @@ and n_features is the number of features.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data, where n_samples is the number of samples
+<li><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data, where n_samples is the number of samples
 and n_features is the number of features.</li>
 <li><strong>y</strong> (<em>Ignored</em>) – </li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>X_new</strong> – If PCA from cuML is run, then this method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit_transform method.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like, shape (n_samples, n_components)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like of shape (n_samples, n_components) or cudf dataframe</p>
 </td>
 </tr>
 </tbody>
@@ -449,12 +468,14 @@ and n_features is the number of features.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>)</em>) – New data, where n_samples is the number of samples
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>) or </em><em>cudf dataframe</em>) – New data, where n_samples is the number of samples
 and n_components is the number of components.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_original</strong> – If PCA from cuML is run, then this method returns cudf dataframe
+instead of the results’ types seen from scikit-learn’s
+inverse_transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">X_original array-like, shape (n_samples, n_features)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like of shape (n_samples, n_features) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>
@@ -500,12 +521,14 @@ from a training set.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – New data, where n_samples is the number of samples
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – New data, where n_samples is the number of samples
 and n_features is the number of features.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>X_new</strong> – If PCA from cuML is run, then this method saves the computed
+values as cudf dataframe instead of the results’ types seen from
+scikit-learn’s transform method.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like, shape (n_samples, n_components)</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array-like of shape (n_samples, n_components) or cudf dataframe</td>
 </tr>
 </tbody>
 </table>

@@ -26,6 +26,7 @@
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -120,6 +121,10 @@
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
 </ul>
 <p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
 <ul>
@@ -202,7 +207,7 @@
 <span id="ridge-doc"></span><h1>linear_model.Ridge<a class="headerlink" href="#linear-model-ridge" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.linear_model.Ridge">
-<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Ridge</code><span class="sig-paren">(</span><em>alpha=1.0</em>, <em>fit_intercept=True</em>, <em>normalize=False</em>, <em>copy_X=True</em>, <em>max_iter=None</em>, <em>tol=0.001</em>, <em>solver='auto'</em>, <em>random_state=None</em>, <em>dual=False</em>, <em>verbose=0</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>return_training_history=None</em>, <em>privacy=False</em>, <em>eta=0.3</em>, <em>batch_size=100</em>, <em>privacy_epsilon=10</em>, <em>grad_clip=1</em>, <em>num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Ridge" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.linear_model.</code><code class="descname">Ridge</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Ridge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear least squares with l2 regularization.</p>
 <p>Minimizes the objective function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||^</span><span class="mi">2_2</span>
@@ -243,8 +248,9 @@ by scipy.sparse.linalg. For ‘sag’ solver, the default value is 1000.</li>
 <li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Precision of the solution.</li>
 <li><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</li>
-<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
+The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</li>
 <li><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
