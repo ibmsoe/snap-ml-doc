@@ -207,7 +207,7 @@
 <span id="svc-doc"></span><h1>svm.LinearSVC<a class="headerlink" href="#svm-linearsvc" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.svm.LinearSVC">
-<em class="property">class </em><code class="descclassname">pai4sk.svm.</code><code class="descname">LinearSVC</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pai4sk.svm.</code><code class="descname">LinearSVC</code><span class="sig-paren">(</span><em>penalty='l2'</em>, <em>loss='squared_hinge'</em>, <em>dual=True</em>, <em>tol=0.0001</em>, <em>C=1.0</em>, <em>multi_class='ovr'</em>, <em>fit_intercept=True</em>, <em>intercept_scaling=1</em>, <em>class_weight=None</em>, <em>verbose=0</em>, <em>random_state=None</em>, <em>max_iter=1000</em>, <em>use_gpu=True</em>, <em>device_ids=[]</em>, <em>num_threads=1</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Support Vector Classification.</p>
 <p>Similar to SVC with parameter kernel=’linear’, but implemented in terms of
 liblinear rather than libsvm, so it has more flexibility in the choice of

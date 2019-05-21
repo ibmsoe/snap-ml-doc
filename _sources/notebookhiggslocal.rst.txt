@@ -1,4 +1,4 @@
-.. _notebook-higgs-local:
+.. _notebook-higgs-local
 
 =================================================
 Training HIGGS using IBM Snap ML

@@ -205,7 +205,7 @@
 <span id="pyspark-api-documentation"></span><h1>snap-ml-spark API<a class="headerlink" href="#snap-ml-spark-api" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="snap_ml_spark.LinearRegression.LinearRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em>, <em>labelColIndex=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.LinearRegression.</code><code class="descname">LinearRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Regression classifier</p>
 <p>This class implements Regularized Linear regression using the IBM Snap ML distributed solver.  It can handle sparse and dense dataset formats. Please use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -233,9 +233,6 @@ optimization problem (dual=False).</li>
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.</li>
-<li><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
-It’s applicable only when Dataframe is passed in as input and its holding features in individual columns
-rather than in DenseVector or SparseVector</li>
 </ul>
 </td>
 </tr>
@@ -255,7 +252,7 @@ rather than in DenseVector or SparseVector</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and it cannot be accessed by python as a python array.</em>) – data to fit model</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. The data cannot be accessed by python as a python array.</em>) – data to fit model</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">double – final training loss of the last epoch</td>
 </tr>
@@ -285,7 +282,7 @@ rather than in DenseVector or SparseVector</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
 <li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
 </ul>
 </td>
@@ -301,7 +298,7 @@ rather than in DenseVector or SparseVector</li>
 
 <dl class="class">
 <dt id="snap_ml_spark.LogisticRegression.LogisticRegression">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em>, <em>labelColIndex=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.LogisticRegression.</code><code class="descname">LogisticRegression</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>dual=True</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>penalty='l2'</em>, <em>tol=0.001</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic Regression classifier</p>
 <p>This class implements regularized Logistic Regression using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -329,9 +326,6 @@ optimization problem (dual=False).</li>
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.</li>
-<li><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
-It’s applicable only when Dataframe is passed in as input and its holding features in individual columns
-rather than in DenseVector or SparseVector</li>
 </ul>
 </td>
 </tr>
@@ -352,7 +346,7 @@ rather than in DenseVector or SparseVector</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and it cannot be accessed by python as a python array.</em>) – data to fit model</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. The data cannot be accessed by python as a python array.</em>) – data to fit model</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">double – final training loss of the last epoch</td>
 </tr>
@@ -382,7 +376,7 @@ rather than in DenseVector or SparseVector</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
 <li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
 </ul>
 </td>
@@ -403,7 +397,7 @@ rather than in DenseVector or SparseVector</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
 <li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
 </ul>
 </td>
@@ -419,7 +413,7 @@ rather than in DenseVector or SparseVector</li>
 
 <dl class="class">
 <dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine">
-<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>tol=0.001</em>, <em>return_training_history=None</em>, <em>labelColIndex=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="descname">SupportVectorMachine</code><span class="sig-paren">(</span><em>max_iter=1000</em>, <em>regularizer=1.0</em>, <em>verbose=False</em>, <em>use_gpu=False</em>, <em>class_weights=None</em>, <em>gpu_mem_limit=0</em>, <em>n_threads=-1</em>, <em>tol=0.001</em>, <em>return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Support Vector Machine classifier</p>
 <p>This class implements regularized support vector machine using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -442,9 +436,6 @@ the maximum possible memory is used.</li>
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.</li>
-<li><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
-It’s applicable only when Dataframe is passed in as input and its holding features in individual columns
-rather than in DenseVector or SparseVector</li>
 </ul>
 </td>
 </tr>
@@ -464,7 +455,7 @@ rather than in DenseVector or SparseVector</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and it cannot be accessed by python as a python array.</em>) – data to fit model</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. The data cannot be accessed by python as a python array.</em>) – data to fit model</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">double – final training loss of the last epoch</td>
 </tr>
@@ -494,7 +485,7 @@ rather than in DenseVector or SparseVector</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
+<li><strong>data</strong> (<em>py4j.java_gateway.JavaObject</em><em>, </em><em>pointer which points to a memory address where the actual data is stored. Cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</li>
 <li><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</li>
 </ul>
 </td>
