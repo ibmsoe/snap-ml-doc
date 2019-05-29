@@ -1,0 +1,29 @@
+.. _python-api-documentation:
+
+====================================
+snap-ml API 
+====================================
+
+.. currentmodule:: pai4sk
+.. autoclass:: LinearRegression
+    :members:
+
+
+.. currentmodule:: pai4sk
+.. autoclass:: LogisticRegression
+    :members:
+
+
+.. currentmodule:: pai4sk
+.. autoclass:: SupportVectorMachine
+    :members:
+
+
+.. currentmodule:: pai4sk
+.. autoclass:: DecisionTreeClassifier
+    :members:
+
+
+.. currentmodule:: pai4sk
+.. autoclass:: RandomForestClassifier
+    :members:

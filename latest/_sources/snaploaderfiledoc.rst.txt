@@ -1,0 +1,8 @@
+.. _snaploader-file-doc:
+
+====================================
+load_snap_file
+====================================
+
+.. autofunction:: pai4sk.sml_io.load_snap_file
+

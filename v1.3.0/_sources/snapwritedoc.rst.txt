@@ -1,0 +1,8 @@
+.. _snapwrite-doc:
+
+====================================
+write_to_snap_format
+====================================
+
+.. autofunction:: pai4sk.sml_io.write_to_snap_format
+

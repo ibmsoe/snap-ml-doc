@@ -1,0 +1,9 @@
+.. _svm-api-doc:
+
+====================================
+SVM
+====================================
+
+.. currentmodule:: pai4sk
+.. autoclass:: SupportVectorMachine
+    :members:

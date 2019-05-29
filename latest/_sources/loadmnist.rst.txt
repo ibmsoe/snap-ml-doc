@@ -1,0 +1,7 @@
+.. _loadmnist-doc:
+
+====================================
+loaders.load_MNIST_with_embeddings
+====================================
+
+.. autofunction:: pai4sk.simsearch.loaders.load_MNIST_with_embeddings

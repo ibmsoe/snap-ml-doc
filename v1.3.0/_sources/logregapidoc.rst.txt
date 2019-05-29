@@ -1,0 +1,9 @@
+.. _logreg-api-doc:
+
+====================================
+LogisticRegression
+====================================
+
+.. currentmodule:: pai4sk
+.. autoclass:: LogisticRegression
+    :members:

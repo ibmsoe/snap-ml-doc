@@ -1,0 +1,9 @@
+.. _dectree-api-doc:
+
+====================================
+DecisionTreeClassifier
+====================================
+
+.. currentmodule:: pai4sk
+.. autoclass:: DecisionTreeClassifier
+    :members:

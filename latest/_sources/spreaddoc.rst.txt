@@ -1,0 +1,9 @@
+.. _sp-read-doc:
+
+====================================
+DatasetReader
+====================================
+
+.. currentmodule:: snap_ml_spark.DatasetReader
+.. autoclass:: DatasetReader
+    :members:

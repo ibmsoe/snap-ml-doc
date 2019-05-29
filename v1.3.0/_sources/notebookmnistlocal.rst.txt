@@ -1,0 +1,132 @@
+.. _notebook-mnist-local:
+
+===================================================
+Classifying Handwritten Digits using snap-ml-local
+===================================================
+
+In this example we demonstrate how to train a multi-class Logistic Regression classifier on the MNIST dataset using snap-ml-local.
+You will see how sparse data can be handled transparently in Snap ML.
+
+
+Getting Data
+=================================================
+
+The MNIST dataset can be obtained from the `LIBSVM repository <https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multiclass.html>`_. 
+First create a new directory, download the data and unzip it::
+
+    mkdir data
+    cd data
+    wget https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/multiclass/mnist8m.scale.bz2
+    bunzip2 mnist8m.scale.bz2
+    cd ../
+
+
+
+Data Preprocessing
+=================================================
+
+The original data is in SvmLight format. Before doing the training we show how to preprocess the dataset and dump it into numpy binary format for fast loading
+
+.. code-block:: python
+
+    from sklearn.datasets import load_svmlight_file
+
+    X,y = load_svmlight_file("data/mnist8m.scale")
+
+    # Make the train-test split
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+    # Normalize the data
+    from sklearn.preprocessing import normalize
+    X_train = normalize(X_train)
+    X_test = normalize(X_test)
+
+    # Save the sparse matrices
+    import scipy as sp
+    sp.sparse.save_npz("data/mnist8m.scale.norm.X_train", X_train, compressed=False)
+    sp.sparse.save_npz("data/mnist8m.scale.norm.X_test",  X_test,  compressed=False)
+
+    # Save the labels
+    import numpy as np
+    np.save(args.data_path + "/data/mnist8m.scale.norm.y_train", y_train)
+    np.save(args.data_path + "/data/mnist8m.scale.norm.y_test", y_test)
+
+
+    
+Training using Snap ML
+=================================================
+
+After preprocessing the data you are good to go and train a multi-class logistic regression classifier using Snap ML.
+
+
+.. code-block:: python
+
+    import numpy as np
+    from scipy.sparse import load_npz
+    import time
+    import sys
+    
+    # timing
+    t0 = time.time()
+
+    # Import the data
+    X_train = load_npz(args.data_path + "/data/mnist8m.scale.norm.X_train.npz")
+    X_test  = load_npz(args.data_path + "/data/mnist8m.scale.norm.X_test.npz")
+    y_train = np.load(args.data_path + "/data/mnist8m.scale.norm.y_train.npy")
+    y_test = np.load(args.data_path + "/data/mnist8m.scale.norm.y_test.npy")
+    print("Data load time (s): {0:.2f}".format(time.time()-t0))
+
+    # specify whether to use GPUs for training or not
+    use_gpu = True
+    device_ids = []
+
+    if use_gpu:
+        num_threads = 256
+        cpu_gpu = "GPU"
+        # specify how many and which GPUs to use
+        device_ids = [0,1,2,3]
+
+    else:
+        num_threads = 8
+        cpu_gpu = "CPU"
+
+    
+    # specify whether to balance class weights
+    use_balanced_class_weights = True
+
+    if use_balanced_class_weights:
+        class_weight = "balanced"
+    else:
+        class_weight = None
+
+
+
+    # Import the LogisticRegression classifier from pai4sk
+    from pai4sk import LogisticRegression
+    # Alternatively you can also import the LogisticRegression classifier from pai4sk.linear_model 
+    # from pai4sk.linear_model import LogisticRegression
+
+    lr = LogisticRegression(use_gpu = use_gpu, device_ids = device_ids,
+                            num_threads = num_threads, class_weight = class_weight,
+                            fit_intercept = True, regularizer = 100)
+
+    # Training
+    t0 = time.time()
+    lr.fit(X_train, y_train)
+    print("[pai4sk] Training time (s):  {1:.2f}".format(cpu_gpu, time.time()-t0))
+
+    # set num_threads to use for inference
+    num_threads_inference = 2
+
+    # Inference
+    pred_test = lr.predict(X_test, num_threads = num_threads_inference)
+
+    # Evaluate log-loss on test set
+    from pai4sk.metrics import accuracy_score
+    acc_pai4sk_logreg = accuracy_score(y_test, pred_test)
+    print("[pai4sk.lmodel] Accuracy:   {0:.4f}".format(acc_pai4sk_logreg))
+
+
+
+© Copyright IBM Corporation 2018

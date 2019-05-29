@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cluster.KMeans &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="cluster.DBSCAN" href="dbscandoc.html" />
+    <link rel="prev" title="svm.LinearSVC" href="svcdoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lassodoc.html">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcadoc.html">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>cluster.KMeans</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cluster-kmeans">
+<span id="kmeans-doc"></span><h1>cluster.KMeans<a class="headerlink" href="#cluster-kmeans" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.cluster.KMeans">
+<em class="property">class </em><code class="descclassname">pai4sk.cluster.</code><code class="descname">KMeans</code><span class="sig-paren">(</span><em>n_clusters=8</em>, <em>max_iter=300</em>, <em>tol=0.0001</em>, <em>verbose=0</em>, <em>random_state=1</em>, <em>precompute_distances='auto'</em>, <em>init='k-means++'</em>, <em>n_init=1</em>, <em>algorithm='auto'</em>, <em>copy_x=True</em>, <em>n_jobs=None</em>, <em>use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.KMeans" title="Permalink to this definition">¶</a></dt>
+<dd><p>K-Means clustering.</p>
+<p>If cuml is installed and cudf dataframe is passed as input, then pai4sk
+will try to use the accelerated KMeans algorithm from cuML. Otherwise,
+scikit-learn’s KMeans algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If KMeans from cuML is run, then the return values from the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n_clusters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>default: 8</em>) – The number of clusters to form as well as the number of
+centroids to generate.</li>
+<li><strong>init</strong> (<em>{'k-means++'</em><em>, </em><em>'random'</em><em> or </em><em>an ndarray}</em>) – <p>Method for initialization, defaults to ‘k-means++’:</p>
+<p>’k-means++’ : selects initial cluster centers for k-mean
+clustering in a smart way to speed up convergence. See section
+Notes in k_init for more details.</p>
+<p>’random’: choose k observations (rows) at random from data for
+the initial centroids.</p>
+<p>If an ndarray is passed, it should be of shape (n_clusters, n_features)
+and gives the initial centers.</p>
+</li>
+<li><strong>n_init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 10</em>) – Number of time the k-means algorithm will be run with different
+centroid seeds. The final results will be the best output of
+n_init consecutive runs in terms of inertia.</li>
+<li><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 300</em>) – Maximum number of iterations of the k-means algorithm for a
+single run.</li>
+<li><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1e-4</em>) – Relative tolerance with regards to inertia to declare convergence</li>
+<li><strong>precompute_distances</strong> (<em>{'auto'</em><em>, </em><em>True</em><em>, </em><em>False}</em>) – <p>Precompute distances (faster but takes more memory).</p>
+<p>’auto’ : do not precompute distances if n_samples * n_clusters &gt; 12
+million. This corresponds to about 100MB overhead per job using
+double precision.</p>
+<p>True : always precompute distances</p>
+<p>False : never precompute distances</p>
+</li>
+<li><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default 0</em>) – Verbosity mode.</li>
+<li><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> (</em><em>default</em><em>)</em>) – Determines random number generation for centroid initialization. Use
+an int to make the randomness deterministic.
+See <span class="xref std std-term">Glossary</span>.</li>
+<li><strong>copy_x</strong> (<em>boolean</em><em>, </em><em>optional</em>) – When pre-computing distances it is more numerically accurate to center
+the data first.  If copy_x is True (default), then the original data is
+not modified, ensuring X is C-contiguous.  If False, the original data
+is modified, and put back before the function returns, but small
+numerical differences may be introduced by subtracting and then adding
+the data mean, in this case it will also not ensure that data is
+C-contiguous which may cause a significant slowdown.</li>
+<li><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – <p>The number of jobs to use for the computation. This works by computing
+each of the n_init runs in parallel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context.
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors. See <span class="xref std std-term">Glossary</span>
+for more details.</p>
+</li>
+<li><strong>algorithm</strong> (<em>&quot;auto&quot;</em><em>, </em><em>&quot;full&quot;</em><em> or </em><em>&quot;elkan&quot;</em><em>, </em><em>&quot;cuml&quot;</em><em>, </em><em>default=&quot;auto&quot;</em>) – <p>K-means algorithm to use. The classical EM-style algorithm is “full”.
+The “elkan” variation is more efficient by using the triangle
+inequality, but currently doesn’t support sparse data. “auto” chooses
+“elkan” for dense data and “full” for sparse data.</p>
+<p>If cuml is installed and cudf dataframe is passed as input, then if either
+|  (1) algorithm is set to “cuml” or
+|  (2) algorithm is “auto”,
+|  then pai4sk will try to use kmeans algorithm from RAPIDS cuML.
+cuML in pai4sk is currently supported only
+|  (a) with python 3.6 and
+|  (b) without MPI.
+|  If KMeans from cuML is run, then the return values of the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>cluster_centers</strong> (<em>array</em><em>, </em><em>[</em><em>n_clusters</em><em>, </em><em>n_features</em><em>] or </em><em>cudf dataframe</em>) – Coordinates of cluster centers. If the algorithm stops before fully
+converging (see <code class="docutils literal notranslate"><span class="pre">tol</span></code> and <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), these will not be
+consistent with <code class="docutils literal notranslate"><span class="pre">labels_</span></code>. If KMeans from cuML is run, then the
+return values of some of the APIs will be cudf dataframe and
+cudf Series objects instead of the return types of scikit-learn API.</li>
+<li><strong>labels</strong> (<em>array</em><em> or </em><em>cudf Series</em>) – Labels of each point</li>
+<li><strong>inertia</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Sum of squared distances of samples to their closest cluster center.</li>
+<li><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of iterations run.</li>
+<li><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use all GPUs. Applicable only for cuML.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.cluster</span> <span class="k">import</span> <span class="n">KMeans</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="gp">... </span>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">labels_</span>
+<span class="go">array([0, 0, 0, 1, 1, 1], dtype=int32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+<span class="go">array([0, 1], dtype=int32)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="go">array([[1., 2.],</span>
+<span class="go">       [4., 2.]])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><code class="xref py py-class docutils literal notranslate"><span class="pre">MiniBatchKMeans</span></code></dt>
+<dd>Alternative online implementation that does incremental updates of the centers positions using mini-batches. For large scale learning (say n_samples &gt; 10k) MiniBatchKMeans is probably much faster than the default batch implementation.</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The k-means problem is solved using either Lloyd’s or Elkan’s algorithm.</p>
+<p>The average complexity is given by O(k n T), were n is the number of
+samples and T is the number of iteration.</p>
+<p>The worst case complexity is given by O(n^(k+2/p)) with
+n = n_samples, p = n_features. (D. Arthur and S. Vassilvitskii,
+‘How slow is the k-means method?’ SoCG2006)</p>
+<p>In practice, the k-means algorithm is very fast (one of the fastest
+clustering algorithms available), but it falls in local minima. That’s why
+it can be useful to restart it several times.</p>
+<p>If the algorithm stops before fully converging (because of <code class="docutils literal notranslate"><span class="pre">tol</span></code> or
+<code class="docutils literal notranslate"><span class="pre">max_iter</span></code>), <code class="docutils literal notranslate"><span class="pre">labels_</span></code> and <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code> will not be consistent,
+i.e. the <code class="docutils literal notranslate"><span class="pre">cluster_centers_</span></code> will not be the means of the points in each
+cluster. Also, the estimator will reassign <code class="docutils literal notranslate"><span class="pre">labels_</span></code> after the last
+iteration to make <code class="docutils literal notranslate"><span class="pre">labels_</span></code> consistent with <code class="docutils literal notranslate"><span class="pre">predict</span></code> on the training
+set.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dbscandoc.html" class="btn btn-neutral float-right" title="cluster.DBSCAN" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="svcdoc.html" class="btn btn-neutral float-left" title="svm.LinearSVC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
