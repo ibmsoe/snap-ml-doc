@@ -26,6 +26,7 @@
    :maxdepth: 1
    
    sksvmloaderfiledoc
+   cudfasgpumatrixdoc
 
 .. toctree::
    :caption: pai4sk Metrics APIs
