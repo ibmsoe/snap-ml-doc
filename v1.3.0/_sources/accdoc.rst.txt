@@ -1,0 +1,8 @@
+.. _acc-doc:
+
+====================================
+accuracy_score
+====================================
+
+.. autofunction:: pai4sk.sml_metrics.accuracy_score
+

@@ -1,0 +1,9 @@
+.. _svc-doc:
+
+====================================
+svm.LinearSVC
+====================================
+
+.. currentmodule:: pai4sk.svm
+.. autoclass:: LinearSVC
+    :members:

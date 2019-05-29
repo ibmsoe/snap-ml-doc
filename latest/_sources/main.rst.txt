@@ -1,0 +1,38 @@
+.. _intro:
+
+----------------------------------
+Introduction
+----------------------------------
+
+*Snap Machine Learning (Snap ML)* is a library for training generalized linear models. It is being developed at the IBM Research - Zürich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
+Snap ML supports a large number of classical machine learning models and
+scales gracefully to data sets with billions of examples and/or features.
+It offers distributed training, GPU acceleration and supports sparse data structures.
+
+
+.. code-block:: python
+
+    "With Snap ML you can train your machine learning model faster than you can snap your fingers!"
+
+
+The *Snap ML* library offers two different packages:
+
+**pai4sk-snapml**
+    This package offers local, single-node as well as MPI-based distributed training. The library is exposed to the user via a *sklearn*-like python interface.
+    
+    The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. *snap-ml-local* offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a Python API compatible with sklearn and can seamlessly be integrated into existing Python application.
+    With PowerAI 1.5.4 release onwards, snap-ml-local will ship a module named *pai4sk*. In PowerAI 1.6.0, this module is built upon scikit-learn 0.20.1 APIs and can be used as a replacement for scikit-learn. This module will automatically fall back to CPU algorithms when snap-ml-local doesn't support an API. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by *pai4sk*.
+
+    It also offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a *sklearn*-like python interface.
+
+**snap-ml-spark**
+    Similar to distributed *pai4sk-snapml*, the *snap-ml-spark* package offers distributed training of models across a cluster of machines. The library is exposed to the user via a *spark.ml* like interface and can seamlessly be integrated into existing pySpark application.
+
+References
+================
+
+* `"Snap ML: A Hierarchical Framework for Machine Learning"  <https://papers.nips.cc/paper/7309-snap-ml-a-hierarchical-framework-for-machine-learning.pdf>`_, C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, A. Anghel, G. Ravi, M. Kandasamy and H. Pozidis, in *Advances of Neural Information Processing Systems (NeurIPS)*, 2018. `[bibtex] <https://papers.nips.cc/paper/7309-snap-ml-a-hierarchical-framework-for-machine-learning/bibtex>`_
+
+* `www.zurich.ibm.com/snapml <https://www.zurich.ibm.com/snapml/>`_.
+
+

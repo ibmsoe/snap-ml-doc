@@ -1,0 +1,72 @@
+.. include:: ./main.rst
+
+.. toctree::
+   :caption: Overview
+   :maxdepth: 1
+
+   manual
+   tutorials
+   frequentlyaskedquestions
+
+.. toctree::
+   :caption: pai4sk ML APIs
+   :maxdepth: 1
+   
+   ridgedoc
+   lassodoc
+   sklogregdoc
+   svcdoc
+   kmeansdoc
+   dbscandoc
+   pcadoc
+   svddoc
+
+.. toctree::
+   :caption: pai4sk Loaders APIs
+   :maxdepth: 1
+   
+   sksvmloaderfiledoc
+
+.. toctree::
+   :caption: pai4sk Metrics APIs
+   :maxdepth: 1
+   
+   sklogdoc
+   skaccdoc
+   skhingedoc
+   skmsedoc
+
+.. toctree::
+   :caption: snapML APIs
+   :maxdepth: 1
+   
+   linregapidoc
+   logregapidoc
+   svmapidoc
+   dectreeapidoc
+   ranforapidoc
+   logdoc
+   accdoc
+   hingedoc
+   msedoc
+
+.. toctree::
+   :caption: snapML Loaders APIs
+   :maxdepth: 1
+   
+   svmloaderdoc
+   snaploaderdoc
+   snaploaderfiledoc
+   snapwritedoc
+
+.. toctree::
+   :caption: snapML Spark APIs
+   :maxdepth: 1
+   
+   splinregdoc
+   splogregdoc
+   spsvmdoc
+   spreaddoc
+   spmetdoc
+   sputildoc
+

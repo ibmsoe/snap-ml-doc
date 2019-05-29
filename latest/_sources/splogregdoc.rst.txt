@@ -1,0 +1,9 @@
+.. _sp-log-reg-doc:
+
+====================================
+LogisticRegression
+====================================
+
+.. currentmodule:: snap_ml_spark.LogisticRegression
+.. autoclass:: LogisticRegression
+    :members:

@@ -1,0 +1,8 @@
+.. _sp-util-doc:
+
+====================================
+Utils
+====================================
+
+.. automodule:: snap_ml_spark.Utils
+    :members:
