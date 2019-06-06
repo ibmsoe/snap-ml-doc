@@ -1,0 +1,8 @@
+.. _knn-doc:
+
+====================================
+neighbors.NearestNeighbors
+====================================
+
+.. currentmodule:: pai4sk.neighbors
+.. autoclass:: NearestNeighbors
