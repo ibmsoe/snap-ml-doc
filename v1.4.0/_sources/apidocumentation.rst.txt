@@ -13,6 +13,7 @@ We currently provide four python modules. Check out the APIs exposed by these mo
 		- :ref:`sk-logreg-doc`
 		- :ref:`svc-doc`
 		- :ref:`kmeans-doc`
+		- :ref:`knn-doc`
 		- :ref:`dbscan-doc`
 		- :ref:`pca-doc`
 		- :ref:`svd-doc`

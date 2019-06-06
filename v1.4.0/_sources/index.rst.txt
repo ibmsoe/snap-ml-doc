@@ -17,6 +17,7 @@
    sklogregdoc
    svcdoc
    kmeansdoc
+   knndoc
    dbscandoc
    pcadoc
    svddoc
