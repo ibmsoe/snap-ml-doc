@@ -1,0 +1,9 @@
+.. _dbscan-doc:
+
+====================================
+cluster.DBSCAN
+====================================
+
+.. currentmodule:: pai4sk.cluster
+.. autoclass:: DBSCAN
+    :members:

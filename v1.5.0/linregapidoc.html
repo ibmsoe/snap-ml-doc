@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LinearRegression &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LogisticRegression" href="logregapidoc.html" />
+    <link rel="prev" title="decomposition.TruncatedSVD" href="svddoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lassodoc.html">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcadoc.html">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Similarity Search</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load20news.html">loaders.load_20News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark Estimators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spestlogdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlogmoddoc.html">LogisticRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlindoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlinmoddoc.html">LinearRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcdoc.html">LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcmoddoc.html">LinearSVCModel</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>LinearRegression</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linearregression">
+<span id="linreg-api-doc"></span><h1>LinearRegression<a class="headerlink" href="#linearregression" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.LinearRegression">
+<em class="property">class </em><code class="sig-prename descclassname">pai4sk.</code><code class="sig-name descname">LinearRegression</code><span class="sig-paren">(</span><em class="sig-param">max_iter=1000</em>, <em class="sig-param">regularizer=1.0</em>, <em class="sig-param">device_ids=[]</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">use_gpu=False</em>, <em class="sig-param">dual=True</em>, <em class="sig-param">num_threads=1</em>, <em class="sig-param">penalty='l2'</em>, <em class="sig-param">tol=0.001</em>, <em class="sig-param">return_training_history=None</em>, <em class="sig-param">privacy=False</em>, <em class="sig-param">eta=0.3</em>, <em class="sig-param">batch_size=100</em>, <em class="sig-param">privacy_epsilon=10</em>, <em class="sig-param">grad_clip=1</em>, <em class="sig-param">fit_intercept=False</em>, <em class="sig-param">intercept_scaling=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear Regression</p>
+<p>This class implements regularized linear regression using the IBM Snap ML solver.
+It supports both local and distributed(MPI) methods of the snap ML solver. It
+handles both dense and sparse matrix inputs. Use csr, csc, ndarray, deviceNDArray
+or SnapML data partition format for training and csr, ndarray or
+SnapML data partition format for prediction. DeviceNDArray input data format is
+currently not supported for training with MPI implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
+<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+Larger regularization values imply stronger regularization.</p></li>
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+is performed using the GPU. If False, the training is performed using the CPU.</p></li>
+<li><p><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
+For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
+For multi-GPU training, set device_ids to a list of GPU IDs to be used for training, e.g., [0, 1].</p></li>
+<li><p><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
+Recommendation: if n_samples &gt; n_features use dual=True.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
+training time. For performance evaluation, use verbose=False.</p></li>
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+should be a multiple of 32 if the training is performed on GPU (use_gpu=True).</p></li>
+<li><p><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (RidgeRegression)
+or “l1” for L1 regularization (LassoRegression). L1 regularization is possible only for the primal
+optimization problem (dual=False).</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.
+return_training_history is not supported for DeviceNDArray input format.</p></li>
+<li><p><strong>privacy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Train the model using a differentially private algorithm.
+Currently not supported for MPI implementation.</p></li>
+<li><p><strong>eta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.3</em>) – Learning rate for the differentially private training algorithm.
+Currently not supported for MPI implementation.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 100</em>) – Mini-batch size for the differentially private training algorithm.
+Currently not supported for MPI implementation.</p></li>
+<li><p><strong>privacy_epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 10.0</em>) – Target privacy gaurantee. Learned model will be (privacy_epsilon, 0.01)-private.
+Currently not supported for MPI implementation.</p></li>
+<li><p><strong>grad_clip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Gradient clipping parameter for the differentially private training algorithm.
+Currently not supported for MPI implementation.</p></li>
+<li><p><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Add bias term – note, may affect speed of convergence, especially for sparse datasets.</p></li>
+<li><p><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Scaling of bias term. The inclusion of a bias term is implemented by appending an additional feature to the
+dataset. This feature has a constant value, that can be set using this parameter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>coef_</strong> (<em>array-like</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p></li>
+<li><p><strong>support_</strong> (<em>array-like</em>) – Indices of the features that lie in the support ond contribute to the decision. (only available for L1).
+Currently not supported for MPI implementation.</p></li>
+<li><p><strong>model_sparsity_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – fraction of non-zeros in the model parameters. (only available for L1).
+Currently not supported for MPI implementation.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pai4sk.LinearRegression.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X_train</em>, <em class="sig-param">y_train=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.LinearRegression.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model according to the given train dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>Train dataset. Supports the following input data-types :</em>) – <ol class="arabic simple">
+<li><p>Sparse matrix (csr_matrix, csc_matrix) or dense matrix (ndarray)</p></li>
+<li><p>DeviceNDArray. Not supported for MPI execution.</p></li>
+<li><p>SnapML data partition of type DensePartition, SparsePartition or ConstantValueSparsePartition</p></li>
+</ol>
+</p></li>
+<li><p><strong>y_train</strong> (<em>The target corresponding to X_train.</em>) – If X_train is sparse matrix or dense matrix, y_train should be array-like of shape = (n_samples,)
+In case of deviceNDArray, y_train should be array-like of shape = (n_samples, 1)
+If X_train is SnapML data partition type, then y_train is not required (i.e. None).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>training_history</strong> – If return_training_history parameter is set to “summary” or “full” it returns a list with
+statistics for the training procedure. The return_training_history parameter is not set (None)
+by default, where it returns no information (None).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.LinearRegression.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.LinearRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the values of the model parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>params</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.LinearRegression.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class predictions</p>
+<p>The returned class estimates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>Dataset used for predicting estimates. Supports the following input data-types :</em>) – <ol class="arabic simple">
+<li><p>Sparse matrix (csr_matrix, csc_matrix) or dense matrix (ndarray)</p></li>
+<li><p>SnapML data partition of type DensePartition, SparsePartition or ConstantValueSparsePartition</p></li>
+</ol>
+</p></li>
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>proba</strong> – Returns the predicted estimate of the sample.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like, shape = (n_samples,)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logregapidoc.html" class="btn btn-neutral float-right" title="LogisticRegression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="svddoc.html" class="btn btn-neutral float-left" title="decomposition.TruncatedSVD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

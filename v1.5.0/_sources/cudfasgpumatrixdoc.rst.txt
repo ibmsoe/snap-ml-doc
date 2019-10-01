@@ -1,0 +1,7 @@
+.. _cudf-copy-as-gpu-cmatrix-doc:
+
+====================================
+copy_as_gpu_cmatrix
+====================================
+
+.. autofunction:: pai4sk.sml_io.copy_as_gpu_cmatrix

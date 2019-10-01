@@ -1,0 +1,8 @@
+.. _sk-svmloader-file-doc:
+
+====================================
+load_svmlight_file
+====================================
+
+.. autofunction:: pai4sk.datasets.load_svmlight_file
+

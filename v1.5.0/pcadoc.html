@@ -1,0 +1,632 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>decomposition.PCA &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="decomposition.TruncatedSVD" href="svddoc.html" />
+    <link rel="prev" title="cluster.DBSCAN" href="dbscandoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lassodoc.html">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Similarity Search</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load20news.html">loaders.load_20News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark Estimators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spestlogdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlogmoddoc.html">LogisticRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlindoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlinmoddoc.html">LinearRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcdoc.html">LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcmoddoc.html">LinearSVCModel</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>decomposition.PCA</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="decomposition-pca">
+<span id="pca-doc"></span><h1>decomposition.PCA<a class="headerlink" href="#decomposition-pca" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.decomposition.PCA">
+<em class="property">class </em><code class="sig-prename descclassname">pai4sk.decomposition.</code><code class="sig-name descname">PCA</code><span class="sig-paren">(</span><em class="sig-param">n_components=None</em>, <em class="sig-param">copy=True</em>, <em class="sig-param">whiten=False</em>, <em class="sig-param">svd_solver='auto'</em>, <em class="sig-param">tol=0.0</em>, <em class="sig-param">iterated_power='auto'</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Principal component analysis (PCA)</p>
+<p>Linear dimensionality reduction using Singular Value Decomposition of the
+data to project it to a lower dimensional space.</p>
+<p>It uses the LAPACK implementation of the full SVD or a randomized truncated
+SVD by the method of Halko et al. 2009, depending on the shape of the input
+data and the number of components to extract.</p>
+<p>It can also use the scipy.sparse.linalg ARPACK implementation of the
+truncated SVD.</p>
+<p>If the input data is cudf dataframe, then pai4sk will try to use the
+accelerated PCA algorithm from cuML. Otherwise, scikit-learn’s
+PCA algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only</p>
+<div class="line-block">
+<div class="line">(a) with python 3.6 and</div>
+<div class="line">(b) without MPI.</div>
+<div class="line">If PCA from cuML is run, then the return values from the APIs will be</div>
+</div>
+<p>cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
+<p>Notice that this class does not support sparse input. See
+<a class="reference internal" href="svddoc.html#pai4sk.decomposition.TruncatedSVD" title="pai4sk.decomposition.TruncatedSVD"><code class="xref py py-class docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></a> for an alternative with sparse data.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> or </em><em>string</em>) – <p>Number of components to keep.
+if n_components is not set all components are kept:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_components</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">n_components</span> <span class="pre">==</span> <span class="pre">'mle'</span></code> and <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'full'</span></code>, Minka’s
+MLE is used to guess the dimension. Use of <code class="docutils literal notranslate"><span class="pre">n_components</span> <span class="pre">==</span> <span class="pre">'mle'</span></code>
+will interpret <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'auto'</span></code> as <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'full'</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">n_components</span> <span class="pre">&lt;</span> <span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'full'</span></code>, select the
+number of components such that the amount of variance that needs to be
+explained is greater than the percentage specified by n_components.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">svd_solver</span> <span class="pre">==</span> <span class="pre">'arpack'</span></code>, the number of components must be
+strictly less than the minimum of n_features and n_samples.</p>
+<p>Hence, the None case results in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_components</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>copy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>default True</em><em>)</em>) – If False, data passed to fit are overwritten and running
+fit(X).transform(X) will not yield the expected results,
+use fit_transform(X) instead.</p></li>
+<li><p><strong>whiten</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default False</em><em>)</em>) – <p>When True (False by default) the <cite>components_</cite> vectors are multiplied
+by the square root of n_samples and then divided by the singular values
+to ensure uncorrelated outputs with unit component-wise variances.</p>
+<p>Whitening will remove some information from the transformed signal
+(the relative variance scales of the components) but can sometime
+improve the predictive accuracy of the downstream estimators by
+making their data respect some hard-wired assumptions.</p>
+</p></li>
+<li><p><strong>svd_solver</strong> (<em>string {'auto'</em><em>, </em><em>'full'</em><em>, </em><em>'arpack'</em><em>, </em><em>'randomized'</em><em>, </em><em>'cuml'</em><em>, </em><em>'jacobi'}</em>) – <dl>
+<dt>auto :</dt><dd><p>when cuml is not used, the solver is selected by a default policy based
+on <cite>X.shape</cite> and <cite>n_components</cite>: if the input data is larger than 500x500 and the
+number of components to extract is lower than 80% of the smallest
+dimension of the data, then the more efficient ‘randomized’
+method is enabled. Otherwise the exact full SVD is computed and
+optionally truncated afterwards. If cuml is used, then the default
+algorithm ‘full’ will be used when the svd_solver is ‘auto’ or ‘cuml’.</p>
+<p>If cudf dataframe is given as input, if either</p>
+<div class="line-block">
+<div class="line">(1) svd_solver is set to “cuml” or</div>
+<div class="line">(2) svd_solver is “auto”,</div>
+<div class="line">then pai4sk will try to use PCA algorithm from RAPIDS cuML if possible.</div>
+<div class="line">cuML in pai4sk is currently supported only</div>
+<div class="line">(a) with python 3.6 and</div>
+<div class="line">(b) without MPI.</div>
+</div>
+</dd>
+<dt>full :</dt><dd><p>run exact full SVD calling the standard LAPACK solver via
+<cite>scipy.linalg.svd</cite> and select the components by postprocessing</p>
+</dd>
+<dt>arpack :</dt><dd><p>run SVD truncated to n_components calling ARPACK solver via
+<cite>scipy.sparse.linalg.svds</cite>. It requires strictly
+0 &lt; n_components &lt; min(X.shape)</p>
+</dd>
+<dt>randomized :</dt><dd><p>run randomized SVD by the method of Halko et al.</p>
+</dd>
+</dl>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.18.0.</span></p>
+</div>
+</p></li>
+<li><p><strong>tol</strong> (<em>float &gt;= 0</em><em>, </em><em>optional</em><em> (</em><em>default .0</em><em>)</em>) – <p>Tolerance for singular values computed by svd_solver == ‘arpack’.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.18.0.</span></p>
+</div>
+</p></li>
+<li><p><strong>iterated_power</strong> (<em>int &gt;= 0</em><em>, or </em><em>'auto'</em><em>, </em><em>(</em><em>default 'auto'</em><em>)</em>) – <p>Number of iterations for the power method computed by
+svd_solver == ‘randomized’.
+Note : cuML for pai4sk only supports integer values for this parameter.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.18.0.</span></p>
+</div>
+</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default None</em><em>)</em>) – <p>If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by <cite>np.random</cite>. Used when <code class="docutils literal notranslate"><span class="pre">svd_solver</span></code> == ‘arpack’ or ‘randomized’.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.18.0.</span></p>
+</div>
+</p></li>
+<li><p><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use GPU 0. Applicable only for cuML.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>components_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Principal axes in feature space, representing the directions of
+maximum variance in the data. The components are sorted by
+<code class="docutils literal notranslate"><span class="pre">explained_variance_</span></code>.</p></li>
+<li><p><strong>explained_variance_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – <p>The amount of variance explained by each of the selected components.</p>
+<p>Equal to n_components largest eigenvalues
+of the covariance matrix of X.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 0.18.</span></p>
+</div>
+</p></li>
+<li><p><strong>explained_variance_ratio_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – <p>Percentage of variance explained by each of the selected components.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">n_components</span></code> is not set then all components are stored and the
+sum of the ratios is equal to 1.0.</p>
+</p></li>
+<li><p><strong>singular_values_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series</em>) – The singular values corresponding to each of the selected components.
+The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
+variables in the lower-dimensional space.</p></li>
+<li><p><strong>mean_</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – <p>Per-feature empirical mean, estimated from the training set.</p>
+<p>Equal to <cite>X.mean(axis=0)</cite>.</p>
+</p></li>
+<li><p><strong>n_components_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The estimated number of components. When n_components is set
+to ‘mle’ or a number between 0 and 1 (with svd_solver == ‘full’) this
+number is estimated from input data. Otherwise it equals the parameter
+n_components, or the lesser value of n_features and n_samples
+if n_components is None.</p></li>
+<li><p><strong>noise_variance_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><em>cudf Series</em>) – <p>The estimated noise covariance following the Probabilistic PCA model
+from Tipping and Bishop 1999. See “Pattern Recognition and
+Machine Learning” by C. Bishop, 12.2.1 p. 574 or
+<a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a>. It is required to
+compute the estimated data covariance and score samples.</p>
+<p>Equal to the average of (min(n_features, n_samples) - n_components)
+smallest eigenvalues of the covariance matrix of X.</p>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>For n_components == ‘mle’, this class uses the method of <cite>Minka, T. P.
+“Automatic choice of dimensionality for PCA”. In NIPS, pp. 598-604</cite></p>
+<p>Implements the probabilistic PCA model from:
+<a href="#id1"><span class="problematic" id="id2">`</span></a>Tipping, M. E., and Bishop, C. M. (1999). “Probabilistic principal
+component analysis”. Journal of the Royal Statistical Society:
+Series B (Statistical Methodology), 61(3), 611-622.
+via the score and score_samples methods.
+See <a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a></p>
+<p>For svd_solver == ‘arpack’, refer to <cite>scipy.sparse.linalg.svds</cite>.</p>
+<p>For svd_solver == ‘randomized’, see:
+<cite>Halko, N., Martinsson, P. G., and Tropp, J. A. (2011).
+“Finding structure with randomness: Probabilistic algorithms for
+constructing approximate matrix decompositions”.
+SIAM review, 53(2), 217-288.</cite> and also
+<cite>Martinsson, P. G., Rokhlin, V., and Tygert, M. (2011).
+“A randomized algorithm for the decomposition of matrices”.
+Applied and Computational Harmonic Analysis, 30(1), 47-68.</cite></p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=2, random_state=None,</span>
+<span class="go">  svd_solver=&#39;auto&#39;, tol=0.0, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  
+<span class="go">[0.9924... 0.0075...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  
+<span class="go">[6.30061... 0.54980...]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>                 
+<span class="go">PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=2, random_state=None,</span>
+<span class="go">  svd_solver=&#39;full&#39;, tol=0.0, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  
+<span class="go">[0.9924... 0.00755...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  
+<span class="go">[6.30061... 0.54980...]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;arpack&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">PCA(copy=True, iterated_power=&#39;auto&#39;, n_components=1, random_state=None,</span>
+<span class="go">  svd_solver=&#39;arpack&#39;, tol=0.0, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  
+<span class="go">[0.99244...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  
+<span class="go">[6.30061...]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">KernelPCA</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SparsePCA</span></code>, <a class="reference internal" href="svddoc.html#pai4sk.decomposition.TruncatedSVD" title="pai4sk.decomposition.TruncatedSVD"><code class="xref py py-class docutils literal notranslate"><span class="pre">TruncatedSVD</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IncrementalPCA</span></code></p>
+</div>
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em>, <em class="sig-param">_transform=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model with X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data, where n_samples is the number of samples
+and n_features is the number of features.</p></li>
+<li><p><strong>y</strong> (<em>Ignored</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>self</strong> – Returns the instance itself.
+If PCA from cuML is run, then this fit method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit method.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.fit_transform">
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the model with X and apply the dimensionality reduction on X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data, where n_samples is the number of samples
+and n_features is the number of features.</p></li>
+<li><p><strong>y</strong> (<em>Ignored</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_new</strong> – If PCA from cuML is run, then this method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit_transform method.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like of shape (n_samples, n_components) or cudf dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param">deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>mapping of string to any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.inverse_transform">
+<code class="sig-name descname">inverse_transform</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform data back to its original space.</p>
+<p>In other words, return an input X_original whose transform would be X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>) or </em><em>cudf dataframe</em>) – New data, where n_samples is the number of samples
+and n_components is the number of components.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_original</strong> – If PCA from cuML is run, then this method returns cudf dataframe
+instead of the results’ types seen from scikit-learn’s
+inverse_transform method.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like of shape (n_samples, n_features) or cudf dataframe</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If whitening is enabled, inverse_transform will compute the
+exact inverse operation, which includes reversing whitening.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.score">
+<code class="sig-name descname">score</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the average log-likelihood of all samples.</p>
+<p>See. “Pattern Recognition and Machine Learning”
+by C. Bishop, 12.2.1 p. 574
+or <a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array</em><em>, </em><em>shape</em><em>(</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – The data.</p></li>
+<li><p><strong>y</strong> (<em>Ignored</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ll</strong> – Average log-likelihood of the samples under the current model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.PCA.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.PCA.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply dimensionality reduction to X.</p>
+<p>X is projected on the first principal components previously extracted
+from a training set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – New data, where n_samples is the number of samples
+and n_features is the number of features.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_new</strong> – If PCA from cuML is run, then this method saves the computed
+values as cudf dataframe instead of the results’ types seen from
+scikit-learn’s transform method.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array-like of shape (n_samples, n_components) or cudf dataframe</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.decomposition</span> <span class="k">import</span> <span class="n">IncrementalPCA</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ipca</span> <span class="o">=</span> <span class="n">IncrementalPCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ipca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="go">IncrementalPCA(batch_size=3, copy=True, n_components=2, whiten=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ipca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> 
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="svddoc.html" class="btn btn-neutral float-right" title="decomposition.TruncatedSVD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dbscandoc.html" class="btn btn-neutral float-left" title="cluster.DBSCAN" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

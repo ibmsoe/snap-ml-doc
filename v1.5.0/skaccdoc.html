@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>accuracy_score &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="hinge_loss" href="skhingedoc.html" />
+    <link rel="prev" title="log_loss" href="sklogdoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lassodoc.html">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcadoc.html">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Similarity Search</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load20news.html">loaders.load_20News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark Estimators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spestlogdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlogmoddoc.html">LogisticRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlindoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlinmoddoc.html">LinearRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcdoc.html">LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcmoddoc.html">LinearSVCModel</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>accuracy_score</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="accuracy-score">
+<span id="sk-acc-doc"></span><h1>accuracy_score<a class="headerlink" href="#accuracy-score" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pai4sk.metrics.accuracy_score">
+<code class="sig-prename descclassname">pai4sk.metrics.</code><code class="sig-name descname">accuracy_score</code><span class="sig-paren">(</span><em class="sig-param">y_true</em>, <em class="sig-param">y_pred</em>, <em class="sig-param">normalize=True</em>, <em class="sig-param">sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.metrics.accuracy_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accuracy classification score.</p>
+<p>In multilabel classification, this function computes subset accuracy:
+the set of labels predicted for a sample must <em>exactly</em> match the
+corresponding set of labels in y_true.</p>
+<p>For SnapML solver this supports both local and distributed(MPI) method of execution.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> (<em>1d array-like</em><em>, or </em><em>label indicator array / sparse matrix</em>) – Ground truth (correct) labels.
+It also accepts SnapML data partition, which includes the correct labels.</p></li>
+<li><p><strong>y_pred</strong> (<em>1d array-like</em><em>, or </em><em>label indicator array / sparse matrix</em>) – Predicted labels, as returned by a classifier.</p></li>
+<li><p><strong>normalize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, return the number of correctly classified samples.
+Otherwise, return the fraction of correctly classified samples.</p></li>
+<li><p><strong>sample_weight</strong> (<em>array-like of shape =</em><em> [</em><em>n_samples</em><em>]</em><em>, </em><em>optional</em>) – Sample weights.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><strong>score</strong> – If <code class="docutils literal notranslate"><span class="pre">normalize</span> <span class="pre">==</span> <span class="pre">True</span></code>, return the fraction of correctly
+classified samples (float), else returns the number of correctly
+classified samples (int).</p>
+<p>The best performance is 1 with <code class="docutils literal notranslate"><span class="pre">normalize</span> <span class="pre">==</span> <span class="pre">True</span></code> and the number
+of samples with <code class="docutils literal notranslate"><span class="pre">normalize</span> <span class="pre">==</span> <span class="pre">False</span></code>.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">jaccard_similarity_score()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">hamming_loss()</span></code>, <code class="xref py py-func docutils literal notranslate"><span class="pre">zero_one_loss()</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>In binary and multiclass classification, this function is equal
+to the <code class="docutils literal notranslate"><span class="pre">jaccard_similarity_score</span></code> function.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.metrics</span> <span class="k">import</span> <span class="n">accuracy_score</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_pred</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_true</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="go">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>In the multilabel case with binary label indicators:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="go">0.5</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="skhingedoc.html" class="btn btn-neutral float-right" title="hinge_loss" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sklogdoc.html" class="btn btn-neutral float-left" title="log_loss" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

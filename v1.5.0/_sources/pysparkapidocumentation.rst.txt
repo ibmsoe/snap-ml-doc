@@ -1,0 +1,29 @@
+.. _pyspark-api-documentation:
+
+====================================
+snap-ml-spark API 
+====================================
+
+.. currentmodule:: snap_ml_spark.LinearRegression
+.. autoclass:: LinearRegression
+    :members:
+
+
+.. currentmodule:: snap_ml_spark.LogisticRegression
+.. autoclass:: LogisticRegression
+    :members:
+
+
+.. currentmodule:: snap_ml_spark.SupportVectorMachine
+.. autoclass:: SupportVectorMachine
+    :members:
+
+.. currentmodule:: snap_ml_spark.DatasetReader
+.. autoclass:: DatasetReader
+    :members:
+
+.. automodule:: snap_ml_spark.Metrics
+    :members:
+
+.. automodule:: snap_ml_spark.Utils
+    :members:

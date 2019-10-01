@@ -1,0 +1,8 @@
+.. _log-doc:
+
+====================================
+log_loss
+====================================
+
+.. autofunction:: pai4sk.sml_metrics.log_loss
+

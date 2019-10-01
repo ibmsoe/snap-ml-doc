@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>snap-ml-spark API &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lassodoc.html">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcadoc.html">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Similarity Search</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load20news.html">loaders.load_20News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark Estimators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spestlogdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlogmoddoc.html">LogisticRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlindoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlinmoddoc.html">LinearRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcdoc.html">LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcmoddoc.html">LinearSVCModel</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>snap-ml-spark API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="snap-ml-spark-api">
+<span id="pyspark-api-documentation"></span><h1>snap-ml-spark API<a class="headerlink" href="#snap-ml-spark-api" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="snap_ml_spark.LinearRegression.LinearRegression">
+<em class="property">class </em><code class="sig-prename descclassname">snap_ml_spark.LinearRegression.</code><code class="sig-name descname">LinearRegression</code><span class="sig-paren">(</span><em class="sig-param">max_iter=1000</em>, <em class="sig-param">dual=True</em>, <em class="sig-param">regularizer=1.0</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">use_gpu=False</em>, <em class="sig-param">class_weights=None</em>, <em class="sig-param">gpu_mem_limit=0</em>, <em class="sig-param">n_threads=-1</em>, <em class="sig-param">penalty='l2'</em>, <em class="sig-param">tol=0.001</em>, <em class="sig-param">return_training_history=None</em>, <em class="sig-param">labelColIndex=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear Regression classifier</p>
+<p>This class implements Regularized Linear regression using the IBM Snap ML distributed solver.  It can handle sparse and dense dataset formats. Please use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
+<li><p><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or primal formulation.
+Recommendation: if n_samples &gt; n_features use dual=True, else dual=False.</p></li>
+<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+Larger regularization values imply stronger regularization.</p></li>
+<li><p><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag for indicating if the training loss will be printed at each epoch.</p></li>
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+is performed using the GPU. If False, the training is performed using the CPU.</p></li>
+<li><p><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight = 1.</p></li>
+<li><p><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
+the maximum possible memory is used.</p></li>
+<li><p><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</p></li>
+<li><p><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization (RidgeRegression)
+or “l1” for L1 regularization (LassoRegression). L1 regularization is possible only for the primal
+optimization problem (dual=False).</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</p></li>
+<li><p><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
+It’s applicable only when Dataframe is passed in as input and its holding features in individual columns
+rather than in DenseVector or SparseVector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>coef_</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p></li>
+<li><p><strong>pred_array_</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – linear predictions written by the predict() function of this class</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="snap_ml_spark.LinearRegression.LinearRegression.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>learn model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and it cannot be accessed by python as a python array.</em>) – data to fit model</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>double – final training loss of the last epoch</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.LinearRegression.LinearRegression.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>all the initialized parameters of the Linear Regression model as a python dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.LinearRegression.LinearRegression.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LinearRegression.LinearRegression.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict regression values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</p></li>
+<li><p><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id1"><span class="problematic" id="id2">pred_array_</span></a> field which is a python array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_ml_spark.LogisticRegression.LogisticRegression">
+<em class="property">class </em><code class="sig-prename descclassname">snap_ml_spark.LogisticRegression.</code><code class="sig-name descname">LogisticRegression</code><span class="sig-paren">(</span><em class="sig-param">max_iter=1000</em>, <em class="sig-param">dual=True</em>, <em class="sig-param">regularizer=1.0</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">use_gpu=False</em>, <em class="sig-param">class_weights=None</em>, <em class="sig-param">gpu_mem_limit=0</em>, <em class="sig-param">n_threads=-1</em>, <em class="sig-param">penalty='l2'</em>, <em class="sig-param">tol=0.001</em>, <em class="sig-param">return_training_history=None</em>, <em class="sig-param">labelColIndex=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logistic Regression classifier</p>
+<p>This class implements regularized Logistic Regression using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
+<li><p><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Dual or Primal formulation.
+Recommendation: if n_samples &gt; n_features use dual=True.</p></li>
+<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+Larger regularization values imply stronger regularization.</p></li>
+<li><p><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag for indicating if the training loss will be printed at each epoch.</p></li>
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+is performed using the GPU. If False, the training is performed using the CPU.</p></li>
+<li><p><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</p></li>
+<li><p><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
+the maximum possible memory is used.</p></li>
+<li><p><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</p></li>
+<li><p><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default : &quot;l2&quot;</em>) – The regularization / penalty type. Possible values are “l2” for L2 regularization
+or “l1” for L1 regularization. L1 regularization is possible only for the primal
+optimization problem (dual=False).</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</p></li>
+<li><p><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
+It’s applicable only when Dataframe is passed in as input and its holding features in individual columns
+rather than in DenseVector or SparseVector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>coef_</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p></li>
+<li><p><strong>pred_array_</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – binary predictions written by the predict() function</p></li>
+<li><p><strong>proba_array_</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – predicted probabilities written by the predict_proba() function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>learn model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and it cannot be accessed by python as a python array.</em>) – data to fit model</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>double – final training loss of the last epoch</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>all the initialized parameters of the Logistic Regression model as a python dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</p></li>
+<li><p><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id3"><span class="problematic" id="id4">pred_array_</span></a> field which is a python array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.LogisticRegression.LogisticRegression.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.LogisticRegression.LogisticRegression.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict probabilities</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</p></li>
+<li><p><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id5"><span class="problematic" id="id6">proba_array_</span></a> field which is a python array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine">
+<em class="property">class </em><code class="sig-prename descclassname">snap_ml_spark.SupportVectorMachine.</code><code class="sig-name descname">SupportVectorMachine</code><span class="sig-paren">(</span><em class="sig-param">max_iter=1000</em>, <em class="sig-param">regularizer=1.0</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">use_gpu=False</em>, <em class="sig-param">class_weights=None</em>, <em class="sig-param">gpu_mem_limit=0</em>, <em class="sig-param">n_threads=-1</em>, <em class="sig-param">tol=0.001</em>, <em class="sig-param">return_training_history=None</em>, <em class="sig-param">labelColIndex=1</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Support Vector Machine classifier</p>
+<p>This class implements regularized support vector machine using the IBM Snap ML solver. It can handle sparse and dense dataset formats. Use libsvm, snap or csv format for the Dual algorithm, or snap.t (transposed) format for the primal algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
+<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+Larger regularization values imply stronger regularization.</p></li>
+<li><p><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag for indicating if the training loss will be printed at each epoch.</p></li>
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+is performed using the GPU. If False, the training is performed using the CPU.</p></li>
+<li><p><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</p></li>
+<li><p><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
+the maximum possible memory is used.</p></li>
+<li><p><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.</p></li>
+<li><p><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
+It’s applicable only when Dataframe is passed in as input and its holding features in individual columns
+rather than in DenseVector or SparseVector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>coef_</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – Coefficients of the features in the trained model.</p></li>
+<li><p><strong>pred_array_</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>number_of_test_examples</em><em>,</em><em>)</em>) – binary predictions written by the predict() function</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>learn model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and it cannot be accessed by python as a python array.</em>) – data to fit model</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>double – final training loss of the last epoch</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>all the initialized parameters of the Support Vector Machine Model as a python dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.SupportVectorMachine.SupportVectorMachine.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.SupportVectorMachine.SupportVectorMachine.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predict label</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pyspark.sql.DataFrame/py4j.java_gateway.JavaObject which points to a memory address where the actual data is stored and cannot be accessed by python as an array but only can passed as a parameter to this function in order to get the predictions</em>) – data to make predictions</p></li>
+<li><p><strong>num_threads</strong> – the number of threads to use for inference (default 0 means use all avaliable threads)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a pointer which points to a com.ibm.snap.ml.DatasetWithPredictions java object. This pointer cannot be accessed by python but the user can access the predictions from the <a href="#id7"><span class="problematic" id="id8">pred_array_</span></a> field which is a python array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader">
+<em class="property">class </em><code class="sig-prename descclassname">snap_ml_spark.DatasetReader.</code><code class="sig-name descname">DatasetReader</code><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load distributed dataset from file.</p>
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.load">
+<code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">file</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load training data in memory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>string</em>) – filename</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.setFormat">
+<code class="sig-name descname">setFormat</code><span class="sig-paren">(</span><em class="sig-param">format</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.setFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the dataformat of the file.  Format values: “snap” or “libsvm” or “csv”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>format</strong> (<em>string</em>) – data format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.setNumFt">
+<code class="sig-name descname">setNumFt</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.setNumFt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the number of features</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – index</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.DatasetReader.DatasetReader.takeRange">
+<code class="sig-name descname">takeRange</code><span class="sig-paren">(</span><em class="sig-param">idx_start</em>, <em class="sig-param">idx_end</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.DatasetReader.DatasetReader.takeRange" title="Permalink to this definition">¶</a></dt>
+<dd><p>If not the whole dataset should be loaded specify start and end index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – first sample to load</p></li>
+<li><p><strong>idx_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – last sample to load</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-snap_ml_spark.Metrics"></span><dl class="function">
+<dt id="snap_ml_spark.Metrics.accuracy">
+<code class="sig-prename descclassname">snap_ml_spark.Metrics.</code><code class="sig-name descname">accuracy</code><span class="sig-paren">(</span><em class="sig-param">dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataWithPredictions</strong> – binary predictions computed by the LogisticRegression or SupportVectorMachine predict() function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>accuracy computed based on the binary predictions of a classifier (LogisticRegression, SupportVectorMachines)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>double</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.f1score">
+<code class="sig-prename descclassname">snap_ml_spark.Metrics.</code><code class="sig-name descname">f1score</code><span class="sig-paren">(</span><em class="sig-param">dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.f1score" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataWithPredictions</strong> – binary predictions computed by the LogisticRegression or SupportVectorMachine predict() function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>f1score metric (2*(precision*recall)/(precision+recall)), computed based on the binary predictions of a classifier (LogisticRegression, SupportVectorMachines)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>double</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.logisticLoss">
+<code class="sig-prename descclassname">snap_ml_spark.Metrics.</code><code class="sig-name descname">logisticLoss</code><span class="sig-paren">(</span><em class="sig-param">dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.logisticLoss" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataWithPredictions</strong> – probabilities computed by the LogisticRegression predict_proba() function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>logistic loss computed by the logistic regression predicted probabilities</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>double</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.meanSquaredError">
+<code class="sig-prename descclassname">snap_ml_spark.Metrics.</code><code class="sig-name descname">meanSquaredError</code><span class="sig-paren">(</span><em class="sig-param">dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.meanSquaredError" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataWithPredictions</strong> – linear regression predictions, predicted by the RidgeRegression predict() function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>mean squared error computed based on the provided dataWithPredictions parameter</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>double</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.precision">
+<code class="sig-prename descclassname">snap_ml_spark.Metrics.</code><code class="sig-name descname">precision</code><span class="sig-paren">(</span><em class="sig-param">dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.precision" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataWithPredictions</strong> – binary predictions computed by the LogisticRegression or SupportVectorMachine predict() function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>precision metric (TP/(TP+FP)), computed based on the binary predictions of a classifier (LogisticRegression, SupportVectorMachines)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>double</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Metrics.recall">
+<code class="sig-prename descclassname">snap_ml_spark.Metrics.</code><code class="sig-name descname">recall</code><span class="sig-paren">(</span><em class="sig-param">dataWithPredictions</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Metrics.recall" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataWithPredictions</strong> – binary predictions computed by the LogisticRegression or SupportVectorMachine predict() function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>recall metric (TP/(TP+FN)), computed based on the binary predictions of a classifier (LogisticRegression, SupportVectorMachines)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>double</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-snap_ml_spark.Utils"></span><dl class="function">
+<dt id="snap_ml_spark.Utils.dump_to_snap_format">
+<code class="sig-prename descclassname">snap_ml_spark.Utils.</code><code class="sig-name descname">dump_to_snap_format</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">filename</em>, <em class="sig-param">transpose=False</em>, <em class="sig-param">implicit_vals=False</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Utils.dump_to_snap_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-distributed data writing to snap format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>numpy array</em><em> or </em><em>sparse matrix</em>) – The data used for training or inference.</p></li>
+<li><p><strong>y</strong> (<em>numpy array</em>) – The labels of the samples in X.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The file where X and y will be stored in snap format.</p></li>
+<li><p><strong>transpose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> , </em><em>default : False</em>) – If transpose is True, X will be stored in transposed format.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="snap_ml_spark.Utils.read_from_snap_format">
+<code class="sig-prename descclassname">snap_ml_spark.Utils.</code><code class="sig-name descname">read_from_snap_format</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.Utils.read_from_snap_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-distributed data loading from snap format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – The file where the data resides.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X, y</strong> – Returns two datasets.
+X : the data used for training or inference
+y : the labels of the samples in X.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy array or sparse matrix, numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+.. _loadw2v-doc:
+
+====================================
+embeddings.load_word2vec_embeddings
+====================================
+
+.. autofunction:: pai4sk.simsearch.embeddings.load_word2vec_embeddings

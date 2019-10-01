@@ -1,0 +1,7 @@
+.. _load20news-doc:
+
+====================================
+loaders.load_20News
+====================================
+
+.. autofunction:: pai4sk.simsearch.loaders.load_20News

@@ -1,0 +1,9 @@
+.. _boosttree-api-doc:
+
+====================================
+Booster
+====================================
+
+.. currentmodule:: pai4sk
+.. autoclass:: Booster
+    :members:
