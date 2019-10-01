@@ -1,0 +1,125 @@
+.. _notebook-susy-local:
+
+.. currentmodule:: snap_ml.RandomForestClassifier
+
+=================================================
+Signal Detection using IBM Snap ML
+=================================================
+
+In this example we will show how to train a Random Forest model on the `SUSY dataset <http://archive.ics.uci.edu/ml/datasets/SUSY>`_ from the LibSVM repository in order to distinguish between a signal process which produces supersymmetric particles and background noise. We will use ``snap-ml-local`` for training as well as ``scikit-learn`` as a reference. 
+
+Download the Data
+=================================================
+
+We first create a directory where we then download and decompress the data from the LIBSVM repository::
+
+    mkdir data
+    cd data
+    wget https://www.csie.ntu.edu.tw/~cjlin/libsvmtools/datasets/binary/SUSY.bz2
+    bunzip2 SUSY.bz2
+    cd ../
+
+
+Preprocess the Data
+=================================================
+
+Before doing the training we show how to preprocess the dataset and dump it into numpy binary format for fast reloading. Because the ``snapml`` library is compatible with ``scikit-learn`` we can use the broad functionalities offered by ``scikit-learn`` to do the preprocessing as needed. Here an example:
+
+.. code-block:: python
+
+    import numpy as np
+
+    # import preprocessing functions from scikit-learn
+    from sklearn.datasets import load_svmlight_file
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import normalize
+
+    # Import the data from csv format
+    X,y = load_svmlight_file("data/SUSY")
+
+    # Make a train-test split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+    # Convert data to numpy arrarys
+    X_train = np.array(X_train.todense())
+    X_test  = np.array(X_test.todense())
+
+    # Normalize the training data
+    X_train = normalize(X_train, axis=1, norm='l1')
+    X_test  = normalize(X_test,  axis=1, norm='l1')
+
+    # Save the preprocessed data in dense matrices
+    np.save("data/SUSY.X_train", X_train)
+    np.save("data/SUSY.X_test",  X_test)
+    np.save("data/SUSY.y_train", y_train)
+    np.save("data/SUSY.y_test", y_test)
+
+
+
+Training and Evaluating a Random Forest Model
+=================================================
+
+After preprocessing the data we can now train a machine learning model using ``snapml``. Let us consider Random Forest in this example. We start by loading the data and initializing the classifier:
+
+.. code-block:: python
+
+    import time
+    import numpy as np
+    from scipy import sparse
+
+    # import evaluation metrics from scikit-learn
+    from sklearn.metrics import accuracy_score
+
+    # load training data
+    t0 = time.time()
+    X_train = np.load("data/SUSY.X_train.npy")
+    X_test  = np.load("data/SUSY.X_test.npy")
+    y_train = np.load("data/SUSY.y_train.npy")
+    y_test  = np.load("data/SUSY.y_test.npy")
+    print("Data load time (s):  {0:.2f}".format(time.time()-t0))
+
+    # specify model parameters
+    max_depth     =  None
+    n_estimators  =  10
+    n_jobs        =  8     # e.g. number of threads
+    max_features  =  4
+
+    # import snap RandomForestClassifier from pai4sk module directly
+    from pai4sk import RandomForestClassifier as SnapForest
+
+    # initialize the classifier
+    dt = SnapForest(random_state=0, verbose=False, max_depth=max_depth, n_estimators=n_estimators, n_jobs=n_jobs, max_features=max_features)
+
+In the above example we have initialized a forest with 10 classifiers, using 8 threads for training. However, this is only an illustrative example and the parameters can be adjusted by the user depending on the application. For more details about the available arguments of the random forest classifier, check the :ref:`python-api-documentation`. Now let us continue with the training:
+
+.. code-block:: python
+
+    # Training 
+    t0 = time.time()
+    dt.fit(X_train, y_train)
+    print("[snap] Training time (s):  {0:.2f}".format(time.time()-t0))
+
+We have added code for timing so you can benchmark the training procedure.
+Finally, we want to evaluate the learnt model on the hold-out test set:
+
+.. code-block:: python
+        
+    # Inference
+    pred_test = dt.predict(X_test)
+    acc_snap = accuracy_score(y_test, pred_test)
+    print("[snap] Accuracy score:   {0:.4f}".format(acc_snap))
+
+
+Note that the random forest classifier could also be trained using the standard ``scikit-learn`` library. You can validate the result by only changing a few lines of code and initializing a scikit-learn model instead of the Snap ML model:
+
+ .. code-block:: python
+
+    # Import RandomForestClassifier from scikit-learn 
+    from sklearn.ensemble import RandomForestClassifier as skForest
+
+    # initialize the classifier
+    dt = skForest(random_state=0, max_depth=max_depth, n_estimators=n_estimators, n_jobs=n_jobs, max_features=max_features)
+
+The training can be done using the same code as above. However, you will realize a loss in performance coming from not using the optimized ``snapml`` solver.
+
+© Copyright IBM Corporation 2018

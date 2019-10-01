@@ -1,0 +1,7 @@
+.. _loademb-doc:
+
+====================================
+embeddings.load_embedding_vectors
+====================================
+
+.. autofunction:: pai4sk.simsearch.embeddings.load_embedding_vectors

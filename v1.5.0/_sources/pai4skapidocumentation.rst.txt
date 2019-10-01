@@ -1,0 +1,44 @@
+.. _pai4sk-api-documentation:
+
+====================================
+pai4sk API
+====================================
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: Ridge
+    :members:
+
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: Lasso
+    :members:
+
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: LogisticRegression
+    :members:
+
+
+.. currentmodule:: pai4sk.svm
+.. autoclass:: LinearSVC
+    :members:
+
+
+.. currentmodule:: pai4sk.cluster
+.. autoclass:: KMeans
+    :members:
+
+
+.. currentmodule:: pai4sk.cluster
+.. autoclass:: DBSCAN
+    :members:
+
+
+.. currentmodule:: pai4sk.decomposition
+.. autoclass:: PCA
+    :members:
+
+
+.. currentmodule:: pai4sk.decomposition
+.. autoclass:: TruncatedSVD
+    :members:

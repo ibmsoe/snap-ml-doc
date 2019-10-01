@@ -1,0 +1,9 @@
+.. _ranfor-api-doc:
+
+====================================
+RandomForestClassifier
+====================================
+
+.. currentmodule:: pai4sk
+.. autoclass:: RandomForestClassifier
+    :members:

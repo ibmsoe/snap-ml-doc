@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>linear_model.Lasso &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="linear_model.LogisticRegression" href="sklogregdoc.html" />
+    <link rel="prev" title="linear_model.Ridge" href="ridgedoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcadoc.html">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Similarity Search</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load20news.html">loaders.load_20News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark Estimators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spestlogdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlogmoddoc.html">LogisticRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlindoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlinmoddoc.html">LinearRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcdoc.html">LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcmoddoc.html">LinearSVCModel</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>linear_model.Lasso</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linear-model-lasso">
+<span id="lasso-doc"></span><h1>linear_model.Lasso<a class="headerlink" href="#linear-model-lasso" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.linear_model.Lasso">
+<em class="property">class </em><code class="sig-prename descclassname">pai4sk.linear_model.</code><code class="sig-name descname">Lasso</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Lasso" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear Model trained with L1 prior as regularizer (aka the Lasso)</p>
+<p>The optimization objective for Lasso is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n_samples</span><span class="p">))</span> <span class="o">*</span> <span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||</span><span class="n">_1</span>
+</pre></div>
+</div>
+<p>Technically the Lasso model is optimizing the same objective function as
+the Elastic Net with <code class="docutils literal notranslate"><span class="pre">l1_ratio=1.0</span></code> (no L2 penalty).</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<p>For SnapML solver this supports both local and distributed(MPI) method of execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – Constant that multiplies the L1 term. Defaults to 1.0.
+<code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0</span></code> is equivalent to an ordinary least square, solved
+by the <code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code> object. For numerical
+reasons, using <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0</span></code> with the <code class="docutils literal notranslate"><span class="pre">Lasso</span></code> object is not advised.
+Given this, you should use the <code class="xref py py-class docutils literal notranslate"><span class="pre">LinearRegression</span></code> object.</p></li>
+<li><p><strong>fit_intercept</strong> (<em>boolean</em><em>, </em><em>optional</em><em>, </em><em>default True</em>) – Whether to calculate the intercept for this model. If set
+to False, no intercept will be used in calculations
+(e.g. data is expected to be already centered).</p></li>
+<li><p><strong>normalize</strong> (<em>boolean</em><em>, </em><em>optional</em><em>, </em><em>default False</em>) – This parameter is ignored when <code class="docutils literal notranslate"><span class="pre">fit_intercept</span></code> is set to False.
+If True, the regressors X will be normalized before regression by
+subtracting the mean and dividing by the l2-norm.
+If you wish to standardize, please use
+<code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
+on an estimator with <code class="docutils literal notranslate"><span class="pre">normalize=False</span></code>.</p></li>
+<li><p><strong>precompute</strong> (<em>True | False | array-like</em><em>, </em><em>default=False</em>) – Whether to use a precomputed Gram matrix to speed up
+calculations. If set to <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> let us decide. The Gram
+matrix can also be passed as argument. For sparse input
+this option is always <code class="docutils literal notranslate"><span class="pre">True</span></code> to preserve sparsity.</p></li>
+<li><p><strong>copy_X</strong> (<em>boolean</em><em>, </em><em>optional</em><em>, </em><em>default True</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, X will be copied; else, it may be overwritten.</p></li>
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – The maximum number of iterations</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – The tolerance for the optimization: if the updates are
+smaller than <code class="docutils literal notranslate"><span class="pre">tol</span></code>, the optimization code checks the
+dual gap for optimality and continues until it is smaller
+than <code class="docutils literal notranslate"><span class="pre">tol</span></code>.</p></li>
+<li><p><strong>warm_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – When set to True, reuse the solution of the previous call to fit as
+initialization, otherwise, just erase the previous solution.
+See <span class="xref std std-term">the Glossary</span>.</p></li>
+<li><p><strong>positive</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em>) – When set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, forces the coefficients to be positive.</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default None</em>) – The seed of the pseudo random number generator that selects a random
+feature to update.  If int, random_state is the seed used by the random
+number generator; If RandomState instance, random_state is the random
+number generator; If None, the random number generator is the
+RandomState instance used by <cite>np.random</cite>. Used when <code class="docutils literal notranslate"><span class="pre">selection</span></code> ==
+‘random’.</p></li>
+<li><p><strong>selection</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>default 'cyclic'</em>) – If set to ‘random’, a random coefficient is updated every iteration
+rather than looping over features sequentially by default. This
+(setting to ‘random’) often leads to significantly faster convergence
+especially when tol is higher than 1e-4.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase the
+training time. For performance evaluation, use verbose=False.</p></li>
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
+is performed using the GPU. If False, the training is performed using the CPU.
+The value of this parameter is subjected to changed based on the training data unless set explicitly.
+Applicable only for snapml solver</p></li>
+<li><p><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
+For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
+For multi-GPU training, set device_ids to a list of GPU IDs to be used for training, e.g., [0, 1].        Applicable only for snapml solver</p></li>
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
+(default value for GPU is 256). Applicable only for snapml solver</p></li>
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+default no information is returned (None), but this parameter can be set to “summary”, to obtain
+summary statistics at the end of training, or “full” to obtain a complete set of statistics
+for the entire training procedure. Note, enabling either option will result in slower training.
+Applicable only for snapml solver</p></li>
+<li><p><strong>privacy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Train the model using a differentially private algorithm.</p></li>
+<li><p><strong>eta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.3</em>) – Learning rate for the differentially private training algorithm.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 100</em>) – Mini-batch size for the differentially private training algorithm.</p></li>
+<li><p><strong>privacy_epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 10.0</em>) – Target privacy gaurantee. Learned model will be (privacy_epsilon, 0.01)-private.</p></li>
+<li><p><strong>grad_clip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Gradient clipping parameter for the differentially private training algorithm</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>coef_</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>) </em><em>|</em><em> (</em><em>n_targets</em><em>, </em><em>n_features</em><em>)</em>) – parameter vector (w in the cost function formula)</p></li>
+<li><p><strong>sparse_coef_</strong> (<em>scipy.sparse matrix</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>, </em><em>1</em><em>) </em><em>|</em><em>             (</em><em>n_targets</em><em>, </em><em>n_features</em><em>)</em>) – <code class="docutils literal notranslate"><span class="pre">sparse_coef_</span></code> is a readonly property derived from <code class="docutils literal notranslate"><span class="pre">coef_</span></code></p></li>
+<li><p><strong>intercept_</strong> (<em>float | array</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – independent term in decision function.</p></li>
+<li><p><strong>n_iter_</strong> (<em>int | array-like</em><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – number of iterations run by the coordinate descent solver to reach
+the specified tolerance.</p></li>
+<li><p><strong>training_history_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
+epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
+If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
+that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epochs.
+‘train_obj’ is the training loss.
+Applicable only for snapml solver.</p></li>
+<li><p><strong>support_</strong> (<em>array-like</em>) – Indices of the features that lie in the support ond contribute to the decision.</p></li>
+<li><p><strong>model_sparsity_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Fraction of non-zeros in the model parameters.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk</span> <span class="k">import</span> <span class="n">linear_model</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">Lasso(alpha=0.1, copy_X=True, fit_intercept=True, max_iter=1000,</span>
+<span class="go">   normalize=False, positive=False, precompute=False, random_state=None,</span>
+<span class="go">   selection=&#39;cyclic&#39;, tol=0.0001, warm_start=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="go">[0.85 0.  ]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>  
+<span class="go">0.15...</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">lars_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">lasso_path</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLars</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LassoLarsCV</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.decomposition.sparse_encode</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The algorithm used to fit the model is coordinate descent.</p>
+<p>To avoid unnecessary memory duplication the X argument of the fit method
+should be directly passed as a Fortran-contiguous numpy array.</p>
+<dl class="method">
+<dt id="pai4sk.linear_model.Lasso.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">check_input=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Lasso.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit model with coordinate descent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>ndarray</em><em> or </em><em>scipy.sparse matrix</em><em>, </em><em>(</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Data
+For SnapML solver it also supports input of types SnapML data partition and DeviceNDArray.</p></li>
+<li><p><strong>y</strong> (<em>ndarray</em><em>, </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>) or </em><em>(</em><em>n_samples</em><em>, </em><em>n_targets</em><em>)</em>) – Target. Will be cast to X’s dtype if necessary</p></li>
+<li><p><strong>check_input</strong> (<em>boolean</em><em>, </em><em>(</em><em>default=True</em><em>)</em>) – Allow to bypass several input checking.
+Don’t use this parameter unless you know what you do.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Coordinate descent is an algorithm that considers each column of
+data at a time hence it will automatically convert the X input
+as a Fortran-contiguous numpy array if necessary.</p>
+<p>To avoid memory re-allocation it is advised to allocate the
+initial data in memory directly using that format.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.linear_model.Lasso.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">num_threads=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Lasso.predict" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Class predictions
+The returned class estimates.
+Parameters
+———-
+X : sparse matrix (csr_matrix) or dense matrix (ndarray)</p>
+<blockquote>
+<div><p>Dataset used for predicting class estimates.
+For SnapML solver it also supports input of type SnapML data partition.</p>
+</div></blockquote>
+</div></blockquote>
+<dl>
+<dt>num_threads<span class="classifier">int, default</span><span class="classifier">0</span></dt><dd><blockquote>
+<div><p>Number of threads used to run inference.
+By default inference runs with maximum number of available threads.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>proba: array-like, shape = (n_samples,)</dt><dd><p>Returns the predicted class of the sample.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sklogregdoc.html" class="btn btn-neutral float-right" title="linear_model.LogisticRegression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ridgedoc.html" class="btn btn-neutral float-left" title="linear_model.Ridge" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

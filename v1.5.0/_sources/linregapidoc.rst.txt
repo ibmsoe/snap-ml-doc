@@ -1,0 +1,9 @@
+.. _linreg-api-doc:
+
+====================================
+LinearRegression
+====================================
+
+.. currentmodule:: pai4sk
+.. autoclass:: LinearRegression
+    :members:

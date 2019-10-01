@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LogisticRegression &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LogisticRegressionModel" href="spestlogmoddoc.html" />
+    <link rel="prev" title="write_to_snap_format" href="snapwritedoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lassodoc.html">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcadoc.html">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">Booster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Similarity Search</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load20news.html">loaders.load_20News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark Estimators</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlogmoddoc.html">LogisticRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlindoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlinmoddoc.html">LinearRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcdoc.html">LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcmoddoc.html">LinearSVCModel</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>LogisticRegression</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-snap_ml_spark.estimator">
+<span id="logisticregression"></span><span id="sp-est-log-reg-doc"></span><h1>LogisticRegression<a class="headerlink" href="#module-snap_ml_spark.estimator" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="snap_ml_spark.estimator.LogisticRegression">
+<em class="property">class </em><code class="sig-prename descclassname">snap_ml_spark.estimator.</code><code class="sig-name descname">LogisticRegression</code><span class="sig-paren">(</span><em class="sig-param">featuresCol='features'</em>, <em class="sig-param">labelCol='label'</em>, <em class="sig-param">predictionCol='prediction'</em>, <em class="sig-param">trainingHistory=0</em>, <em class="sig-param">maxIter=1000</em>, <em class="sig-param">regParam=1.0</em>, <em class="sig-param">elasticNetParam=0.0</em>, <em class="sig-param">probabilityCol='probability'</em>, <em class="sig-param">rawPredictionCol='rawPrediction'</em>, <em class="sig-param">family='auto'</em>, <em class="sig-param">tol=0.001</em>, <em class="sig-param">useGpu=False</em>, <em class="sig-param">dual=True</em>, <em class="sig-param">balanced=False</em>, <em class="sig-param">nthreads=-1</em>, <em class="sig-param">gpuMemLimit=0</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logistic regression.
+This class supports multinomial logistic (softmax) and binomial logistic regression.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">Row</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyspark.ml.linalg</span> <span class="k">import</span> <span class="n">Vectors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bdf</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)),</span>
+<span class="gp">... </span>    <span class="n">Row</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blor</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">regParam</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">weightCol</span><span class="o">=</span><span class="s2">&quot;weight&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span> <span class="o">=</span> <span class="n">blor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">bdf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">coefficients</span>
+<span class="go">DenseVector([-1.080..., -0.646...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">3.112...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;data/mllib/sample_multiclass_classification_data.txt&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mdf</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;libsvm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlor</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">regParam</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">elasticNetParam</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;multinomial&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlorModel</span> <span class="o">=</span> <span class="n">mlor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">mdf</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlorModel</span><span class="o">.</span><span class="n">coefficientMatrix</span>
+<span class="go">SparseMatrix(3, 4, [0, 1, 2, 3], [3, 2, 1], [1.87..., -2.75..., -0.50...], 1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mlorModel</span><span class="o">.</span><span class="n">interceptVector</span>
+<span class="go">DenseVector([0.04..., -0.42..., 0.37...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">blorModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test0</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">probability</span>
+<span class="go">DenseVector([0.02..., 0.97...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">rawPrediction</span>
+<span class="go">DenseVector([-3.54..., 3.54...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([</span><span class="n">Row</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">Vectors</span><span class="o">.</span><span class="n">sparse</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]))])</span><span class="o">.</span><span class="n">toDF</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test1</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">prediction</span>
+<span class="go">1.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blor</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s2">&quot;vector&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+    <span class="o">...</span>
+<span class="gr">TypeError</span>: <span class="n">Method setParams forces keyword arguments.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lr&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blor</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">lr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr2</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">lr_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lr2</span><span class="o">.</span><span class="n">getRegParam</span><span class="p">()</span>
+<span class="go">0.01</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_path</span> <span class="o">=</span> <span class="n">temp_path</span> <span class="o">+</span> <span class="s2">&quot;/lr_model&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model2</span> <span class="o">=</span> <span class="n">LogisticRegressionModel</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blorModel</span><span class="o">.</span><span class="n">intercept</span> <span class="o">==</span> <span class="n">model2</span><span class="o">.</span><span class="n">intercept</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getBalanced">
+<code class="sig-name descname">getBalanced</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getBalanced" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of balanced or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getDual">
+<code class="sig-name descname">getDual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getDual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of dual or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getFamily">
+<code class="sig-name descname">getFamily</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getFamily" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">family</span></code> or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getGpuMemLimit">
+<code class="sig-name descname">getGpuMemLimit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getGpuMemLimit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of gpuMemLimit or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getNthreads">
+<code class="sig-name descname">getNthreads</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getNthreads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of nthreads or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getTrainingHistory">
+<code class="sig-name descname">getTrainingHistory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getTrainingHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of trainingHistory or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getUseGpu">
+<code class="sig-name descname">getUseGpu</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getUseGpu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of useGpu or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.getVerbose">
+<code class="sig-name descname">getVerbose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.getVerbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of verbose or its default value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setBalanced">
+<code class="sig-name descname">setBalanced</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setBalanced" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">balanced</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setDual">
+<code class="sig-name descname">setDual</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setDual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">dual</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setFamily">
+<code class="sig-name descname">setFamily</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setFamily" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">family</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setGpuMemLimit">
+<code class="sig-name descname">setGpuMemLimit</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setGpuMemLimit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">gpuMemLimit</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setNthreads">
+<code class="sig-name descname">setNthreads</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setNthreads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">nthreads</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setParams">
+<code class="sig-name descname">setParams</code><span class="sig-paren">(</span><em class="sig-param">featuresCol='features'</em>, <em class="sig-param">labelCol='label'</em>, <em class="sig-param">predictionCol='prediction'</em>, <em class="sig-param">trainingHistory=0</em>, <em class="sig-param">maxIter=1000</em>, <em class="sig-param">regParam=1.0</em>, <em class="sig-param">elasticNetParam=0.0</em>, <em class="sig-param">tol=0.001</em>, <em class="sig-param">probabilityCol='probability'</em>, <em class="sig-param">rawPredictionCol='rawPrediction'</em>, <em class="sig-param">family='auto'</em>, <em class="sig-param">useGpu=False</em>, <em class="sig-param">dual=True</em>, <em class="sig-param">balanced=False</em>, <em class="sig-param">nthreads=1</em>, <em class="sig-param">gpuMemLimit=0</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setParams" title="Permalink to this definition">¶</a></dt>
+<dd><p>setParams(self, featuresCol=”features”, labelCol=”label”, predictionCol=”prediction”, trainingHistory=0                   maxIter=1000, regParam=1.0, elasticNetParam=0.0, tol=1e-3,                  probabilityCol=”probability”, rawPredictionCol=”rawPrediction”, family=”auto”,                   useGpu=False, dual=True, balanced=False, nthreads=-1, gpuMemLimit=0, verbose=False):
+Sets params for logistic regression.
+If the threshold and thresholds Params are both set, they must be equivalent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setTrainingHistory">
+<code class="sig-name descname">setTrainingHistory</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setTrainingHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">trainingHistory</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setUseGpu">
+<code class="sig-name descname">setUseGpu</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setUseGpu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">useGpu</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="snap_ml_spark.estimator.LogisticRegression.setVerbose">
+<code class="sig-name descname">setVerbose</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#snap_ml_spark.estimator.LogisticRegression.setVerbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the value of <code class="xref py py-attr docutils literal notranslate"><span class="pre">verbose</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spestlogmoddoc.html" class="btn btn-neutral float-right" title="LogisticRegressionModel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="snapwritedoc.html" class="btn btn-neutral float-left" title="write_to_snap_format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

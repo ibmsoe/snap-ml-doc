@@ -1,0 +1,8 @@
+.. _sp-est-lin-reg-doc:
+
+====================================
+LinearRegression
+====================================
+
+.. automodule:: snap_ml_spark.estimator
+    :members: LinearRegression

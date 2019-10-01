@@ -1,0 +1,9 @@
+.. _sk-logreg-doc:
+
+====================================
+linear_model.LogisticRegression
+====================================
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: LogisticRegression
+    :members:

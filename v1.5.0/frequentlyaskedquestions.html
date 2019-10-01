@@ -1,0 +1,442 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FAQ &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="linear_model.Ridge" href="ridgedoc.html" />
+    <link rel="prev" title="Tutorials" href="tutorials.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.4.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-type-of-problems-can-i-solve-using-snap-ml">What type of problems can I solve using Snap ML?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#should-i-preprocess-the-training-data-before-training">Should I preprocess the training data before training?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-many-iterations-should-i-perform">How many iterations should I perform?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-does-early-stopping-work">How does early stopping work?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-an-iteration-in-snap-ml">What is an iteration in Snap ML?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#should-i-use-the-same-number-of-iterations-with-or-without-gpus">Should I use the same number of iterations with or without GPUs?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-should-i-choose-the-number-of-threads-in-the-gpu-implementation">How should I choose the number of threads in the GPU implementation?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#should-i-use-the-primal-or-the-dual-solver">Should I use the primal or the dual solver?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-does-regularization-in-snap-ml-compare-to-sklearn">How does regularization in Snap ML compare to sklearn?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-doesn-t-my-training-accuracy-match-the-sklearn-s">Why doesn’t my training accuracy match the sklearn’s?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-interpret-the-learnt-model">How can I interpret the learnt model?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-does-privacy-mean">What does privacy mean?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-can-i-accelerate-inference-using-snap-ml">How can I accelerate inference using Snap ML?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-is-it-not-possible-to-use-the-dual-solver-for-lasso">Why is it not possible to use the dual solver for Lasso?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-the-difference-between-snap-ml-local-and-pai4sk">What is the difference between snap_ml_local and pai4sk?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-debug-my-model">How to debug my model?</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk ML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lassodoc.html">linear_model.Lasso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svcdoc.html">svm.LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pcadoc.html">decomposition.PCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+</ul>
+<p class="caption"><span class="caption-text">pai4sk Metrics APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Similarity Search</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load20news.html">loaders.load_20News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Loaders APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="svmloaderdoc.html">load_from_svmlight_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark Estimators</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spestlogdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlogmoddoc.html">LogisticRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlindoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestlinmoddoc.html">LinearRegressionModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcdoc.html">LinearSVC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spestsvcmoddoc.html">LinearSVCModel</a></li>
+</ul>
+<p class="caption"><span class="caption-text">snapML Spark APIs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="splinregdoc.html">LinearRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splogregdoc.html">LogisticRegression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spsvmdoc.html">SupportVectorMachine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spreaddoc.html">DatasetReader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spmetdoc.html">Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sputildoc.html">Utils</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>FAQ</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faq">
+<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+<p><em>Here we summarize some answers to questions that came up from users when deploying Snap ML for diverse applications. We also provide more details about the features of our library.</em></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#q1"><span class="std std-ref">What type of problems can I solve using Snap ML?</span></a></p></li>
+<li><p><a class="reference internal" href="#q2"><span class="std std-ref">Should I preprocess the training data before training?</span></a></p></li>
+<li><p><a class="reference internal" href="#q3"><span class="std std-ref">How many iterations should I perform?</span></a></p></li>
+<li><p><a class="reference internal" href="#q4"><span class="std std-ref">How does early stopping work?</span></a></p></li>
+<li><p><a class="reference internal" href="#q5"><span class="std std-ref">What is an iteration in Snap ML?</span></a></p></li>
+<li><p><a class="reference internal" href="#q6"><span class="std std-ref">Should I use the same number of iterations with or without GPUs?</span></a></p></li>
+<li><p><a class="reference internal" href="#q7"><span class="std std-ref">How should I choose the number of threads in the GPU implementation?</span></a></p></li>
+<li><p><a class="reference internal" href="#q8"><span class="std std-ref">Should I use the primal or the dual solver?</span></a></p></li>
+<li><p><a class="reference internal" href="#q9"><span class="std std-ref">How does regularization in Snap ML compare to sklearn?</span></a></p></li>
+<li><p><a class="reference internal" href="#q10"><span class="std std-ref">Why doesn’t my training accuracy match the sklearn’s?</span></a></p></li>
+<li><p><a class="reference internal" href="#q11"><span class="std std-ref">How can I interpret the learnt model?</span></a></p></li>
+<li><p><a class="reference internal" href="#q12"><span class="std std-ref">What does privacy mean?</span></a></p></li>
+<li><p><a class="reference internal" href="#q13"><span class="std std-ref">How can I accelerate inference using Snap ML?</span></a></p></li>
+<li><p><a class="reference internal" href="#q14"><span class="std std-ref">Why is it not possible to use the dual solver for Lasso?</span></a></p></li>
+<li><p><a class="reference internal" href="#q15"><span class="std std-ref">What is the difference between snap_ml_local and pai4sk?</span></a></p></li>
+<li><p><a class="reference internal" href="#q16"><span class="std std-ref">How to debug my model?</span></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The discussions and explanations on this page apply to the original Snap ML APIs: <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a> and <a class="reference internal" href="pysparkapidocumentation.html#pyspark-api-documentation"><span class="std std-ref">snap-ml-spark API</span></a> but only partially to <a class="reference internal" href="pai4skapidocumentation.html#pai4sk-api-documentation"><span class="std std-ref">pai4sk API</span></a>.</p>
+</div>
+<div class="section" id="what-type-of-problems-can-i-solve-using-snap-ml">
+<span id="q1"></span><h2>What type of problems can I solve using Snap ML?<a class="headerlink" href="#what-type-of-problems-can-i-solve-using-snap-ml" title="Permalink to this headline">¶</a></h2>
+<p>Snap ML offers different models for regression, binary classification and multi-class classification.</p>
+<ul class="simple">
+<li><p><strong>Regression</strong>: Linear Regression with <img class="math" src="_images/math/b8ca812749edf788341058ad995134da869c353c.png" alt="L_1"/> (Lasso) and <img class="math" src="_images/math/fcd0c45a70da7d2399b3fb666759b02c5edd251e.png" alt="L_2"/> (Ridge) regularization.</p></li>
+<li><p><strong>Binary Classification</strong>: Logistic Regression with <img class="math" src="_images/math/b8ca812749edf788341058ad995134da869c353c.png" alt="L_1"/>/<img class="math" src="_images/math/fcd0c45a70da7d2399b3fb666759b02c5edd251e.png" alt="L_2"/> regularization and SVM.</p></li>
+<li><p><strong>Multi-Class Classification</strong>: Logistic Regression with <img class="math" src="_images/math/b8ca812749edf788341058ad995134da869c353c.png" alt="L_1"/>/<img class="math" src="_images/math/fcd0c45a70da7d2399b3fb666759b02c5edd251e.png" alt="L_2"/> regularization and SVM.</p></li>
+</ul>
+<p>The regularization type is defined through the <code class="docutils literal notranslate"><span class="pre">penalty</span></code> parameter at model initialization time.</p>
+</div>
+<div class="section" id="should-i-preprocess-the-training-data-before-training">
+<span id="q2"></span><h2>Should I preprocess the training data before training?<a class="headerlink" href="#should-i-preprocess-the-training-data-before-training" title="Permalink to this headline">¶</a></h2>
+<p>Yes, for better performance you should do feature normalization on your data. You can use the sklearn functionality to do this. Also do not forget to apply the same preprocessing to the test data before prediction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">normalize</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_normalized</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-many-iterations-should-i-perform">
+<span id="q3"></span><h2>How many iterations should I perform?<a class="headerlink" href="#how-many-iterations-should-i-perform" title="Permalink to this headline">¶</a></h2>
+<p>You want to use enough iterations such that your model converges but not more than needed. The optimal value is application specific and can be difficult to predict. To simplify this choice for the user, Snap ML implements an <em>early stopping</em> functionality which is active by default (see <a class="reference internal" href="#q4"><span class="std std-ref">this Question</span></a> for details).</p>
+<p>For a user that wants to manually control the number of iterations we suggest to set <code class="docutils literal notranslate"><span class="pre">tol=0</span></code> and use the parameter <code class="docutils literal notranslate"><span class="pre">max_iter</span></code> to control the number of iterations.</p>
+<p>To investigate if your model has already converged, you can enable the <code class="docutils literal notranslate"><span class="pre">verbose</span></code> mode and print the evolution of the training cost during training. If it reaches a stable value, your model has converged. Please note that the cost evaluation comes with additional overhead. An alternative to model debugging is by enabling the <code class="docutils literal notranslate"><span class="pre">return_training_history</span></code> mode. For more details see <a class="reference internal" href="#q16"><span class="std std-ref">this Question</span></a>.</p>
+</div>
+<div class="section" id="how-does-early-stopping-work">
+<span id="q4"></span><h2>How does early stopping work?<a class="headerlink" href="#how-does-early-stopping-work" title="Permalink to this headline">¶</a></h2>
+<p>If the early stopping functionality is active (default behavior), the algorithm is automatically stopped as it does not make significant progress anymore. To implement this, Snap ML evaluates the relative change in the model coefficients after every iteration and compares it to a threshold value. The algorithm is run until the relative change is smaller than the threshold or until the maximum number of iterations <code class="docutils literal notranslate"><span class="pre">max_iter</span></code> is reached. The threshold is set to a good practical value (<img class="math" src="_images/math/9e4fa8284f4de6bd3802d06bdf82a6e19a3d1a85.png" alt="tol=0.001"/>) by default, but can be manually set through the parameter <code class="docutils literal notranslate"><span class="pre">tol</span></code>.</p>
+</div>
+<div class="section" id="what-is-an-iteration-in-snap-ml">
+<span id="q5"></span><h2>What is an iteration in Snap ML?<a class="headerlink" href="#what-is-an-iteration-in-snap-ml" title="Permalink to this headline">¶</a></h2>
+<p>Snap ML operates in epochs and one iteration corresponds to one pass through the data. How the data is processed depends on the specific solver being used and is different on CPU and GPU.</p>
+</div>
+<div class="section" id="should-i-use-the-same-number-of-iterations-with-or-without-gpus">
+<span id="q6"></span><h2>Should I use the same number of iterations with or without GPUs?<a class="headerlink" href="#should-i-use-the-same-number-of-iterations-with-or-without-gpus" title="Permalink to this headline">¶</a></h2>
+<p>No, if you enable GPU acceleration ( <code class="docutils literal notranslate"><span class="pre">use_gpu=true</span></code> ) you need more iterations to reach a certain training accuracy than if you train only using CPUs. The reason is the asynchronous solver used in the GPU which requires more conservative – and thus more – updates than the sequential CPU solver.</p>
+</div>
+<div class="section" id="how-should-i-choose-the-number-of-threads-in-the-gpu-implementation">
+<span id="q7"></span><h2>How should I choose the number of threads in the GPU implementation?<a class="headerlink" href="#how-should-i-choose-the-number-of-threads-in-the-gpu-implementation" title="Permalink to this headline">¶</a></h2>
+<p>The number of threads ( <code class="docutils literal notranslate"><span class="pre">n_threads</span></code> ) determines the parallelism used to evaluate a single coordinate update. This involves an inner product computation between the shared vector and an individual column of the data matrix. Thus, for dense data or long shared vectors <code class="docutils literal notranslate"><span class="pre">n_threads</span></code> should also be chosen larger.</p>
+</div>
+<div class="section" id="should-i-use-the-primal-or-the-dual-solver">
+<span id="q8"></span><h2>Should I use the primal or the dual solver?<a class="headerlink" href="#should-i-use-the-primal-or-the-dual-solver" title="Permalink to this headline">¶</a></h2>
+<p>For models where both solvers are available, the optimal choice of the solver depends of the dimensionality of the training dataset. In general, we recommend to use the dual solver if the number of examples in your training dataset is larger than the number of features. Otherwise use the primal solver. However you need to be aware that when using the primal solver, you need to transpose the data first.</p>
+</div>
+<div class="section" id="how-does-regularization-in-snap-ml-compare-to-sklearn">
+<span id="q9"></span><h2>How does regularization in Snap ML compare to sklearn?<a class="headerlink" href="#how-does-regularization-in-snap-ml-compare-to-sklearn" title="Permalink to this headline">¶</a></h2>
+<p>We provide some examples in the <a class="reference external" href="https://docs.python.org/3/distutils/examples.html#examples" title="(in Python v3.7)"><span>Examples</span></a> section. You need to be aware that the regularization parameter in sklearn is defined differently for the individual models – the mapping can be derived from the equations of the objective which are stated in the <a class="reference internal" href="manual.html#manual"><span class="std std-ref">Manual</span></a> for snapML and <a class="reference external" href="http://scikit-learn.org/stable/user_guide.html">here</a> for sklearn. For most classification tasks a regularization parameter <img class="math" src="_images/math/4db5b6e16e06f929ce3f675c5e535d06ffb02ff7.png" alt="C"/> is used in sklearn which is equivalent to <img class="math" src="_images/math/ba038672a6adeb2b16a69c3fa261fd89d4a557b6.png" alt="\lambda = C^{-1}"/> used in snapML. For most regression tasks sklearn uses an <img class="math" src="_images/math/2f5aa019312e1bbc969deab8dca8b00f76025404.png" alt="\alpha"/> regularization parameter which is equivalent to using <img class="math" src="_images/math/70029098d5e0791479d1d116eaf44e1a33006d87.png" alt="\lambda = \alpha"/> for Ridge Regression and scaled as <img class="math" src="_images/math/cc44d6e126874d4a3da15ec8fc70f0fea4efc197.png" alt="\lambda = n \alpha"/> for Lasso. To control the regularization, the user can manually set the parameter <code class="docutils literal notranslate"><span class="pre">regularizer</span></code>.</p>
+</div>
+<div class="section" id="why-doesn-t-my-training-accuracy-match-the-sklearn-s">
+<span id="q10"></span><h2>Why doesn’t my training accuracy match the sklearn’s?<a class="headerlink" href="#why-doesn-t-my-training-accuracy-match-the-sklearn-s" title="Permalink to this headline">¶</a></h2>
+<p>This could have different reasons as follows:</p>
+<ul class="simple">
+<li><p>Your regularization does not match the regularization used in sklearn and thus you learn your model based on a different objective. See <a class="reference internal" href="#q9"><span class="std std-ref">this Question</span></a> for more details about how to pick the regularizer.</p></li>
+<li><p>Sklearn is using data normalization internally which can impact the training. You can normalize the data before training. See  <a class="reference internal" href="#q2"><span class="std std-ref">this Question</span></a> for more details.</p></li>
+<li><p>It could also have a technical reason and a fix will come with the next release. That is, if the data in memory is not contiguous, Snap ML cannot operate on it. This can be fixed using the <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> command in Python on the training data before calling the training.</p></li>
+</ul>
+</div>
+<div class="section" id="how-can-i-interpret-the-learnt-model">
+<span id="q11"></span><h2>How can I interpret the learnt model?<a class="headerlink" href="#how-can-i-interpret-the-learnt-model" title="Permalink to this headline">¶</a></h2>
+<p>For <img class="math" src="_images/math/b8ca812749edf788341058ad995134da869c353c.png" alt="L_1"/>-regularized models Snap ML offers an attribute <code class="docutils literal notranslate"><span class="pre">support</span></code>. This returns a list of indices of the features that contribute significantly to the prediction of the model. The stronger the regularization, the less features will appear in this list.</p>
+<p>Similarly, for the SVM classifier the attribute <code class="docutils literal notranslate"><span class="pre">support</span></code> returns a list of indices of the support vectors that contribute to the classification decision. This is a list of the most important examples.</p>
+</div>
+<div class="section" id="what-does-privacy-mean">
+<span id="q12"></span><h2>What does privacy mean?<a class="headerlink" href="#what-does-privacy-mean" title="Permalink to this headline">¶</a></h2>
+<p>In Snap ML we offer the functionality for training differentially private machine learning models. Differential privacy is emerging as a standard to quantify risk when training a machine learning model using sensitive/private information, when the resulting model is then exposed to potentially adversarial users. A differentially private model protects the individual elements of the dataset it is trained on. This means by having access to the model an adversary can not deduce any information about the training data.</p>
+<p>To enable this functionality a user of Snap ML has to set the <code class="docutils literal notranslate"><span class="pre">privacy</span></code> parameter, which is disabled by default, to True. Snap ML can train a model with any desired level of privacy which can be steared with the <code class="docutils literal notranslate"><span class="pre">privacy_epsilon</span></code> parameter.
+For a user that is not confident about which privacy level to choose, the Snap ML default values are chosen to provide a reasonable level of privacy.</p>
+</div>
+<div class="section" id="how-can-i-accelerate-inference-using-snap-ml">
+<span id="q13"></span><h2>How can I accelerate inference using Snap ML?<a class="headerlink" href="#how-can-i-accelerate-inference-using-snap-ml" title="Permalink to this headline">¶</a></h2>
+<p>If you want to use multi-threading to accelerate inference you need to set the number of threads <code class="docutils literal notranslate"><span class="pre">num_threads</span></code> in the prediction function to a value larger than 1.</p>
+</div>
+<div class="section" id="why-is-it-not-possible-to-use-the-dual-solver-for-lasso">
+<span id="q14"></span><h2>Why is it not possible to use the dual solver for Lasso?<a class="headerlink" href="#why-is-it-not-possible-to-use-the-dual-solver-for-lasso" title="Permalink to this headline">¶</a></h2>
+<p>The regularization term in the Lasso objective is non-smooth. Thus, the primal-dual mapping is not well defined for this problem. The same holds for other <img class="math" src="_images/math/b8ca812749edf788341058ad995134da869c353c.png" alt="L_1"/>-regularized models, such as Logistic Regression.</p>
+</div>
+<div class="section" id="what-is-the-difference-between-snap-ml-local-and-pai4sk">
+<span id="q15"></span><h2>What is the difference between snap_ml_local and pai4sk?<a class="headerlink" href="#what-is-the-difference-between-snap-ml-local-and-pai4sk" title="Permalink to this headline">¶</a></h2>
+<p>pai4sk is an interface that provides the full functionality of sklearn. Internally it uses training routines of snap_ml_local to accelerate the training of generalized linear models. If a user wants to train a linear model from pi4sk there are two options:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</pre></div>
+</div>
+<p>Depending on the set of parameters used to initialize the linear model, pai4sk will automatically run the linear model of snap_ml or the one from sklearn.
+For example, if the <code class="docutils literal notranslate"><span class="pre">use_gpu</span></code> parameter is set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, then pai4sk will run the linear model of snap_ml_local as there is no GPU-accelerated linear models in sklearn.</p>
+</div>
+<div class="section" id="how-to-debug-my-model">
+<span id="q16"></span><h2>How to debug my model?<a class="headerlink" href="#how-to-debug-my-model" title="Permalink to this headline">¶</a></h2>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">verbose</span></code> or the <code class="docutils literal notranslate"><span class="pre">return_training_history</span></code> options.</p>
+<p>By setting <code class="docutils literal notranslate"><span class="pre">verbose</span></code> to True, you can see the evolution of the training cost in real time during training. By default <code class="docutils literal notranslate"><span class="pre">verbose</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>By setting <code class="docutils literal notranslate"><span class="pre">return_training_history</span></code> to <code class="docutils literal notranslate"><span class="pre">all</span></code>, snap ML will return at the end of the training procedure a dictionary with the following information:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span> <span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">...</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">],</span>
+<span class="s1">&#39;t_elap_sec&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3114819999999999</span><span class="p">,</span> <span class="mf">0.7432809999999999</span><span class="p">,</span> <span class="mf">1.175951</span><span class="p">,</span> <span class="o">...</span> <span class="mf">21.167614000000007</span><span class="p">,</span> <span class="mf">21.600479000000007</span><span class="p">],</span>
+<span class="s1">&#39;train_obj&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">26484195.516386107</span><span class="p">,</span> <span class="o">-</span><span class="mf">1090401.5263258994</span><span class="p">,</span> <span class="o">-</span><span class="mf">4249279.141126189</span><span class="p">,</span> <span class="o">...</span> <span class="o">-</span><span class="mf">15662998.827800183</span><span class="p">,</span> <span class="o">-</span><span class="mf">15663368.240871042</span><span class="p">]</span> <span class="p">}]</span>
+</pre></div>
+</div>
+<p>To generate a Python scatter plot that shows epoch vs. train_obj, you can run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">training_history</span> <span class="o">=</span> <span class="n">snapml_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+
+<span class="c1"># without running X server</span>
+<span class="c1"># import matplotlib as mpl</span>
+<span class="c1"># mpl.use(&#39;Agg&#39;)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">training_history</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;epochs&#39;</span><span class="p">],</span> <span class="n">training_history</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;train_obj&#39;</span><span class="p">],</span> <span class="s1">&#39;-ok&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Epoch no.&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Train objective&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;debug_convergence.pdf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By setting <code class="docutils literal notranslate"><span class="pre">return_training_history</span></code> to <code class="docutils literal notranslate"><span class="pre">summary</span></code>, the returned dictionary will include the elapsed time and the training objective only for the last epoch as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span> <span class="s1">&#39;t_elap_sec&#39;</span><span class="p">:</span> <span class="mf">21.088178</span><span class="p">,</span> <span class="s1">&#39;train_obj&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">15663149.782160789</span><span class="p">}]</span>
+</pre></div>
+</div>
+<p>By default <code class="docutils literal notranslate"><span class="pre">return_training_history</span></code> is disabled (set to <code class="docutils literal notranslate"><span class="pre">None</span></code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The evaluation of the additional information for debugging purposes introduces an overhead to the training algorithm. Thus for doing performance studies these options should be disabled, that is <code class="docutils literal notranslate"><span class="pre">verbose</span> <span class="pre">=</span> <span class="pre">False</span></code> and <code class="docutils literal notranslate"><span class="pre">return_training_history</span> <span class="pre">=</span> <span class="pre">None</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ridgedoc.html" class="btn btn-neutral float-right" title="linear_model.Ridge" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorials.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

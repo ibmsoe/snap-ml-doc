@@ -1,0 +1,8 @@
+.. _sp-est-svc-reg-doc:
+
+====================================
+LinearSVC
+====================================
+
+.. automodule:: snap_ml_spark.estimator
+    :members: LinearSVC

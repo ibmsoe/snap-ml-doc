@@ -1,0 +1,8 @@
+.. _sp-est-logmod-reg-doc:
+
+====================================
+LogisticRegressionModel
+====================================
+
+.. automodule:: snap_ml_spark.estimator
+    :members: LogisticRegressionModel
