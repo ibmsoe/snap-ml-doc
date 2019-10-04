@@ -109,7 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">Booster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
@@ -228,7 +228,7 @@
 <span id="ridge-doc"></span><h1>linear_model.Ridge<a class="headerlink" href="#linear-model-ridge" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.linear_model.Ridge">
-<em class="property">class </em><code class="sig-prename descclassname">pai4sk.linear_model.</code><code class="sig-name descname">Ridge</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Ridge" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pai4sk.linear_model.</code><code class="sig-name descname">Ridge</code><span class="sig-paren">(</span><em class="sig-param">alpha=1.0</em>, <em class="sig-param">fit_intercept=True</em>, <em class="sig-param">normalize=False</em>, <em class="sig-param">copy_X=True</em>, <em class="sig-param">max_iter=None</em>, <em class="sig-param">tol=0.001</em>, <em class="sig-param">solver='auto'</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">dual=False</em>, <em class="sig-param">verbose=0</em>, <em class="sig-param">use_gpu=True</em>, <em class="sig-param">device_ids=[]</em>, <em class="sig-param">return_training_history=None</em>, <em class="sig-param">privacy=False</em>, <em class="sig-param">eta=0.3</em>, <em class="sig-param">batch_size=100</em>, <em class="sig-param">privacy_epsilon=10</em>, <em class="sig-param">grad_clip=1</em>, <em class="sig-param">num_threads=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.linear_model.Ridge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear least squares with l2 regularization.</p>
 <p>Minimizes the objective function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">||</span><span class="n">y</span> <span class="o">-</span> <span class="n">Xw</span><span class="o">||^</span><span class="mi">2_2</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="o">||</span><span class="n">w</span><span class="o">||^</span><span class="mi">2_2</span>

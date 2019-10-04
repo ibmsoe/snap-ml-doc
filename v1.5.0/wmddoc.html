@@ -109,7 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">Booster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
@@ -228,7 +228,7 @@
 <span id="wmd-doc"></span><h1>metrics.pairwise.word_movers_distance<a class="headerlink" href="#metrics-pairwise-word-movers-distance" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="pai4sk.metrics.pairwise.word_movers_distance">
-<code class="sig-prename descclassname">pai4sk.metrics.pairwise.</code><code class="sig-name descname">word_movers_distance</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">X</em>, <em class="sig-param">Y=None</em>, <em class="sig-param">use_gpu=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.metrics.pairwise.word_movers_distance" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pai4sk.metrics.pairwise.</code><code class="sig-name descname">word_movers_distance</code><span class="sig-paren">(</span><em class="sig-param">W</em>, <em class="sig-param">X</em>, <em class="sig-param">Y=None</em>, <em class="sig-param">use_gpu=True</em>, <em class="sig-param">optimization_level=1</em>, <em class="sig-param">num_cpu_threads=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.metrics.pairwise.word_movers_distance" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes word movers distance between samples in X and Y.</p>
 <p>The details of the approximation algorithm can be found here:
 “<a class="reference external" href="http://export.arxiv.org/abs/1812.02091">http://export.arxiv.org/abs/1812.02091</a>”.</p>
@@ -241,6 +241,8 @@ size than Y when X and Y are of unequal sizes as the MPI distribution
 of data is performed for X only.</p></li>
 <li><p><strong>Y</strong> (<em>array-like</em><em>, </em><em>sparse-matrix</em><em>, </em><em>shape</em><em> (</em><em>n_samples_y</em><em>, </em><em>n_features</em><em>)</em><em>, </em><em>optional</em>) – Input dataset. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will be the pairwise
 similarities between all samples in <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p></li>
+<li><p><strong>optimization_level</strong> (<em>integer</em><em>, </em><em>mimimum is 0 and maximum is 4. Using a higher value increases runtime.</em>) – </p></li>
+<li><p><strong>num_cpu_threads</strong> (<em>integer</em><em>, </em><em>maximum number of CPU threads used by each process.</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

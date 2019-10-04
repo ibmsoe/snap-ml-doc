@@ -109,7 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">DecisionTreeClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">Booster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
@@ -228,7 +228,7 @@
 <span id="svc-doc"></span><h1>svm.LinearSVC<a class="headerlink" href="#svm-linearsvc" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.svm.LinearSVC">
-<em class="property">class </em><code class="sig-prename descclassname">pai4sk.svm.</code><code class="sig-name descname">LinearSVC</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pai4sk.svm.</code><code class="sig-name descname">LinearSVC</code><span class="sig-paren">(</span><em class="sig-param">penalty='l2'</em>, <em class="sig-param">loss='squared_hinge'</em>, <em class="sig-param">dual=True</em>, <em class="sig-param">tol=0.0001</em>, <em class="sig-param">C=1.0</em>, <em class="sig-param">multi_class='ovr'</em>, <em class="sig-param">fit_intercept=True</em>, <em class="sig-param">intercept_scaling=1</em>, <em class="sig-param">class_weight=None</em>, <em class="sig-param">verbose=0</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">max_iter=1000</em>, <em class="sig-param">use_gpu=True</em>, <em class="sig-param">device_ids=[]</em>, <em class="sig-param">num_threads=1</em>, <em class="sig-param">return_training_history=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.svm.LinearSVC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Linear Support Vector Classification.</p>
 <p>Similar to SVC with parameter kernel=’linear’, but implemented in terms of
 liblinear rather than libsvm, so it has more flexibility in the choice of
