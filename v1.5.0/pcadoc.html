@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -254,7 +254,7 @@ scikit-learn API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> or </em><em>string</em>) – <p>Number of components to keep.
+<li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em> or </em><em>string</em>) – <p>Number of components to keep.
 if n_components is not set all components are kept:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_components</span> <span class="o">==</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span><span class="p">)</span>
 </pre></div>
@@ -272,10 +272,10 @@ strictly less than the minimum of n_features and n_samples.</p>
 </pre></div>
 </div>
 </p></li>
-<li><p><strong>copy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em> (</em><em>default True</em><em>)</em>) – If False, data passed to fit are overwritten and running
+<li><p><strong>copy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> (</em><em>default True</em><em>)</em>) – If False, data passed to fit are overwritten and running
 fit(X).transform(X) will not yield the expected results,
 use fit_transform(X) instead.</p></li>
-<li><p><strong>whiten</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default False</em><em>)</em>) – <p>When True (False by default) the <cite>components_</cite> vectors are multiplied
+<li><p><strong>whiten</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default False</em><em>)</em>) – <p>When True (False by default) the <cite>components_</cite> vectors are multiplied
 by the square root of n_samples and then divided by the singular values
 to ensure uncorrelated outputs with unit component-wise variances.</p>
 <p>Whitening will remove some information from the transformed signal
@@ -327,7 +327,7 @@ Note : cuML for pai4sk only supports integer values for this parameter.</p>
 <p><span class="versionmodified added">New in version 0.18.0.</span></p>
 </div>
 </p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default None</em><em>)</em>) – <p>If int, random_state is the seed used by the random number generator;
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default None</em><em>)</em>) – <p>If int, random_state is the seed used by the random number generator;
 If RandomState instance, random_state is the random number generator;
 If None, the random number generator is the RandomState instance used
 by <cite>np.random</cite>. Used when <code class="docutils literal notranslate"><span class="pre">svd_solver</span></code> == ‘arpack’ or ‘randomized’.</p>
@@ -360,12 +360,12 @@ variables in the lower-dimensional space.</p></li>
 <li><p><strong>mean_</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>)</em>) – <p>Per-feature empirical mean, estimated from the training set.</p>
 <p>Equal to <cite>X.mean(axis=0)</cite>.</p>
 </p></li>
-<li><p><strong>n_components_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The estimated number of components. When n_components is set
+<li><p><strong>n_components_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The estimated number of components. When n_components is set
 to ‘mle’ or a number between 0 and 1 (with svd_solver == ‘full’) this
 number is estimated from input data. Otherwise it equals the parameter
 n_components, or the lesser value of n_features and n_samples
 if n_components is None.</p></li>
-<li><p><strong>noise_variance_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><em>cudf Series</em>) – <p>The estimated noise covariance following the Probabilistic PCA model
+<li><p><strong>noise_variance_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>cudf Series</em>) – <p>The estimated noise covariance following the Probabilistic PCA model
 from Tipping and Bishop 1999. See “Pattern Recognition and
 Machine Learning” by C. Bishop, 12.2.1 p. 574 or
 <a class="reference external" href="http://www.miketipping.com/papers/met-mppca.pdf">http://www.miketipping.com/papers/met-mppca.pdf</a>. It is required to
@@ -451,7 +451,7 @@ values as cudf dataframes and cudf Series objects instead of the
 results’ types seen from scikit-learn’s fit method.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -539,7 +539,7 @@ or <a class="reference external" href="http://www.miketipping.com/papers/met-mpp
 <dd class="field-even"><p><strong>ll</strong> – Average log-likelihood of the samples under the current model</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>

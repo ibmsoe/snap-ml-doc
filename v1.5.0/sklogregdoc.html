@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -248,22 +248,22 @@ regularization, with a dual formulation only for the L2 penalty.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>'l1'</em><em> or </em><em>'l2'</em><em>, </em><em>default: 'l2'</em>) – <p>Used to specify the norm used in the penalization. The ‘newton-cg’,
+<li><p><strong>penalty</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>'l1'</em><em> or </em><em>'l2'</em><em>, </em><em>default: 'l2'</em>) – <p>Used to specify the norm used in the penalization. The ‘newton-cg’,
 ‘sag’ and ‘lbfgs’ solvers support only l2 penalties.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.19: </span>l1 penalty with SAGA solver (allowing ‘multinomial’ + L1)</p>
 </div>
 </p></li>
-<li><p><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default: False</em>) – Dual or primal formulation. Dual formulation is only implemented for
+<li><p><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default: False</em>) – Dual or primal formulation. Dual formulation is only implemented for
 l2 penalty with liblinear solver. Prefer dual=False when
 n_samples &gt; n_features.</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1e-4</em>) – Tolerance for stopping criteria.</p></li>
-<li><p><strong>C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Inverse of regularization strength; must be a positive float.
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default: 1e-4</em>) – Tolerance for stopping criteria.</p></li>
+<li><p><strong>C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Inverse of regularization strength; must be a positive float.
 Like in support vector machines, smaller values specify stronger
 regularization.</p></li>
-<li><p><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default: True</em>) – Specifies if a constant (a.k.a. bias or intercept) should be
+<li><p><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default: True</em>) – Specifies if a constant (a.k.a. bias or intercept) should be
 added to the decision function.</p></li>
-<li><p><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default 1.</em>) – <p>Useful only when the solver ‘liblinear’ is used
+<li><p><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default 1.</em>) – <p>Useful only when the solver ‘liblinear’ is used
 and self.fit_intercept is set to True. In this case, x becomes
 [x, self.intercept_scaling],
 i.e. a “synthetic” feature with constant value equal to
@@ -274,7 +274,7 @@ as all other features.
 To lessen the effect of regularization on synthetic feature weight
 (and therefore on the intercept) intercept_scaling has to be increased.</p>
 </p></li>
-<li><p><strong>class_weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em> or </em><em>'balanced'</em><em>, </em><em>default: None</em>) – <p>Weights associated with classes in the form <code class="docutils literal notranslate"><span class="pre">{class_label:</span> <span class="pre">weight}</span></code>.
+<li><p><strong>class_weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em> or </em><em>'balanced'</em><em>, </em><em>default: None</em>) – <p>Weights associated with classes in the form <code class="docutils literal notranslate"><span class="pre">{class_label:</span> <span class="pre">weight}</span></code>.
 If not given, all classes are supposed to have weight one.</p>
 <p>The “balanced” mode uses the values of y to automatically adjust
 weights inversely proportional to class frequencies in the input data
@@ -285,13 +285,13 @@ through the fit method) if sample_weight is specified.</p>
 <p><span class="versionmodified added">New in version 0.17: </span><em>class_weight=’balanced’</em></p>
 </div>
 </p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default: None</em>) – The seed of the pseudo random number generator to use when shuffling
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default: None</em>) – The seed of the pseudo random number generator to use when shuffling
 the data.  If int, random_state is the seed used by the random number
 generator; If RandomState instance, random_state is the random number
 generator; If None, the random number generator is the RandomState
 instance used by <cite>np.random</cite>. Used when <code class="docutils literal notranslate"><span class="pre">solver</span></code> == ‘sag’ or
 ‘liblinear’.</p></li>
-<li><p><strong>solver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>{'newton-cg'</em><em>, </em><em>'lbfgs'</em><em>, </em><em>'liblinear'</em><em>, </em><em>'sag'</em><em>, </em><em>'saga'</em><em>, </em><em>'snapml'}</em><em>,              </em><em>default: 'snapml'</em><em>, </em><em>if 'snap_ml' library is in PYTHONPATH</em><em>, </em><em>else</em><em>,</em>) – <p>default: ‘liblinear’.</p>
+<li><p><strong>solver</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>{'newton-cg'</em><em>, </em><em>'lbfgs'</em><em>, </em><em>'liblinear'</em><em>, </em><em>'sag'</em><em>, </em><em>'saga'</em><em>, </em><em>'snapml'}</em><em>,              </em><em>default: 'snapml'</em><em>, </em><em>if 'snap_ml' library is in PYTHONPATH</em><em>, </em><em>else</em><em>,</em>) – <p>default: ‘liblinear’.</p>
 <p>Algorithm to use in the optimization problem.</p>
 <ul>
 <li><p>For small datasets, ‘liblinear’ is a good choice, whereas ‘sag’ and
@@ -315,9 +315,9 @@ preprocess the data with a scaler from pai4sk.preprocessing.</p>
 <p><span class="versionmodified changed">Changed in version 0.20: </span>Default will change from ‘liblinear’ to ‘lbfgs’ in 0.22.</p>
 </div>
 </p></li>
-<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 100</em>) – Useful only for the newton-cg, sag and lbfgs solvers.
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default: 100</em>) – Useful only for the newton-cg, sag and lbfgs solvers.
 Maximum number of iterations taken for the solvers to converge.</p></li>
-<li><p><strong>multi_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em>, </em><em>{'ovr'</em><em>, </em><em>'multinomial'</em><em>, </em><em>'auto'}</em><em>, </em><em>default: 'ovr'</em>) – <p>If the option chosen is ‘ovr’, then a binary problem is fit for each
+<li><p><strong>multi_class</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>, </em><em>{'ovr'</em><em>, </em><em>'multinomial'</em><em>, </em><em>'auto'}</em><em>, </em><em>default: 'ovr'</em>) – <p>If the option chosen is ‘ovr’, then a binary problem is fit for each
 label. For ‘multinomial’ the loss minimised is the multinomial loss fit
 across the entire probability distribution, <em>even when the data is
 binary</em>. ‘multinomial’ is unavailable when solver=’liblinear’.
@@ -330,27 +330,27 @@ and otherwise selects ‘multinomial’.</p>
 <p><span class="versionmodified changed">Changed in version 0.20: </span>Default will change from ‘ovr’ to ‘auto’ in 0.22.</p>
 </div>
 </p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 0</em>) – For the liblinear and lbfgs solvers set verbose to any positive
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default: 0</em>) – For the liblinear and lbfgs solvers set verbose to any positive
 number for verbosity.</p></li>
-<li><p><strong>warm_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default: False</em>) – <p>When set to True, reuse the solution of the previous call to fit as
+<li><p><strong>warm_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default: False</em>) – <p>When set to True, reuse the solution of the previous call to fit as
 initialization, otherwise, just erase the previous solution.
 Useless for liblinear solver. See <span class="xref std std-term">the Glossary</span>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.17: </span><em>warm_start</em> to support <em>lbfgs</em>, <em>newton-cg</em>, <em>sag</em>, <em>saga</em> solvers.</p>
 </div>
 </p></li>
-<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Number of CPU cores used when parallelizing over classes if
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – Number of CPU cores used when parallelizing over classes if
 multi_class=’ovr’”. This parameter is ignored when the <code class="docutils literal notranslate"><span class="pre">solver</span></code> is
 set to ‘liblinear’ regardless of whether ‘multi_class’ is specified or
 not. <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code>
 context. <code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors.
 See <span class="xref std std-term">Glossary</span> for more details.</p></li>
-<li><p><strong>l1_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The Elastic-Net mixing parameter, with <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">l1_ratio</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>. Only
+<li><p><strong>l1_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The Elastic-Net mixing parameter, with <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">l1_ratio</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>. Only
 used if <code class="docutils literal notranslate"><span class="pre">penalty='elasticnet'`.</span> <span class="pre">Setting</span> <span class="pre">``l1_ratio=0</span></code> is equivalent
 to using <code class="docutils literal notranslate"><span class="pre">penalty='l2'</span></code>, while setting <code class="docutils literal notranslate"><span class="pre">l1_ratio=1</span></code> is equivalent
 to using <code class="docutils literal notranslate"><span class="pre">penalty='l1'</span></code>. For <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">l1_ratio</span> <span class="pre">&lt;1</span></code>, the penalty is a
 combination of L1 and L2.</p></li>
-<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
 The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</p></li>
@@ -358,19 +358,19 @@ Applicable only for snapml solver</p></li>
 For single-GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
 For multi-GPU training, set device_ids to a list of GPU IDs to be used for training, e.g., [0, 1].
 Applicable only for snapml solver</p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
 (default value for GPU is 256). Applicable only for snapml solver</p></li>
-<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
 Applicable only for snapml solver</p></li>
-<li><p><strong>privacy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Train the model using a differentially private algorithm.</p></li>
-<li><p><strong>eta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.3</em>) – Learning rate for the differentially private training algorithm.</p></li>
-<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 100</em>) – Mini-batch size for the differentially private training algorithm.</p></li>
-<li><p><strong>privacy_epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 10.0</em>) – Target privacy gaurantee. Learned model will be (privacy_epsilon, 0.01)-private.</p></li>
-<li><p><strong>grad_clip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Gradient clipping parameter for the differentially private training algorithm</p></li>
+<li><p><strong>privacy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : False</em>) – Train the model using a differentially private algorithm.</p></li>
+<li><p><strong>eta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 0.3</em>) – Learning rate for the differentially private training algorithm.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 100</em>) – Mini-batch size for the differentially private training algorithm.</p></li>
+<li><p><strong>privacy_epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 10.0</em>) – Target privacy gaurantee. Learned model will be (privacy_epsilon, 0.01)-private.</p></li>
+<li><p><strong>grad_clip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Gradient clipping parameter for the differentially private training algorithm</p></li>
 </ul>
 </dd>
 <dt class="field-even">Variables</dt>
@@ -390,7 +390,7 @@ outcome 0 (False).</p>
 <li><p><strong>n_iter_</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – Actual number of iterations for all classes. If binary or multinomial,
 it returns only 1 element. For liblinear solver, only the maximum
 number of iteration across all classes is given.</p></li>
-<li><p><strong>training_history_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+<li><p><strong>training_history_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
 If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
 epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
 If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
@@ -398,7 +398,7 @@ that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epo
 ‘train_obj’ is the training loss.
 Applicable only for snapml solver.</p></li>
 <li><p><strong>support_</strong> (<em>array-like</em>) – Indices of the features that contribute to the decision. (only available for L1)</p></li>
-<li><p><strong>model_sparsity_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – <p>Fraction of non-zeros in the model parameters. (only available for L1)</p>
+<li><p><strong>model_sparsity_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – <p>Fraction of non-zeros in the model parameters. (only available for L1)</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 0.20: </span>In SciPy &lt;= 1.0.0 the number of lbfgs iterations may exceed
 <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>. <code class="docutils literal notranslate"><span class="pre">n_iter_</span></code> will now report at most <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>.</p>
@@ -481,7 +481,7 @@ If not provided, then each sample is given unit weight.
 <dd class="field-even"><p><strong>self</strong></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -497,7 +497,7 @@ The returned class estimates.
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+<dd class="field-odd"><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
 By default inference runs with maximum number of available threads.</p>
 </dd>
 <dt class="field-even">Returns</dt>

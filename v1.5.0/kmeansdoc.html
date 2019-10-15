@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -244,7 +244,7 @@ scikit-learn API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_clusters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>default: 8</em>) – The number of clusters to form as well as the number of
+<li><p><strong>n_clusters</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>default: 8</em>) – The number of clusters to form as well as the number of
 centroids to generate.</p></li>
 <li><p><strong>init</strong> (<em>{'k-means++'</em><em>, </em><em>'random'</em><em> or </em><em>an ndarray}</em>) – <p>Method for initialization, defaults to ‘k-means++’:</p>
 <p>’k-means++’ : selects initial cluster centers for k-mean
@@ -255,12 +255,12 @@ the initial centroids.</p>
 <p>If an ndarray is passed, it should be of shape (n_clusters, n_features)
 and gives the initial centers.</p>
 </p></li>
-<li><p><strong>n_init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 10</em>) – Number of time the k-means algorithm will be run with different
+<li><p><strong>n_init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default: 10</em>) – Number of time the k-means algorithm will be run with different
 centroid seeds. The final results will be the best output of
 n_init consecutive runs in terms of inertia.</p></li>
-<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default: 300</em>) – Maximum number of iterations of the k-means algorithm for a
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default: 300</em>) – Maximum number of iterations of the k-means algorithm for a
 single run.</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1e-4</em>) – Relative tolerance with regards to inertia to declare convergence</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default: 1e-4</em>) – Relative tolerance with regards to inertia to declare convergence</p></li>
 <li><p><strong>precompute_distances</strong> (<em>{'auto'</em><em>, </em><em>True</em><em>, </em><em>False}</em>) – <p>Precompute distances (faster but takes more memory).</p>
 <p>’auto’ : do not precompute distances if n_samples * n_clusters &gt; 12
 million. This corresponds to about 100MB overhead per job using
@@ -268,8 +268,8 @@ double precision.</p>
 <p>True : always precompute distances</p>
 <p>False : never precompute distances</p>
 </p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default 0</em>) – Verbosity mode.</p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em> (</em><em>default</em><em>)</em>) – Determines random number generation for centroid initialization. Use
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default 0</em>) – Verbosity mode.</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em> (</em><em>default</em><em>)</em>) – Determines random number generation for centroid initialization. Use
 an int to make the randomness deterministic.
 See <span class="xref std std-term">Glossary</span>.</p></li>
 <li><p><strong>copy_x</strong> (<em>boolean</em><em>, </em><em>optional</em>) – When pre-computing distances it is more numerically accurate to center
@@ -279,7 +279,7 @@ is modified, and put back before the function returns, but small
 numerical differences may be introduced by subtracting and then adding
 the data mean, in this case it will also not ensure that data is
 C-contiguous which may cause a significant slowdown.</p></li>
-<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – <p>The number of jobs to use for the computation. This works by computing
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – <p>The number of jobs to use for the computation. This works by computing
 each of the n_init runs in parallel.</p>
 <p><code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context.
 <code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors. See <span class="xref std std-term">Glossary</span>
@@ -312,8 +312,8 @@ consistent with <code class="docutils literal notranslate"><span class="pre">lab
 return values of some of the APIs will be cudf dataframe and
 cudf Series objects instead of the return types of scikit-learn API.</p></li>
 <li><p><strong>labels_</strong> (<em>array</em><em> or </em><em>cudf Series</em>) – Labels of each point</p></li>
-<li><p><strong>inertia_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Sum of squared distances of samples to their closest cluster center.</p></li>
-<li><p><strong>n_iter_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of iterations run.</p></li>
+<li><p><strong>inertia_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Sum of squared distances of samples to their closest cluster center.</p></li>
+<li><p><strong>n_iter_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of iterations run.</p></li>
 <li><p><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use all GPUs. Applicable only for cuML.</p></li>
 </ul>
 </dd>

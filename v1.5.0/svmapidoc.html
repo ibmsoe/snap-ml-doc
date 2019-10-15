@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -241,28 +241,28 @@ The training uses the dual formulation. We recommend the user to normalize the i
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
-<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
+<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</p></li>
-<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.</p></li>
 <li><p><strong>device_ids</strong> (<em>array-like of int</em><em>, </em><em>default :</em><em> [</em><em>]</em>) – If use_gpu is True, it indicates the IDs of the GPUs used for training.
 For single GPU training, set device_ids to the GPU ID to be used for training,
 e.g., [0]. For multi-GPU training, set device_ids to a list of GPU IDs to be used
 for training, e.g., [0, 1].</p></li>
-<li><p><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase
+<li><p><strong>class_weight</strong> (<em>'balanced'</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</p></li>
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : False</em>) – If True, it prints the training cost, one per iteration. Warning: this will increase
 the training time. For performance evaluation, use verbose=False.</p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True).</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
-<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
 return_training_history is not supported for DeviceNDArray input format.</p></li>
-<li><p><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Add bias term – note, may affect speed of convergence, especially for sparse datasets.</p></li>
-<li><p><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Scaling of bias term. The inclusion of a bias term is implemented by appending an additional feature to the
+<li><p><strong>fit_intercept</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : False</em>) – Add bias term – note, may affect speed of convergence, especially for sparse datasets.</p></li>
+<li><p><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Scaling of bias term. The inclusion of a bias term is implemented by appending an additional feature to the
 dataset. This feature has a constant value, that can be set using this parameter.</p></li>
 </ul>
 </dd>
@@ -272,7 +272,7 @@ dataset. This feature has a constant value, that can be set using this parameter
 Coefficients of the features in the trained model.</p></li>
 <li><p><strong>support_</strong> (<em>array-like</em><em>,  </em><em>shape</em><em> (</em><em>n_SV</em><em>)</em>) – indices of the support vectors.
 Currently not supported for MPI implementation.</p></li>
-<li><p><strong>n_support_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of support vectors.
+<li><p><strong>n_support_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of support vectors.
 Currently not supported for MPI implementation.</p></li>
 </ul>
 </dd>
@@ -290,7 +290,7 @@ Currently not supported for MPI implementation.</p></li>
 <li><p>SnapML data partition of type DensePartition, SparsePartition or ConstantValueSparsePartition</p></li>
 </ol>
 </p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
 By default inference runs with maximum number of available threads.</p></li>
 </ul>
 </dd>
@@ -328,7 +328,7 @@ statistics for the training procedure. The return_training_history parameter is 
 by default, where it returns no information (None).</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.7)">list</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)">None</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -342,7 +342,7 @@ by default, where it returns no information (None).</p>
 <dd class="field-odd"><p><strong>params</strong></p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)">dict</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -360,7 +360,7 @@ by default, where it returns no information (None).</p>
 <li><p>SnapML data partition of type DensePartition, SparsePartition or ConstantValueSparsePartition</p></li>
 </ol>
 </p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
 By default inference runs with maximum number of available threads.</p></li>
 </ul>
 </dd>
