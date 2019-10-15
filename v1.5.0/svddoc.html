@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -256,7 +256,7 @@ of scikit-learn API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default = 2</em>) – Desired dimensionality of output data.
+<li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default = 2</em>) – Desired dimensionality of output data.
 Must be strictly less than the number of features.
 The default value is useful for visualisation. For LSA, a value of
 100 is recommended.</p></li>
@@ -268,14 +268,14 @@ some validations for using cuml. “auto” will become “randomized”
 if cuml is not used. <cite>algorithm</cite> should be one of “auto”, “cuml”,
 “full” and “jacobi” to use cuml.</p>
 </p></li>
-<li><p><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default 5</em><em>)</em>) – Number of iterations for randomized SVD solver. Not used by ARPACK.
+<li><p><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default 5</em><em>)</em>) – Number of iterations for randomized SVD solver. Not used by ARPACK.
 The default is larger than the default in <cite>randomized_svd</cite> to handle
 sparse matrices that may have large slowly decaying spectrum.</p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default = None</em>) – If int, random_state is the seed used by the random number generator;
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default = None</em>) – If int, random_state is the seed used by the random number generator;
 If RandomState instance, random_state is the random number generator;
 If None, the random number generator is the RandomState instance used
 by <cite>np.random</cite>.</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – Tolerance for ARPACK. 0 means machine precision. Ignored by randomized
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em>) – Tolerance for ARPACK. 0 means machine precision. Ignored by randomized
 SVD solver.</p></li>
 <li><p><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use GPU 0. Applicable only for cuML.</p></li>
 </ul>
@@ -339,7 +339,7 @@ values as cudf dataframes and cudf Series objects instead of the
 results’ types seen from scikit-learn’s fit method.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
 </dd>
 </dl>
 </dd></dl>

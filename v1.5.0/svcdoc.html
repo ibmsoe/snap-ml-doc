@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -247,10 +247,10 @@ vectors that are sparse.</p></li>
 <li><p><strong>loss</strong> (<em>string</em><em>, </em><em>'hinge'</em><em> or </em><em>'squared_hinge'</em><em> (</em><em>default='squared_hinge'</em><em>)</em>) – Specifies the loss function. ‘hinge’ is the standard SVM loss
 (used e.g. by the SVC class) while ‘squared_hinge’ is the
 square of the hinge loss.</p></li>
-<li><p><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>(</em><em>default=True</em><em>)</em>) – Select the algorithm to either solve the dual or primal
+<li><p><strong>dual</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>(</em><em>default=True</em><em>)</em>) – Select the algorithm to either solve the dual or primal
 optimization problem. Prefer dual=False when n_samples &gt; n_features.</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default=1e-4</em><em>)</em>) – Tolerance for stopping criteria.</p></li>
-<li><p><strong>C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default=1.0</em><em>)</em>) – Penalty parameter C of the error term.</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default=1e-4</em><em>)</em>) – Tolerance for stopping criteria.</p></li>
+<li><p><strong>C</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default=1.0</em><em>)</em>) – Penalty parameter C of the error term.</p></li>
 <li><p><strong>multi_class</strong> (<em>string</em><em>, </em><em>'ovr'</em><em> or </em><em>'crammer_singer'</em><em> (</em><em>default='ovr'</em><em>)</em>) – Determines the multi-class strategy if <cite>y</cite> contains more than
 two classes.
 <code class="docutils literal notranslate"><span class="pre">&quot;ovr&quot;</span></code> trains n_classes one-vs-rest classifiers, while
@@ -263,7 +263,7 @@ will be ignored.</p></li>
 <li><p><strong>fit_intercept</strong> (<em>boolean</em><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – Whether to calculate the intercept for this model. If set
 to false, no intercept will be used in calculations
 (i.e. data is expected to be already centered).</p></li>
-<li><p><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – When self.fit_intercept is True, instance vector x becomes
+<li><p><strong>intercept_scaling</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default=1</em><em>)</em>) – When self.fit_intercept is True, instance vector x becomes
 <code class="docutils literal notranslate"><span class="pre">[x,</span> <span class="pre">self.intercept_scaling]</span></code>,
 i.e. a “synthetic” feature with constant value equals to
 intercept_scaling is appended to the instance vector.
@@ -278,10 +278,10 @@ weight one.
 The “balanced” mode uses the values of y to automatically adjust
 weights inversely proportional to class frequencies in the input data
 as <code class="docutils literal notranslate"><span class="pre">n_samples</span> <span class="pre">/</span> <span class="pre">(n_classes</span> <span class="pre">*</span> <span class="pre">np.bincount(y))</span></code></p></li>
-<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>(</em><em>default=0</em><em>)</em>) – Enable verbose output. Note that this setting takes advantage of a
+<li><p><strong>verbose</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>(</em><em>default=0</em><em>)</em>) – Enable verbose output. Note that this setting takes advantage of a
 per-process runtime setting in liblinear that, if enabled, may not work
 properly in a multithreaded context.</p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The seed of the pseudo random number generator to use when shuffling
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The seed of the pseudo random number generator to use when shuffling
 the data for the dual coordinate descent (if <code class="docutils literal notranslate"><span class="pre">dual=True</span></code>). When
 <code class="docutils literal notranslate"><span class="pre">dual=False</span></code> the underlying implementation of <a class="reference internal" href="#pai4sk.svm.LinearSVC" title="pai4sk.svm.LinearSVC"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearSVC</span></code></a>
 is not random and <code class="docutils literal notranslate"><span class="pre">random_state</span></code> has no effect on the results. If
@@ -289,8 +289,8 @@ int, random_state is the seed used by the random number generator; If
 RandomState instance, random_state is the random number generator; If
 None, the random number generator is the RandomState instance used by
 <cite>np.random</cite>.</p></li>
-<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>(</em><em>default=1000</em><em>)</em>) – The maximum number of iterations to be run.</p></li>
-<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>(</em><em>default=1000</em><em>)</em>) – The maximum number of iterations to be run.</p></li>
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
 The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</p></li>
@@ -299,10 +299,10 @@ For single GPU training, set device_ids to the GPU ID to be used for training,
 e.g., [0]. For multi-GPU training, set device_ids to a list of GPU IDs to be used
 for training, e.g., [0, 1].
 Applicable only for snapml solver</p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
 (default value for GPU is 256). Applicable only for snapml solver</p></li>
-<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
@@ -317,7 +317,7 @@ problem). This is only available in the case of a linear kernel.</p>
 follows the internal memory layout of liblinear.</p>
 </p></li>
 <li><p><strong>intercept_</strong> (<em>array</em><em>, </em><em>shape =</em><em> [</em><em>1</em><em>] </em><em>if n_classes == 2 else</em><em> [</em><em>n_classes</em><em>]</em>) – Constants in decision function.</p></li>
-<li><p><strong>training_history_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+<li><p><strong>training_history_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
 If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
 epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
 If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
@@ -325,7 +325,7 @@ that have elapsed so far, and ‘t_elap_sec’ contains the time to do those epo
 ‘train_obj’ is the training loss.
 Applicable only for snapml solver.</p></li>
 <li><p><strong>support_</strong> (<em>array-like</em><em>,  </em><em>shape</em><em> (</em><em>n_SV</em><em>)</em>) – indices of the support vectors.</p></li>
-<li><p><strong>n_support_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Number of support vectors.</p></li>
+<li><p><strong>n_support_</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of support vectors.</p></li>
 <li><p><strong>n_iter_</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_classes</em><em>,</em><em>) or </em><em>(</em><em>1</em><em>, </em><em>)</em>) – Actual number of iterations for all classes to reach the specified tolerance.
 If binary or multinomial, it returns only 1 element.</p></li>
 </ul>
@@ -379,7 +379,7 @@ in the narrative documentation.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>X</strong> (<em>sparse matrix</em><em> (</em><em>csr_matrix</em><em>) or </em><em>dense matrix</em><em> (</em><em>ndarray</em><em>)</em>) – Dataset used for predicting distances to the decision boundary.
 For SnapML solver it also supports input of type SnapML data partition.</p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 0</em>) – Number of threads used to run inference.
 By default inference runs with maximum number of available threads.</p></li>
 </ul>
 </dd>
@@ -414,7 +414,7 @@ then each sample is given unit weight.</p></li>
 <dd class="field-even"><p><strong>self</strong></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)">object</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
 </dd>
 </dl>
 </dd></dl>

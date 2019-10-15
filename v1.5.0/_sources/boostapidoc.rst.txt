@@ -5,5 +5,5 @@ Booster
 ====================================
 
 .. currentmodule:: pai4sk
-.. autoclass:: Booster
+.. autoclass:: BoostingMachine
     :members:

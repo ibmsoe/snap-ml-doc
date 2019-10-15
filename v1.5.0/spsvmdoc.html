@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -234,22 +234,22 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
-<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 1000</em>) – Maximum number of iterations used by the solver to converge.</p></li>
+<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</p></li>
 <li><p><strong>verbose</strong> (<em>boolean</em><em>, </em><em>default : False</em>) – Flag for indicating if the training loss will be printed at each epoch.</p></li>
-<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : False</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.</p></li>
 <li><p><strong>class_weights</strong> (<em>'balanced'/True</em><em> or </em><em>None/False</em><em>, </em><em>optional</em>) – If set to ‘None’, all classes will have weight 1.</p></li>
-<li><p><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
+<li><p><strong>gpu_mem_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 0</em>) – Limit of the GPU memory. If set to the default value 0,
 the maximum possible memory is used.</p></li>
-<li><p><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
-<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><p><strong>n_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : -1 meaning that n_threads=256 if GPU is enabled</em><em>, </em><em>else 1</em>) – Number of threads to be used.</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 0.001</em>) – The tolerance parameter. Training will finish when maximum change in model coefficients is less than tol.</p></li>
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.</p></li>
-<li><p><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
+<li><p><strong>labelColIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 1</em>) – Denotes which column to be marked as label.
 It’s applicable only when Dataframe is passed in as input and its holding features in individual columns
 rather than in DenseVector or SparseVector</p></li>
 </ul>

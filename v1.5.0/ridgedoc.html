@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -261,13 +261,13 @@ If you wish to standardize, please use
 <code class="xref py py-class docutils literal notranslate"><span class="pre">pai4sk.preprocessing.StandardScaler</span></code> before calling <code class="docutils literal notranslate"><span class="pre">fit</span></code>
 on an estimator with <code class="docutils literal notranslate"><span class="pre">normalize=False</span></code>.</p></li>
 <li><p><strong>copy_X</strong> (<em>boolean</em><em>, </em><em>optional</em><em>, </em><em>default True</em>) – If True, X will be copied; else, it may be overwritten.</p></li>
-<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of iterations for conjugate gradient solver.
+<li><p><strong>max_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum number of iterations for conjugate gradient solver.
 For ‘sparse_cg’ and ‘lsqr’ solvers, the default value is determined
 by scipy.sparse.linalg. For ‘sag’ solver, the default value is 1000.</p></li>
-<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Precision of the solution.</p></li>
-<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Precision of the solution.</p></li>
+<li><p><strong>regularizer</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 1.0</em>) – Regularization strength. It must be a positive float.
 Larger regularization values imply stronger regularization.</p></li>
-<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
+<li><p><strong>use_gpu</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : True</em>) – Flag for indicating the hardware platform used for training. If True, the training
 is performed using the GPU. If False, the training is performed using the CPU.
 The value of this parameter is subjected to changed based on the training data unless set explicitly.
 Applicable only for snapml solver</p></li>
@@ -275,10 +275,10 @@ Applicable only for snapml solver</p></li>
 For single GPU training, set device_ids to the GPU ID to be used for training, e.g., [0].
 For multi-GPU training, set device_ids to a list of GPU IDs to be used for training, e.g., [0, 1].
 Applicable only for snapml solver</p></li>
-<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
+<li><p><strong>num_threads</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 1</em>) – The number of threads used for running the training. The value of this parameter
 should be a multiple of 32 if the training is performed on GPU (use_gpu=True)
 (default value for GPU is 256). Applicable only for snapml solver</p></li>
-<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
+<li><p><strong>return_training_history</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>default : None</em>) – How much information about the training should be collected and returned by the fit function. By
 default no information is returned (None), but this parameter can be set to “summary”, to obtain
 summary statistics at the end of training, or “full” to obtain a complete set of statistics
 for the entire training procedure. Note, enabling either option will result in slower training.
@@ -316,7 +316,7 @@ True.</p>
 <p><span class="versionmodified added">New in version 0.19: </span>SAGA solver.</p>
 </div>
 </p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default None</em>) – <p>The seed of the pseudo random number generator to use when shuffling
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default None</em>) – <p>The seed of the pseudo random number generator to use when shuffling
 the data.  If int, random_state is the seed used by the random number
 generator; If RandomState instance, random_state is the random number
 generator; If None, the random number generator is the RandomState
@@ -325,11 +325,11 @@ instance used by <cite>np.random</cite>. Used when <code class="docutils literal
 <p><span class="versionmodified added">New in version 0.17: </span><em>random_state</em> to support Stochastic Average Gradient.</p>
 </div>
 </p></li>
-<li><p><strong>privacy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>default : False</em>) – Train the model using a differentially private algorithm.</p></li>
-<li><p><strong>eta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 0.3</em>) – Learning rate for the differentially private training algorithm.</p></li>
-<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>default : 100</em>) – Mini-batch size for the differentially private training algorithm.</p></li>
-<li><p><strong>privacy_epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default : 10.0</em>) – Target privacy gaurantee. Learned model will be (privacy_epsilon, 0.01)-private.</p></li>
-<li><p><strong>grad_clip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Gradient clipping parameter for the differentially private training algorithm</p></li>
+<li><p><strong>privacy</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>default : False</em>) – Train the model using a differentially private algorithm.</p></li>
+<li><p><strong>eta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 0.3</em>) – Learning rate for the differentially private training algorithm.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default : 100</em>) – Mini-batch size for the differentially private training algorithm.</p></li>
+<li><p><strong>privacy_epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default : 10.0</em>) – Target privacy gaurantee. Learned model will be (privacy_epsilon, 0.01)-private.</p></li>
+<li><p><strong>grad_clip</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>default: 1.0</em>) – Gradient clipping parameter for the differentially private training algorithm</p></li>
 </ul>
 </dd>
 <dt class="field-even">Variables</dt>
@@ -337,9 +337,9 @@ instance used by <cite>np.random</cite>. Used when <code class="docutils literal
 <li><p><strong>coef_</strong> (<em>array</em><em>, </em><em>shape</em><em> (</em><em>n_features</em><em>,</em><em>) or </em><em>(</em><em>n_targets</em><em>, </em><em>n_features</em><em>)</em>) – Weight vector(s).</p></li>
 <li><p><strong>intercept_</strong> (<em>float | array</em><em>, </em><em>shape =</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – Independent term in decision function. Set to 0.0 if
 <code class="docutils literal notranslate"><span class="pre">fit_intercept</span> <span class="pre">=</span> <span class="pre">False</span></code>.</p></li>
-<li><p><strong>n_iter_</strong> (<em>array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – Actual number of iterations for each target. Available only for
+<li><p><strong>n_iter_</strong> (<em>array</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>shape</em><em> (</em><em>n_targets</em><em>,</em><em>)</em>) – Actual number of iterations for each target. Available only for
 sag and lsqr solvers. Other solvers will return None.</p></li>
-<li><p><strong>training_history_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – <p>It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
+<li><p><strong>training_history_</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – <p>It returns a dictionary with the following keys : ‘epochs’, ‘t_elap_sec’, ‘train_obj’.
 If ‘return_training_history’ is set to “summary”, ‘epochs’ contains the total number of
 epochs performed, ‘t_elap_sec’ contains the total time for completing all of those epochs.
 If ‘return_training_history’ is set to “full”, ‘epochs’ indicates the number of epochs
@@ -387,7 +387,7 @@ Applicable only for snapml solver.</p>
 <li><p><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix}</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>, </em><em>n_features</em><em>]</em>) – Training data
 For SnapML solver it also supports input of types SnapML data partition and DeviceNDArray.</p></li>
 <li><p><strong>y</strong> (<em>array-like</em><em>, </em><em>shape =</em><em> [</em><em>n_samples</em><em>] or </em><em>[</em><em>n_samples</em><em>, </em><em>n_targets</em><em>]</em>) – Target values</p></li>
-<li><p><strong>sample_weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em> or </em><em>numpy array of shape</em><em> [</em><em>n_samples</em><em>]</em>) – Individual weights for each sample</p></li>
+<li><p><strong>sample_weight</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>numpy array of shape</em><em> [</em><em>n_samples</em><em>]</em>) – Individual weights for each sample</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>

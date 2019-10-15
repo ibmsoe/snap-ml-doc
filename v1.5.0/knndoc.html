@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -243,8 +243,8 @@ scikit-learn API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>n_neighbors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default = 5</em><em>)</em>) – Number of neighbors to use by default for <code class="xref py py-meth docutils literal notranslate"><span class="pre">kneighbors()</span></code> queries.</p></li>
-<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default = 1.0</em><em>)</em>) – Range of parameter space to use by default for <code class="xref py py-meth docutils literal notranslate"><span class="pre">radius_neighbors()</span></code>
+<li><p><strong>n_neighbors</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default = 5</em><em>)</em>) – Number of neighbors to use by default for <code class="xref py py-meth docutils literal notranslate"><span class="pre">kneighbors()</span></code> queries.</p></li>
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em><em> (</em><em>default = 1.0</em><em>)</em>) – Range of parameter space to use by default for <code class="xref py py-meth docutils literal notranslate"><span class="pre">radius_neighbors()</span></code>
 queries.</p></li>
 <li><p><strong>algorithm</strong> (<em>{'auto'</em><em>, </em><em>'ball_tree'</em><em>, </em><em>'kd_tree'</em><em>, </em><em>'brute'</em><em>, </em><em>'cuml'}</em><em>, </em><em>optional</em><em>, </em><em>default is 'auto'.</em>) – <p>Algorithm used to compute the nearest neighbors:</p>
 <ul>
@@ -267,7 +267,7 @@ throws an error.</p>
 <p>cuML in pai4sk is currently supported only (a) with python 3.6 and (b) without MPI.</p>
 </p></li>
 <li><p><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use all GPUs. Applicable only for cuML.</p></li>
-<li><p><strong>leaf_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default = 30</em><em>)</em>) – Leaf size passed to BallTree or KDTree.  This can affect the
+<li><p><strong>leaf_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default = 30</em><em>)</em>) – Leaf size passed to BallTree or KDTree.  This can affect the
 speed of the construction and query, as well as the memory
 required to store the tree.  The optimal value depends on the
 nature of the problem.</p></li>
@@ -296,8 +296,8 @@ metrics.</p>
 pai4sk.metrics.pairwise.pairwise_distances. When p = 1, this is
 equivalent to using manhattan_distance (l1), and euclidean_distance
 (l2) for p = 2. For arbitrary p, minkowski_distance (l_p) is used.</p></li>
-<li><p><strong>metric_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a><em>, </em><em>optional</em><em> (</em><em>default = None</em><em>)</em>) – Additional keyword arguments for the metric function.</p></li>
-<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.7)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The number of parallel jobs to run for neighbors search.
+<li><p><strong>metric_params</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em><em> (</em><em>default = None</em><em>)</em>) – Additional keyword arguments for the metric function.</p></li>
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – The number of parallel jobs to run for neighbors search.
 <code class="docutils literal notranslate"><span class="pre">None</span></code> means 1 unless in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> context.
 <code class="docutils literal notranslate"><span class="pre">-1</span></code> means using all processors. See <span class="xref std std-term">Glossary</span>
 for more details.</p></li>

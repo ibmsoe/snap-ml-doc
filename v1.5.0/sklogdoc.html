@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                1.4.0
+                1.5.0
               </div>
             
           
@@ -252,9 +252,9 @@ the probabilities provided are assumed to be that of the
 positive class. The labels in <code class="docutils literal notranslate"><span class="pre">y_pred</span></code> are assumed to be
 ordered alphabetically, as done by
 <code class="xref py py-class docutils literal notranslate"><span class="pre">preprocessing.LabelBinarizer</span></code>.</p></li>
-<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Log loss is undefined for p=0 or p=1, so probabilities are
+<li><p><strong>eps</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Log loss is undefined for p=0 or p=1, so probabilities are
 clipped to max(eps, min(1 - eps, p)).</p></li>
-<li><p><strong>normalize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If true, return the mean loss per sample.
+<li><p><strong>normalize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em><em> (</em><em>default=True</em><em>)</em>) – If true, return the mean loss per sample.
 Otherwise, return the sum of the per-sample losses.</p></li>
 <li><p><strong>sample_weight</strong> (<em>array-like of shape =</em><em> [</em><em>n_samples</em><em>]</em><em>, </em><em>optional</em>) – Sample weights.</p></li>
 <li><p><strong>labels</strong> (<em>array-like</em><em>, </em><em>optional</em><em> (</em><em>default=None</em><em>)</em>) – If not provided, labels will be inferred from y_true. If <code class="docutils literal notranslate"><span class="pre">labels</span></code>
@@ -267,7 +267,7 @@ assumed to be binary and are inferred from <code class="docutils literal notrans
 <dd class="field-even"><p><strong>loss</strong></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
