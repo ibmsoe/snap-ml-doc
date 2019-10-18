@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Booster &mdash; Snap Machine Learning  documentation</title>
+  <title>SnapBoost &mdash; Snap Machine Learning  documentation</title>
   
 
   
@@ -109,7 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Booster</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SnapBoost</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
@@ -207,7 +207,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Booster</li>
+      <li>SnapBoost</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -224,14 +224,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="booster">
-<span id="boosttree-api-doc"></span><h1>Booster<a class="headerlink" href="#booster" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="snapboost">
+<span id="boosttree-api-doc"></span><h1>SnapBoost<a class="headerlink" href="#snapboost" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="pai4sk.BoostingMachine">
 <em class="property">class </em><code class="sig-prename descclassname">pai4sk.</code><code class="sig-name descname">BoostingMachine</code><span class="sig-paren">(</span><em class="sig-param">objective='mse'</em>, <em class="sig-param">num_round=10</em>, <em class="sig-param">min_max_depth=1</em>, <em class="sig-param">max_max_depth=6</em>, <em class="sig-param">n_threads=1</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">learning_rate=0.1</em>, <em class="sig-param">use_histograms=True</em>, <em class="sig-param">hist_nbins=64</em>, <em class="sig-param">use_gpu=False</em>, <em class="sig-param">gpu_id=0</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">colsample_bytree=1.0</em>, <em class="sig-param">subsample=1.0</em>, <em class="sig-param">parallel_by_example=False</em>, <em class="sig-param">lambda_l2=0.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.BoostingMachine" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class implements a boosting machine that can be used to construct an ensemble of decision trees.
-It can be used for both clasification and regression tasks.
-In constrast to other boosting frameworks, Snap ML’s boosting machine dose not utilize a fixed maximal tree depth at each boosting iteration.
+It can be used for both classification and regression tasks.
+In contrast to other boosting frameworks, Snap ML’s boosting machine does not utilize a fixed maximal tree depth at each boosting iteration.
 Instead, the tree depth is sampled at each boosting iteration according to a discrete uniform distribution.
 The fit and predict functions accept numpy.ndarray data structures.</p>
 <dl class="field-list simple">
