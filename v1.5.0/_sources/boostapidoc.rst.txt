@@ -1,7 +1,7 @@
 .. _boosttree-api-doc:
 
 ====================================
-Booster
+SnapBoost
 ====================================
 
 .. currentmodule:: pai4sk
