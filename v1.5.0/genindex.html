@@ -109,8 +109,8 @@
 <li class="toctree-l1"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="boostapidoc.html">SnapBoost</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTreeClassifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForestClassifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dectreeapidoc.html">DecisionTree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ranforapidoc.html">RandomForest</a></li>
 <li class="toctree-l1"><a class="reference internal" href="logdoc.html">log_loss</a></li>
 <li class="toctree-l1"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
@@ -308,6 +308,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeClassifier">DecisionTreeClassifier (class in pai4sk)</a>, <a href="pythonapidocumentation.html#pai4sk.DecisionTreeClassifier">[1]</a>
 </li>
+      <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeRegressor">DecisionTreeRegressor (class in pai4sk)</a>
+</li>
       <li><a href="pysparkapidocumentation.html#snap_ml_spark.Utils.dump_to_snap_format">dump_to_snap_format() (in module snap_ml_spark.Utils)</a>, <a href="sputildoc.html#snap_ml_spark.Utils.dump_to_snap_format">[1]</a>
 </li>
   </ul></td>
@@ -343,6 +345,8 @@
 </li>
         <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeClassifier.fit">(pai4sk.DecisionTreeClassifier method)</a>, <a href="pythonapidocumentation.html#pai4sk.DecisionTreeClassifier.fit">[1]</a>
 </li>
+        <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeRegressor.fit">(pai4sk.DecisionTreeRegressor method)</a>
+</li>
         <li><a href="pai4skapidocumentation.html#pai4sk.decomposition.PCA.fit">(pai4sk.decomposition.PCA method)</a>, <a href="pcadoc.html#pai4sk.decomposition.PCA.fit">[1]</a>
 </li>
         <li><a href="pai4skapidocumentation.html#pai4sk.decomposition.TruncatedSVD.fit">(pai4sk.decomposition.TruncatedSVD method)</a>, <a href="svddoc.html#pai4sk.decomposition.TruncatedSVD.fit">[1]</a>
@@ -358,6 +362,8 @@
         <li><a href="logregapidoc.html#pai4sk.LogisticRegression.fit">(pai4sk.LogisticRegression method)</a>, <a href="pythonapidocumentation.html#pai4sk.LogisticRegression.fit">[1]</a>
 </li>
         <li><a href="pythonapidocumentation.html#pai4sk.RandomForestClassifier.fit">(pai4sk.RandomForestClassifier method)</a>, <a href="ranforapidoc.html#pai4sk.RandomForestClassifier.fit">[1]</a>
+</li>
+        <li><a href="ranforapidoc.html#pai4sk.RandomForestRegressor.fit">(pai4sk.RandomForestRegressor method)</a>
 </li>
         <li><a href="pythonapidocumentation.html#pai4sk.SupportVectorMachine.fit">(pai4sk.SupportVectorMachine method)</a>, <a href="svmapidoc.html#pai4sk.SupportVectorMachine.fit">[1]</a>
 </li>
@@ -401,6 +407,8 @@
 </li>
         <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeClassifier.get_params">(pai4sk.DecisionTreeClassifier method)</a>, <a href="pythonapidocumentation.html#pai4sk.DecisionTreeClassifier.get_params">[1]</a>
 </li>
+        <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeRegressor.get_params">(pai4sk.DecisionTreeRegressor method)</a>
+</li>
         <li><a href="pai4skapidocumentation.html#pai4sk.decomposition.PCA.get_params">(pai4sk.decomposition.PCA method)</a>, <a href="pcadoc.html#pai4sk.decomposition.PCA.get_params">[1]</a>
 </li>
         <li><a href="pai4skapidocumentation.html#pai4sk.decomposition.TruncatedSVD.get_params">(pai4sk.decomposition.TruncatedSVD method)</a>, <a href="svddoc.html#pai4sk.decomposition.TruncatedSVD.get_params">[1]</a>
@@ -410,6 +418,8 @@
         <li><a href="logregapidoc.html#pai4sk.LogisticRegression.get_params">(pai4sk.LogisticRegression method)</a>, <a href="pythonapidocumentation.html#pai4sk.LogisticRegression.get_params">[1]</a>
 </li>
         <li><a href="pythonapidocumentation.html#pai4sk.RandomForestClassifier.get_params">(pai4sk.RandomForestClassifier method)</a>, <a href="ranforapidoc.html#pai4sk.RandomForestClassifier.get_params">[1]</a>
+</li>
+        <li><a href="ranforapidoc.html#pai4sk.RandomForestRegressor.get_params">(pai4sk.RandomForestRegressor method)</a>
 </li>
         <li><a href="pythonapidocumentation.html#pai4sk.SupportVectorMachine.get_params">(pai4sk.SupportVectorMachine method)</a>, <a href="svmapidoc.html#pai4sk.SupportVectorMachine.get_params">[1]</a>
 </li>
@@ -428,6 +438,8 @@
         <li><a href="spestlogdoc.html#snap_ml_spark.estimator.LogisticRegression.getBalanced">(snap_ml_spark.estimator.LogisticRegression method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="spestlindoc.html#snap_ml_spark.estimator.LinearRegression.getDual">getDual() (snap_ml_spark.estimator.LinearRegression method)</a>
 
       <ul>
@@ -436,8 +448,6 @@
         <li><a href="spestlogdoc.html#snap_ml_spark.estimator.LogisticRegression.getDual">(snap_ml_spark.estimator.LogisticRegression method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="spestlogdoc.html#snap_ml_spark.estimator.LogisticRegression.getFamily">getFamily() (snap_ml_spark.estimator.LogisticRegression method)</a>
 </li>
       <li><a href="spestlindoc.html#snap_ml_spark.estimator.LinearRegression.getGpuMemLimit">getGpuMemLimit() (snap_ml_spark.estimator.LinearRegression method)</a>
@@ -641,6 +651,8 @@
 </li>
         <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeClassifier.predict">(pai4sk.DecisionTreeClassifier method)</a>, <a href="pythonapidocumentation.html#pai4sk.DecisionTreeClassifier.predict">[1]</a>
 </li>
+        <li><a href="dectreeapidoc.html#pai4sk.DecisionTreeRegressor.predict">(pai4sk.DecisionTreeRegressor method)</a>
+</li>
         <li><a href="lassodoc.html#pai4sk.linear_model.Lasso.predict">(pai4sk.linear_model.Lasso method)</a>, <a href="pai4skapidocumentation.html#pai4sk.linear_model.Lasso.predict">[1]</a>
 </li>
         <li><a href="pai4skapidocumentation.html#pai4sk.linear_model.LogisticRegression.predict">(pai4sk.linear_model.LogisticRegression method)</a>, <a href="sklogregdoc.html#pai4sk.linear_model.LogisticRegression.predict">[1]</a>
@@ -652,6 +664,8 @@
         <li><a href="logregapidoc.html#pai4sk.LogisticRegression.predict">(pai4sk.LogisticRegression method)</a>, <a href="pythonapidocumentation.html#pai4sk.LogisticRegression.predict">[1]</a>
 </li>
         <li><a href="pythonapidocumentation.html#pai4sk.RandomForestClassifier.predict">(pai4sk.RandomForestClassifier method)</a>, <a href="ranforapidoc.html#pai4sk.RandomForestClassifier.predict">[1]</a>
+</li>
+        <li><a href="ranforapidoc.html#pai4sk.RandomForestRegressor.predict">(pai4sk.RandomForestRegressor method)</a>
 </li>
         <li><a href="pythonapidocumentation.html#pai4sk.SupportVectorMachine.predict">(pai4sk.SupportVectorMachine method)</a>, <a href="svmapidoc.html#pai4sk.SupportVectorMachine.predict">[1]</a>
 </li>
@@ -698,10 +712,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pythonapidocumentation.html#pai4sk.RandomForestClassifier">RandomForestClassifier (class in pai4sk)</a>, <a href="ranforapidoc.html#pai4sk.RandomForestClassifier">[1]</a>
 </li>
-      <li><a href="pysparkapidocumentation.html#snap_ml_spark.Utils.read_from_snap_format">read_from_snap_format() (in module snap_ml_spark.Utils)</a>, <a href="sputildoc.html#snap_ml_spark.Utils.read_from_snap_format">[1]</a>
+      <li><a href="ranforapidoc.html#pai4sk.RandomForestRegressor">RandomForestRegressor (class in pai4sk)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pysparkapidocumentation.html#snap_ml_spark.Utils.read_from_snap_format">read_from_snap_format() (in module snap_ml_spark.Utils)</a>, <a href="sputildoc.html#snap_ml_spark.Utils.read_from_snap_format">[1]</a>
+</li>
       <li><a href="pysparkapidocumentation.html#snap_ml_spark.Metrics.recall">recall() (in module snap_ml_spark.Metrics)</a>, <a href="spmetdoc.html#snap_ml_spark.Metrics.recall">[1]</a>
 </li>
       <li><a href="pai4skapidocumentation.html#pai4sk.linear_model.Ridge">Ridge (class in pai4sk.linear_model)</a>, <a href="ridgedoc.html#pai4sk.linear_model.Ridge">[1]</a>
