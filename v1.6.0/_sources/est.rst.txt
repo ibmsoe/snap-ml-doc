@@ -1,0 +1,16 @@
+.. _snapml-est-apis:
+
+---------------------------
+SnapML Spark Estimators
+---------------------------
+.. currentmodule:: snap_ml.SnapMLEst
+
+.. toctree::
+   :maxdepth: 1
+
+   spestlogdoc
+   spestlogmoddoc
+   spestlindoc
+   spestlinmoddoc
+   spestsvcdoc
+   spestsvcmoddoc

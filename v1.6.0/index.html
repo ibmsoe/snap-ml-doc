@@ -1,0 +1,256 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Manual" href="manual.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="snapml.html">SnapML APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsearch.html">Similarity Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<span id="intro"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p><em>Snap Machine Learning (Snap ML)</em> is a library for training generalized linear models. It is being developed at the IBM Research - Zürich laboratory with the vision to remove training time as a bottleneck for machine learning applications.
+Snap ML supports a large number of classical machine learning models and
+scales gracefully to data sets with billions of examples and/or features.
+It offers distributed training, GPU acceleration and supports sparse data structures.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;With Snap ML you can train your machine learning model faster than you can snap your fingers!&quot;</span>
+</pre></div>
+</div>
+<p>The <em>Snap ML</em> library offers two different packages:</p>
+<dl>
+<dt><strong>pai4sk-snapml</strong></dt><dd><p>This package offers local, single-node as well as MPI-based distributed training. The library is exposed to the user via a <em>sklearn</em>-like python interface.</p>
+<p>The local version of Snap ML is designed to run on a single machine. It targets small to medium scale data that can fit inside the memory of a single machine. <em>snap-ml-local</em> offers GPU acceleration and supports sparse data structures.</p>
+<p>There are two ways to make use of this library. The first approach is to make use of <a class="reference internal" href="pai4sk.html#snapml-pai4sk-apis"><span class="std std-ref">Scikit-learn compatible pai4sk APIs</span></a> which can seamlessly integrates into existing Python application. In IBM® Watson Machine Learning Community Edition (WML CE) 1.7.0, this module is built upon scikit-learn 0.22.1 library and can be used as a replacement for scikit-learn. This module will automatically fall back to sklearn/CPU based algorithms when snap-ml doesn’t support an API. The second approach is to invoke <a class="reference internal" href="snapml.html#snapml-ml-apis"><span class="std std-ref">SnapML APIs</span></a> directly where we support more accelerated and distributed ML algorithms compared to the former. Refer to the API Documentation for the current set of GPU accelerated APIs exposed by <em>pai4sk</em>.</p>
+<p>It also offers distributed training of models across a cluster of machines. This enables training on large scale datasets that exceed the memory capacity of a single machine. It offers GPU acceleration and supports sparse data structures. The library is exposed to the user via a <em>sklearn</em>-like python interface.</p>
+</dd>
+<dt><strong>snap-ml-spark</strong></dt><dd><p>Similar to distributed <em>pai4sk-snapml</em>, the <em>snap-ml-spark</em> package offers distributed training of models across a cluster of machines. The library is exposed to the user via a <em>spark.ml</em> like interface and can seamlessly be integrated into existing pySpark application.</p>
+</dd>
+</dl>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://papers.nips.cc/paper/7309-snap-ml-a-hierarchical-framework-for-machine-learning.pdf">“Snap ML: A Hierarchical Framework for Machine Learning”</a>, C. Dünner, T. Parnell, D. Sarigiannis, N. Ioannou, A. Anghel, G. Ravi, M. Kandasamy and H. Pozidis, in <em>Advances of Neural Information Processing Systems (NeurIPS)</em>, 2018. <a class="reference external" href="https://papers.nips.cc/paper/7309-snap-ml-a-hierarchical-framework-for-machine-learning/bibtex">[bibtex]</a></p></li>
+<li><p><a class="reference external" href="https://www.zurich.ibm.com/snapml/">www.zurich.ibm.com/snapml</a>.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="snapml.html">SnapML APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsearch.html">Similarity Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="manual.html" class="btn btn-neutral float-right" title="Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2020
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

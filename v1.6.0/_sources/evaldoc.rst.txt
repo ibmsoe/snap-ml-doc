@@ -1,0 +1,7 @@
+.. _eval-doc:
+
+====================================
+evaluate.evaluate_topk
+====================================
+
+.. autofunction:: pai4sk.simsearch.evaluate.evaluate_topk

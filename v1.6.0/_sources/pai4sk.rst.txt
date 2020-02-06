@@ -1,0 +1,36 @@
+.. _snapml-pai4sk-apis:
+
+---------------------------
+Scikit-learn compatible pai4sk APIs
+---------------------------
+.. currentmodule:: snap_ml.SnapMLPai4sk
+
+.. toctree::
+   :caption: Machine Learning APIs
+   :maxdepth: 1
+
+   ridgedoc
+   lassodoc
+   sklogregdoc
+   svcdoc
+   kmeansdoc
+   knndoc
+   dbscandoc
+   pcadoc
+   svddoc
+
+.. toctree::
+   :caption: pai4sk Loaders APIs
+   :maxdepth: 1
+
+   sksvmloaderfiledoc
+
+.. toctree::
+   :caption: pai4sk Metrics APIs
+   :maxdepth: 1
+
+   sklogdoc
+   skaccdoc
+   skhingedoc
+   skmsedoc
+

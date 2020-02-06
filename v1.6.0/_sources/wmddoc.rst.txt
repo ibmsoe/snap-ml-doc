@@ -1,0 +1,7 @@
+.. _wmd-doc:
+
+====================================
+metrics.pairwise.word_movers_distance
+====================================
+
+.. autofunction:: pai4sk.metrics.pairwise.word_movers_distance

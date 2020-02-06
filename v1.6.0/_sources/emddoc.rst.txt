@@ -1,0 +1,7 @@
+.. _emd-doc:
+
+====================================
+metrics.pairwise.earth_movers_distance
+====================================
+
+.. autofunction:: pai4sk.metrics.pairwise.earth_movers_distance

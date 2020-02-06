@@ -1,0 +1,9 @@
+.. _svc-doc:
+
+====================================
+svm.LinearSVC (uses SnapML)
+====================================
+
+.. currentmodule:: pai4sk.svm
+.. autoclass:: LinearSVC
+    :members:

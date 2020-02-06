@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>load_from_svmlight_format &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="load_from_snap_format" href="snaploaderdoc.html" />
+    <link rel="prev" title="RandomForest" href="ranforapidoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="snapml.html">SnapML APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="linregapidoc.html">LinearRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logregapidoc.html">LogisticRegression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="svmapidoc.html">SVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boostapidoc.html">SnapBoost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dectreeapidoc.html">DecisionTree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ranforapidoc.html">RandomForest</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">load_from_svmlight_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snaploaderdoc.html">load_from_snap_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snaploaderfiledoc.html">load_snap_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snapwritedoc.html">write_to_snap_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cudfasgpumatrixdoc.html">copy_as_gpu_cmatrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="snapsvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logdoc.html">log_loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accdoc.html">accuracy_score</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hingedoc.html">hinge_loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="msedoc.html">mean_squared_error</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsearch.html">Similarity Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="snapml.html">SnapML APIs</a> &raquo;</li>
+        
+      <li>load_from_svmlight_format</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="load-from-svmlight-format">
+<span id="svmloader-doc"></span><h1>load_from_svmlight_format<a class="headerlink" href="#load-from-svmlight-format" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pai4sk.sml_io.load_from_svmlight_format">
+<code class="sig-prename descclassname">pai4sk.sml_io.</code><code class="sig-name descname">load_from_svmlight_format</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">num_ft=None</em>, <em class="sig-param">num_chunks=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.sml_io.load_from_svmlight_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data loading from svmlight format file.
+It supports both local and distributed(MPI) method of loading data.
+For MPI execution this can be used for distributed SnapML training and inference.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The file where the data resides.</p></li>
+<li><p><strong>num_ft</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Expected number of features</p></li>
+<li><p><strong>num_chunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of chunks per partition</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>data partition</strong> – Returns a data partition in sparse format which will be used for
+distributed _snap_ml training and inference.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>_snap_ml.Partition.SparsePartition</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="snaploaderdoc.html" class="btn btn-neutral float-right" title="load_from_snap_format" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ranforapidoc.html" class="btn btn-neutral float-left" title="RandomForest" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2020
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

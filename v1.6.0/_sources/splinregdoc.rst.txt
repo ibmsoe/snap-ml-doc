@@ -1,0 +1,8 @@
+.. _sp-lin-reg-doc:
+
+====================================
+LinearRegression
+====================================
+
+.. automodule:: snap_ml_spark
+    :members: LinearRegression

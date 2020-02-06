@@ -1,0 +1,9 @@
+.. _lasso-doc:
+
+====================================
+linear_model.Lasso (uses SnapML)
+====================================
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: Lasso
+    :members:

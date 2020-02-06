@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Documentation &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="snapml.html">SnapML APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsearch.html">Similarity Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>API Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-documentation">
+<span id="id1"></span><h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h1>
+<p>We currently provide four python modules. Check out the APIs exposed by these modules in the relevant links,</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>pai4sk APIs</dt><dd><ul>
+<li><dl class="simple">
+<dt>Machine Learning</dt><dd><ul>
+<li><p><a class="reference internal" href="ridgedoc.html#ridge-doc"><span class="std std-ref">linear_model.Ridge (use SnapML)</span></a></p></li>
+<li><p><a class="reference internal" href="lassodoc.html#lasso-doc"><span class="std std-ref">linear_model.Lasso (uses SnapML)</span></a></p></li>
+<li><p><a class="reference internal" href="sklogregdoc.html#sk-logreg-doc"><span class="std std-ref">linear_model.LogisticRegression (uses SnapML)</span></a></p></li>
+<li><p><a class="reference internal" href="svcdoc.html#svc-doc"><span class="std std-ref">svm.LinearSVC (uses SnapML)</span></a></p></li>
+<li><p><a class="reference internal" href="kmeansdoc.html#kmeans-doc"><span class="std std-ref">cluster.KMeans (uses cuML)</span></a></p></li>
+<li><p><a class="reference internal" href="knndoc.html#knn-doc"><span class="std std-ref">neighbors.NearestNeighbors (uses cuML)</span></a></p></li>
+<li><p><a class="reference internal" href="dbscandoc.html#dbscan-doc"><span class="std std-ref">cluster.DBSCAN (uses cuML)</span></a></p></li>
+<li><p><a class="reference internal" href="pcadoc.html#pca-doc"><span class="std std-ref">decomposition.PCA (uses cuML)</span></a></p></li>
+<li><p><a class="reference internal" href="svddoc.html#svd-doc"><span class="std std-ref">decomposition.TruncatedSVD (uses cuML)</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Loaders</dt><dd><ul>
+<li><p><a class="reference internal" href="sksvmloaderfiledoc.html#sk-svmloader-file-doc"><span class="std std-ref">load_svmlight_file</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Metrics</dt><dd><ul>
+<li><p><a class="reference internal" href="sklogdoc.html#sk-log-doc"><span class="std std-ref">log_loss</span></a></p></li>
+<li><p><a class="reference internal" href="skaccdoc.html#sk-acc-doc"><span class="std std-ref">accuracy_score</span></a></p></li>
+<li><p><a class="reference internal" href="skhingedoc.html#sk-hinge-doc"><span class="std std-ref">hinge_loss</span></a></p></li>
+<li><p><a class="reference internal" href="skmsedoc.html#sk-mse-doc"><span class="std std-ref">mean_squared_error</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>SnapML APIs</dt><dd><ul>
+<li><p><a class="reference internal" href="linregapidoc.html#linreg-api-doc"><span class="std std-ref">LinearRegression</span></a></p></li>
+<li><p><a class="reference internal" href="logregapidoc.html#logreg-api-doc"><span class="std std-ref">LogisticRegression</span></a></p></li>
+<li><p><a class="reference internal" href="svmapidoc.html#svm-api-doc"><span class="std std-ref">SVM</span></a></p></li>
+<li><p><a class="reference internal" href="dectreeapidoc.html#dectree-api-doc"><span class="std std-ref">DecisionTree</span></a></p></li>
+<li><p><a class="reference internal" href="ranforapidoc.html#ranfor-api-doc"><span class="std std-ref">RandomForest</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>SnapML Loaders APIs</dt><dd><ul>
+<li><p><a class="reference internal" href="svmloaderdoc.html#svmloader-doc"><span class="std std-ref">load_from_svmlight_format</span></a></p></li>
+<li><p><a class="reference internal" href="snaploaderdoc.html#snaploader-doc"><span class="std std-ref">load_from_snap_format</span></a></p></li>
+<li><p><a class="reference internal" href="snaploaderfiledoc.html#snaploader-file-doc"><span class="std std-ref">load_snap_file</span></a></p></li>
+<li><p><a class="reference internal" href="snapwritedoc.html#snapwrite-doc"><span class="std std-ref">write_to_snap_format</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>SnapML Spark APIs</dt><dd><ul>
+<li><p><a class="reference internal" href="splinregdoc.html#sp-lin-reg-doc"><span class="std std-ref">LinearRegression</span></a></p></li>
+<li><p><a class="reference internal" href="splogregdoc.html#sp-log-reg-doc"><span class="std std-ref">LogisticRegression</span></a></p></li>
+<li><p><a class="reference internal" href="spsvmdoc.html#sp-svm-doc"><span class="std std-ref">SupportVectorMachine</span></a></p></li>
+<li><p><a class="reference internal" href="spreaddoc.html#sp-read-doc"><span class="std std-ref">DatasetReader</span></a></p></li>
+<li><p><a class="reference internal" href="spmetdoc.html#sp-met-doc"><span class="std std-ref">Metrics</span></a></p></li>
+<li><p><a class="reference internal" href="sputildoc.html#sp-util-doc"><span class="std std-ref">Utils</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2020
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

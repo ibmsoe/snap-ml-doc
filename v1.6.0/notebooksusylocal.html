@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Signal Detection using IBM Snap ML &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="snapml.html">SnapML APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simsearch.html">Similarity Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Signal Detection using IBM Snap ML</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="signal-detection-using-ibm-snap-ml">
+<span id="notebook-susy-local"></span><h1>Signal Detection using IBM Snap ML<a class="headerlink" href="#signal-detection-using-ibm-snap-ml" title="Permalink to this headline">¶</a></h1>
+<p>In this example we will show how to train a Random Forest model on the <a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/SUSY">SUSY dataset</a> from the LibSVM repository in order to distinguish between a signal process which produces supersymmetric particles and background noise. We will use <code class="docutils literal notranslate"><span class="pre">snap-ml-local</span></code> for training as well as <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> as a reference.</p>
+<div class="section" id="download-the-data">
+<h2>Download the Data<a class="headerlink" href="#download-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We first create a directory where we then download and decompress the data from the LIBSVM repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">data</span>
+<span class="n">cd</span> <span class="n">data</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">csie</span><span class="o">.</span><span class="n">ntu</span><span class="o">.</span><span class="n">edu</span><span class="o">.</span><span class="n">tw</span><span class="o">/~</span><span class="n">cjlin</span><span class="o">/</span><span class="n">libsvmtools</span><span class="o">/</span><span class="n">datasets</span><span class="o">/</span><span class="n">binary</span><span class="o">/</span><span class="n">SUSY</span><span class="o">.</span><span class="n">bz2</span>
+<span class="n">bunzip2</span> <span class="n">SUSY</span><span class="o">.</span><span class="n">bz2</span>
+<span class="n">cd</span> <span class="o">../</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="preprocess-the-data">
+<h2>Preprocess the Data<a class="headerlink" href="#preprocess-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Before doing the training we show how to preprocess the dataset and dump it into numpy binary format for fast reloading. Because the <code class="docutils literal notranslate"><span class="pre">snapml</span></code> library is compatible with <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> we can use the broad functionalities offered by <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> to do the preprocessing as needed. Here an example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="c1"># import preprocessing functions from scikit-learn</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_svmlight_file</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">normalize</span>
+
+<span class="c1"># Import the data from csv format</span>
+<span class="n">X</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">load_svmlight_file</span><span class="p">(</span><span class="s2">&quot;data/SUSY&quot;</span><span class="p">)</span>
+
+<span class="c1"># Make a train-test split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Convert data to numpy arrarys</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+<span class="n">X_test</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">todense</span><span class="p">())</span>
+
+<span class="c1"># Normalize the training data</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+<span class="n">X_test</span>  <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span>  <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="s1">&#39;l1&#39;</span><span class="p">)</span>
+
+<span class="c1"># Save the preprocessed data in dense matrices</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;data/SUSY.X_train&quot;</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;data/SUSY.X_test&quot;</span><span class="p">,</span>  <span class="n">X_test</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;data/SUSY.y_train&quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;data/SUSY.y_test&quot;</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="training-and-evaluating-a-random-forest-model">
+<h2>Training and Evaluating a Random Forest Model<a class="headerlink" href="#training-and-evaluating-a-random-forest-model" title="Permalink to this headline">¶</a></h2>
+<p>After preprocessing the data we can now train a machine learning model using <code class="docutils literal notranslate"><span class="pre">snapml</span></code>. Let us consider Random Forest in this example. We start by loading the data and initializing the classifier:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+
+<span class="c1"># import evaluation metrics from scikit-learn</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># load training data</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/SUSY.X_train.npy&quot;</span><span class="p">)</span>
+<span class="n">X_test</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/SUSY.X_test.npy&quot;</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/SUSY.y_train.npy&quot;</span><span class="p">)</span>
+<span class="n">y_test</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/SUSY.y_test.npy&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Data load time (s):  {0:.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+
+<span class="c1"># specify model parameters</span>
+<span class="n">max_depth</span>     <span class="o">=</span>  <span class="bp">None</span>
+<span class="n">n_estimators</span>  <span class="o">=</span>  <span class="mi">10</span>
+<span class="n">n_jobs</span>        <span class="o">=</span>  <span class="mi">8</span>     <span class="c1"># e.g. number of threads</span>
+<span class="n">max_features</span>  <span class="o">=</span>  <span class="mi">4</span>
+
+<span class="c1"># import snap RandomForestClassifier from pai4sk module directly</span>
+<span class="kn">from</span> <span class="nn">pai4sk</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="k">as</span> <span class="n">SnapForest</span>
+
+<span class="c1"># initialize the classifier</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">SnapForest</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above example we have initialized a forest with 10 classifiers, using 8 threads for training. However, this is only an illustrative example and the parameters can be adjusted by the user depending on the application. For more details about the available arguments of the random forest classifier, check the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a>. Now let us continue with the training:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Training</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[snap] Training time (s):  {0:.2f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We have added code for timing so you can benchmark the training procedure.
+Finally, we want to evaluate the learnt model on the hold-out test set:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inference</span>
+<span class="n">pred_test</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">acc_snap</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">pred_test</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;[snap] Accuracy score:   {0:.4f}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">acc_snap</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Note that the random forest classifier could also be trained using the standard <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> library. You can validate the result by only changing a few lines of code and initializing a scikit-learn model instead of the Snap ML model:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import RandomForestClassifier from scikit-learn</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="k">as</span> <span class="n">skForest</span>
+
+<span class="c1"># initialize the classifier</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">skForest</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="n">max_depth</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="n">n_estimators</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="n">max_features</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The training can be done using the same code as above. However, you will realize a loss in performance coming from not using the optimized <code class="docutils literal notranslate"><span class="pre">snapml</span></code> solver.</p>
+<p>© Copyright IBM Corporation 2018</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2020
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

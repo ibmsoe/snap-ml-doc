@@ -1,0 +1,38 @@
+.. _snapml-ml-apis:
+
+---------------------------
+SnapML APIs
+---------------------------
+.. currentmodule:: snap_ml.SnapMLAPIs
+
+.. toctree::
+   :caption: Machine Learning APIs
+   :maxdepth: 1
+
+   linregapidoc
+   logregapidoc
+   svmapidoc
+   boostapidoc
+   dectreeapidoc
+   ranforapidoc
+
+.. toctree::
+   :caption: Loader APIs
+   :maxdepth: 1
+
+   svmloaderdoc
+   snaploaderdoc
+   snaploaderfiledoc
+   snapwritedoc
+   cudfasgpumatrixdoc
+   snapsvmloaderfiledoc
+
+.. toctree::
+   :caption: Metrics APIs
+   :maxdepth: 1
+
+   logdoc
+   accdoc
+   hingedoc
+   msedoc
+

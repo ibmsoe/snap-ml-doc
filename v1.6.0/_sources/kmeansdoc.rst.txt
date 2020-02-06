@@ -1,0 +1,8 @@
+.. _kmeans-doc:
+
+====================================
+cluster.KMeans (uses cuML)
+====================================
+
+.. currentmodule:: pai4sk.cluster
+.. autoclass:: KMeans

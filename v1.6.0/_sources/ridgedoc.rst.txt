@@ -1,0 +1,9 @@
+.. _ridge-doc:
+
+====================================
+linear_model.Ridge (use SnapML)
+====================================
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: Ridge
+    :members:

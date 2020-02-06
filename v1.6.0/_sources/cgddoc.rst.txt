@@ -1,0 +1,7 @@
+.. _cgd-doc:
+
+====================================
+metrics.pairwise.compute_ground_distances
+====================================
+
+.. autofunction:: pai4sk.metrics.pairwise.compute_ground_distances

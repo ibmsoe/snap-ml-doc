@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>loaders.load_20News &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="embeddings.load_embedding_vectors" href="loademb.html" />
+    <link rel="prev" title="loaders.load_MNIST_with_embeddings" href="loadmnist.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="snapml.html">SnapML APIs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="simsearch.html">Similarity Search</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="wmddoc.html">metrics.pairwise.word_movers_distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emddoc.html">metrics.pairwise.earth_movers_distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cgddoc.html">metrics.pairwise.compute_ground_distances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaldoc.html">evaluate.evaluate_topk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loadmnist.html">loaders.load_MNIST_with_embeddings</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">loaders.load_20News</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loademb.html">embeddings.load_embedding_vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loadw2v.html">embeddings.load_word2vec_embeddings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="simsearch.html">Similarity Search</a> &raquo;</li>
+        
+      <li>loaders.load_20News</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="loaders-load-20news">
+<span id="load20news-doc"></span><h1>loaders.load_20News<a class="headerlink" href="#loaders-load-20news" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pai4sk.simsearch.loaders.load_20News">
+<code class="sig-prename descclassname">pai4sk.simsearch.loaders.</code><code class="sig-name descname">load_20News</code><span class="sig-paren">(</span><em class="sig-param">directory_path</em>, <em class="sig-param">vocabulary_file_path='vocabulary.txt'</em>, <em class="sig-param">norm='l1'</em>, <em class="sig-param">max_histogram_size=500</em>, <em class="sig-param">stop_word_threshold=900</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.simsearch.loaders.load_20News" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads 20News dataset into arrays X, labels, ids</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory_path</strong> (<em>string</em>) – Source location for the data</p></li>
+<li><p><strong>vocabulary_file_path</strong> (<em>string</em>) – Vocabulary that is used in tokenization and vectorization of text</p></li>
+<li><p><strong>norm</strong> (<em>string</em><em> (</em><em>default='l1'</em><em>)</em>) – l2 if the user wants to normalize the data using l2 normalization</p></li>
+<li><p><strong>max_histogram_size</strong> (<em>integer</em><em> (</em><em>default=500</em><em>)</em>) – Each document histogram stores only the top max_histogram_size most-frequent words of the respective document.</p></li>
+<li><p><strong>stop_word_threshold</strong> (<em>integer</em><em> (</em><em>default=900</em><em>)</em>) – The first stop_word_threshold words of the vocabulary are treated as stop words, and omitted in the histograms.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like, sparse_matrix, shape (n_samples, n_features)</em>) – Feature vectors</p></li>
+<li><p><strong>labels</strong> (<em>array-like, shape (n_samples,)</em>) – labels are the class labels of the samples in X</p></li>
+<li><p><strong>ids</strong> (<em>array_like, shape (n_samples,)</em>) – ids are the ids of the samples in X</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loademb.html" class="btn btn-neutral float-right" title="embeddings.load_embedding_vectors" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="loadmnist.html" class="btn btn-neutral float-left" title="loaders.load_MNIST_with_embeddings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2020
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

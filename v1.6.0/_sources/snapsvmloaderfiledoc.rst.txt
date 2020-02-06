@@ -1,0 +1,8 @@
+.. _snap-svmloader-file-doc:
+
+====================================
+load_svmlight_file
+====================================
+
+.. autofunction:: pai4sk.sml_io.load_svmlight_file
+

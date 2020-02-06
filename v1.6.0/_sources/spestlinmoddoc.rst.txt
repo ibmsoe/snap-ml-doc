@@ -1,0 +1,8 @@
+.. _sp-est-linmod-reg-doc:
+
+====================================
+LinearRegressionModel
+====================================
+
+.. automodule:: snap_ml_spark.estimator
+    :members: LinearRegressionModel

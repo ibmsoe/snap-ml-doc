@@ -1,0 +1,18 @@
+.. _snapml-simsearch-apis:
+
+---------------------------
+Similarity Search
+---------------------------
+.. currentmodule:: snap_ml.SnapMLSimSearch
+
+.. toctree::
+   :maxdepth: 1
+
+   wmddoc
+   emddoc
+   cgddoc
+   evaldoc
+   loadmnist
+   load20news
+   loademb
+   loadw2v

@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>decomposition.TruncatedSVD (uses cuML) &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="load_svmlight_file" href="sksvmloaderfiledoc.html" />
+    <link rel="prev" title="decomposition.PCA (uses cuML)" href="pcadoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="snapml.html">SnapML APIs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge (use SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lassodoc.html">linear_model.Lasso (uses SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression (uses SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="svcdoc.html">svm.LinearSVC (uses SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dbscandoc.html">cluster.DBSCAN (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcadoc.html">decomposition.PCA (uses cuML)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">decomposition.TruncatedSVD (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simsearch.html">Similarity Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a> &raquo;</li>
+        
+      <li>decomposition.TruncatedSVD (uses cuML)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="decomposition-truncatedsvd-uses-cuml">
+<span id="svd-doc"></span><h1>decomposition.TruncatedSVD (uses cuML)<a class="headerlink" href="#decomposition-truncatedsvd-uses-cuml" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.decomposition.TruncatedSVD">
+<em class="property">class </em><code class="sig-prename descclassname">pai4sk.decomposition.</code><code class="sig-name descname">TruncatedSVD</code><span class="sig-paren">(</span><em class="sig-param">n_components=2</em>, <em class="sig-param">algorithm='auto'</em>, <em class="sig-param">n_iter=5</em>, <em class="sig-param">random_state=None</em>, <em class="sig-param">tol=0.0</em>, <em class="sig-param">use_gpu=True</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">handle=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dimensionality reduction using truncated SVD (aka LSA).</p>
+<p>This transformer performs linear dimensionality reduction by means of
+truncated singular value decomposition (SVD). Contrary to PCA, this
+estimator does not center the data before computing the singular value
+decomposition. This means it can work with scipy.sparse matrices
+efficiently.</p>
+<p>In particular, truncated SVD works on term count/tf-idf matrices as
+returned by the vectorizers in pai4sk.feature_extraction.text. In that
+context, it is known as latent semantic analysis (LSA).</p>
+<p>This estimator supports two algorithms: a fast randomized SVD solver, and
+a “naive” algorithm that uses ARPACK as an eigensolver on (X * X.T) or
+(X.T * X), whichever is more efficient.</p>
+<p>If the input data is cudf dataframe and if possible, then the accelerated
+TruncatedSVD algorithm from cuML will be used. Otherwise,
+scikit-learn’s TruncatedSVD algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only without MPI.
+|  If TruncatedSVD from cuML is run, then the return values from the APIs
+will be cudf dataframe and cudf Series objects instead of the return types
+of scikit-learn API.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_components</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>default = 2</em>) – Desired dimensionality of output data.
+Must be strictly less than the number of features.
+The default value is useful for visualisation. For LSA, a value of
+100 is recommended.</p></li>
+<li><p><strong>algorithm</strong> (<em>string</em><em>, </em><em>&quot;arpack&quot;</em><em>, </em><em>&quot;randomized&quot;</em><em>, </em><em>&quot;cuml&quot;</em><em>, </em><em>&quot;auto&quot;</em><em>, </em><em>&quot;full&quot;</em><em> or </em><em>&quot;jacobi&quot;. default = &quot;auto&quot;.</em>) – <p>SVD solver to use. Either “arpack” for the ARPACK wrapper in SciPy
+(scipy.sparse.linalg.svds), or “randomized” for the randomized
+algorithm due to Halko (2009) if cuml can’t be used.</p>
+<p>”auto” will become “full” if the arguments satisfy
+some validations for using cuml. “auto” will become “randomized”
+if cuml is not used. <cite>algorithm</cite> should be one of “auto”, “cuml”,
+“full” and “jacobi” to use cuml.</p>
+</p></li>
+<li><p><strong>n_iter</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em><em> (</em><em>default 5</em><em>)</em>) – Number of iterations for randomized SVD solver. Not used by ARPACK.
+The default is larger than the default in <cite>randomized_svd</cite> to handle
+sparse matrices that may have large slowly decaying spectrum.</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a><em>, </em><em>optional</em><em>, </em><em>default = None</em>) – If int, random_state is the seed used by the random number generator;
+If RandomState instance, random_state is the random number generator;
+If None, the random number generator is the RandomState instance used
+by <cite>np.random</cite>.</p></li>
+<li><p><strong>tol</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em>) – Tolerance for ARPACK. 0 means machine precision. Ignored by randomized
+SVD solver.</p></li>
+<li><p><strong>use_gpu</strong> (<em>boolean</em><em>, </em><em>Default is True</em>) – If True, cuML will use GPU 0. Applicable only for cuML.</p></li>
+<li><p><strong>handle</strong> (<em>cuml.Handle</em><em>, </em><em>Default is None</em>) – The cumlHandle resources to use.
+If it is None, a new one is created just for this class. Applicable only for cuML.</p></li>
+<li><p><strong>verbose</strong> (<em>boolean</em><em>, </em><em>Default is False</em>) – Whether to print debug spews. Applicable only for cuML.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Variables</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>components_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – </p></li>
+<li><p><strong>explained_variance_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – The variance of the training samples transformed by a projection to
+each component.</p></li>
+<li><p><strong>explained_variance_ratio_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – Percentage of variance explained by each of the selected components.</p></li>
+<li><p><strong>singular_values_</strong> (<em>array of shape</em><em> (</em><em>n_components</em><em>,</em><em>) or </em><em>cudf Series object</em>) – The singular values corresponding to each of the selected components.
+The singular values are equal to the 2-norms of the <code class="docutils literal notranslate"><span class="pre">n_components</span></code>
+variables in the lower-dimensional space.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.decomposition</span> <span class="k">import</span> <span class="n">TruncatedSVD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pai4sk.random_projection</span> <span class="k">import</span> <span class="n">sparse_random_matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">sparse_random_matrix</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svd</span> <span class="o">=</span> <span class="n">TruncatedSVD</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svd</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  
+<span class="go">TruncatedSVD(algorithm=&#39;randomized&#39;, n_components=5, n_iter=7,</span>
+<span class="go">        random_state=42, tol=0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>  
+<span class="go">[0.0606... 0.0584... 0.0497... 0.0434... 0.0372...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>  
+<span class="go">0.249...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">svd</span><span class="o">.</span><span class="n">singular_values_</span><span class="p">)</span>  
+<span class="go">[2.5841... 2.5245... 2.3201... 2.1753... 2.0443...]</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="pcadoc.html#pai4sk.decomposition.PCA" title="pai4sk.decomposition.PCA"><code class="xref py py-class docutils literal notranslate"><span class="pre">PCA</span></code></a></p>
+</div>
+<p class="rubric">References</p>
+<p>Finding structure with randomness: Stochastic algorithms for constructing
+approximate matrix decompositions
+Halko, et al., 2009 (arXiv:909) https://arxiv.org/pdf/0909.4061.pdf</p>
+<p class="rubric">Notes</p>
+<p>SVD suffers from a problem called “sign indeterminacy”, which means the
+sign of the <code class="docutils literal notranslate"><span class="pre">components_</span></code> and the output from transform depend on the
+algorithm and random state. To work around this, fit instances of this
+class to data once, then keep the instance around to do transformations.</p>
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit LSI model on training data X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data.</p></li>
+<li><p><strong>y</strong> (<em>Ignored</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>self</strong> – Returns the transformer object.
+If TruncatedSVD from cuML is run, then this fit method saves the computed
+values as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s fit method.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.fit_transform">
+<code class="sig-name descname">fit_transform</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.fit_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit LSI model to X and perform dimensionality reduction on X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – Training data.
+If TruncatedSVD from cuML is run, then this method saves the computed values
+as cudf dataframes and cudf Series objects instead of the
+results’ types seen from scikit-learn’s API.</p></li>
+<li><p><strong>y</strong> (<em>Ignored</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_new</strong> – Reduced version of X. This will always be a dense array.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array of shape (n_samples, n_components) or cudf dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param">deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>mapping of string to any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.inverse_transform">
+<code class="sig-name descname">inverse_transform</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.inverse_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform X back to its original space.</p>
+<p>Returns an array or cudf dataframe X_original whose transform would be X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>array-like of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_components</em><em>) or </em><em>cudf dataframe</em>) – New data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_original</strong> – Note that this is always dense.
+If TruncatedSVD from cuML is run, then this method returns cudf
+dataframe instead of the results’ types seen from scikit-learn’s
+transform method.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array of shape (n_samples, n_features) or cudf dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.decomposition.TruncatedSVD.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.decomposition.TruncatedSVD.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform dimensionality reduction on X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>{array-like</em><em>, </em><em>sparse matrix} of shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>) or </em><em>cudf dataframe</em>) – New data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>X_new</strong> – Reduced version of X. This will always be dense.
+If TruncatedSVD from cuML is run, then this method returns cudf
+dataframe instead of the results’ types seen from scikit-learn’s
+transform method.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>array of shape (n_samples, n_components) or cudf dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sksvmloaderfiledoc.html" class="btn btn-neutral float-right" title="load_svmlight_file" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pcadoc.html" class="btn btn-neutral float-left" title="decomposition.PCA (uses cuML)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2020
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

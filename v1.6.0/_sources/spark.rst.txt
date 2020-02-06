@@ -1,0 +1,16 @@
+.. _snapml-spark-apis:
+
+---------------------------
+SnapML Spark APIs
+---------------------------
+.. currentmodule:: snap_ml.SnapMLSpark
+
+.. toctree::
+   :maxdepth: 1
+
+   splinregdoc
+   splogregdoc
+   spsvmdoc
+   spreaddoc
+   spmetdoc
+   sputildoc

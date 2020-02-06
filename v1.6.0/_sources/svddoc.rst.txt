@@ -1,0 +1,9 @@
+.. _svd-doc:
+
+====================================
+decomposition.TruncatedSVD (uses cuML)
+====================================
+
+.. currentmodule:: pai4sk.decomposition
+.. autoclass:: TruncatedSVD
+    :members:

@@ -1,0 +1,8 @@
+.. _sp-svm-doc:
+
+====================================
+SupportVectorMachine
+====================================
+
+.. automodule:: snap_ml_spark
+    :members: SupportVectorMachine

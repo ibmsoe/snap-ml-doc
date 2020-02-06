@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cluster.DBSCAN (uses cuML) &mdash; Snap Machine Learning  documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="decomposition.PCA (uses cuML)" href="pcadoc.html" />
+    <link rel="prev" title="neighbors.NearestNeighbors (uses cuML)" href="knndoc.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Snap Machine Learning
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.6.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="frequentlyaskedquestions.html">FAQ</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="snapml.html">SnapML APIs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ridgedoc.html">linear_model.Ridge (use SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lassodoc.html">linear_model.Lasso (uses SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sklogregdoc.html">linear_model.LogisticRegression (uses SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="svcdoc.html">svm.LinearSVC (uses SnapML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kmeansdoc.html">cluster.KMeans (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knndoc.html">neighbors.NearestNeighbors (uses cuML)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cluster.DBSCAN (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pcadoc.html">decomposition.PCA (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="svddoc.html">decomposition.TruncatedSVD (uses cuML)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sksvmloaderfiledoc.html">load_svmlight_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sklogdoc.html">log_loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skaccdoc.html">accuracy_score</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skhingedoc.html">hinge_loss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="skmsedoc.html">mean_squared_error</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simsearch.html">Similarity Search</a></li>
+<li class="toctree-l1"><a class="reference internal" href="est.html">SnapML Spark Estimators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spark.html">SnapML Spark APIs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Snap Machine Learning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="pai4sk.html">Scikit-learn compatible pai4sk APIs</a> &raquo;</li>
+        
+      <li>cluster.DBSCAN (uses cuML)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cluster-dbscan-uses-cuml">
+<span id="dbscan-doc"></span><h1>cluster.DBSCAN (uses cuML)<a class="headerlink" href="#cluster-dbscan-uses-cuml" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="pai4sk.cluster.DBSCAN">
+<em class="property">class </em><code class="sig-prename descclassname">pai4sk.cluster.</code><code class="sig-name descname">DBSCAN</code><span class="sig-paren">(</span><em class="sig-param">eps=0.5</em>, <em class="sig-param">min_samples=5</em>, <em class="sig-param">metric='euclidean'</em>, <em class="sig-param">metric_params=None</em>, <em class="sig-param">algorithm='auto'</em>, <em class="sig-param">leaf_size=30</em>, <em class="sig-param">p=None</em>, <em class="sig-param">n_jobs=None</em>, <em class="sig-param">use_gpu=True</em>, <em class="sig-param">verbose=False</em>, <em class="sig-param">max_mbytes_per_batch=None</em>, <em class="sig-param">handle=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform DBSCAN clustering from vector array or distance matrix.</p>
+<p>DBSCAN - Density-Based Spatial Clustering of Applications with Noise. Finds
+core samples of high density and expands clusters from them. Good for data
+which contains clusters of similar density.</p>
+<p>If the input data is cudf dataframe and if possible, then the accelerated
+DBSCAN algorithm from cuML will be used. Otherwise, scikit-learn’s DBSCAN
+algorithm will be used.</p>
+<p>cuML in pai4sk is currently supported only without MPI.
+|  If DBSCAN from cuML is run, then the return values from the APIs will be
+cudf dataframe and cudf Series objects instead of the return types of
+scikit-learn API.</p>
+<dl>
+<dt>eps<span class="classifier">float, optional</span></dt><dd><p>The maximum distance between two samples for them to be considered as
+in the same neighborhood.</p>
+</dd>
+<dt>min_samples<span class="classifier">int, optional</span></dt><dd><p>The number of samples (or total weight) in a neighborhood for a point
+to be considered as a core point. This includes the point itself.</p>
+</dd>
+<dt>metric<span class="classifier">string, or callable</span></dt><dd><p>The metric to use when calculating distance between instances in a
+feature array. If metric is a string or callable, it must be one of
+the options allowed by pai4sk.metrics.pairwise_distances for its
+metric parameter. If metric is ‘precomputed’, X is assumed to be a
+distance matrix and must be square. X may be a sparse matrix, in which
+case only nonzero elements may be considered neighbors for DBSCAN.
+New in version 0.17: metric precomputed to accept precomputed sparse matrix.</p>
+</dd>
+<dt>metric_params<span class="classifier">dict, optional</span></dt><dd><p>Additional keyword arguments for the metric function.
+New in version 0.19.</p>
+</dd>
+<dt>algorithm<span class="classifier">{‘auto’, ‘ball_tree’, ‘kd_tree’, ‘brute’, ‘cuml’}, optional</span></dt><dd><p>The algorithm to be used by the NearestNeighbors module to compute
+pointwise distances and find nearest neighbors. See NearestNeighbors
+module documentation for details.</p>
+<p>If cudf dataframe is given as input, if either</p>
+<div class="line-block">
+<div class="line">(1) algorithm is set to “cuml” or</div>
+<div class="line">(2) algorithm is “auto”,</div>
+<div class="line">then pai4sk will try to use DBSCAN algorithm from RAPIDS cuML if possible.</div>
+<div class="line">cuML in pai4sk is currently supported only without MPI.</div>
+</div>
+</dd>
+<dt>leaf_size<span class="classifier">int, optional (default = 30)</span></dt><dd><p>Leaf size passed to BallTree or cKDTree. This can affect the speed of
+the construction and query, as well as the memory required to store the
+tree. The optimal value depends on the nature of the problem.</p>
+</dd>
+<dt>p<span class="classifier">float, optional</span></dt><dd><p>The power of the Minkowski metric to be used to calculate distance between points.</p>
+</dd>
+<dt>n_jobs<span class="classifier">int or None, optional (default=None)</span></dt><dd><p>The number of parallel jobs to run. None means 1 unless in a
+joblib.parallel_backend context. -1 means using all processors.
+See Glossary for more details.</p>
+</dd>
+<dt>use_gpu<span class="classifier">boolean, Default is True</span></dt><dd><p>If True, cuML will use GPU 0. Applicable only for cuML.</p>
+</dd>
+<dt>handle<span class="classifier">cuml.Handle, Default is None</span></dt><dd><p>The cumlHandle resources to use.
+If it is None, a new one is created just for this class. Applicable only for cuML.</p>
+</dd>
+<dt>verbose<span class="classifier">bool, Default is False</span></dt><dd><p>Whether to print debug spews. Applicable only for cuML.</p>
+</dd>
+<dt>max_mbytes_per_batch<span class="classifier">(optional) int64, Default is 0</span></dt><dd><p>Calculate batch size using no more than this number of megabytes for
+the pairwise distance computation. This enables the trade-off between
+runtime and memory usage for making the N^2 pairwise distance
+computations more tractable for large numbers of samples.
+If you are experiencing out of memory errors when running DBSCAN, you
+can set this value based on the memory size of your device.
+Note: this option does not set the maximum total memory used in the
+DBSCAN computation and so this value will not be able to be set to
+the total memory available on the device. Applicable only for cuML.</p>
+</dd>
+</dl>
+<p>Attributes:
+<a href="#id1"><span class="problematic" id="id2">core_sample_indices_</span></a> : array, shape = [n_core_samples]</p>
+<blockquote>
+<div><p>Indices of core samples.</p>
+</div></blockquote>
+<dl class="simple">
+<dt><a href="#id3"><span class="problematic" id="id4">components_</span></a><span class="classifier">array, shape = [n_core_samples, n_features]</span></dt><dd><p>Copy of each core sample found by training.</p>
+</dd>
+<dt><a href="#id5"><span class="problematic" id="id6">labels_</span></a><span class="classifier">array, shape = [n_samples]</span></dt><dd><p>Cluster labels for each point in the dataset given to fit(). Noisy
+samples are given the label -1.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em>, <em class="sig-param">sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform DBSCAN clustering from features or distance matrix.
+Parameters:
+———-
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples) or cuDF dataframe</p>
+<blockquote>
+<div><p>A feature array, or array of distances between samples if metric=’precomputed’.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>sample_weight<span class="classifier">array, shape (n_samples,), optional</span></dt><dd><p>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</p>
+</dd>
+</dl>
+<p>y : Ignored</p>
+<dl class="simple">
+<dt>self<span class="classifier">object</span></dt><dd><p>If DBSCAN from cuML is run, then this fit method saves the computed
+labels as cudf Series object instead of array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.fit_predict">
+<code class="sig-name descname">fit_predict</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y=None</em>, <em class="sig-param">sample_weight=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.fit_predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs clustering on X and returns cluster labels.</p>
+<p>Parameters:
+X : array or sparse (CSR) matrix of shape (n_samples, n_features), or array of shape (n_samples, n_samples) or cudf dataframe</p>
+<blockquote>
+<div><p>A feature array, or array of distances between samples if metric=’precomputed’.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>sample_weight<span class="classifier">array, shape (n_samples,), optional</span></dt><dd><p>Weight of each sample, such that a sample with a weight of at least min_samples is by itself a core sample; a sample with negative weight may inhibit its eps-neighbor from being core. Note that weights are absolute, and default to 1.</p>
+</dd>
+</dl>
+<p>y : Ignored</p>
+<dl class="simple">
+<dt>y<span class="classifier">ndarray, shape (n_samples,) or cudf Series</span></dt><dd><p>If DBSCAN from cuML is run, then this fit method returns the computed
+labels as cudf Series object instead of ndarray.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pai4sk.cluster.DBSCAN.get_params">
+<code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param">deep=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pai4sk.cluster.DBSCAN.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>deep</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>params</strong> – Parameter names mapped to their values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>mapping of string to any</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pcadoc.html" class="btn btn-neutral float-right" title="decomposition.PCA (uses cuML)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="knndoc.html" class="btn btn-neutral float-left" title="neighbors.NearestNeighbors (uses cuML)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright IBM Corporation 2018, 2020
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

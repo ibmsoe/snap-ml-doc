@@ -1,0 +1,9 @@
+.. _sk-logreg-doc:
+
+====================================
+linear_model.LogisticRegression (uses SnapML)
+====================================
+
+.. currentmodule:: pai4sk.linear_model
+.. autoclass:: LogisticRegression
+    :members:
