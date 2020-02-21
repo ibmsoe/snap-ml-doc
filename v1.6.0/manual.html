@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#logistic-regression">Logistic Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#decision-tree">Decision Tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#random-forest">Random Forest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#snapboost">SnapBoost</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
 </li>
@@ -178,6 +179,7 @@
 <li><p><a class="reference internal" href="#logistic-regression"><span class="std std-ref">Logistic Regression</span></a></p></li>
 <li><p><a class="reference internal" href="#decision-tree"><span class="std std-ref">Decision Tree</span></a></p></li>
 <li><p><a class="reference internal" href="#random-forest"><span class="std std-ref">Random Forest</span></a></p></li>
+<li><p><a class="reference internal" href="#snap-boost"><span class="std std-ref">SnapBoost</span></a></p></li>
 <li><p><a class="reference internal" href="#references"><span class="std std-ref">References</span></a></p></li>
 </ul>
 <div class="section" id="linear-regression">
@@ -297,14 +299,39 @@ SDCA runs on the equivalent SVM dual problem formulation:</p>
 </div>
 <div class="section" id="decision-tree">
 <span id="id6"></span><h2>Decision Tree<a class="headerlink" href="#decision-tree" title="Permalink to this headline">¶</a></h2>
-<p>Snap ML offers a <code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> for training a binary decision tree. The training routine is single-threaded and executed on the CPU. Check the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a> for details about the available options or check out the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> for an application example.</p>
+<p>Snap ML offers two classes for learning with decision trees: <code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeRegressor</span></code> for classification and regression respectively.
+Trees can either be built either using exact splitting or a histogram-based method <a class="reference internal" href="#references">[LIGHTGBM]</a> .
+When using exact splitting, training is single-threaded and runs on the CPU.
+For histogram-based splitting, training can be performed using multi-treads on the CPU or alternatively on a single GPU.</p>
+<p>Check the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a> for details about the available options or check out the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> for an application example.</p>
 </div>
 <div class="section" id="random-forest">
 <span id="id7"></span><h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this headline">¶</a></h2>
-<p>With the <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> you can train an ensemble of trees. This is usually preferred over a single decision tree as it improves the generalization performance of the model. Snap ML implements a multi-threaded training routine that is executed on the CPU. Check the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a> for details about the available options or check out the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> for an application example.</p>
+<p>Snap ML offers two classes for learning with random forests: <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">RandomForestRegressor</span></code> for classification and regression respectively.
+Random forests are essentially an ensemble of trees, in which each tree is trained on a bootstrap sample of the training data, and the split at each node in the forest is determined using a different random subset of the available features <a class="reference internal" href="#references">[RF]</a>.
+Random forests are usually preferred over a single decision tree as they improve the generalization accuracy of the model, possibly at the expense of interpretability in some applications.</p>
+<p>Snap ML offers fast, multi-threaded training and inference of random forests on CPU.
+Snap ML builds random forests in a highly efficient manner using a novel breadth-first, depth-next tree-building algorithm <a class="reference internal" href="#references">[SNAPRF]</a>.
+Training can be further accelerated by enabling histogram-based splitting <a class="reference internal" href="#references">[LIGHTGBM]</a>.
+Experimental support for GPU and multi-GPU-accelerated training of random forests is also now offered.</p>
+<p>Check the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a> for details about the available options or check out the <a class="reference internal" href="tutorials.html#tutorials"><span class="std std-ref">Tutorials</span></a> for an application example.</p>
+</div>
+<div class="section" id="snapboost">
+<span id="snap-boost"></span><h2>SnapBoost<a class="headerlink" href="#snapboost" title="Permalink to this headline">¶</a></h2>
+<p>Snap ML now offers a boosting machine, SnapBoost, that can be used for classification and regression.
+The boosting functionality is available using the class <code class="xref py py-class docutils literal notranslate"><span class="pre">BoostingMachine</span></code> and the learning task can be defined by setting the objective parameter to mean squared error (for regression) or logistic loss (for classification).</p>
+<p>Like other popular boosting frameworks, SnapBoost performs a form a functional gradient descent to learn an ensemble of decision trees <a class="reference internal" href="#references">[BOOSTING]</a>.
+While the resulting ensemble has the same architecture as a random forest, the training algorithm is very different, typically leading to better generalization accuracy.
+Unlike other boosting frameworks, SnapBoost does not learn a heterogenous ensemble of decision trees.
+Instead, the maximum tree depth at each boosting round is selected probabilistically, according to a uniform distribution which can be controlled by the user.
+By tuning this distribution, one may be able to achieve better generalization accuracy than other boosting frameworks on some datasets.
+SnapBoost supports both example-wise and feature-wise subsampling at each boosting round, as well as L2-regularization as described in <a class="reference internal" href="#references">[XGBOOST]</a>.</p>
+<p>Trees can either be built using exact or histogram-based splits (as in <a class="reference internal" href="#references">[LIGHTGBM]</a>).
+When using histogram-based splitting, SnapBoost offers multi-threaded CPU and well as acceleration using a single GPU.</p>
+<p>A full example of training a SnapBoost model can be found in the IBM® Watson™ Machine Learning Community Edition (WML CE) distribution under ${CONDA_PREFIX}/pai4sk/<a href="#id8"><span class="problematic" id="id9">*</span></a>. For more details about the API we refer to the <a class="reference internal" href="pythonapidocumentation.html#python-api-documentation"><span class="std std-ref">snap-ml API</span></a>.</p>
 </div>
 <div class="section" id="references">
-<span id="id8"></span><h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <dl class="field-list simple">
 <dt class="field-odd">[SCD]</dt>
 <dd class="field-odd"><p><em>Y. Nesterov</em>. Efficiency of coordinate descent methods on huge-scale optimization problems. SIAM Journal on Optimization, 2012.</p>
@@ -314,6 +341,21 @@ SDCA runs on the equivalent SVM dual problem formulation:</p>
 </dd>
 <dt class="field-odd">[TPASCD]</dt>
 <dd class="field-odd"><p><em>Thomas Parnell, Celestine Dünner, Kubilay Atasu, Manolis Sifalakis and Haris Pozidis</em>. Tera-Scale Coordinate Descent on GPUs. Journal on Future Generation Computer Systems, 2018.</p>
+</dd>
+<dt class="field-even">[LIGHTGBM]</dt>
+<dd class="field-even"><p><em>Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q. and Liu, T.Y</em>. LightGBM: A Highly Efficient Gradient Boosting Decision Tree. Advances in Neural Information Processing Systems, 2017.</p>
+</dd>
+<dt class="field-odd">[RF]</dt>
+<dd class="field-odd"><p><em>Breiman, Leo</em>. Random Forests, Machine Learning, 2001.</p>
+</dd>
+<dt class="field-even">[SNAPRF]</dt>
+<dd class="field-even"><p><em>Anghel, Andreea, Nikolas Ioannou, Thomas Parnell, Nikolaos Papandreou, Celestine Mendler-Dünner, and Haris Pozidis</em>. Breadth-first, Depth-next Training of Random Forests. Workshop on System for ML at NeurIPS, 2019.</p>
+</dd>
+<dt class="field-odd">[BOOSTING]</dt>
+<dd class="field-odd"><p><em>Friedman, Jerome H</em>. Greedy Function Approximation: A Gradient Boosting Machine. Annals of Statistics, 2001.</p>
+</dd>
+<dt class="field-even">[XGBOOST]</dt>
+<dd class="field-even"><p><em>Chen, Tianqi, and Carlos Guestri</em>. XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd AMC SIGKDD International Conference on Knowledge Discovery and Data Mining, 2016.</p>
 </dd>
 </dl>
 </div>

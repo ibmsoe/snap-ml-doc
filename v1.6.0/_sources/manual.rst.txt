@@ -11,6 +11,7 @@ The Snap Machine Learning (Snap ML) Library is designed to offer fast training o
 * :ref:`logistic-regression`
 * :ref:`decision-tree`
 * :ref:`random-forest`
+* :ref:`snap-boost`
 * :ref:`references`
 
 .. _linear-regression:
@@ -122,7 +123,7 @@ To train the model the ``fit`` method is used; it takes the training data and th
 
 A full example of training a :class:`SupportVectorMachine` model in a real application can be found in the IBM® Watson Machine Learning Community Edition (WML CE)  distribution under *${CONDA_PREFIX}/pai4sk/*. For more details about the API we refer to the :ref:`python-api-documentation`. 
 
-    
+  
 
 .. _logistic-regression:
 
@@ -180,8 +181,12 @@ Decision Tree
 
 .. currentmodule:: snap_ml.DecisionTreeClassifier
 
-Snap ML offers a :class:`DecisionTreeClassifier` for training a binary decision tree. The training routine is single-threaded and executed on the CPU. Check the :ref:`python-api-documentation` for details about the available options or check out the :ref:`tutorials` for an application example.
+Snap ML offers two classes for learning with decision trees: :class:`DecisionTreeClassifier` and :class:`DecisionTreeRegressor` for classification and regression respectively. 
+Trees can either be built either using exact splitting or a histogram-based method `[LIGHTGBM] <References_>`_ .
+When using exact splitting, training is single-threaded and runs on the CPU. 
+For histogram-based splitting, training can be performed using multi-treads on the CPU or alternatively on a single GPU. 
 
+Check the :ref:`python-api-documentation` for details about the available options or check out the :ref:`tutorials` for an application example.
 
 .. _random-forest:
 
@@ -191,9 +196,39 @@ Random Forest
 
 .. currentmodule:: snap_ml.RandomForestClassifier
 
+Snap ML offers two classes for learning with random forests: :class:`RandomForestClassifier` and :class:`RandomForestRegressor` for classification and regression respectively. 
+Random forests are essentially an ensemble of trees, in which each tree is trained on a bootstrap sample of the training data, and the split at each node in the forest is determined using a different random subset of the available features `[RF] <References_>`_.
+Random forests are usually preferred over a single decision tree as they improve the generalization accuracy of the model, possibly at the expense of interpretability in some applications.
 
-With the :class:`RandomForestClassifier` you can train an ensemble of trees. This is usually preferred over a single decision tree as it improves the generalization performance of the model. Snap ML implements a multi-threaded training routine that is executed on the CPU. Check the :ref:`python-api-documentation` for details about the available options or check out the :ref:`tutorials` for an application example.
+Snap ML offers fast, multi-threaded training and inference of random forests on CPU.
+Snap ML builds random forests in a highly efficient manner using a novel breadth-first, depth-next tree-building algorithm `[SNAPRF] <References_>`_.
+Training can be further accelerated by enabling histogram-based splitting `[LIGHTGBM] <References_>`_.
+Experimental support for GPU and multi-GPU-accelerated training of random forests is also now offered. 
 
+Check the :ref:`python-api-documentation` for details about the available options or check out the :ref:`tutorials` for an application example.
+
+.. _snap-boost:
+
+--------------------------
+SnapBoost
+--------------------------
+
+.. currentmodule:: snap_ml.BoostingMachine
+
+Snap ML now offers a boosting machine, SnapBoost, that can be used for classification and regression. 
+The boosting functionality is available using the class :class:`BoostingMachine` and the learning task can be defined by setting the objective parameter to mean squared error (for regression) or logistic loss (for classification).
+
+Like other popular boosting frameworks, SnapBoost performs a form a functional gradient descent to learn an ensemble of decision trees `[BOOSTING] <References_>`_.
+While the resulting ensemble has the same architecture as a random forest, the training algorithm is very different, typically leading to better generalization accuracy. 
+Unlike other boosting frameworks, SnapBoost does not learn a heterogenous ensemble of decision trees.
+Instead, the maximum tree depth at each boosting round is selected probabilistically, according to a uniform distribution which can be controlled by the user. 
+By tuning this distribution, one may be able to achieve better generalization accuracy than other boosting frameworks on some datasets.
+SnapBoost supports both example-wise and feature-wise subsampling at each boosting round, as well as L2-regularization as described in `[XGBOOST] <References_>`_.
+
+Trees can either be built using exact or histogram-based splits (as in `[LIGHTGBM] <References_>`_).
+When using histogram-based splitting, SnapBoost offers multi-threaded CPU and well as acceleration using a single GPU.
+
+A full example of training a SnapBoost model can be found in the IBM® Watson™ Machine Learning Community Edition (WML CE) distribution under ${CONDA_PREFIX}/pai4sk/*. For more details about the API we refer to the :ref:`python-api-documentation`. 
 
 .. _references:
 
@@ -210,3 +245,12 @@ References
 
 :[TPASCD]: *Thomas Parnell, Celestine Dünner, Kubilay Atasu, Manolis Sifalakis and Haris Pozidis*. Tera-Scale Coordinate Descent on GPUs. Journal on Future Generation Computer Systems, 2018.
 
+:[LIGHTGBM]: *Ke, G., Meng, Q., Finley, T., Wang, T., Chen, W., Ma, W., Ye, Q. and Liu, T.Y*. LightGBM: A Highly Efficient Gradient Boosting Decision Tree. Advances in Neural Information Processing Systems, 2017.
+
+:[RF]: *Breiman, Leo*. Random Forests, Machine Learning, 2001.
+
+:[SNAPRF]: *Anghel, Andreea, Nikolas Ioannou, Thomas Parnell, Nikolaos Papandreou, Celestine Mendler-Dünner, and Haris Pozidis*. Breadth-first, Depth-next Training of Random Forests. Workshop on System for ML at NeurIPS, 2019.
+
+:[BOOSTING]: *Friedman, Jerome H*. Greedy Function Approximation: A Gradient Boosting Machine. Annals of Statistics, 2001.
+
+:[XGBOOST]: *Chen, Tianqi, and Carlos Guestri*. XGBoost: A Scalable Tree Boosting System. Proceedings of the 22nd AMC SIGKDD International Conference on Knowledge Discovery and Data Mining, 2016.
